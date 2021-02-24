@@ -8,7 +8,9 @@ export default class GiveBadgeModal extends Modal {
   oninit(vnode) {
     super.oninit(vnode);
 
-    this.badge = this.attrs.badge ? this.attrs.badge : app.store.createRecord('userBadges');
+    this.badge = this.attrs.badge
+      ? this.attrs.badge
+      : app.store.createRecord("userBadges");
 
     this.description = Stream(this.badge.description());
 
@@ -21,7 +23,9 @@ export default class GiveBadgeModal extends Modal {
 
   title() {
     return app.translator.trans(
-      `v17development-flarum-badges.forum.${this.badge.exists ? 'update' : 'give'}_badge`
+      `v17development-flarum-badges.forum.${
+        this.badge.exists ? "update" : "give"
+      }_badge`
     );
   }
 
@@ -29,20 +33,16 @@ export default class GiveBadgeModal extends Modal {
     return (
       <div>
         <div className="Modal-body">
-          <div className="Form">
-            {this.fields().toArray()}
-          </div>
+          <div className="Form">{this.fields().toArray()}</div>
         </div>
-        
+
         <div className="Modal-footer">
           <Button
             className={"Button Button--primary"}
             type={"submit"}
             loading={this.loading}
           >
-            {app.translator.trans(
-              "core.forum.composer_edit.submit_button"
-            )}
+            {app.translator.trans("core.forum.composer_edit.submit_button")}
           </Button>
         </div>
       </div>
@@ -52,22 +52,24 @@ export default class GiveBadgeModal extends Modal {
   fields() {
     const items = new ItemList();
 
-    items.add('description', (
+    items.add(
+      "description",
       <div className="Form-group">
         <label>
           {app.translator.trans(
             "v17development-flarum-badges.forum.badge.earning_reason"
           )}
         </label>
-        <textarea 
+        <textarea
           className="FormControl"
           placeholder={app.translator.trans(
             "v17development-flarum-badges.forum.badge.earning_reason"
           )}
           bidi={this.description}
-          />
-      </div>
-    ), 30);
+        />
+      </div>,
+      30
+    );
 
     return items;
   }
@@ -79,17 +81,17 @@ export default class GiveBadgeModal extends Modal {
 
     this.badge
       .save({
-        description: this.description()
+        description: this.description(),
       })
       .then(
         () => {
           this.hide();
           m.redraw();
         },
-        response => {
-            this.loading = false;
-            this.handleErrors(response);
+        (response) => {
+          this.loading = false;
+          this.handleErrors(response);
         }
-    );
+      );
   }
 }

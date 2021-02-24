@@ -53,11 +53,13 @@ app.initializers.add("v17development-flarum-badges", (app) => {
             username: this.user.username(),
           }),
           name: "badges",
-          icon: "fas fa-user-tag"
+          icon: "fas fa-user-tag",
         },
         [
-          app.translator.trans("v17development-flarum-badges.forum.badge.badges"),
-          <span className="Button-badge">{this.user.userBadges().length}</span>
+          app.translator.trans(
+            "v17development-flarum-badges.forum.badge.badges"
+          ),
+          <span className="Button-badge">{this.user.userBadges().length}</span>,
         ]
       ),
       90

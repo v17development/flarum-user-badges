@@ -9,6 +9,6 @@ export default class UserBadge extends mixin(Model, {
   assignedAt: Model.attribute("assignedAt"),
 }) {
   apiEndpoint() {
-    return '/user_badges' + (this.exists ? '/' + this.data.id : '');
+    return "/user_badges" + (this.exists ? "/" + this.data.id : "");
   }
 }

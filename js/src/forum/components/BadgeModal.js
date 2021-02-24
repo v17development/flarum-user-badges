@@ -94,19 +94,22 @@ export default class BadgeModal extends Modal {
               :
             </b>
           </p>
-          
+
           <p>
-            {this.attrs.userBadgeData.description() ? this.attrs.userBadgeData.description() : 'none'}
-            
+            {this.attrs.userBadgeData.description()
+              ? this.attrs.userBadgeData.description()
+              : "none"}
+
             {app.forum.attribute("canGiveBadge") && (
-              <a 
-                href={"#"} 
-                onclick={e => {
+              <a
+                href={"#"}
+                onclick={(e) => {
                   e.preventDefault();
                   app.modal.show(GiveBadgeModal, {
-                    badge: this.attrs.userBadgeData
-                  })
-                }}>
+                    badge: this.attrs.userBadgeData,
+                  });
+                }}
+              >
                 {app.translator.trans(
                   "v17development-flarum-badges.forum.badge.update_earning_reason"
                 )}

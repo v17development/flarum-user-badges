@@ -14,6 +14,6 @@ export default class Badge extends mixin(Model, {
   category: Model.hasOne("category"),
 }) {
   apiEndpoint() {
-    return '/badges' + (this.exists ? '/' + this.data.id : '');
+    return "/badges" + (this.exists ? "/" + this.data.id : "");
   }
 }

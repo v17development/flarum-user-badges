@@ -190,7 +190,7 @@ var Badge = /*#__PURE__*/function (_mixin) {
   var _proto = Badge.prototype;
 
   _proto.apiEndpoint = function apiEndpoint() {
-    return '/badges' + (this.exists ? '/' + this.data.id : '');
+    return "/badges" + (this.exists ? "/" + this.data.id : "");
   };
 
   return Badge;
@@ -239,7 +239,7 @@ var BadgeCategory = /*#__PURE__*/function (_mixin) {
   var _proto = BadgeCategory.prototype;
 
   _proto.apiEndpoint = function apiEndpoint() {
-    return '/user_categories' + (this.exists ? '/' + this.data.id : '');
+    return "/user_categories" + (this.exists ? "/" + this.data.id : "");
   };
 
   return BadgeCategory;
@@ -284,7 +284,7 @@ var UserBadge = /*#__PURE__*/function (_mixin) {
   var _proto = UserBadge.prototype;
 
   _proto.apiEndpoint = function apiEndpoint() {
-    return '/user_badges' + (this.exists ? '/' + this.data.id : '');
+    return "/user_badges" + (this.exists ? "/" + this.data.id : "");
   };
 
   return UserBadge;
@@ -420,7 +420,7 @@ var BadgeModal = /*#__PURE__*/function (_Modal) {
     if (this.attrs.userBadgeData) {
       items.add("earning_reason", m("div", {
         className: "BadgeModalListItem"
-      }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason"), ":")), m("p", null, this.attrs.userBadgeData.description() ? this.attrs.userBadgeData.description() : 'none', app.forum.attribute("canGiveBadge") && m("a", {
+      }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason"), ":")), m("p", null, this.attrs.userBadgeData.description() ? this.attrs.userBadgeData.description() : "none", app.forum.attribute("canGiveBadge") && m("a", {
         href: "#",
         onclick: function onclick(e) {
           e.preventDefault();
@@ -597,7 +597,7 @@ var GiveBadgeModal = /*#__PURE__*/function (_Modal) {
   _proto.oninit = function oninit(vnode) {
     _Modal.prototype.oninit.call(this, vnode);
 
-    this.badge = this.attrs.badge ? this.attrs.badge : app.store.createRecord('userBadges');
+    this.badge = this.attrs.badge ? this.attrs.badge : app.store.createRecord("userBadges");
     this.description = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badge.description());
     this.loading = false;
   };
@@ -607,7 +607,7 @@ var GiveBadgeModal = /*#__PURE__*/function (_Modal) {
   };
 
   _proto.title = function title() {
-    return app.translator.trans("v17development-flarum-badges.forum." + (this.badge.exists ? 'update' : 'give') + "_badge");
+    return app.translator.trans("v17development-flarum-badges.forum." + (this.badge.exists ? "update" : "give") + "_badge");
   };
 
   _proto.content = function content() {
@@ -626,7 +626,7 @@ var GiveBadgeModal = /*#__PURE__*/function (_Modal) {
 
   _proto.fields = function fields() {
     var items = new flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_3___default.a();
-    items.add('description', m("div", {
+    items.add("description", m("div", {
       className: "Form-group"
     }, m("label", null, app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason")), m("textarea", {
       className: "FormControl",

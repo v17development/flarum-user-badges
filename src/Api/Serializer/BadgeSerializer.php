@@ -11,7 +11,7 @@ class BadgeSerializer extends AbstractSerializer
     /**
      * {@inheritdoc}
      */
-    protected $type = 'badge';
+    protected $type = 'badges';
 
     /**
      * {@inheritdoc}
@@ -24,16 +24,17 @@ class BadgeSerializer extends AbstractSerializer
             'order'         => $badge->order,
             'image'         => $badge->image,
             'description'   => $badge->description,
+            'earnedAmount'  => $badge->earnedCount(),
             'isVisible'     => $badge->is_visible,
             'createdAt'     => $this->formatDate($badge->created_at),
         ];
     }
 
-    protected function badgeCategory($badgeCategory) {
+    protected function category($badgeCategory) {
         return $this->hasOne($badgeCategory, BadgeCategorySerializer::class);
     }
 
-    protected function badgeUsers($badgeUsers) {
+    protected function users($badgeUsers) {
         return $this->hasMany($badgeUsers, UserBadgeSerializer::class);
     }
 }

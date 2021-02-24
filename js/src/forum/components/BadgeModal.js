@@ -1,0 +1,107 @@
+import Modal from 'flarum/components/Modal';
+import Button from 'flarum/components/Button';
+import fullTime from 'flarum/helpers/fullTime';
+import ItemList from 'flarum/utils/ItemList';
+import Link from 'flarum/components/Link';
+
+export default class BadgeModal extends Modal {
+  className() {
+    return 'Modal--small';
+  }
+
+  title() {
+    return app.translator.trans("v17development-flarum-badges.forum.badge_information");
+  }
+
+  content() {
+    return (
+      <div>
+        <div className="Modal-body">
+          {this.data().toArray()}
+        </div>
+        {this.attrs.userBadgeData && (
+          <div className="Modal-footer">
+            <Button 
+              className={"Button Button--primary"}
+              onclick={() => {
+                if(confirm(app.translator.trans("v17development-flarum-badges.forum.moderation.remove_badge_confirm"))) {
+                  this.attrs.userBadgeData.delete();
+                }
+              }}
+              >
+              {app.translator.trans("v17development-flarum-badges.forum.moderation.remove_badge")}
+            </Button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  data() {
+    const items = new ItemList();
+
+    // Badge name
+    items.add('name', (
+      <div className={"BadgeModalListItem"}>
+        <p><b>{app.translator.trans("v17development-flarum-badges.forum.badge.name")}:</b></p>
+        <p>{this.attrs.badge.name()}</p>
+      </div>
+    ));
+
+    // Badge description
+    items.add('description', (
+      <div className={"BadgeModalListItem"}>
+        <p><b>{app.translator.trans("v17development-flarum-badges.forum.badge.description")}:</b></p>
+        <p>{this.attrs.badge.description()}</p>
+      </div>
+    ));
+
+    // Badge earning reason
+    if(this.attrs.userBadgeData && this.attrs.userBadgeData.description()) {
+      items.add('earning_reason', (
+        <div className={"BadgeModalListItem"}>
+          <p><b>{app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason")}:</b></p>
+          <p>{this.attrs.userBadgeData.description()}</p>
+        </div>
+      ));
+    }
+
+    // Badge earned on
+    if(this.attrs.userBadgeData) {
+      items.add('earned_date', (
+        <div className={"BadgeModalListItem"}>
+          <p><b>{app.translator.trans("v17development-flarum-badges.forum.badge.earned_on")}:</b></p>
+          <p>{fullTime(this.attrs.userBadgeData.assignedAt())}</p>
+        </div>
+      ));
+    }
+
+    // Badge category
+    if(this.attrs.userBadgeData) {
+      items.add('category', (
+        <div className={"BadgeModalListItem"}>
+          <p><b>{app.translator.trans("v17development-flarum-badges.forum.badge.category")}:</b></p>
+          <p>{this.attrs.badge.category().name()} - <Link href={app.route("badges.category", { category: this.attrs.badge.category().id() })}>{app.translator.trans("v17development-flarum-badges.forum.all_badges")}</Link></p>
+        </div>
+      ));
+    }
+
+    // Badge category
+    if(this.attrs.badge && this.attrs.badge.earnedAmount()) {
+      items.add('earned_amount', (
+        <div className={"BadgeModalListItem"}>
+          <p>
+            {app.translator.transChoice("v17development-flarum-badges.forum.badge.earned_count", 
+              this.attrs.badge.earnedAmount(), 
+              {
+                count: this.attrs.badge.earnedAmount()
+              }
+            )}
+          </p>
+        </div>
+      ));
+    }
+    
+    return items;
+  }
+}

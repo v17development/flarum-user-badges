@@ -1,0 +1,23 @@
+v17development-flarum-badges:
+  admin:
+    none: None
+  forum: 
+    badge_information: Badge information
+    all_badges: See all badges
+    all_users: See all users
+
+    badge:
+      badge: Badge
+      badges: Badges
+      name: Badge name
+      description: Badge description
+      earning_reason: Badge earning reason
+      earned_on: Badge earned on
+      category: Badge category
+
+      earned_count: "<b>{count} user</b> has earned this badge|<b>{count} users</b> have earned this badge"
+
+    moderation:
+      remove_badge: Remove badge from user
+      remove_badge_confirm: Are you sure you want to remove this badge from this user?
+      give_badge: Give badge

@@ -11,7 +11,7 @@ class BadgeCategorySerializer extends AbstractSerializer
     /**
      * {@inheritdoc}
      */
-    protected $type = 'badgeCategory';
+    protected $type = 'badgeCategories';
 
     /**
      * {@inheritdoc}
@@ -20,6 +20,7 @@ class BadgeCategorySerializer extends AbstractSerializer
     {
         return [
             'name'          => $badgeCategory->name,
+            'description'   => $badgeCategory->description,
             'isEnabled'     => $badgeCategory->is_enabled,
             'createdAt'     => $this->formatDate($badgeCategory->created_at),
         ];

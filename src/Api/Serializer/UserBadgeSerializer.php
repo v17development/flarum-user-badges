@@ -10,7 +10,7 @@ class UserBadgeSerializer extends AbstractSerializer
     /**
      * {@inheritdoc}
      */
-    protected $type = 'userBadge';
+    protected $type = 'userBadges';
 
     /**
      * {@inheritdoc}
@@ -20,7 +20,7 @@ class UserBadgeSerializer extends AbstractSerializer
         return [
             'description'   => $userBadge->description,
             'isPrimary'     => $userBadge->is_primary,
-            'createdAt'     => $this->formatDate($userBadge->created_at),
+            'assignedAt'     => $this->formatDate($userBadge->assigned_at),
         ];
     }
 

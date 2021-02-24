@@ -28,7 +28,7 @@ class Badge extends AbstractModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function badgeCategory()
+    public function category()
     {
         return $this->belongsTo(BadgeCategory::class, 'badge_category_id');
     }
@@ -36,8 +36,15 @@ class Badge extends AbstractModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function badgeUsers()
+    public function users()
     {
         return $this->hasMany(UserBadge::class, 'badge_id');
+    }
+
+    /**
+     * User count
+     */
+    public function earnedCount() {
+        return $this->hasMany(UserBadge::class, 'badge_id')->count();
     }
 }

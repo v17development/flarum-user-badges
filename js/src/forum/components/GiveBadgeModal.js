@@ -32,21 +32,22 @@ export default class GiveBadgeModal extends Modal {
     this.loading = false;
 
     // Load all available badges
-    if(!this.attrs.badge) {
+    if (!this.attrs.badge) {
       this.loading = true;
 
-      app.store.find("badge_categories", {
-        include: 'badges'
-      }).then(badgeCategories => {
-        this.availableBadges = badgeCategories;
+      app.store
+        .find("badge_categories", {
+          include: "badges",
+        })
+        .then((badgeCategories) => {
+          this.availableBadges = badgeCategories;
 
-        this.loading = false;
+          this.loading = false;
 
-        // Redraw
-        m.redraw();
-      });
-    }
-    else{
+          // Redraw
+          m.redraw();
+        });
+    } else {
       this.availableBadges[this.selectedBadge.id()] = this.selectedBadge.name();
     }
   }
@@ -101,17 +102,17 @@ export default class GiveBadgeModal extends Modal {
 
         <div className={"Select"}>
           <select
-            value={this.selectedBadge ? this.selectedBadge.id() : 'empty'}
+            value={this.selectedBadge ? this.selectedBadge.id() : "empty"}
             disabled={!!this.attrs.badge}
-            onchange={e => {
-              if(e.target.value === 'empty') return;
-              this.selectedBadge = app.store.getById('badges', e.target.value);
-  
+            onchange={(e) => {
+              if (e.target.value === "empty") return;
+              this.selectedBadge = app.store.getById("badges", e.target.value);
+
               // Check if the user already has this badge
               this.checkUserHasBadge(this.selectedBadge);
             }}
             className="Select-input FormControl"
-            >
+          >
             <option value={"empty"}>
               {app.translator.trans(
                 "v17development-flarum-badges.forum.select_badge"
@@ -119,21 +120,20 @@ export default class GiveBadgeModal extends Modal {
             </option>
 
             {/* When no badge is selected, show all available badges */}
-            {!this.attrs.badge && this.availableBadges.map(category => (
-              <optgroup label={category.name()}>
-                {category
-                  .badges()
-                  .map(
-                    badge => (
-                      <option value={badge.id()}>{badge.name()}</option>
-                    )
-                  )}
-              </optgroup>
-            ))}
+            {!this.attrs.badge &&
+              this.availableBadges.map((category) => (
+                <optgroup label={category.name()}>
+                  {category.badges().map((badge) => (
+                    <option value={badge.id()}>{badge.name()}</option>
+                  ))}
+                </optgroup>
+              ))}
 
             {/* When a badge is already assigned */}
             {!!this.attrs.badge && (
-              <option value={this.selectedBadge.id()}>{this.selectedBadge.name()}</option>
+              <option value={this.selectedBadge.id()}>
+                {this.selectedBadge.name()}
+              </option>
             )}
           </select>
           <i class="icon fas fa-caret-down Select-caret"></i>
@@ -163,12 +163,11 @@ export default class GiveBadgeModal extends Modal {
           </b>
         </p>
         <p>
-          {this.selectedBadge ? 
-            this.selectedBadge.description() :
-            app.translator.trans(
-              "v17development-flarum-badges.forum.select_badge"
-            )
-          }
+          {this.selectedBadge
+            ? this.selectedBadge.description()
+            : app.translator.trans(
+                "v17development-flarum-badges.forum.select_badge"
+              )}
         </p>
       </div>,
       30
@@ -202,11 +201,11 @@ export default class GiveBadgeModal extends Modal {
   checkUserHasBadge(badge) {
     let foundBadge = false;
 
-    this.user.userBadges().map(userBadge => {
-      if(userBadge.badge() == badge) {
+    this.user.userBadges().map((userBadge) => {
+      if (userBadge.badge() == badge) {
         foundBadge = true;
       }
-    })
+    });
 
     this.userHasBadge = foundBadge;
 
@@ -221,20 +220,22 @@ export default class GiveBadgeModal extends Modal {
     this.badge
       .save({
         description: this.description(),
-        relationships: this.attrs.badge ? {} : {
-          badge: this.selectedBadge,
-          user: this.user
-        }
+        relationships: this.attrs.badge
+          ? {}
+          : {
+              badge: this.selectedBadge,
+              user: this.user,
+            },
       })
       .then(
         () => {
           // Re-open badge modal
-          if(this.attrs.badge) {
+          if (this.attrs.badge) {
             app.modal.show(BadgeModal, {
               badge: this.attrs.badge.badge(),
-              userBadgeData: this.attrs.badge
+              userBadgeData: this.attrs.badge,
             });
-          }else{
+          } else {
             this.hide();
           }
 

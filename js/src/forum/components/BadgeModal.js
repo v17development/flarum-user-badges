@@ -8,7 +8,7 @@ import GiveBadgeModal from "./GiveBadgeModal";
 export default class BadgeModal extends Modal {
   oninit(vnode) {
     super.oninit(vnode);
-    
+
     this.loading = false;
   }
 
@@ -90,7 +90,11 @@ export default class BadgeModal extends Modal {
     );
 
     // Badge earning reason
-    if (this.attrs.userBadgeData && (this.attrs.userBadgeData.description() || app.forum.attribute("canGiveBadge"))) {
+    if (
+      this.attrs.userBadgeData &&
+      (this.attrs.userBadgeData.description() ||
+        app.forum.attribute("canGiveBadge"))
+    ) {
       items.add(
         "earning_reason",
         <div className={"BadgeModalListItem"}>
@@ -104,15 +108,15 @@ export default class BadgeModal extends Modal {
           </p>
 
           <p>
-            {this.attrs.userBadgeData.description()
-              ? this.attrs.userBadgeData.description()
-              : (
-                <i>
+            {this.attrs.userBadgeData.description() ? (
+              this.attrs.userBadgeData.description()
+            ) : (
+              <i>
                 {app.translator.trans(
                   "v17development-flarum-badges.forum.badge.no_earning_reason"
                 )}
-                </i>
-              )}
+              </i>
+            )}
           </p>
           <p>
             {app.forum.attribute("canGiveBadge") && (

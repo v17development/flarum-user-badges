@@ -69,20 +69,22 @@ app.initializers.add("v17development-flarum-badges", (app) => {
     );
   });
 
-  extend(UserControls, 'moderationControls', function(items, user) {
+  extend(UserControls, "moderationControls", function (items, user) {
     // User can give badges
-    if(app.forum.attribute("canGiveBadge")) {
+    if (app.forum.attribute("canGiveBadge")) {
       items.add(
-        'test',
-        <Button 
-          icon="fas fa-user-tag" 
-          onclick={() => 
+        "test",
+        <Button
+          icon="fas fa-user-tag"
+          onclick={() =>
             app.modal.show(GiveBadgeModal, {
-              user: user
-            }
+              user: user,
+            })
+          }
+        >
+          {app.translator.trans(
+            "v17development-flarum-badges.forum.give_badge"
           )}
-          >
-          {app.translator.trans('v17development-flarum-badges.forum.give_badge')}
         </Button>
       );
     }

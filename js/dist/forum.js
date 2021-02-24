@@ -629,7 +629,7 @@ var GiveBadgeModal = /*#__PURE__*/function (_Modal) {
     if (!this.attrs.badge) {
       this.loading = true;
       app.store.find("badge_categories", {
-        include: 'badges'
+        include: "badges"
       }).then(function (badgeCategories) {
         _this.availableBadges = badgeCategories;
         _this.loading = false; // Redraw
@@ -674,11 +674,11 @@ var GiveBadgeModal = /*#__PURE__*/function (_Modal) {
     }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.badge"))), m("div", {
       className: "Select"
     }, m("select", {
-      value: this.selectedBadge ? this.selectedBadge.id() : 'empty',
+      value: this.selectedBadge ? this.selectedBadge.id() : "empty",
       disabled: !!this.attrs.badge,
       onchange: function onchange(e) {
-        if (e.target.value === 'empty') return;
-        _this2.selectedBadge = app.store.getById('badges', e.target.value); // Check if the user already has this badge
+        if (e.target.value === "empty") return;
+        _this2.selectedBadge = app.store.getById("badges", e.target.value); // Check if the user already has this badge
 
         _this2.checkUserHasBadge(_this2.selectedBadge);
       },
@@ -965,17 +965,17 @@ app.initializers.add("v17development-flarum-badges", function (app) {
       className: "Button-badge"
     }, this.user.userBadges().length)]), 90);
   });
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_utils_UserControls__WEBPACK_IMPORTED_MODULE_4___default.a, 'moderationControls', function (items, user) {
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_utils_UserControls__WEBPACK_IMPORTED_MODULE_4___default.a, "moderationControls", function (items, user) {
     // User can give badges
     if (app.forum.attribute("canGiveBadge")) {
-      items.add('test', m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_6___default.a, {
+      items.add("test", m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_6___default.a, {
         icon: "fas fa-user-tag",
         onclick: function onclick() {
           return app.modal.show(_components_GiveBadgeModal__WEBPACK_IMPORTED_MODULE_13__["default"], {
             user: user
           });
         }
-      }, app.translator.trans('v17development-flarum-badges.forum.give_badge')));
+      }, app.translator.trans("v17development-flarum-badges.forum.give_badge")));
     }
   });
 });

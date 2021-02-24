@@ -24,23 +24,24 @@ app.initializers.add("v17development-flarum-badges", (app) => {
     component: BadgesProfilePage,
   };
 
-  // Badges overview page
-  app.routes["badges"] = {
-    path: "/badges",
-    component: BadgesOverviewPage,
-  };
+  // Future
+  // // Badges overview page
+  // app.routes["badges"] = {
+  //   path: "/badges",
+  //   component: BadgesOverviewPage,
+  // };
 
-  // Badges overview page
-  app.routes["badges.category"] = {
-    path: "/badges/category/:id",
-    component: BadgesOverviewPage,
-  };
+  // // Badges overview page
+  // app.routes["badges.category"] = {
+  //   path: "/badges/category/:id",
+  //   component: BadgesOverviewPage,
+  // };
 
-  // Badge item page
-  app.routes["badges.item"] = {
-    path: "/badges/:id",
-    component: BadgeItemPage,
-  };
+  // // Badge item page
+  // app.routes["badges.item"] = {
+  //   path: "/badges/:id",
+  //   component: BadgeItemPage,
+  // };
 
   // Add uploads to user page menu items
   extend(UserPage.prototype, "navItems", function (items) {
@@ -52,9 +53,12 @@ app.initializers.add("v17development-flarum-badges", (app) => {
             username: this.user.username(),
           }),
           name: "badges",
-          icon: "fas fa-user-tag",
+          icon: "fas fa-user-tag"
         },
-        app.translator.trans("v17development-flarum-badges.forum.badge.badges")
+        [
+          app.translator.trans("v17development-flarum-badges.forum.badge.badges"),
+          <span className="Button-badge">{this.user.userBadges().length}</span>
+        ]
       ),
       90
     );

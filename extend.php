@@ -4,6 +4,7 @@ namespace V17Development\FlarumBadges;
 
 use Flarum\Extend;
 use Flarum\Api\Serializer\UserSerializer;
+use Flarum\Api\Serializer\ForumSerializer;
 use Flarum\User\User;
 use Flarum\Api\Controller as FlarumController;
 
@@ -17,11 +18,32 @@ return [
     //     ->css(__DIR__ . '/less/Admin.less'),
 
     (new Extend\Routes('api'))
+        // Badges
         ->get('/badges', 'badges.overview', Api\Controller\ListBadgesController::class)
+        ->post('/badges', 'badges.create', Api\Controller\CreateBadgesController::class)
+        ->patch('/badges/{id}', 'badges.update', Api\Controller\UpdateBadgeController::class)
+        ->delete('/badges/{id}', 'badges.delete', Api\Controller\DeleteBadgeController::class)
+
+        // Badge categories
         ->get('/badge_categories', 'badge.categories.overview', Api\Controller\ListBadgeCategoriesController::class)
-        ->get('/badge_users', 'badge.users.overview', Api\Controller\ListUserBadgesController::class)
+        ->post('/badge_categories', 'badge.categories.create', Api\Controller\CreateBadgeCategoryController::class)
+        ->patch('/badge_categories/{id}', 'badge.categories.update', Api\Controller\UpdateBadgeCategoryController::class)
+        ->delete('/badge_categories/{id}', 'badge.categories.delete', Api\Controller\DeleteBadgeCategoryController::class)
+
+        // User badges
+        ->get('/user_badges', 'badge.users.overview', Api\Controller\ListUserBadgesController::class)
+        ->post('/user_badges', 'badge.users.create', Api\Controller\CreateUserBadgesController::class)
+        ->patch('/user_badges/{id}', 'badge.users.update', Api\Controller\UpdateUserBadgeController::class)
+        ->delete('/user_badges/{id}', 'badge.users.delete', Api\Controller\DeleteUserBadgeController::class)
     ,
 
+    // Extension permissions
+    (new Extend\ApiSerializer(ForumSerializer::class))
+        ->attribute('canGiveBadge', function(ForumSerializer $serializer) {
+            return $serializer->getActor()->hasPermission("badges.give");
+        }),
+
+    // Badges relation with User
     (new Extend\Model(User::class))
         ->hasMany('userBadges', UserBadge\UserBadge::class, 'user_id')
         ->relationship('userPrimaryBadge', function($user) {

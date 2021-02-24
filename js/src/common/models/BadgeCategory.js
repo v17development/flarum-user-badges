@@ -7,4 +7,8 @@ export default class BadgeCategory extends mixin(Model, {
   createdAt: Model.attribute("createdAt"),
   users: Model.hasMany("users"),
   badges: Model.hasMany("badges"),
-}) {}
+}) {
+  apiEndpoint() {
+    return '/user_categories' + (this.exists ? '/' + this.data.id : '');
+  }
+}

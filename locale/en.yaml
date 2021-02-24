@@ -5,6 +5,8 @@ v17development-flarum-badges:
     badge_information: Badge information
     all_badges: See all badges
     all_users: See all users
+    give_badge: Give badge
+    update_badge: Update badge
 
     badge:
       badge: Badge
@@ -12,6 +14,7 @@ v17development-flarum-badges:
       name: Badge name
       description: Badge description
       earning_reason: Badge earning reason
+      update_earning_reason: Update earning reason
       earned_on: Badge earned on
       category: Badge category
 

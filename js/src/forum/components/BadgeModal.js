@@ -3,6 +3,7 @@ import Button from "flarum/components/Button";
 import fullTime from "flarum/helpers/fullTime";
 import ItemList from "flarum/utils/ItemList";
 import Link from "flarum/components/Link";
+import GiveBadgeModal from "./GiveBadgeModal";
 
 export default class BadgeModal extends Modal {
   className() {
@@ -81,7 +82,7 @@ export default class BadgeModal extends Modal {
     );
 
     // Badge earning reason
-    if (this.attrs.userBadgeData && this.attrs.userBadgeData.description()) {
+    if (this.attrs.userBadgeData) {
       items.add(
         "earning_reason",
         <div className={"BadgeModalListItem"}>
@@ -93,7 +94,25 @@ export default class BadgeModal extends Modal {
               :
             </b>
           </p>
-          <p>{this.attrs.userBadgeData.description()}</p>
+          
+          <p>
+            {this.attrs.userBadgeData.description() ? this.attrs.userBadgeData.description() : 'none'}
+            
+            {app.forum.attribute("canGiveBadge") && (
+              <a 
+                href={"#"} 
+                onclick={e => {
+                  e.preventDefault();
+                  app.modal.show(GiveBadgeModal, {
+                    badge: this.attrs.userBadgeData
+                  })
+                }}>
+                {app.translator.trans(
+                  "v17development-flarum-badges.forum.badge.update_earning_reason"
+                )}
+              </a>
+            )}
+          </p>
         </div>
       );
     }
@@ -130,8 +149,8 @@ export default class BadgeModal extends Modal {
             </b>
           </p>
           <p>
-            {this.attrs.badge.category().name()} -{" "}
-            <Link
+            {this.attrs.badge.category().name()}
+            {/* <Link
               href={app.route("badges.category", {
                 category: this.attrs.badge.category().id(),
               })}
@@ -139,7 +158,7 @@ export default class BadgeModal extends Modal {
               {app.translator.trans(
                 "v17development-flarum-badges.forum.all_badges"
               )}
-            </Link>
+            </Link> */}
           </p>
         </div>
       );

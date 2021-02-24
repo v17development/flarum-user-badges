@@ -189,15 +189,15 @@ var Badge = /*#__PURE__*/function (_mixin) {
 
   return Badge;
 }(flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2___default()(flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a, {
-  name: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('name'),
-  icon: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('icon'),
-  order: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('order'),
-  image: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('image'),
-  description: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('description'),
-  isVisible: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('isVisible'),
-  createdAt: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('createdAt'),
-  earnedAmount: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('earnedAmount'),
-  category: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasOne('category')
+  name: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("name"),
+  icon: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("icon"),
+  order: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("order"),
+  image: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("image"),
+  description: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("description"),
+  isVisible: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("isVisible"),
+  createdAt: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("createdAt"),
+  earnedAmount: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("earnedAmount"),
+  category: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasOne("category")
 }));
 
 
@@ -232,11 +232,11 @@ var BadgeCategory = /*#__PURE__*/function (_mixin) {
 
   return BadgeCategory;
 }(flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2___default()(flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a, {
-  name: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('name'),
-  isEnabled: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('isEnabled'),
-  createdAt: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('createdAt'),
-  users: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasMany('users'),
-  badges: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasMany('badges')
+  name: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("name"),
+  isEnabled: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("isEnabled"),
+  createdAt: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("createdAt"),
+  users: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasMany("users"),
+  badges: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasMany("badges")
 }));
 
 
@@ -271,11 +271,11 @@ var UserBadge = /*#__PURE__*/function (_mixin) {
 
   return UserBadge;
 }(flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2___default()(flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a, {
-  user: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasOne('user'),
-  badge: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasOne('badge'),
-  description: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('description'),
-  isPrimary: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('isPrimary'),
-  assignedAt: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute('assignedAt')
+  user: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasOne("user"),
+  badge: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasOne("badge"),
+  description: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("description"),
+  isPrimary: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("isPrimary"),
+  assignedAt: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("assignedAt")
 }));
 
 
@@ -360,7 +360,7 @@ var BadgeModal = /*#__PURE__*/function (_Modal) {
   var _proto = BadgeModal.prototype;
 
   _proto.className = function className() {
-    return 'Modal--small';
+    return "Modal--small";
   };
 
   _proto.title = function title() {
@@ -387,32 +387,32 @@ var BadgeModal = /*#__PURE__*/function (_Modal) {
   _proto.data = function data() {
     var items = new flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_4___default.a(); // Badge name
 
-    items.add('name', m("div", {
+    items.add("name", m("div", {
       className: "BadgeModalListItem"
     }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.name"), ":")), m("p", null, this.attrs.badge.name()))); // Badge description
 
-    items.add('description', m("div", {
+    items.add("description", m("div", {
       className: "BadgeModalListItem"
     }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.description"), ":")), m("p", null, this.attrs.badge.description()))); // Badge earning reason
 
     if (this.attrs.userBadgeData && this.attrs.userBadgeData.description()) {
-      items.add('earning_reason', m("div", {
+      items.add("earning_reason", m("div", {
         className: "BadgeModalListItem"
       }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason"), ":")), m("p", null, this.attrs.userBadgeData.description())));
     } // Badge earned on
 
 
     if (this.attrs.userBadgeData) {
-      items.add('earned_date', m("div", {
+      items.add("earned_date", m("div", {
         className: "BadgeModalListItem"
       }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.earned_on"), ":")), m("p", null, flarum_helpers_fullTime__WEBPACK_IMPORTED_MODULE_3___default()(this.attrs.userBadgeData.assignedAt()))));
     } // Badge category
 
 
     if (this.attrs.userBadgeData) {
-      items.add('category', m("div", {
+      items.add("category", m("div", {
         className: "BadgeModalListItem"
-      }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.category"), ":")), m("p", null, this.attrs.badge.category().name(), " - ", m(flarum_components_Link__WEBPACK_IMPORTED_MODULE_5___default.a, {
+      }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.category"), ":")), m("p", null, this.attrs.badge.category().name(), " -", " ", m(flarum_components_Link__WEBPACK_IMPORTED_MODULE_5___default.a, {
         href: app.route("badges.category", {
           category: this.attrs.badge.category().id()
         })
@@ -421,7 +421,7 @@ var BadgeModal = /*#__PURE__*/function (_Modal) {
 
 
     if (this.attrs.badge && this.attrs.badge.earnedAmount()) {
-      items.add('earned_amount', m("div", {
+      items.add("earned_amount", m("div", {
         className: "BadgeModalListItem"
       }, m("p", null, app.translator.transChoice("v17development-flarum-badges.forum.badge.earned_count", this.attrs.badge.earnedAmount(), {
         count: this.attrs.badge.earnedAmount()
@@ -509,7 +509,7 @@ var BadgesProfilePage = /*#__PURE__*/function (_UserPage) {
     _UserPage.prototype.oninit.call(this, vnode);
 
     this.user = null;
-    this.loadUser(m.route.param('username'));
+    this.loadUser(m.route.param("username"));
   };
 
   _proto.content = function content() {
@@ -563,7 +563,7 @@ var UserBadge = /*#__PURE__*/function (_Component) {
 
     return m("span", {
       className: "UserBadge",
-      title: "" + (this.attrs.badge.description() ? this.attrs.badge.description() : ''),
+      title: "" + (this.attrs.badge.description() ? this.attrs.badge.description() : ""),
       onclick: function onclick() {
         return app.modal.show(_BadgeModal__WEBPACK_IMPORTED_MODULE_2__["default"], {
           badge: _this.attrs.badge,
@@ -686,40 +686,40 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-app.initializers.add('v17development-flarum-badges', function (app) {
+app.initializers.add("v17development-flarum-badges", function (app) {
   app.store.models.badges = _common_models_Badge__WEBPACK_IMPORTED_MODULE_5__["default"];
   app.store.models.badgeCategories = _common_models_BadgeCategory__WEBPACK_IMPORTED_MODULE_6__["default"];
   app.store.models.userBadges = _common_models_UserBadge__WEBPACK_IMPORTED_MODULE_7__["default"];
-  flarum_models_User__WEBPACK_IMPORTED_MODULE_2___default.a.prototype.userBadges = flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasMany('userBadges');
-  flarum_models_User__WEBPACK_IMPORTED_MODULE_2___default.a.prototype.userPrimaryBadge = flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasOne('userPrimaryBadge'); // Add user badges to the user profile
+  flarum_models_User__WEBPACK_IMPORTED_MODULE_2___default.a.prototype.userBadges = flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasMany("userBadges");
+  flarum_models_User__WEBPACK_IMPORTED_MODULE_2___default.a.prototype.userPrimaryBadge = flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasOne("userPrimaryBadge"); // Add user badges to the user profile
 
-  app.routes['user.badges'] = {
-    path: '/u/:username/badges',
+  app.routes["user.badges"] = {
+    path: "/u/:username/badges",
     component: _components_BadgesProfilePage__WEBPACK_IMPORTED_MODULE_8__["default"]
   }; // Badges overview page
 
-  app.routes['badges'] = {
-    path: '/badges',
+  app.routes["badges"] = {
+    path: "/badges",
     component: _components_BadgesOverviewPage__WEBPACK_IMPORTED_MODULE_9__["default"]
   }; // Badges overview page
 
-  app.routes['badges.category'] = {
-    path: '/badges/category/:id',
+  app.routes["badges.category"] = {
+    path: "/badges/category/:id",
     component: _components_BadgesOverviewPage__WEBPACK_IMPORTED_MODULE_9__["default"]
   }; // Badge item page
 
-  app.routes['badges.item'] = {
-    path: '/badges/:id',
+  app.routes["badges.item"] = {
+    path: "/badges/:id",
     component: _components_BadgeItemPage__WEBPACK_IMPORTED_MODULE_10__["default"]
   }; // Add uploads to user page menu items
 
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_UserPage__WEBPACK_IMPORTED_MODULE_3___default.a.prototype, 'navItems', function (items) {
-    items.add('badges', flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_4___default.a.component({
-      href: app.route('user.badges', {
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_UserPage__WEBPACK_IMPORTED_MODULE_3___default.a.prototype, "navItems", function (items) {
+    items.add("badges", flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_4___default.a.component({
+      href: app.route("user.badges", {
         username: this.user.username()
       }),
-      name: 'badges',
-      icon: 'fas fa-user-tag'
+      name: "badges",
+      icon: "fas fa-user-tag"
     }, app.translator.trans("v17development-flarum-badges.forum.badge.badges")), 90);
   });
 });

@@ -1,16 +1,16 @@
-import Component from 'flarum/Component';
-import UserBadge from './UserBadge';
+import Component from "flarum/Component";
+import UserBadge from "./UserBadge";
 
 export default class UserBadgeList extends Component {
   view() {
     const categories = {};
 
-    this.attrs.user.userBadges().map(userBadge => {
+    this.attrs.user.userBadges().map((userBadge) => {
       const categoryId = userBadge.badge().category().id();
 
-      if(!categories[categoryId]) {
+      if (!categories[categoryId]) {
         categories[categoryId] = [userBadge];
-      }else{
+      } else {
         categories[categoryId].push(userBadge);
       }
     });
@@ -23,21 +23,24 @@ export default class UserBadgeList extends Component {
           </div>
         )}
 
-        {Object.keys(categories).length >= 1 && (
-          Object.keys(categories)
-            .map(categoryId => {
-              const category = categories[categoryId];
+        {Object.keys(categories).length >= 1 &&
+          Object.keys(categories).map((categoryId) => {
+            const category = categories[categoryId];
 
-              return (
-                <div>
-                  <h3>{category[0].badge().category().name()}</h3>
-                  {category
-                    .sort((a, b) => a.badge().order() - b.badge().order())
-                    .map((userBadge) => <UserBadge badge={userBadge.badge()} userBadgeData={userBadge} />)}
-                </div>
-              )
-            })
-        )}
+            return (
+              <div>
+                <h3>{category[0].badge().category().name()}</h3>
+                {category
+                  .sort((a, b) => a.badge().order() - b.badge().order())
+                  .map((userBadge) => (
+                    <UserBadge
+                      badge={userBadge.badge()}
+                      userBadgeData={userBadge}
+                    />
+                  ))}
+              </div>
+            );
+          })}
       </div>
     );
   }

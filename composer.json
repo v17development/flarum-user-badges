@@ -1,6 +1,6 @@
 {
     "name": "v17development/flarum-badges",
-    "description": "Adds badges to your flarum community",
+    "description": "Adds badges to your Flarum community",
     "type": "flarum-extension",
     "license": "MIT",
     "authors": [
@@ -23,9 +23,6 @@
     },
     "require": {
         "ext-json": "*"
-    },
-    "suggest": {
-        "v17development/flarum-seo": "Adds Flarum SEO and Social media tags"
     },
     "extra": {
         "flarum-extension": {

@@ -1,5 +1,5 @@
-import UserPage from 'flarum/components/UserPage';
-import UserBadgeList from './UserBadgeList';
+import UserPage from "flarum/components/UserPage";
+import UserBadgeList from "./UserBadgeList";
 
 export default class BadgesProfilePage extends UserPage {
   oninit(vnode) {
@@ -7,12 +7,12 @@ export default class BadgesProfilePage extends UserPage {
 
     this.user = null;
 
-    this.loadUser(m.route.param('username'));
+    this.loadUser(m.route.param("username"));
   }
 
   content() {
     return UserBadgeList.component({
-      user: this.user
+      user: this.user,
     });
   }
 

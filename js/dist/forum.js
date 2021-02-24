@@ -379,6 +379,12 @@ var BadgeModal = /*#__PURE__*/function (_Modal) {
 
   var _proto = BadgeModal.prototype;
 
+  _proto.oninit = function oninit(vnode) {
+    _Modal.prototype.oninit.call(this, vnode);
+
+    this.loading = false;
+  };
+
   _proto.className = function className() {
     return "Modal--small";
   };
@@ -392,15 +398,20 @@ var BadgeModal = /*#__PURE__*/function (_Modal) {
 
     return m("div", null, m("div", {
       className: "Modal-body"
-    }, this.data().toArray()), this.attrs.userBadgeData && m("div", {
+    }, this.data().toArray()), this.attrs.userBadgeData && app.forum.attribute("canGiveBadge") && m("div", {
       className: "Modal-footer"
     }, m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a, {
       className: "Button Button--primary",
       onclick: function onclick() {
         if (confirm(app.translator.trans("v17development-flarum-badges.forum.moderation.remove_badge_confirm"))) {
-          _this.attrs.userBadgeData["delete"]();
+          _this.loading = true;
+
+          _this.attrs.userBadgeData["delete"]().then(function () {
+            return _this.hide();
+          });
         }
-      }
+      },
+      loading: this.loading
     }, app.translator.trans("v17development-flarum-badges.forum.moderation.remove_badge"))));
   };
 
@@ -417,10 +428,10 @@ var BadgeModal = /*#__PURE__*/function (_Modal) {
       className: "BadgeModalListItem"
     }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.description"), ":")), m("p", null, this.attrs.badge.description()))); // Badge earning reason
 
-    if (this.attrs.userBadgeData) {
+    if (this.attrs.userBadgeData && (this.attrs.userBadgeData.description() || app.forum.attribute("canGiveBadge"))) {
       items.add("earning_reason", m("div", {
         className: "BadgeModalListItem"
-      }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason"), ":")), m("p", null, this.attrs.userBadgeData.description() ? this.attrs.userBadgeData.description() : "none", app.forum.attribute("canGiveBadge") && m("a", {
+      }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason"), ":")), m("p", null, this.attrs.userBadgeData.description() ? this.attrs.userBadgeData.description() : m("i", null, app.translator.trans("v17development-flarum-badges.forum.badge.no_earning_reason"))), m("p", null, app.forum.attribute("canGiveBadge") && m("a", {
         href: "#",
         onclick: function onclick(e) {
           e.preventDefault();
@@ -574,10 +585,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/utils/ItemList */ "flarum/utils/ItemList");
 /* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var flarum_components_Link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/Link */ "flarum/components/Link");
-/* harmony import */ var flarum_components_Link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Link__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var flarum_components_Select__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/Select */ "flarum/components/Select");
+/* harmony import */ var flarum_components_Select__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Select__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/utils/Stream */ "flarum/utils/Stream");
 /* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _BadgeModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./BadgeModal */ "./src/forum/components/BadgeModal.js");
+
 
 
 
@@ -595,15 +608,41 @@ var GiveBadgeModal = /*#__PURE__*/function (_Modal) {
   var _proto = GiveBadgeModal.prototype;
 
   _proto.oninit = function oninit(vnode) {
-    _Modal.prototype.oninit.call(this, vnode);
+    var _this = this;
 
-    this.badge = this.attrs.badge ? this.attrs.badge : app.store.createRecord("userBadges");
-    this.description = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badge.description());
-    this.loading = false;
+    _Modal.prototype.oninit.call(this, vnode); // Select image
+
+
+    this.selectedBadge = this.attrs.badge ? this.attrs.badge.badge() : null; // Current user
+
+    this.user = this.attrs.badge ? this.attrs.badge.user() : this.attrs.user; // User has badge
+
+    this.userHasBadge = false; // Badge model
+
+    this.badge = this.attrs.badge ? this.attrs.badge : app.store.createRecord("userBadges"); // Earning reason
+
+    this.description = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badge.description()); // List of available bagges
+
+    this.availableBadges = [];
+    this.loading = false; // Load all available badges
+
+    if (!this.attrs.badge) {
+      this.loading = true;
+      app.store.find("badge_categories", {
+        include: 'badges'
+      }).then(function (badgeCategories) {
+        _this.availableBadges = badgeCategories;
+        _this.loading = false; // Redraw
+
+        m.redraw();
+      });
+    } else {
+      this.availableBadges[this.selectedBadge.id()] = this.selectedBadge.name();
+    }
   };
 
   _proto.className = function className() {
-    return "Modal--small";
+    return "Modal--small BadgeModal";
   };
 
   _proto.title = function title() {
@@ -620,15 +659,55 @@ var GiveBadgeModal = /*#__PURE__*/function (_Modal) {
     }, m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a, {
       className: "Button Button--primary",
       type: "submit",
-      loading: this.loading
+      loading: this.loading,
+      disabled: this.userHasBadge
     }, app.translator.trans("core.forum.composer_edit.submit_button"))));
   };
 
   _proto.fields = function fields() {
-    var items = new flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_3___default.a();
+    var _this2 = this;
+
+    var items = new flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_3___default.a(); // Badge selector
+
+    items.add("badge", m("div", {
+      className: "BadgeModalListItem"
+    }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.badge"))), m("div", {
+      className: "Select"
+    }, m("select", {
+      value: this.selectedBadge ? this.selectedBadge.id() : 'empty',
+      disabled: !!this.attrs.badge,
+      onchange: function onchange(e) {
+        if (e.target.value === 'empty') return;
+        _this2.selectedBadge = app.store.getById('badges', e.target.value); // Check if the user already has this badge
+
+        _this2.checkUserHasBadge(_this2.selectedBadge);
+      },
+      className: "Select-input FormControl"
+    }, m("option", {
+      value: "empty"
+    }, app.translator.trans("v17development-flarum-badges.forum.select_badge")), !this.attrs.badge && this.availableBadges.map(function (category) {
+      return m("optgroup", {
+        label: category.name()
+      }, category.badges().map(function (badge) {
+        return m("option", {
+          value: badge.id()
+        }, badge.name());
+      }));
+    }), !!this.attrs.badge && m("option", {
+      value: this.selectedBadge.id()
+    }, this.selectedBadge.name())), m("i", {
+      "class": "icon fas fa-caret-down Select-caret"
+    })), this.userHasBadge && m("p", {
+      className: "UserHasBadge"
+    }, app.translator.trans("v17development-flarum-badges.forum.user_has_badge"))), 30); // Badge description
+
+    items.add("badge_description", m("div", {
+      className: "BadgeModalListItem"
+    }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.description"), ":")), m("p", null, this.selectedBadge ? this.selectedBadge.description() : app.translator.trans("v17development-flarum-badges.forum.select_badge"))), 30); // Badge earning reason
+
     items.add("description", m("div", {
-      className: "Form-group"
-    }, m("label", null, app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason")), m("textarea", {
+      className: "BadgeModalListItem"
+    }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason"))), m("textarea", {
       className: "FormControl",
       placeholder: app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason"),
       bidi: this.description
@@ -636,21 +715,44 @@ var GiveBadgeModal = /*#__PURE__*/function (_Modal) {
     return items;
   };
 
+  _proto.checkUserHasBadge = function checkUserHasBadge(badge) {
+    var foundBadge = false;
+    this.user.userBadges().map(function (userBadge) {
+      if (userBadge.badge() == badge) {
+        foundBadge = true;
+      }
+    });
+    this.userHasBadge = foundBadge;
+    m.redraw();
+  };
+
   _proto.onsubmit = function onsubmit(e) {
-    var _this = this;
+    var _this3 = this;
 
     e.preventDefault();
     this.loading = true;
     this.badge.save({
-      description: this.description()
+      description: this.description(),
+      relationships: this.attrs.badge ? {} : {
+        badge: this.selectedBadge,
+        user: this.user
+      }
     }).then(function () {
-      _this.hide();
+      // Re-open badge modal
+      if (_this3.attrs.badge) {
+        app.modal.show(_BadgeModal__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          badge: _this3.attrs.badge.badge(),
+          userBadgeData: _this3.attrs.badge
+        });
+      } else {
+        _this3.hide();
+      }
 
       m.redraw();
     }, function (response) {
-      _this.loading = false;
+      _this3.loading = false;
 
-      _this.handleErrors(response);
+      _this3.handleErrors(response);
     });
   };
 
@@ -797,14 +899,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_models_User__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_models_User__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var flarum_components_UserPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/components/UserPage */ "flarum/components/UserPage");
 /* harmony import */ var flarum_components_UserPage__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_components_UserPage__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/LinkButton */ "flarum/components/LinkButton");
-/* harmony import */ var flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _common_models_Badge__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../common/models/Badge */ "./src/common/models/Badge.js");
-/* harmony import */ var _common_models_BadgeCategory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../common/models/BadgeCategory */ "./src/common/models/BadgeCategory.js");
-/* harmony import */ var _common_models_UserBadge__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../common/models/UserBadge */ "./src/common/models/UserBadge.js");
-/* harmony import */ var _components_BadgesProfilePage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/BadgesProfilePage */ "./src/forum/components/BadgesProfilePage.js");
-/* harmony import */ var _components_BadgesOverviewPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/BadgesOverviewPage */ "./src/forum/components/BadgesOverviewPage.js");
-/* harmony import */ var _components_BadgeItemPage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/BadgeItemPage */ "./src/forum/components/BadgeItemPage.js");
+/* harmony import */ var flarum_utils_UserControls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/utils/UserControls */ "flarum/utils/UserControls");
+/* harmony import */ var flarum_utils_UserControls__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_UserControls__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/components/LinkButton */ "flarum/components/LinkButton");
+/* harmony import */ var flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _common_models_Badge__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../common/models/Badge */ "./src/common/models/Badge.js");
+/* harmony import */ var _common_models_BadgeCategory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../common/models/BadgeCategory */ "./src/common/models/BadgeCategory.js");
+/* harmony import */ var _common_models_UserBadge__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../common/models/UserBadge */ "./src/common/models/UserBadge.js");
+/* harmony import */ var _components_BadgesProfilePage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/BadgesProfilePage */ "./src/forum/components/BadgesProfilePage.js");
+/* harmony import */ var _components_BadgesOverviewPage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/BadgesOverviewPage */ "./src/forum/components/BadgesOverviewPage.js");
+/* harmony import */ var _components_BadgeItemPage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/BadgeItemPage */ "./src/forum/components/BadgeItemPage.js");
+/* harmony import */ var _components_GiveBadgeModal__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/GiveBadgeModal */ "./src/forum/components/GiveBadgeModal.js");
+
+
+
 
 
 
@@ -817,15 +927,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 app.initializers.add("v17development-flarum-badges", function (app) {
-  app.store.models.badges = _common_models_Badge__WEBPACK_IMPORTED_MODULE_5__["default"];
-  app.store.models.badgeCategories = _common_models_BadgeCategory__WEBPACK_IMPORTED_MODULE_6__["default"];
-  app.store.models.userBadges = _common_models_UserBadge__WEBPACK_IMPORTED_MODULE_7__["default"];
+  app.store.models.badges = _common_models_Badge__WEBPACK_IMPORTED_MODULE_7__["default"];
+  app.store.models.badgeCategories = _common_models_BadgeCategory__WEBPACK_IMPORTED_MODULE_8__["default"];
+  app.store.models.userBadges = _common_models_UserBadge__WEBPACK_IMPORTED_MODULE_9__["default"];
   flarum_models_User__WEBPACK_IMPORTED_MODULE_2___default.a.prototype.userBadges = flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasMany("userBadges");
   flarum_models_User__WEBPACK_IMPORTED_MODULE_2___default.a.prototype.userPrimaryBadge = flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasOne("userPrimaryBadge"); // Add user badges to the user profile
 
   app.routes["user.badges"] = {
     path: "/u/:username/badges",
-    component: _components_BadgesProfilePage__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _components_BadgesProfilePage__WEBPACK_IMPORTED_MODULE_10__["default"]
   }; // Future
   // // Badges overview page
   // app.routes["badges"] = {
@@ -845,7 +955,7 @@ app.initializers.add("v17development-flarum-badges", function (app) {
   // Add uploads to user page menu items
 
   Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_UserPage__WEBPACK_IMPORTED_MODULE_3___default.a.prototype, "navItems", function (items) {
-    items.add("badges", flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_4___default.a.component({
+    items.add("badges", flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_5___default.a.component({
       href: app.route("user.badges", {
         username: this.user.username()
       }),
@@ -854,6 +964,19 @@ app.initializers.add("v17development-flarum-badges", function (app) {
     }, [app.translator.trans("v17development-flarum-badges.forum.badge.badges"), m("span", {
       className: "Button-badge"
     }, this.user.userBadges().length)]), 90);
+  });
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_utils_UserControls__WEBPACK_IMPORTED_MODULE_4___default.a, 'moderationControls', function (items, user) {
+    // User can give badges
+    if (app.forum.attribute("canGiveBadge")) {
+      items.add('test', m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_6___default.a, {
+        icon: "fas fa-user-tag",
+        onclick: function onclick() {
+          return app.modal.show(_components_GiveBadgeModal__WEBPACK_IMPORTED_MODULE_13__["default"], {
+            user: user
+          });
+        }
+      }, app.translator.trans('v17development-flarum-badges.forum.give_badge')));
+    }
   });
 });
 
@@ -936,6 +1059,17 @@ module.exports = flarum.core.compat['components/Page'];
 
 /***/ }),
 
+/***/ "flarum/components/Select":
+/*!**********************************************************!*\
+  !*** external "flarum.core.compat['components/Select']" ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['components/Select'];
+
+/***/ }),
+
 /***/ "flarum/components/UserPage":
 /*!************************************************************!*\
   !*** external "flarum.core.compat['components/UserPage']" ***!
@@ -999,6 +1133,17 @@ module.exports = flarum.core.compat['utils/ItemList'];
 /***/ (function(module, exports) {
 
 module.exports = flarum.core.compat['utils/Stream'];
+
+/***/ }),
+
+/***/ "flarum/utils/UserControls":
+/*!***********************************************************!*\
+  !*** external "flarum.core.compat['utils/UserControls']" ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['utils/UserControls'];
 
 /***/ }),
 

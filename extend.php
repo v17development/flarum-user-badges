@@ -32,7 +32,7 @@ return [
 
         // User badges
         ->get('/user_badges', 'badge.users.overview', Api\Controller\ListUserBadgesController::class)
-        ->post('/user_badges', 'badge.users.create', Api\Controller\CreateUserBadgesController::class)
+        ->post('/user_badges', 'badge.users.create', Api\Controller\CreateUserBadgeController::class)
         ->patch('/user_badges/{id}', 'badge.users.update', Api\Controller\UpdateUserBadgeController::class)
         ->delete('/user_badges/{id}', 'badge.users.delete', Api\Controller\DeleteUserBadgeController::class)
     ,

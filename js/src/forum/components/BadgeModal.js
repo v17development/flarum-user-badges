@@ -6,6 +6,12 @@ import Link from "flarum/components/Link";
 import GiveBadgeModal from "./GiveBadgeModal";
 
 export default class BadgeModal extends Modal {
+  oninit(vnode) {
+    super.oninit(vnode);
+    
+    this.loading = false;
+  }
+
   className() {
     return "Modal--small";
   }
@@ -20,7 +26,7 @@ export default class BadgeModal extends Modal {
     return (
       <div>
         <div className="Modal-body">{this.data().toArray()}</div>
-        {this.attrs.userBadgeData && (
+        {this.attrs.userBadgeData && app.forum.attribute("canGiveBadge") && (
           <div className="Modal-footer">
             <Button
               className={"Button Button--primary"}
@@ -32,9 +38,11 @@ export default class BadgeModal extends Modal {
                     )
                   )
                 ) {
-                  this.attrs.userBadgeData.delete();
+                  this.loading = true;
+                  this.attrs.userBadgeData.delete().then(() => this.hide());
                 }
               }}
+              loading={this.loading}
             >
               {app.translator.trans(
                 "v17development-flarum-badges.forum.moderation.remove_badge"
@@ -82,7 +90,7 @@ export default class BadgeModal extends Modal {
     );
 
     // Badge earning reason
-    if (this.attrs.userBadgeData) {
+    if (this.attrs.userBadgeData && (this.attrs.userBadgeData.description() || app.forum.attribute("canGiveBadge"))) {
       items.add(
         "earning_reason",
         <div className={"BadgeModalListItem"}>
@@ -98,8 +106,15 @@ export default class BadgeModal extends Modal {
           <p>
             {this.attrs.userBadgeData.description()
               ? this.attrs.userBadgeData.description()
-              : "none"}
-
+              : (
+                <i>
+                {app.translator.trans(
+                  "v17development-flarum-badges.forum.badge.no_earning_reason"
+                )}
+                </i>
+              )}
+          </p>
+          <p>
             {app.forum.attribute("canGiveBadge") && (
               <a
                 href={"#"}

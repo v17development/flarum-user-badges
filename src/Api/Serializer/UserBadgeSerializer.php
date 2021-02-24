@@ -5,22 +5,22 @@ namespace V17Development\FlarumBadges\Api\Serializer;
 use Flarum\Api\Serializer\AbstractSerializer;
 use Flarum\Api\Serializer\UserSerializer;
 
-class BadgeUserSerializer extends AbstractSerializer
+class UserBadgeSerializer extends AbstractSerializer
 {
     /**
      * {@inheritdoc}
      */
-    protected $type = 'badgeUser';
+    protected $type = 'userBadge';
 
     /**
      * {@inheritdoc}
      */
-    protected function getDefaultAttributes($badgeUser)
+    protected function getDefaultAttributes($userBadge)
     {
         return [
-            'description'   => $badgeUser->description,
-            'isPrimary'     => $badgeUser->is_primary,
-            'createdAt'     => $this->formatDate($badgeUser->created_at),
+            'description'   => $userBadge->description,
+            'isPrimary'     => $userBadge->is_primary,
+            'createdAt'     => $this->formatDate($userBadge->created_at),
         ];
     }
 

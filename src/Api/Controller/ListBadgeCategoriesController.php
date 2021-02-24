@@ -18,7 +18,7 @@ class ListBadgeCategoriesController extends AbstractListController
     /**
      * {@inheritdoc}
      */
-    public $include = ["badgeCategory"];
+    public $include = ["badges"];
 
     /**
      * {@inheritdoc}

@@ -4,7 +4,7 @@ namespace V17Development\FlarumBadges\Badge;
 
 use Flarum\Database\AbstractModel;
 use V17Development\FlarumBadges\BadgeCategory\BadgeCategory;
-use V17Development\FlarumBadges\BadgeUser\BadgeUser;
+use V17Development\FlarumBadges\UserBadge\UserBadge;
 
 class Badge extends AbstractModel
 {
@@ -38,6 +38,6 @@ class Badge extends AbstractModel
      */
     public function badgeUsers()
     {
-        return $this->hasMany(BadgeUser::class, 'badge_id');
+        return $this->hasMany(UserBadge::class, 'badge_id');
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace V17Development\FlarumBadges\BadgeUser;
+namespace V17Development\FlarumBadges\UserBadge;
 
 use Flarum\Database\AbstractModel;
 use Flarum\User\User;
 use V17Development\FlarumBadges\Badge\Badge;
 
-class BadgeUser extends AbstractModel
+class UserBadge extends AbstractModel
 {
     protected $table = 'badge_user';
 
@@ -14,12 +14,12 @@ class BadgeUser extends AbstractModel
 
     public static function build($userId, $badgeId, $description = null)
     {
-        $badgeUser = new static();
-        $badgeUser->user_id = $userId;
-        $badgeUser->badge_id = $badgeId;
-        $badgeUser->description = $description;
+        $userBadge = new static();
+        $userBadge->user_id = $userId;
+        $userBadge->badge_id = $badgeId;
+        $userBadge->description = $description;
 
-        return $badgeUser;
+        return $userBadge;
     }
 
     /**

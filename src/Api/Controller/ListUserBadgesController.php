@@ -5,15 +5,15 @@ namespace V17Development\FlarumBadges\Api\Controller;
 use Flarum\Api\Controller\AbstractListController;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
-use V17Development\FlarumBadges\Api\Serializer\BadgeUserSerializer;
-use V17Development\FlarumBadges\BadgeUser\BadgeUser;
+use V17Development\FlarumBadges\Api\Serializer\UserBadgeSerializer;
+use V17Development\FlarumBadges\UserBadge\UserBadge;
 
-class ListBadgeUsersController extends AbstractListController
+class ListUserBadgesController extends AbstractListController
 {
     /**
      * {@inheritdoc}
      */
-    public $serializer = BadgeUserSerializer::class;
+    public $serializer = UserBadgeSerializer::class;
 
     /**
      * {@inheritdoc}
@@ -27,6 +27,6 @@ class ListBadgeUsersController extends AbstractListController
     {
         $actor = $request->getAttribute('actor');
 
-        return BadgeUser::all();
+        return UserBadge::all();
     }
 }

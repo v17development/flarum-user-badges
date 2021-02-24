@@ -34,6 +34,6 @@ class BadgeSerializer extends AbstractSerializer
     }
 
     protected function badgeUsers($badgeUsers) {
-        return $this->hasMany($badgeUsers, BadgeUserSerializer::class);
+        return $this->hasMany($badgeUsers, UserBadgeSerializer::class);
     }
 }

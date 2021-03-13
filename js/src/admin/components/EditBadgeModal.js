@@ -1,7 +1,7 @@
 import Modal from "flarum/components/Modal";
 import ItemList from "flarum/utils/ItemList";
-import Button from 'flarum/components/Button';
-import Switch from 'flarum/components/Switch';
+import Button from "flarum/components/Button";
+import Switch from "flarum/components/Switch";
 import Stream from "flarum/utils/Stream";
 
 export default class EditBadgeModal extends Modal {
@@ -32,16 +32,16 @@ export default class EditBadgeModal extends Modal {
 
   title() {
     return app.translator.trans(
-      `v17development-flarum-badges.admin.${this.badge.exists ? 'update_badge' : 'new_badge'}`
+      `v17development-flarum-badges.admin.${
+        this.badge.exists ? "update_badge" : "new_badge"
+      }`
     );
   }
 
   content() {
     return (
       <div className="Modal-body">
-        <div className="Form">
-          {this.data().toArray()}
-        </div>
+        <div className="Form">{this.data().toArray()}</div>
       </div>
     );
   }
@@ -49,70 +49,108 @@ export default class EditBadgeModal extends Modal {
   data() {
     const items = new ItemList();
 
-    items.add('name', (
+    items.add(
+      "name",
       <div className="Form-group">
         <label>
           {app.translator.trans(
-            'v17development-flarum-badges.admin.badge.name'
-          )}:
+            "v17development-flarum-badges.admin.badge.name"
+          )}
+          :
         </label>
-        <input className="FormControl" placeholder={app.translator.trans('v17development-flarum-badges.admin.badge.name')} bidi={this.name} />
-      </div>
-    ), 50);
+        <input
+          className="FormControl"
+          placeholder={app.translator.trans(
+            "v17development-flarum-badges.admin.badge.name"
+          )}
+          bidi={this.name}
+        />
+      </div>,
+      50
+    );
 
-    items.add('icon', (
+    items.add(
+      "icon",
       <div className="Form-group" style="position: relative;">
         <label>
           {app.translator.trans(
-            'v17development-flarum-badges.admin.badge.icon'
-          )}:
+            "v17development-flarum-badges.admin.badge.icon"
+          )}
+          :
         </label>
-        <input className="FormControl" placeholder="fas fa-icons" bidi={this.icon} />
-        <i className={this.icon() || 'fas fa-icons'} style="position: absolute; bottom: 8px; right: 15px; font-size: 20px;" />
-      </div>
-    ), 50);
+        <input
+          className="FormControl"
+          placeholder="fas fa-icons"
+          bidi={this.icon}
+        />
+        <i
+          className={this.icon() || "fas fa-icons"}
+          style="position: absolute; bottom: 8px; right: 15px; font-size: 20px;"
+        />
+      </div>,
+      50
+    );
 
-    items.add('description', (
+    items.add(
+      "description",
       <div className="Form-group">
         <label>
           {app.translator.trans(
-            'v17development-flarum-badges.admin.badge.description'
-          )}:
+            "v17development-flarum-badges.admin.badge.description"
+          )}
+          :
         </label>
-        <textarea className="FormControl" placeholder={app.translator.trans('v17development-flarum-badges.admin.badge.description')} bidi={this.description} />
-      </div>
-    ), 50);
+        <textarea
+          className="FormControl"
+          placeholder={app.translator.trans(
+            "v17development-flarum-badges.admin.badge.description"
+          )}
+          bidi={this.description}
+        />
+      </div>,
+      50
+    );
 
     // Enabled
-    items.add('enabled', (
+    items.add(
+      "enabled",
       <div className="Form-group">
-        {Switch.component({
-          state: this.isVisible() == true,
-          onchange: val => this.isVisible(val)
-        }, [
-          <b>
-            {app.translator.trans(
-              'v17development-flarum-badges.admin.badge.visible'
-            )}
-          </b>, 
-          <div className="helpText">
-            {app.translator.trans(
-              'v17development-flarum-badges.admin.badge.visible_description'
-            )}
-          </div>
-        ])}
-      </div>
-    ), 50);
+        {Switch.component(
+          {
+            state: this.isVisible() == true,
+            onchange: (val) => this.isVisible(val),
+          },
+          [
+            <b>
+              {app.translator.trans(
+                "v17development-flarum-badges.admin.badge.visible"
+              )}
+            </b>,
+            <div className="helpText">
+              {app.translator.trans(
+                "v17development-flarum-badges.admin.badge.visible_description"
+              )}
+            </div>,
+          ]
+        )}
+      </div>,
+      50
+    );
 
-    items.add('submit', (
+    items.add(
+      "submit",
       <div className="Form-group">
-        {Button.component({
-          type: 'submit',
-          className: 'Button Button--primary',
-          loading: this.loading
-        }, app.translator.trans('core.forum.composer_edit.submit_button'))}
-      </div>
-    ), -10);
+        {Button.component(
+          {
+            type: "submit",
+            className: "Button Button--primary",
+            loading: this.loading,
+          },
+          app.translator.trans("core.forum.composer_edit.submit_button")
+        )}
+      </div>,
+      -10
+    );
 
     return items;
   }

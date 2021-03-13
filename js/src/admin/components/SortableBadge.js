@@ -1,6 +1,6 @@
-import Component from 'flarum/Component';
-import Button from 'flarum/components/Button';
-import EditBadgeModal from './EditBadgeModal';
+import Component from "flarum/Component";
+import Button from "flarum/components/Button";
+import EditBadgeModal from "./EditBadgeModal";
 
 export default class SortableBadge extends Component {
   view() {
@@ -17,17 +17,16 @@ export default class SortableBadge extends Component {
           <span className={"BadgeButtons"}>
             <Button
               className={"Button"}
-              onclick={() => app.modal.show(EditBadgeModal, { 
-                badge
-              })}
-              >
-                <i className={"fas fa-edit"} />
+              onclick={() =>
+                app.modal.show(EditBadgeModal, {
+                  badge,
+                })
+              }
+            >
+              <i className={"fas fa-edit"} />
             </Button>
-            <Button
-              className={"Button"}
-              onclick={() => app.modal.show('')}
-              >
-                <i className={"fas fa-trash"} />
+            <Button className={"Button"} onclick={() => app.modal.show("")}>
+              <i className={"fas fa-trash"} />
             </Button>
           </span>
         </div>

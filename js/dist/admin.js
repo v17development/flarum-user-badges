@@ -3943,7 +3943,7 @@ var EditBadgeModal = /*#__PURE__*/function (_Modal) {
   };
 
   _proto.title = function title() {
-    return app.translator.trans("v17development-flarum-badges.admin." + (this.badge.exists ? 'update_badge' : 'new_badge'));
+    return app.translator.trans("v17development-flarum-badges.admin." + (this.badge.exists ? "update_badge" : "new_badge"));
   };
 
   _proto.content = function content() {
@@ -3958,49 +3958,49 @@ var EditBadgeModal = /*#__PURE__*/function (_Modal) {
     var _this = this;
 
     var items = new flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2___default.a();
-    items.add('name', m("div", {
+    items.add("name", m("div", {
       className: "Form-group"
-    }, m("label", null, app.translator.trans('v17development-flarum-badges.admin.badge.name'), ":"), m("input", {
+    }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge.name"), ":"), m("input", {
       className: "FormControl",
-      placeholder: app.translator.trans('v17development-flarum-badges.admin.badge.name'),
+      placeholder: app.translator.trans("v17development-flarum-badges.admin.badge.name"),
       bidi: this.name
     })), 50);
-    items.add('icon', m("div", {
+    items.add("icon", m("div", {
       className: "Form-group",
       style: "position: relative;"
-    }, m("label", null, app.translator.trans('v17development-flarum-badges.admin.badge.icon'), ":"), m("input", {
+    }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge.icon"), ":"), m("input", {
       className: "FormControl",
       placeholder: "fas fa-icons",
       bidi: this.icon
     }), m("i", {
-      className: this.icon() || 'fas fa-icons',
+      className: this.icon() || "fas fa-icons",
       style: "position: absolute; bottom: 8px; right: 15px; font-size: 20px;"
     })), 50);
-    items.add('description', m("div", {
+    items.add("description", m("div", {
       className: "Form-group"
-    }, m("label", null, app.translator.trans('v17development-flarum-badges.admin.badge.description'), ":"), m("textarea", {
+    }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge.description"), ":"), m("textarea", {
       className: "FormControl",
-      placeholder: app.translator.trans('v17development-flarum-badges.admin.badge.description'),
+      placeholder: app.translator.trans("v17development-flarum-badges.admin.badge.description"),
       bidi: this.description
     })), 50); // Enabled
 
-    items.add('enabled', m("div", {
+    items.add("enabled", m("div", {
       className: "Form-group"
     }, flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4___default.a.component({
       state: this.isVisible() == true,
       onchange: function onchange(val) {
         return _this.isVisible(val);
       }
-    }, [m("b", null, app.translator.trans('v17development-flarum-badges.admin.badge.visible')), m("div", {
+    }, [m("b", null, app.translator.trans("v17development-flarum-badges.admin.badge.visible")), m("div", {
       className: "helpText"
-    }, app.translator.trans('v17development-flarum-badges.admin.badge.visible_description'))])), 50);
-    items.add('submit', m("div", {
+    }, app.translator.trans("v17development-flarum-badges.admin.badge.visible_description"))])), 50);
+    items.add("submit", m("div", {
       className: "Form-group"
     }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-      type: 'submit',
-      className: 'Button Button--primary',
+      type: "submit",
+      className: "Button Button--primary",
       loading: this.loading
-    }, app.translator.trans('core.forum.composer_edit.submit_button'))), -10);
+    }, app.translator.trans("core.forum.composer_edit.submit_button"))), -10);
     return items;
   };
 
@@ -4131,7 +4131,7 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
       }, m("i", {
         className: "fas fa-trash"
       })))), m("ul", {
-        className: 'SortableBadges'
+        className: "SortableBadges"
       }, category.badges().map(function (badge) {
         return m(_SortableBadge__WEBPACK_IMPORTED_MODULE_3__["default"], {
           badge: badge
@@ -4144,8 +4144,8 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
     }, m("span", {
       className: "CategoryName"
     }, m("b", null, app.translator.trans("v17development-flarum-badges.admin.uncategorized")))), m("ul", {
-      className: 'SortableBadges'
-    }, app.store.all('badges').filter(function (badge) {
+      className: "SortableBadges"
+    }, app.store.all("badges").filter(function (badge) {
       return !badge.category();
     }).map(function (badge) {
       return m(_SortableBadge__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -4157,14 +4157,14 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
   _proto.onBadgeListReady = function onBadgeListReady() {
     var _this2 = this;
 
-    this.$('.SortableBadges').get().map(function (e) {
+    this.$(".SortableBadges").get().map(function (e) {
       sortablejs__WEBPACK_IMPORTED_MODULE_1__["default"].create(e, {
-        group: 'tags',
+        group: "tags",
         animation: 150,
         swapThreshold: 0.65,
-        dragClass: 'SortableBadges-dragging',
-        ghostClass: 'SortableBadges-placeholder',
-        direction: 'horizontal',
+        dragClass: "SortableBadges-dragging",
+        ghostClass: "SortableBadges-placeholder",
+        direction: "horizontal",
         onSort: function onSort(e) {
           return _this2.onSortUpdate(e);
         }
@@ -4242,7 +4242,7 @@ var SortableBadge = /*#__PURE__*/function (_Component) {
     })), m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a, {
       className: "Button",
       onclick: function onclick() {
-        return app.modal.show('');
+        return app.modal.show("");
       }
     }, m("i", {
       className: "fas fa-trash"
@@ -4271,11 +4271,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-app.initializers.add('v17development-badges', function () {
+app.initializers.add("v17development-badges", function () {
   app.store.models.badges = _common_models_Badge__WEBPACK_IMPORTED_MODULE_0__["default"];
   app.store.models.badgeCategories = _common_models_BadgeCategory__WEBPACK_IMPORTED_MODULE_1__["default"]; // Register extension settings page
 
-  app.extensionData["for"]('v17development-badges').registerPage(_components_SettingsPage__WEBPACK_IMPORTED_MODULE_2__["default"]);
+  app.extensionData["for"]("v17development-badges").registerPage(_components_SettingsPage__WEBPACK_IMPORTED_MODULE_2__["default"]);
 });
 
 /***/ }),

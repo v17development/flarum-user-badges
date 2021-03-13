@@ -9,6 +9,7 @@ return [
             $schema->create('badge_category', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name', 46);
+                $table->integer('order')->default(0);
                 $table->text('description')->nullable();
                 $table->boolean('is_enabled')->default(1);
                 $table->dateTime('created_at');

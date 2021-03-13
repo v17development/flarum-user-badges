@@ -3,6 +3,7 @@ import mixin from "flarum/utils/mixin";
 
 export default class BadgeCategory extends mixin(Model, {
   name: Model.attribute("name"),
+  order: Model.attribute("order"),
   isEnabled: Model.attribute("isEnabled"),
   createdAt: Model.attribute("createdAt"),
   users: Model.hasMany("users"),

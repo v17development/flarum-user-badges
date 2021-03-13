@@ -8,7 +8,8 @@
   },
   "devDependencies": {
     "husky": "^4.2.5",
-    "prettier": "2.0.2"
+    "prettier": "2.0.2",
+    "sortablejs": "^1.10.2"
   },
   "scripts": {
     "dev": "webpack --mode development --watch",

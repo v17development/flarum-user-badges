@@ -245,6 +245,7 @@ var BadgeCategory = /*#__PURE__*/function (_mixin) {
   return BadgeCategory;
 }(flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2___default()(flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a, {
   name: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("name"),
+  order: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("order"),
   isEnabled: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("isEnabled"),
   createdAt: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("createdAt"),
   users: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasMany("users"),

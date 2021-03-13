@@ -13,9 +13,9 @@ return [
         ->js(__DIR__.'/js/dist/forum.js')
         ->css(__DIR__ . '/less/Forum.less')
     ,
-    // (new Extend\Frontend('admin'))
-    //     ->js(__DIR__.'/js/dist/admin.js')
-    //     ->css(__DIR__ . '/less/Admin.less'),
+    (new Extend\Frontend('admin'))
+        ->js(__DIR__.'/js/dist/admin.js')
+        ->css(__DIR__ . '/less/Admin.less'),
 
     (new Extend\Routes('api'))
         // Badges

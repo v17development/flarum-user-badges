@@ -1,0 +1,105 @@
+@import "./common/UserBadge.less";
+
+.FlarumBadgesPage {
+  padding: 40px;
+
+}
+.FlarumBadgeCategories {
+  .FlarumBadgeCategory {
+    max-width: 400px;
+    padding: 15px 20px 20px 20px;
+    margin-bottom: 20px;
+    border: 1px solid @control-bg;
+    border-radius: @border-radius;
+
+    .CategoryHeader {
+      margin: 0 0 10px;
+      display: flex;
+
+      .CategoryName {
+        flex-grow: 1;
+        padding: 3px 0;
+
+        i {
+          margin-right: 5px;
+          vertical-align: middle;
+        }
+
+        b {
+          display: inline-block;
+          margin-right: 10px;
+          vertical-align: middle;
+        }
+      }
+
+      .CategoryLinks {
+        flex-shrink: 0;
+        opacity: 0.5;
+        transition: opacity 150ms ease-in-out;
+
+        a {
+          display: inline-block;
+          padding: 5px 8px;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    &:hover {
+      .CategoryHeader {
+        .CategoryLinks {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.SortableBadges {
+  margin: 10px 0;
+  padding: 0;
+  list-style-type: none;
+  max-width: 600px;
+
+  li {
+    cursor: move;
+    padding: 5px 0;
+
+    .SortableBadges-info {
+      display: flex;
+      width: 100%;
+
+      .BadgeDetails {
+        flex-grow: 1;
+      }
+
+      .BadgeButtons {
+        flex-shrink: 0;
+        flex-grow: 0;
+        opacity: 0;
+        transition: opacity 250ms ease-in-out;
+
+        .Button {
+          width: 40px;
+          padding: 0;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          margin-left: 10px;
+        }
+      }
+
+      &:hover {
+        .BadgeButtons {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.SortableBadges-placeholder {
+  .BadgeButtons {
+    display: none;
+  }
+}

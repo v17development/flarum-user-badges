@@ -1,6 +1,17 @@
 v17development-flarum-badges:
   admin:
-    none: None
+    uncategorized: Uncategorizeds
+    new_badge: New badge
+    create_category: Create category
+    update_badge: Update badge
+
+    badge:
+      name: Badge name
+      icon: Badge icon
+      description: Badge description
+      visible: Visible
+      visible_description: Enable this badge. When disabled, the badge will not be visible.
+    
   forum: 
     badge_information: Badge information
     all_badges: See all badges

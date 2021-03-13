@@ -6,7 +6,7 @@ use Flarum\Api\Controller\AbstractDeleteController;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
-use V17Development\FlarumBadges\UserBadge\Command\DeleteBadge;
+use V17Development\FlarumBadges\Badge\Command\DeleteBadge;
 
 class DeleteBadgeController extends AbstractDeleteController
 {

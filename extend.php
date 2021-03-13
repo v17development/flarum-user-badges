@@ -20,7 +20,7 @@ return [
     (new Extend\Routes('api'))
         // Badges
         ->get('/badges', 'badges.overview', Api\Controller\ListBadgesController::class)
-        ->post('/badges', 'badges.create', Api\Controller\CreateBadgesController::class)
+        ->post('/badges', 'badges.create', Api\Controller\CreateBadgeController::class)
         ->patch('/badges/{id}', 'badges.update', Api\Controller\UpdateBadgeController::class)
         ->delete('/badges/{id}', 'badges.delete', Api\Controller\DeleteBadgeController::class)
 

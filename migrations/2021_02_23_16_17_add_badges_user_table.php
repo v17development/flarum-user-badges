@@ -14,8 +14,8 @@ return [
                 $table->boolean('is_primary')->default(0);
                 $table->dateTime('assigned_at');
 
-                $table->foreign('user_id')->references('id')->on('users');
-                $table->foreign('badge_id')->references('id')->on('badges');
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+                $table->foreign('badge_id')->references('id')->on('badges')->onDelete('cascade');
             });
         }
     },

@@ -4090,6 +4090,9 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
   };
 
   _proto.content = function content() {
+    var uncategorizedBadges = app.store.all("badges").filter(function (badge) {
+      return !badge.category();
+    });
     return m("div", {
       className: "FlarumBadgesPage"
     }, m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default.a, {
@@ -4137,7 +4140,7 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
           badge: badge
         });
       })));
-    }), m("div", {
+    }), uncategorizedBadges.length > 0 && m("div", {
       className: "FlarumBadgeCategory"
     }, m("div", {
       className: "CategoryHeader"
@@ -4145,13 +4148,11 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
       className: "CategoryName"
     }, m("b", null, app.translator.trans("v17development-flarum-badges.admin.uncategorized")))), m("ul", {
       className: "SortableBadges"
-    }, app.store.all("badges").filter(function (badge) {
-      return !badge.category();
-    }).map(function (badge) {
+    }, uncategorizedBadges.map(function (badge) {
       return m(_SortableBadge__WEBPACK_IMPORTED_MODULE_3__["default"], {
         badge: badge
       });
-    })))));
+    }))), uncategorizedBadges.length === 0 && this.categories === 0 && m("p", null, "You did not create any badges or categories yet.")));
   };
 
   _proto.onBadgeListReady = function onBadgeListReady() {
@@ -4216,7 +4217,15 @@ var SortableBadge = /*#__PURE__*/function (_Component) {
 
   var _proto = SortableBadge.prototype;
 
+  _proto.oninit = function oninit(attrs) {
+    _Component.prototype.oninit.call(this, attrs);
+
+    this.loading = false;
+  };
+
   _proto.view = function view() {
+    var _this = this;
+
     var badge = this.attrs.badge;
     return m("li", {
       "data-id": badge.id()
@@ -4225,13 +4234,19 @@ var SortableBadge = /*#__PURE__*/function (_Component) {
     }, m("span", {
       className: "BadgeDetails"
     }, m("span", {
-      className: "UserBadge"
+      className: "UserBadge",
+      onclick: function onclick() {
+        return app.modal.show(_EditBadgeModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          badge: badge
+        });
+      }
     }, m("i", {
       className: badge.icon()
     }), " ", badge.name())), m("span", {
       className: "BadgeButtons"
     }, m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a, {
       className: "Button",
+      disabled: this.loading,
       onclick: function onclick() {
         return app.modal.show(_EditBadgeModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
           badge: badge
@@ -4241,8 +4256,16 @@ var SortableBadge = /*#__PURE__*/function (_Component) {
       className: "fas fa-edit"
     })), m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a, {
       className: "Button",
+      disabled: this.loading,
       onclick: function onclick() {
-        return app.modal.show("");
+        if (confirm("Are you sure you want to delete this badge?")) {
+          _this.loading = true;
+          badge["delete"]().then(function () {
+            return m.redraw();
+          })["catch"](function () {
+            return _this.loading = false;
+          });
+        }
       }
     }, m("i", {
       className: "fas fa-trash"

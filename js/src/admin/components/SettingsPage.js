@@ -40,6 +40,11 @@ export default class SettingsPage extends ExtensionPage {
   }
 
   content() {
+    const uncategorizedBadges = 
+      app.store
+        .all("badges")
+        .filter((badge) => !badge.category());
+
     return (
       <div className="FlarumBadgesPage">
         <Button className={"Button"} key={2}>
@@ -95,26 +100,30 @@ export default class SettingsPage extends ExtensionPage {
           })}
 
           {/* Uncategorized badges */}
-          <div className={"FlarumBadgeCategory"}>
-            <div className={"CategoryHeader"}>
-              <span className={"CategoryName"}>
-                <b>
-                  {app.translator.trans(
-                    "v17development-flarum-badges.admin.uncategorized"
-                  )}
-                </b>
-              </span>
-            </div>
+          {uncategorizedBadges.length > 0 && (
+            <div className={"FlarumBadgeCategory"}>
+              <div className={"CategoryHeader"}>
+                <span className={"CategoryName"}>
+                  <b>
+                    {app.translator.trans(
+                      "v17development-flarum-badges.admin.uncategorized"
+                    )}
+                  </b>
+                </span>
+              </div>
 
-            <ul className={"SortableBadges"}>
-              {app.store
-                .all("badges")
-                .filter((badge) => !badge.category())
-                .map((badge) => (
-                  <SortableBadge badge={badge} />
-                ))}
-            </ul>
-          </div>
+              <ul className={"SortableBadges"}>
+                {uncategorizedBadges
+                  .map((badge) => (
+                    <SortableBadge badge={badge} />
+                  ))}
+              </ul>
+            </div>
+          )}
+
+          {(uncategorizedBadges.length === 0 && this.categories === 0) && (
+            <p>You did not create any badges or categories yet.</p>
+          )}
         </div>
       </div>
     );

@@ -4635,7 +4635,7 @@ var SortableBadge = /*#__PURE__*/function (_Component) {
     if (!badge) return null;
     return m("li", {
       "data-id": badge.id(),
-      className: !badge.isVisible() ? 'BadgeDisabled' : ''
+      className: !badge.isVisible() ? "BadgeDisabled" : ""
     }, m("div", {
       className: "SortableBadges-info"
     }, m("span", {

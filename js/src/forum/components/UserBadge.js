@@ -4,7 +4,7 @@ import BadgeModal from "./BadgeModal";
 export default class UserBadge extends Component {
   view() {
     // Hide badge when not enabled
-    if(!this.attrs.badge.isVisible()) {
+    if (!this.attrs.badge.isVisible()) {
       return null;
     }
 

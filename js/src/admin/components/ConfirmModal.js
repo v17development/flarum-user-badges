@@ -48,7 +48,7 @@ export default class ConfirmModal extends Modal {
             "v17development-flarum-badges.admin.confirm_dialog.yes"
           )
         )}
-      </div>
+      </div>,
     ];
   }
 

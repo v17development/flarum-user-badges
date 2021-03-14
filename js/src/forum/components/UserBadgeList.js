@@ -11,7 +11,7 @@ export default class UserBadgeList extends Component {
       if (!categories[category.id()]) {
         categories[category.id()] = {
           category,
-          badges: [userBadge]
+          badges: [userBadge],
         };
       } else {
         categories[category.id()].badges.push(userBadge);
@@ -28,20 +28,21 @@ export default class UserBadgeList extends Component {
 
         {Object.keys(categories).length >= 1 &&
           Object.keys(categories)
-            .sort((a, b) => categories[a].category.order() - categories[b].category.order())
-            .map(id => {
+            .sort(
+              (a, b) =>
+                categories[a].category.order() - categories[b].category.order()
+            )
+            .map((id) => {
               const category = categories[id].category;
               const badges = categories[id].badges;
 
-              if(!category.isEnabled()) return null;
+              if (!category.isEnabled()) return null;
 
               return (
                 <div className={"UserBadgesCategory"}>
                   <h3>{category.name()}</h3>
 
-                  {category.description() && (
-                    <p>{category.description()}</p>
-                  )}
+                  {category.description() && <p>{category.description()}</p>}
 
                   {badges
                     .sort((a, b) => a.badge().order() - b.badge().order())

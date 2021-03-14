@@ -52,7 +52,7 @@ export default class EditBadgeModal extends Modal {
           },
           app.translator.trans("core.admin.settings.submit_button")
         )}
-      </div>
+      </div>,
     ];
   }
 

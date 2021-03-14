@@ -1,6 +1,6 @@
 import sortable from "sortablejs";
 import ExtensionPage from "flarum/components/ExtensionPage";
-import LoadingIndicator from 'flarum/components/LoadingIndicator';
+import LoadingIndicator from "flarum/components/LoadingIndicator";
 import SortableBadge from "./SortableBadge";
 import Button from "flarum/components/Button";
 import EditBadgeModal from "./EditBadgeModal";
@@ -38,9 +38,11 @@ export default class SettingsPage extends ExtensionPage {
         <div className="FlarumBadgePageButtons">
           <Button
             className={"Button"}
-            onclick={() => app.modal.show(EditBadgeCategoryModal, {
-              onCreate: () => this.nextRefreshKey()
-            })}
+            onclick={() =>
+              app.modal.show(EditBadgeCategoryModal, {
+                onCreate: () => this.nextRefreshKey(),
+              })
+            }
             icon={"fas fa-project-diagram"}
           >
             {app.translator.trans(
@@ -52,7 +54,9 @@ export default class SettingsPage extends ExtensionPage {
             onclick={() => app.modal.show(EditBadgeModal)}
             icon={"fas fa-icons"}
           >
-            {app.translator.trans("v17development-flarum-badges.admin.new_badge")}
+            {app.translator.trans(
+              "v17development-flarum-badges.admin.new_badge"
+            )}
           </Button>
         </div>
 
@@ -63,80 +67,84 @@ export default class SettingsPage extends ExtensionPage {
               key={this.forcedRefreshKey}
               oncreate={this.onBadgeListReady.bind(this)}
             >
-              {categories && categories.map((category) => {
-                return (
-                  <div
-                    className={"FlarumBadgeCategory"}
-                    data-id={category.id()}
-                  >
-                    <div className={"CategoryHeader"}>
-                      <span className={"CategoryName"}>
-                        {!category.isEnabled() && (
-                          <i className={"fas fa-eye-slash"} />
-                        )}
-                        <b>{category.name()}</b>
-                      </span>
-
-                      <span className={"CategoryLinks"}>
-                        <a
-                          href={"javascript:void(0)"}
-                          onclick={() =>
-                            app.modal.show(EditBadgeCategoryModal, {
-                              badgeCategory: category,
-                            })
-                          }
-                        >
-                          {app.translator.trans(
-                            "v17development-flarum-badges.admin.edit_category"
+              {categories &&
+                categories.map((category) => {
+                  return (
+                    <div
+                      className={"FlarumBadgeCategory"}
+                      data-id={category.id()}
+                    >
+                      <div className={"CategoryHeader"}>
+                        <span className={"CategoryName"}>
+                          {!category.isEnabled() && (
+                            <i className={"fas fa-eye-slash"} />
                           )}
-                        </a>
-                        <a href={"javascript:void(0)"}>
-                          <i className={"fas fa-caret-up"} />
-                        </a>
-                        <a href={"javascript:void(0)"}>
-                          <i className={"fas fa-caret-down"} />
-                        </a>
-                        <a
-                          href={"javascript:void(0)"}
-                          onclick={() =>
-                            app.modal.show(ConfirmModal, {
-                              text: app.translator.trans(
-                                "v17development-flarum-badges.admin.confirm_messages.delete_category"
-                              ),
-                              promise: true,
-                              onconfirm: (resolve, reject) => {
-                                const badges = category.badges();
+                          <b>{category.name()}</b>
+                        </span>
 
-                                category.delete().then(() => {
-                                  resolve();
+                        <span className={"CategoryLinks"}>
+                          <a
+                            href={"javascript:void(0)"}
+                            onclick={() =>
+                              app.modal.show(EditBadgeCategoryModal, {
+                                badgeCategory: category,
+                              })
+                            }
+                          >
+                            {app.translator.trans(
+                              "v17development-flarum-badges.admin.edit_category"
+                            )}
+                          </a>
+                          <a href={"javascript:void(0)"}>
+                            <i className={"fas fa-caret-up"} />
+                          </a>
+                          <a href={"javascript:void(0)"}>
+                            <i className={"fas fa-caret-down"} />
+                          </a>
+                          <a
+                            href={"javascript:void(0)"}
+                            onclick={() =>
+                              app.modal.show(ConfirmModal, {
+                                text: app.translator.trans(
+                                  "v17development-flarum-badges.admin.confirm_messages.delete_category"
+                                ),
+                                promise: true,
+                                onconfirm: (resolve, reject) => {
+                                  const badges = category.badges();
 
-                                  badges.forEach(badge => 
-                                    badge.pushData({
-                                      relationships: { 
-                                        category: null
-                                      }
+                                  category
+                                    .delete()
+                                    .then(() => {
+                                      resolve();
+
+                                      badges.forEach((badge) =>
+                                        badge.pushData({
+                                          relationships: {
+                                            category: null,
+                                          },
+                                        })
+                                      );
                                     })
-                                  );
-                                }).catch(reject);
-                              }
-                            })
-                          }
-                        >
-                          <i className={"fas fa-trash"} />
-                        </a>
-                      </span>
-                    </div>
+                                    .catch(reject);
+                                },
+                              })
+                            }
+                          >
+                            <i className={"fas fa-trash"} />
+                          </a>
+                        </span>
+                      </div>
 
-                    <ul className={"SortableBadges"}>
-                      {category.badges() &&
-                        category
-                          .badges()
-                          .sort((a, b) => a.order() - b.order())
-                          .map((badge) => <SortableBadge badge={badge} />)}
-                    </ul>
-                  </div>
-                );
-              })}
+                      <ul className={"SortableBadges"}>
+                        {category.badges() &&
+                          category
+                            .badges()
+                            .sort((a, b) => a.order() - b.order())
+                            .map((badge) => <SortableBadge badge={badge} />)}
+                      </ul>
+                    </div>
+                  );
+                })}
 
               {/* Uncategorized badges */}
               <div className={"FlarumBadgeCategory"}>
@@ -155,25 +163,24 @@ export default class SettingsPage extends ExtensionPage {
                     .sort((a, b) => a.order() - b.order())
                     .map((badge) => (
                       <SortableBadge badge={badge} />
-                    )
-                  )}
+                    ))}
                 </ul>
               </div>
             </div>
           )}
         </div>
 
-        {this.loading && (
-          <LoadingIndicator size={'big'} />
-        )}
+        {this.loading && <LoadingIndicator size={"big"} />}
 
-        {!this.loading && uncategorizedBadges.length === 0 && categories.length === 0 && (
-          <p>
-            {app.translator.trans(
-              "v17development-flarum-badges.admin.nothing_here_yet"
-            )}
-          </p>
-        )}
+        {!this.loading &&
+          uncategorizedBadges.length === 0 &&
+          categories.length === 0 && (
+            <p>
+              {app.translator.trans(
+                "v17development-flarum-badges.admin.nothing_here_yet"
+              )}
+            </p>
+          )}
       </div>
     );
   }
@@ -229,36 +236,41 @@ export default class SettingsPage extends ExtensionPage {
       .catch((e) => console.error(e))
       .then(() => {
         // Update local store
-        order.map(categoryObject => {
-          const category = categoryObject.id !== null ? app.store.getById('badgeCategories', categoryObject.id) : null;
+        order.map((categoryObject) => {
+          const category =
+            categoryObject.id !== null
+              ? app.store.getById("badgeCategories", categoryObject.id)
+              : null;
 
           // Loop through the badges
-          const badges = categoryObject.children.map((badgeId, badgePosition) => {
-            const badge = app.store.getById('badges', badgeId);
+          const badges = categoryObject.children.map(
+            (badgeId, badgePosition) => {
+              const badge = app.store.getById("badges", badgeId);
 
-            badge.pushData({
-              attributes: {
-                order: badgePosition
-              },
-              relationships: { 
-                category
-              }
-            });
-      
-            return badge;
-          });
+              badge.pushData({
+                attributes: {
+                  order: badgePosition,
+                },
+                relationships: {
+                  category,
+                },
+              });
+
+              return badge;
+            }
+          );
 
           // Update the category
-          if(category) {
+          if (category) {
             category.pushData({
-              relationships: { 
+              relationships: {
                 badges: {
-                  data: badges.map(badge => ({
-                    type: 'badges',
-                    id: badge.id()
-                  }))
-                }
-               }
+                  data: badges.map((badge) => ({
+                    type: "badges",
+                    id: badge.id(),
+                  })),
+                },
+              },
             });
           }
         });

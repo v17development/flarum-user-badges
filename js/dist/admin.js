@@ -4430,7 +4430,7 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
         badge: badge
       });
     }))))), this.loading && m(flarum_components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_3___default.a, {
-      size: 'big'
+      size: "big"
     }), !this.loading && uncategorizedBadges.length === 0 && categories.length === 0 && m("p", null, app.translator.trans("v17development-flarum-badges.admin.nothing_here_yet")));
   };
 
@@ -4484,10 +4484,10 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
     }).then(function () {
       // Update local store
       order.map(function (categoryObject) {
-        var category = categoryObject.id !== null ? app.store.getById('badgeCategories', categoryObject.id) : null; // Loop through the badges
+        var category = categoryObject.id !== null ? app.store.getById("badgeCategories", categoryObject.id) : null; // Loop through the badges
 
         var badges = categoryObject.children.map(function (badgeId, badgePosition) {
-          var badge = app.store.getById('badges', badgeId);
+          var badge = app.store.getById("badges", badgeId);
           badge.pushData({
             attributes: {
               order: badgePosition
@@ -4505,7 +4505,7 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
               badges: {
                 data: badges.map(function (badge) {
                   return {
-                    type: 'badges',
+                    type: "badges",
                     id: badge.id()
                   };
                 })

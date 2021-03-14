@@ -146,8 +146,8 @@ export default class EditBadgeCategoryModal extends Modal {
       .then(
         () => {
           this.hide();
-          
-          if(this.attrs.onCreate) {
+
+          if (this.attrs.onCreate) {
             this.attrs.onCreate();
           }
         },

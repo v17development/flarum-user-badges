@@ -19,7 +19,7 @@ composer update v17development/flarum-user-badges
 - Create badge categories
 - Create badges
 - Add badges to users
-- Add badge earing reason
+- Add badge earning reason
 - User badges page
 
 ## 📝 To-do:

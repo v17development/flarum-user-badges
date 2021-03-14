@@ -7,7 +7,9 @@ app.initializers.add("v17development-user-badges", () => {
   app.store.models.badgeCategories = BadgeCategory;
 
   // Register extension settings page
-  app.extensionData.for("v17development-user-badges").registerPage(SettingsPage);
+  app.extensionData
+    .for("v17development-user-badges")
+    .registerPage(SettingsPage);
 
   app.extensionData
     .for("v17development-badges")

@@ -45,14 +45,12 @@ export default class SortableBadge extends Component {
               disabled={this.loading}
               onclick={() =>
                 app.modal.show(ConfirmModal, {
-                  text: app.translator.trans("v17development-flarum-badges.admin.confirm_messages.delete_badge"),
+                  text: app.translator.trans(
+                    "v17development-flarum-badges.admin.confirm_messages.delete_badge"
+                  ),
                   promise: true,
-                  onconfirm: 
-                    (resolve, reject) => 
-                      badge
-                        .delete()
-                        .then(resolve)
-                        .catch(reject)
+                  onconfirm: (resolve, reject) =>
+                    badge.delete().then(resolve).catch(reject),
                 })
               }
             >

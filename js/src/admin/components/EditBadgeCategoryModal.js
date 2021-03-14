@@ -20,7 +20,9 @@ export default class EditBadgeCategoryModal extends Modal {
     this.description = Stream(this.badgeCategory.description());
 
     // Is enabled
-    this.isEnabled = Stream(this.badgeCategory.exists ? this.badgeCategory.isEnabled() : true);
+    this.isEnabled = Stream(
+      this.badgeCategory.exists ? this.badgeCategory.isEnabled() : true
+    );
   }
 
   className() {

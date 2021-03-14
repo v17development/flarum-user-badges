@@ -4404,7 +4404,7 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
   _proto.onBadgeListReady = function onBadgeListReady(vnode) {
     var _this2 = this;
 
-    this.$('.SortableBadges').get().map(function (e) {
+    this.$(".SortableBadges").get().map(function (e) {
       sortablejs__WEBPACK_IMPORTED_MODULE_1__["default"].create(e, {
         group: "tags",
         animation: 150,
@@ -4428,17 +4428,17 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
     if (this.updating) return;
     this.updating = true; // Get through the categories and find the children currently attached to them
 
-    var order = this.$('.FlarumBadgeCategory').map(function () {
+    var order = this.$(".FlarumBadgeCategory").map(function () {
       return {
-        id: $(this).data('id') ? $(this).data('id') : null,
-        children: $(this).find('li').map(function () {
-          return $(this).data('id');
+        id: $(this).data("id") ? $(this).data("id") : null,
+        children: $(this).find("li").map(function () {
+          return $(this).data("id");
         }).get()
       };
     }).get();
     app.request({
-      url: app.forum.attribute('apiUrl') + '/badges/order',
-      method: 'POST',
+      url: app.forum.attribute("apiUrl") + "/badges/order",
+      method: "POST",
       body: {
         order: order
       }

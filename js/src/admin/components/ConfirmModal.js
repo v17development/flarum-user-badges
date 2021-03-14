@@ -7,7 +7,7 @@ import Stream from "flarum/utils/Stream";
 export default class ConfirmModal extends Modal {
   oninit(vnode) {
     super.oninit(vnode);
-    
+
     this.loading = false;
   }
 
@@ -31,17 +31,21 @@ export default class ConfirmModal extends Modal {
             {
               className: "Button",
               disabled: this.loading,
-              onclick: () => this.hide()
+              onclick: () => this.hide(),
             },
-            app.translator.trans("v17development-flarum-badges.admin.confirm_dialog.no")
+            app.translator.trans(
+              "v17development-flarum-badges.admin.confirm_dialog.no"
+            )
           )}
           {Button.component(
             {
               className: "Button Button--primary",
               loading: this.loading,
-              onclick: () => this.confirm()
+              onclick: () => this.confirm(),
             },
-            app.translator.trans("v17development-flarum-badges.admin.confirm_dialog.yes")
+            app.translator.trans(
+              "v17development-flarum-badges.admin.confirm_dialog.yes"
+            )
           )}
         </div>
       </div>
@@ -53,20 +57,20 @@ export default class ConfirmModal extends Modal {
    */
   confirm() {
     // Act as promise
-    if(this.attrs.promise) {
+    if (this.attrs.promise) {
       this.loading = true;
 
       this.attrs.onconfirm(
-        () => this.hide(), 
+        () => this.hide(),
         () => {
           this.loading = false;
           m.redraw();
-        });
+        }
+      );
       return;
     }
 
     this.attrs.onconfirm();
     this.hide();
-
   }
 }

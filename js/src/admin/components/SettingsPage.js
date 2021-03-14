@@ -15,24 +15,18 @@ export default class SettingsPage extends ExtensionPage {
     this.updating = false;
     this.forcedRefreshKey = 0;
 
-    app.store
-      .find("badge_categories")
-      .then(() => {
-        app.store
-          .find("badges")
-          .then(() => {
-            this.loading = false;
+    app.store.find("badge_categories").then(() => {
+      app.store.find("badges").then(() => {
+        this.loading = false;
 
-            // Redraw
-            m.redraw();
-          });
+        // Redraw
+        m.redraw();
       });
-
+    });
   }
 
   content() {
-    const categories = app.store
-      .all("badgeCategories");
+    const categories = app.store.all("badgeCategories");
 
     const uncategorizedBadges = app.store
       .all("badges")
@@ -40,10 +34,10 @@ export default class SettingsPage extends ExtensionPage {
 
     return (
       <div className="FlarumBadgesPage">
-        <Button 
+        <Button
           className={"Button"}
           onclick={() => app.modal.show(EditBadgeCategoryModal)}
-          >
+        >
           {app.translator.trans(
             "v17development-flarum-badges.admin.create_category"
           )}
@@ -64,7 +58,10 @@ export default class SettingsPage extends ExtensionPage {
             >
               {categories.map((category) => {
                 return (
-                  <div className={"FlarumBadgeCategory"} data-id={category.id()}>
+                  <div
+                    className={"FlarumBadgeCategory"}
+                    data-id={category.id()}
+                  >
                     <div className={"CategoryHeader"}>
                       <span className={"CategoryName"}>
                         {!category.isEnabled() && (
@@ -74,15 +71,15 @@ export default class SettingsPage extends ExtensionPage {
                       </span>
 
                       <span className={"CategoryLinks"}>
-                        <a 
+                        <a
                           href={"javascript:void(0)"}
-                          onclick={() => 
+                          onclick={() =>
                             app.modal.show(EditBadgeCategoryModal, {
-                              badgeCategory: category
+                              badgeCategory: category,
                             })
                           }
-                          >
-                            Edit category
+                        >
+                          Edit category
                         </a>
                         <a href={"javascript:void(0)"}>
                           <i className={"fas fa-caret-up"} />
@@ -90,29 +87,29 @@ export default class SettingsPage extends ExtensionPage {
                         <a href={"javascript:void(0)"}>
                           <i className={"fas fa-caret-down"} />
                         </a>
-                        <a 
+                        <a
                           href={"javascript:void(0)"}
                           onclick={() =>
                             app.modal.show(ConfirmModal, {
-                              text: app.translator.trans("v17development-flarum-badges.admin.confirm_messages.delete_category"),
+                              text: app.translator.trans(
+                                "v17development-flarum-badges.admin.confirm_messages.delete_category"
+                              ),
                               promise: true,
-                              onconfirm: 
-                                (resolve, reject) => 
-                                  category
-                                    .delete()
-                                    .then(resolve)
-                                    .catch(reject)
+                              onconfirm: (resolve, reject) =>
+                                category.delete().then(resolve).catch(reject),
                             })
-                          }>
+                          }
+                        >
                           <i className={"fas fa-trash"} />
                         </a>
                       </span>
                     </div>
 
                     <ul className={"SortableBadges"}>
-                      {category.badges() && category.badges().map((badge) => (
-                        <SortableBadge badge={badge} />
-                      ))}
+                      {category.badges() &&
+                        category
+                          .badges()
+                          .map((badge) => <SortableBadge badge={badge} />)}
                     </ul>
                   </div>
                 );
@@ -151,44 +148,49 @@ export default class SettingsPage extends ExtensionPage {
   }
 
   onBadgeListReady(vnode) {
-    this.$('.SortableBadges').get().map(e => {
-      sortable.create(e, {
-        group: "tags",
-        animation: 150,
-        swapThreshold: 0.65,
-        dragClass: "SortableBadges-dragging",
-        ghostClass: "SortableBadges-placeholder",
-        direction: "horizontal",
-        onSort: (e) => this.onSortUpdate(e),
+    this.$(".SortableBadges")
+      .get()
+      .map((e) => {
+        sortable.create(e, {
+          group: "tags",
+          animation: 150,
+          swapThreshold: 0.65,
+          dragClass: "SortableBadges-dragging",
+          ghostClass: "SortableBadges-placeholder",
+          direction: "horizontal",
+          onSort: (e) => this.onSortUpdate(e),
+        });
       });
-    });
   }
 
   updateCategorySort(id, position) {}
 
   onSortUpdate(e) {
     // Skip if already updating
-    if(this.updating) return;
+    if (this.updating) return;
 
     this.updating = true;
 
     // Get through the categories and find the children currently attached to them
-    const order = this.$('.FlarumBadgeCategory')
+    const order = this.$(".FlarumBadgeCategory")
       .map(function () {
         return {
-          id: $(this).data('id') ? $(this).data('id') : null,
-          children: $(this).find('li')
+          id: $(this).data("id") ? $(this).data("id") : null,
+          children: $(this)
+            .find("li")
             .map(function () {
-              return $(this).data('id');
-            }).get()
+              return $(this).data("id");
+            })
+            .get(),
         };
-      }).get();
+      })
+      .get();
 
     app
       .request({
-        url: app.forum.attribute('apiUrl') + '/badges/order',
-        method: 'POST',
-        body: { order }
+        url: app.forum.attribute("apiUrl") + "/badges/order",
+        method: "POST",
+        body: { order },
       })
       .catch((e) => console.error(e))
       .then(() => {

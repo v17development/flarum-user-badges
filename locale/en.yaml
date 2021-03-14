@@ -1,9 +1,19 @@
 v17development-flarum-badges:
   admin:
-    uncategorized: Uncategorizeds
+    uncategorized: Uncategorized
     new_badge: New badge
     create_category: Create category
     update_badge: Update badge
+    update_category: Update category
+
+    confirm_dialog:
+      title: Confirm
+      no: No
+      yes: Yes
+    
+    confirm_messages:
+      delete_badge: Are you sure you want to remove this badge? It is removed from all users and is irreversible.
+      delete_category: Are you sure you want to remove this category? If there are any badges in this category, they will be marked as 'uncategorized'.
 
     badge:
       name: Badge name
@@ -11,6 +21,12 @@ v17development-flarum-badges:
       description: Badge description
       visible: Visible
       visible_description: Enable this badge. When disabled, the badge will not be visible.
+
+    badge_category:
+      name: Category name
+      description: Category description
+      enabled: Enabled
+      enabled_description: Enable this category. When disabled, all badges will be disabled and the category will be hidden.
     
   forum: 
     badge_information: Badge information

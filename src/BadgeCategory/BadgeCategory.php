@@ -11,10 +11,11 @@ class BadgeCategory extends AbstractModel
 
     protected $dates = ['created_at'];
 
-    public static function build($name, $isEnabled)
+    public static function build($name, $description, $isEnabled)
     {
         $badgeCategory = new static();
         $badgeCategory->name = $name;
+        $badgeCategory->description = $description;
         $badgeCategory->is_enabled = $isEnabled;
 
         return $badgeCategory;

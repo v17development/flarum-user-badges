@@ -1,5 +1,6 @@
 import Component from "flarum/Component";
 import Button from "flarum/components/Button";
+import ConfirmModal from "./ConfirmModal";
 import EditBadgeModal from "./EditBadgeModal";
 
 export default class SortableBadge extends Component {
@@ -16,13 +17,14 @@ export default class SortableBadge extends Component {
       <li data-id={badge.id()}>
         <div className="SortableBadges-info">
           <span className={"BadgeDetails"}>
-            <span 
-              className={"UserBadge"} 
+            <span
+              className={"UserBadge"}
               onclick={() =>
                 app.modal.show(EditBadgeModal, {
                   badge,
                 })
-              }>
+              }
+            >
               <i className={badge.icon()} /> {badge.name()}
             </span>
           </span>
@@ -38,20 +40,22 @@ export default class SortableBadge extends Component {
             >
               <i className={"fas fa-edit"} />
             </Button>
-            <Button 
+            <Button
               className={"Button"}
               disabled={this.loading}
-              onclick={() => {
-                if(confirm("Are you sure you want to delete this badge?")) {
-                  this.loading = true;
-
-                  badge
-                    .delete()
-                    .then(() => m.redraw())
-                    .catch(() => this.loading = false);
-                }
-              }}
-              >
+              onclick={() =>
+                app.modal.show(ConfirmModal, {
+                  text: app.translator.trans("v17development-flarum-badges.admin.confirm_messages.delete_badge"),
+                  promise: true,
+                  onconfirm: 
+                    (resolve, reject) => 
+                      badge
+                        .delete()
+                        .then(resolve)
+                        .catch(reject)
+                })
+              }
+            >
               <i className={"fas fa-trash"} />
             </Button>
           </span>

@@ -239,13 +239,14 @@ var BadgeCategory = /*#__PURE__*/function (_mixin) {
   var _proto = BadgeCategory.prototype;
 
   _proto.apiEndpoint = function apiEndpoint() {
-    return "/user_categories" + (this.exists ? "/" + this.data.id : "");
+    return "/badge_categories" + (this.exists ? "/" + this.data.id : "");
   };
 
   return BadgeCategory;
 }(flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2___default()(flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a, {
   name: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("name"),
   order: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("order"),
+  description: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("description"),
   isEnabled: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("isEnabled"),
   createdAt: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("createdAt"),
   users: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasMany("users"),

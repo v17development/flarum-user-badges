@@ -3886,6 +3886,239 @@ Sortable.mount(Remove, Revert);
 
 /***/ }),
 
+/***/ "./src/admin/components/ConfirmModal.js":
+/*!**********************************************!*\
+  !*** ./src/admin/components/ConfirmModal.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ConfirmModal; });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/utils/ItemList */ "flarum/utils/ItemList");
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/Switch */ "flarum/components/Switch");
+/* harmony import */ var flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/utils/Stream */ "flarum/utils/Stream");
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+
+var ConfirmModal = /*#__PURE__*/function (_Modal) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(ConfirmModal, _Modal);
+
+  function ConfirmModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = ConfirmModal.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    _Modal.prototype.oninit.call(this, vnode);
+
+    this.loading = false;
+  };
+
+  _proto.className = function className() {
+    return "Modal--small";
+  };
+
+  _proto.title = function title() {
+    return app.translator.trans("v17development-flarum-badges.admin.confirm_dialog.title");
+  };
+
+  _proto.content = function content() {
+    var _this = this;
+
+    return m("div", {
+      className: "Modal-body"
+    }, m("p", null, this.attrs.text), m("div", {
+      className: "Form-group"
+    }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default.a.component({
+      className: "Button",
+      disabled: this.loading,
+      onclick: function onclick() {
+        return _this.hide();
+      }
+    }, app.translator.trans("v17development-flarum-badges.admin.confirm_dialog.no")), flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default.a.component({
+      className: "Button Button--primary",
+      loading: this.loading,
+      onclick: function onclick() {
+        return _this.confirm();
+      }
+    }, app.translator.trans("v17development-flarum-badges.admin.confirm_dialog.yes"))));
+  }
+  /**
+   * Confirm
+   */
+  ;
+
+  _proto.confirm = function confirm() {
+    var _this2 = this;
+
+    // Act as promise
+    if (this.attrs.promise) {
+      this.loading = true;
+      this.attrs.onconfirm(function () {
+        return _this2.hide();
+      }, function () {
+        _this2.loading = false;
+        m.redraw();
+      });
+      return;
+    }
+
+    this.attrs.onconfirm();
+    this.hide();
+  };
+
+  return ConfirmModal;
+}(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default.a);
+
+
+
+/***/ }),
+
+/***/ "./src/admin/components/EditBadgeCategoryModal.js":
+/*!********************************************************!*\
+  !*** ./src/admin/components/EditBadgeCategoryModal.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EditBadgeCategoryModal; });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/utils/ItemList */ "flarum/utils/ItemList");
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/Switch */ "flarum/components/Switch");
+/* harmony import */ var flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/utils/Stream */ "flarum/utils/Stream");
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+
+var EditBadgeCategoryModal = /*#__PURE__*/function (_Modal) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(EditBadgeCategoryModal, _Modal);
+
+  function EditBadgeCategoryModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = EditBadgeCategoryModal.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    _Modal.prototype.oninit.call(this, vnode); // Badge model
+
+
+    this.badgeCategory = this.attrs.badgeCategory ? this.attrs.badgeCategory : app.store.createRecord("badgeCategories"); // Name
+
+    this.name = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badgeCategory.name()); // Description
+
+    this.description = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badgeCategory.description()); // Is enabled
+
+    this.isEnabled = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badgeCategory.exists ? this.badgeCategory.isEnabled() : true);
+  };
+
+  _proto.className = function className() {
+    return "Modal--small";
+  };
+
+  _proto.title = function title() {
+    return app.translator.trans("v17development-flarum-badges.admin." + (this.badgeCategory.exists ? "update_category" : "create_category"));
+  };
+
+  _proto.content = function content() {
+    return m("div", {
+      className: "Modal-body"
+    }, m("div", {
+      className: "Form"
+    }, this.data().toArray()));
+  };
+
+  _proto.data = function data() {
+    var _this = this;
+
+    var items = new flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2___default.a();
+    items.add("name", m("div", {
+      className: "Form-group"
+    }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge_category.name"), ":"), m("input", {
+      className: "FormControl",
+      placeholder: app.translator.trans("v17development-flarum-badges.admin.badge_category.name"),
+      bidi: this.name
+    })), 50);
+    items.add("description", m("div", {
+      className: "Form-group"
+    }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge_category.description"), ":"), m("textarea", {
+      className: "FormControl",
+      placeholder: app.translator.trans("v17development-flarum-badges.admin.badge_category.description"),
+      bidi: this.description
+    })), 50); // Enabled
+
+    items.add("enabled", m("div", {
+      className: "Form-group"
+    }, flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4___default.a.component({
+      state: this.isEnabled() == true,
+      onchange: function onchange(val) {
+        return _this.isEnabled(val);
+      }
+    }, [m("b", null, app.translator.trans("v17development-flarum-badges.admin.badge_category.enabled")), m("div", {
+      className: "helpText"
+    }, app.translator.trans("v17development-flarum-badges.admin.badge_category.enabled_description"))])), 50);
+    items.add("submit", m("div", {
+      className: "Form-group"
+    }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default.a.component({
+      type: "submit",
+      className: "Button Button--primary",
+      loading: this.loading
+    }, app.translator.trans("core.forum.composer_edit.submit_button"))), -10);
+    return items;
+  };
+
+  _proto.onsubmit = function onsubmit(e) {
+    var _this2 = this;
+
+    e.preventDefault();
+    this.loading = true;
+    this.badgeCategory.save({
+      name: this.name(),
+      description: this.description(),
+      isEnabled: this.isEnabled()
+    }).then(function () {
+      return _this2.hide();
+    }, function (response) {
+      _this2.loading = false;
+
+      _this2.handleErrors(response);
+    });
+  };
+
+  return EditBadgeCategoryModal;
+}(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default.a);
+
+
+
+/***/ }),
+
 /***/ "./src/admin/components/EditBadgeModal.js":
 /*!************************************************!*\
   !*** ./src/admin/components/EditBadgeModal.js ***!
@@ -4048,6 +4281,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
 /* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _EditBadgeModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditBadgeModal */ "./src/admin/components/EditBadgeModal.js");
+/* harmony import */ var _EditBadgeCategoryModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EditBadgeCategoryModal */ "./src/admin/components/EditBadgeCategoryModal.js");
+/* harmony import */ var _ConfirmModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ConfirmModal */ "./src/admin/components/ConfirmModal.js");
+
+
 
 
 
@@ -4070,47 +4307,42 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
     _ExtensionPage.prototype.oninit.call(this, attrs);
 
     this.loading = true;
-    this.categories = [];
+    this.updating = false;
     this.forcedRefreshKey = 0;
-    app.store.find("badge_categories", {
-      include: "badges"
-    }).then(function (badgeCategories) {
-      _this.categories = badgeCategories;
-      _this.loading = false; // Redraw
+    app.store.find("badge_categories").then(function () {
+      app.store.find("badges").then(function () {
+        _this.loading = false; // Redraw
 
-      m.redraw();
-    });
-    app.store.find("badges", {
-      uncategorized: true
-    }).then(function () {
-      _this.loading = false; // Redraw
-
-      m.redraw();
+        m.redraw();
+      });
     });
   };
 
   _proto.content = function content() {
+    var categories = app.store.all("badgeCategories");
     var uncategorizedBadges = app.store.all("badges").filter(function (badge) {
-      return !badge.category();
+      return badge.category() == false;
     });
     return m("div", {
       className: "FlarumBadgesPage"
     }, m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default.a, {
       className: "Button",
-      key: 2
+      onclick: function onclick() {
+        return app.modal.show(_EditBadgeCategoryModal__WEBPACK_IMPORTED_MODULE_6__["default"]);
+      }
     }, app.translator.trans("v17development-flarum-badges.admin.create_category")), m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default.a, {
       className: "Button",
-      key: 3,
       onclick: function onclick() {
         return app.modal.show(_EditBadgeModal__WEBPACK_IMPORTED_MODULE_5__["default"]);
       }
-    }, app.translator.trans("v17development-flarum-badges.admin.new_badge")), m("div", {
+    }, app.translator.trans("v17development-flarum-badges.admin.new_badge")), m("div", null, !this.loading && m("div", {
       className: "FlarumBadgeCategories",
       key: this.forcedRefreshKey,
       oncreate: this.onBadgeListReady.bind(this)
-    }, this.categories.map(function (category) {
+    }, categories.map(function (category) {
       return m("div", {
-        className: "FlarumBadgeCategory"
+        className: "FlarumBadgeCategory",
+        "data-id": category.id()
       }, m("div", {
         className: "CategoryHeader"
       }, m("span", {
@@ -4120,7 +4352,12 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
       }), m("b", null, category.name())), m("span", {
         className: "CategoryLinks"
       }, m("a", {
-        href: "javascript:void(0)"
+        href: "javascript:void(0)",
+        onclick: function onclick() {
+          return app.modal.show(_EditBadgeCategoryModal__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            badgeCategory: category
+          });
+        }
       }, "Edit category"), m("a", {
         href: "javascript:void(0)"
       }, m("i", {
@@ -4130,12 +4367,21 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
       }, m("i", {
         className: "fas fa-caret-down"
       })), m("a", {
-        href: "javascript:void(0)"
+        href: "javascript:void(0)",
+        onclick: function onclick() {
+          return app.modal.show(_ConfirmModal__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            text: app.translator.trans("v17development-flarum-badges.admin.confirm_messages.delete_category"),
+            promise: true,
+            onconfirm: function onconfirm(resolve, reject) {
+              return category["delete"]().then(resolve)["catch"](reject);
+            }
+          });
+        }
       }, m("i", {
         className: "fas fa-trash"
       })))), m("ul", {
         className: "SortableBadges"
-      }, category.badges().map(function (badge) {
+      }, category.badges() && category.badges().map(function (badge) {
         return m(_SortableBadge__WEBPACK_IMPORTED_MODULE_3__["default"], {
           badge: badge
         });
@@ -4152,13 +4398,13 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
       return m(_SortableBadge__WEBPACK_IMPORTED_MODULE_3__["default"], {
         badge: badge
       });
-    }))), uncategorizedBadges.length === 0 && this.categories === 0 && m("p", null, "You did not create any badges or categories yet.")));
+    }))))), uncategorizedBadges.length === 0 && categories.length === 0 && m("p", null, "You did not create any badges or categories yet."));
   };
 
-  _proto.onBadgeListReady = function onBadgeListReady() {
+  _proto.onBadgeListReady = function onBadgeListReady(vnode) {
     var _this2 = this;
 
-    this.$(".SortableBadges").get().map(function (e) {
+    this.$('.SortableBadges').get().map(function (e) {
       sortablejs__WEBPACK_IMPORTED_MODULE_1__["default"].create(e, {
         group: "tags",
         animation: 150,
@@ -4176,8 +4422,33 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
   _proto.updateCategorySort = function updateCategorySort(id, position) {};
 
   _proto.onSortUpdate = function onSortUpdate(e) {
-    console.log(e); // this.forcedRefreshKey++;
-    // m.redraw();
+    var _this3 = this;
+
+    // Skip if already updating
+    if (this.updating) return;
+    this.updating = true; // Get through the categories and find the children currently attached to them
+
+    var order = this.$('.FlarumBadgeCategory').map(function () {
+      return {
+        id: $(this).data('id') ? $(this).data('id') : null,
+        children: $(this).find('li').map(function () {
+          return $(this).data('id');
+        }).get()
+      };
+    }).get();
+    app.request({
+      url: app.forum.attribute('apiUrl') + '/badges/order',
+      method: 'POST',
+      body: {
+        order: order
+      }
+    })["catch"](function (e) {
+      return console.error(e);
+    }).then(function () {
+      _this3.updating = false;
+      _this3.forcedRefreshKey++;
+      m.redraw();
+    });
   };
 
   return SettingsPage;
@@ -4202,7 +4473,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_Component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_Component__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
 /* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _EditBadgeModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditBadgeModal */ "./src/admin/components/EditBadgeModal.js");
+/* harmony import */ var _ConfirmModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ConfirmModal */ "./src/admin/components/ConfirmModal.js");
+/* harmony import */ var _EditBadgeModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EditBadgeModal */ "./src/admin/components/EditBadgeModal.js");
+
 
 
 
@@ -4224,8 +4497,6 @@ var SortableBadge = /*#__PURE__*/function (_Component) {
   };
 
   _proto.view = function view() {
-    var _this = this;
-
     var badge = this.attrs.badge;
     return m("li", {
       "data-id": badge.id()
@@ -4236,7 +4507,7 @@ var SortableBadge = /*#__PURE__*/function (_Component) {
     }, m("span", {
       className: "UserBadge",
       onclick: function onclick() {
-        return app.modal.show(_EditBadgeModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        return app.modal.show(_EditBadgeModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
           badge: badge
         });
       }
@@ -4248,7 +4519,7 @@ var SortableBadge = /*#__PURE__*/function (_Component) {
       className: "Button",
       disabled: this.loading,
       onclick: function onclick() {
-        return app.modal.show(_EditBadgeModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        return app.modal.show(_EditBadgeModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
           badge: badge
         });
       }
@@ -4258,14 +4529,13 @@ var SortableBadge = /*#__PURE__*/function (_Component) {
       className: "Button",
       disabled: this.loading,
       onclick: function onclick() {
-        if (confirm("Are you sure you want to delete this badge?")) {
-          _this.loading = true;
-          badge["delete"]().then(function () {
-            return m.redraw();
-          })["catch"](function () {
-            return _this.loading = false;
-          });
-        }
+        return app.modal.show(_ConfirmModal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          text: app.translator.trans("v17development-flarum-badges.admin.confirm_messages.delete_badge"),
+          promise: true,
+          onconfirm: function onconfirm(resolve, reject) {
+            return badge["delete"]().then(resolve)["catch"](reject);
+          }
+        });
       }
     }, m("i", {
       className: "fas fa-trash"
@@ -4383,13 +4653,14 @@ var BadgeCategory = /*#__PURE__*/function (_mixin) {
   var _proto = BadgeCategory.prototype;
 
   _proto.apiEndpoint = function apiEndpoint() {
-    return "/user_categories" + (this.exists ? "/" + this.data.id : "");
+    return "/badge_categories" + (this.exists ? "/" + this.data.id : "");
   };
 
   return BadgeCategory;
 }(flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2___default()(flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a, {
   name: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("name"),
   order: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("order"),
+  description: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("description"),
   isEnabled: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("isEnabled"),
   createdAt: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.attribute("createdAt"),
   users: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default.a.hasMany("users"),

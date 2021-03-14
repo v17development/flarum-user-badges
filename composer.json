@@ -1,6 +1,6 @@
 {
-    "name": "v17development/flarum-badges",
-    "description": "Adds badges to your Flarum community",
+    "name": "v17development/flarum-user-badges",
+    "description": "Adds user badges to your Flarum community",
     "type": "flarum-extension",
     "license": "MIT",
     "authors": [
@@ -9,16 +9,16 @@
             "email": "info@v17.dev"
         }
     ],
-    "homepage": "https://v17.dev/projects/flarum-badges",
+    "homepage": "https://v17.dev/projects/flarum-user-badges",
     "support": {
-        "forum": "https://discuss.flarum.org/d/",
-        "issues": "https://github.com/v17development/flarum-badges/issues",
-        "source": "https://github.com/v17development/flarum-badges",
-        "docs": "https://community.v17.dev/knowledgebase/category/flarum-badges"
+        "forum": "https://discuss.flarum.org/d/26449",
+        "issues": "https://github.com/v17development/flarum-user-badges/issues",
+        "source": "https://github.com/v17development/flarum-user-badges",
+        "docs": "https://community.v17.dev/knowledgebase/category/flarum-user-badges"
     },
     "autoload": {
         "psr-4": {
-            "V17Development\\FlarumBadges\\": "src/"
+            "V17Development\\FlarumUserBadges\\": "src/"
         }
     },
     "require": {

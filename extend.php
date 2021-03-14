@@ -42,7 +42,7 @@ return [
     // Extension permissions
     (new Extend\ApiSerializer(ForumSerializer::class))
         ->attribute('canGiveBadge', function(ForumSerializer $serializer) {
-            return $serializer->getActor()->hasPermission("badges.give");
+            return $serializer->getActor()->hasPermission("badges.giveBadge");
         }),
 
     // Badges relation with User

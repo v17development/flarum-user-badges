@@ -13,7 +13,7 @@ class DeleteUserBadgeHandler
     public function handle(DeleteUserBadge $command)
     {
         // Make sure the person can remove a badge from a user 
-        $command->actor->assertCan('badges.delete');
+        $command->actor->assertCan('badges.removeBadge');
 
         $badge = UserBadge::findOrFail($command->id);
 

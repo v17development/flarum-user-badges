@@ -857,6 +857,7 @@ var UserBadgeList = /*#__PURE__*/function (_Component) {
   _proto.view = function view() {
     var categories = {};
     this.attrs.user.userBadges().map(function (userBadge) {
+      if (!userBadge) return null;
       var category = userBadge.badge().category();
 
       if (!categories[category.id()]) {

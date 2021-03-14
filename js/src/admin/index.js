@@ -8,4 +8,30 @@ app.initializers.add("v17development-badges", () => {
 
   // Register extension settings page
   app.extensionData.for("v17development-badges").registerPage(SettingsPage);
+
+  app.extensionData
+    .for("v17development-badges")
+    .registerPermission(
+      {
+        icon: "fas fa-user-tag",
+        label: app.translator.trans(
+          "v17development-flarum-badges.admin.permissions.give_badge"
+        ),
+        permission: "badges.giveBadge",
+      },
+      "moderate",
+      90
+    )
+    .registerPermission(
+      {
+        icon: "fas fa-user-times",
+        label: app.translator.trans(
+          "v17development-flarum-badges.admin.permissions.take_badge"
+        ),
+        permission: "badges.removeBadge",
+      },
+      "moderate",
+      90
+    );
+
 });

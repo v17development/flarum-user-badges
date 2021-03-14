@@ -8,6 +8,10 @@ v17development-flarum-badges:
     edit_category: Edit category
     nothing_here_yet: You did not create any badges or categories yet.
 
+    permissions:
+      give_badge: Give badge to user
+      take_badge: Take badge from user
+
     confirm_dialog:
       title: Confirm
       no: No

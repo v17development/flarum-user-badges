@@ -37,7 +37,7 @@ class CreateUserBadgeHandler
      */
     public function handle(CreateUserBadge $command)
     {
-        $command->actor->assertCan('badges.give');
+        $command->actor->assertCan('badges.giveBadge');
 
         // Find badge
         $badge = Badge::findOrFail(Arr::get($command->data, "relationships.badge.data.id", null));

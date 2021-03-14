@@ -6,6 +6,8 @@ export default class UserBadgeList extends Component {
     const categories = {};
 
     this.attrs.user.userBadges().map((userBadge) => {
+      if(!userBadge) return null;
+      
       const category = userBadge.badge().category();
 
       if (!categories[category.id()]) {

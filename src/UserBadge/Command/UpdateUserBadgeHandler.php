@@ -39,7 +39,7 @@ class UpdateUserBadgeHandler
 
         // Make sure the person can update a badge from another user
         if($badge->user !== $command->actor) {
-            $command->actor->assertCan('badges.give');
+            $command->actor->assertCan('badges.giveBadge');
         }
 
         // Set badge primary
@@ -52,7 +52,7 @@ class UpdateUserBadgeHandler
         }
 
         // Update earned reason
-        if($command->actor->can('badges.give') && Arr::has($command->data, "attributes.description")) {
+        if($command->actor->can('badges.giveBadge') && Arr::has($command->data, "attributes.description")) {
             $description = Arr::get($command->data, "attributes.description", null);
 
             $badge->description = $description !== "" ? $description : null;

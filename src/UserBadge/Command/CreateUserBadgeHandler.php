@@ -61,6 +61,7 @@ class CreateUserBadgeHandler
         $badgeUser = new UserBadge;
         $badgeUser->badge_id = $badge->id;
         $badgeUser->user_id = $user->id;
+        $badgeUser->assigned_at = time();
         
         // Set earned reason
         if(Arr::has($command->data, "attributes.description")) {

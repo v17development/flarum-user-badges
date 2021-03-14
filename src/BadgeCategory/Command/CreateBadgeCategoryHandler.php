@@ -53,9 +53,12 @@ class CreateBadgeCategoryHandler
             Arr::get($command->data, "attributes.description", null),
             Arr::get($command->data, "attributes.isEnabled", true),
         );
+        
+        $badgeCategory->created_at = time();
 
         // Validate
         $this->validator->assertValid($badgeCategory->getDirty());
+
 
         // Create category
         $badgeCategory->save();

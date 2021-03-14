@@ -52,12 +52,15 @@ class CreateBadgeHandler
             Arr::get($command->data, "attributes.name", null),
             Arr::get($command->data, "attributes.image", null),
             Arr::get($command->data, "attributes.order", 0),
-            Arr::get($command->data, "attributes.dscription", null),
+            Arr::get($command->data, "attributes.description", null),
             Arr::get($command->data, "attributes.isVisible", true)
         );
 
+        $badge->created_at = time();
+        
         // Validate
         $this->validator->assertValid($badge->getDirty());
+
         
         // Save
         $badge->save();

@@ -4104,7 +4104,11 @@ var EditBadgeCategoryModal = /*#__PURE__*/function (_Modal) {
       description: this.description(),
       isEnabled: this.isEnabled()
     }).then(function () {
-      return _this2.hide();
+      _this2.hide();
+
+      if (_this2.attrs.onCreate) {
+        _this2.attrs.onCreate();
+      }
     }, function (response) {
       _this2.loading = false;
 
@@ -4277,12 +4281,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js");
 /* harmony import */ var flarum_components_ExtensionPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/ExtensionPage */ "flarum/components/ExtensionPage");
 /* harmony import */ var flarum_components_ExtensionPage__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_ExtensionPage__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _SortableBadge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SortableBadge */ "./src/admin/components/SortableBadge.js");
-/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
-/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _EditBadgeModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditBadgeModal */ "./src/admin/components/EditBadgeModal.js");
-/* harmony import */ var _EditBadgeCategoryModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EditBadgeCategoryModal */ "./src/admin/components/EditBadgeCategoryModal.js");
-/* harmony import */ var _ConfirmModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ConfirmModal */ "./src/admin/components/ConfirmModal.js");
+/* harmony import */ var flarum_components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/components/LoadingIndicator */ "flarum/components/LoadingIndicator");
+/* harmony import */ var flarum_components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _SortableBadge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SortableBadge */ "./src/admin/components/SortableBadge.js");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _EditBadgeModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EditBadgeModal */ "./src/admin/components/EditBadgeModal.js");
+/* harmony import */ var _EditBadgeCategoryModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./EditBadgeCategoryModal */ "./src/admin/components/EditBadgeCategoryModal.js");
+/* harmony import */ var _ConfirmModal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ConfirmModal */ "./src/admin/components/ConfirmModal.js");
+
 
 
 
@@ -4319,27 +4326,37 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
   };
 
   _proto.content = function content() {
+    var _this2 = this;
+
     var categories = app.store.all("badgeCategories");
     var uncategorizedBadges = app.store.all("badges").filter(function (badge) {
       return badge.category() == false;
     });
     return m("div", {
       className: "FlarumBadgesPage"
-    }, m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default.a, {
+    }, m("div", {
+      className: "FlarumBadgePageButtons"
+    }, m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_5___default.a, {
       className: "Button",
       onclick: function onclick() {
-        return app.modal.show(_EditBadgeCategoryModal__WEBPACK_IMPORTED_MODULE_6__["default"]);
-      }
-    }, app.translator.trans("v17development-flarum-badges.admin.create_category")), m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        return app.modal.show(_EditBadgeCategoryModal__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          onCreate: function onCreate() {
+            return _this2.nextRefreshKey();
+          }
+        });
+      },
+      icon: "fas fa-project-diagram"
+    }, app.translator.trans("v17development-flarum-badges.admin.create_category")), m(flarum_components_Button__WEBPACK_IMPORTED_MODULE_5___default.a, {
       className: "Button",
       onclick: function onclick() {
-        return app.modal.show(_EditBadgeModal__WEBPACK_IMPORTED_MODULE_5__["default"]);
-      }
-    }, app.translator.trans("v17development-flarum-badges.admin.new_badge")), m("div", null, !this.loading && m("div", {
+        return app.modal.show(_EditBadgeModal__WEBPACK_IMPORTED_MODULE_6__["default"]);
+      },
+      icon: "fas fa-icons"
+    }, app.translator.trans("v17development-flarum-badges.admin.new_badge"))), m("div", null, !this.loading && m("div", {
       className: "FlarumBadgeCategories",
       key: this.forcedRefreshKey,
       oncreate: this.onBadgeListReady.bind(this)
-    }, categories.map(function (category) {
+    }, categories && categories.map(function (category) {
       return m("div", {
         className: "FlarumBadgeCategory",
         "data-id": category.id()
@@ -4354,11 +4371,11 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
       }, m("a", {
         href: "javascript:void(0)",
         onclick: function onclick() {
-          return app.modal.show(_EditBadgeCategoryModal__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          return app.modal.show(_EditBadgeCategoryModal__WEBPACK_IMPORTED_MODULE_7__["default"], {
             badgeCategory: category
           });
         }
-      }, "Edit category"), m("a", {
+      }, app.translator.trans("v17development-flarum-badges.admin.edit_category")), m("a", {
         href: "javascript:void(0)"
       }, m("i", {
         className: "fas fa-caret-up"
@@ -4369,11 +4386,21 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
       })), m("a", {
         href: "javascript:void(0)",
         onclick: function onclick() {
-          return app.modal.show(_ConfirmModal__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          return app.modal.show(_ConfirmModal__WEBPACK_IMPORTED_MODULE_8__["default"], {
             text: app.translator.trans("v17development-flarum-badges.admin.confirm_messages.delete_category"),
             promise: true,
             onconfirm: function onconfirm(resolve, reject) {
-              return category["delete"]().then(resolve)["catch"](reject);
+              var badges = category.badges();
+              category["delete"]().then(function () {
+                resolve();
+                badges.forEach(function (badge) {
+                  return badge.pushData({
+                    relationships: {
+                      category: null
+                    }
+                  });
+                });
+              })["catch"](reject);
             }
           });
         }
@@ -4381,12 +4408,14 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
         className: "fas fa-trash"
       })))), m("ul", {
         className: "SortableBadges"
-      }, category.badges() && category.badges().map(function (badge) {
-        return m(_SortableBadge__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, category.badges() && category.badges().sort(function (a, b) {
+        return a.order() - b.order();
+      }).map(function (badge) {
+        return m(_SortableBadge__WEBPACK_IMPORTED_MODULE_4__["default"], {
           badge: badge
         });
       })));
-    }), uncategorizedBadges.length > 0 && m("div", {
+    }), m("div", {
       className: "FlarumBadgeCategory"
     }, m("div", {
       className: "CategoryHeader"
@@ -4394,15 +4423,19 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
       className: "CategoryName"
     }, m("b", null, app.translator.trans("v17development-flarum-badges.admin.uncategorized")))), m("ul", {
       className: "SortableBadges"
-    }, uncategorizedBadges.map(function (badge) {
-      return m(_SortableBadge__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, uncategorizedBadges.sort(function (a, b) {
+      return a.order() - b.order();
+    }).map(function (badge) {
+      return m(_SortableBadge__WEBPACK_IMPORTED_MODULE_4__["default"], {
         badge: badge
       });
-    }))))), uncategorizedBadges.length === 0 && categories.length === 0 && m("p", null, "You did not create any badges or categories yet."));
+    }))))), this.loading && m(flarum_components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      size: 'big'
+    }), !this.loading && uncategorizedBadges.length === 0 && categories.length === 0 && m("p", null, app.translator.trans("v17development-flarum-badges.admin.nothing_here_yet")));
   };
 
   _proto.onBadgeListReady = function onBadgeListReady(vnode) {
-    var _this2 = this;
+    var _this3 = this;
 
     this.$(".SortableBadges").get().map(function (e) {
       sortablejs__WEBPACK_IMPORTED_MODULE_1__["default"].create(e, {
@@ -4413,16 +4446,20 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
         ghostClass: "SortableBadges-placeholder",
         direction: "horizontal",
         onSort: function onSort(e) {
-          return _this2.onSortUpdate(e);
+          return _this3.onSortUpdate(e);
         }
       });
     });
   };
 
-  _proto.updateCategorySort = function updateCategorySort(id, position) {};
+  _proto.updateCategorySort = function updateCategorySort(id, position) {}
+  /**
+   * Sort badges
+   */
+  ;
 
-  _proto.onSortUpdate = function onSortUpdate(e) {
-    var _this3 = this;
+  _proto.onSortUpdate = function onSortUpdate() {
+    var _this4 = this;
 
     // Skip if already updating
     if (this.updating) return;
@@ -4445,10 +4482,47 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
     })["catch"](function (e) {
       return console.error(e);
     }).then(function () {
-      _this3.updating = false;
-      _this3.forcedRefreshKey++;
-      m.redraw();
+      // Update local store
+      order.map(function (categoryObject) {
+        var category = categoryObject.id !== null ? app.store.getById('badgeCategories', categoryObject.id) : null; // Loop through the badges
+
+        var badges = categoryObject.children.map(function (badgeId, badgePosition) {
+          var badge = app.store.getById('badges', badgeId);
+          badge.pushData({
+            attributes: {
+              order: badgePosition
+            },
+            relationships: {
+              category: category
+            }
+          });
+          return badge;
+        }); // Update the category
+
+        if (category) {
+          category.pushData({
+            relationships: {
+              badges: {
+                data: badges.map(function (badge) {
+                  return {
+                    type: 'badges',
+                    id: badge.id()
+                  };
+                })
+              }
+            }
+          });
+        }
+      });
+      _this4.updating = false;
+
+      _this4.nextRefreshKey();
     });
+  };
+
+  _proto.nextRefreshKey = function nextRefreshKey() {
+    this.forcedRefreshKey++;
+    m.redraw();
   };
 
   return SettingsPage;
@@ -4498,6 +4572,7 @@ var SortableBadge = /*#__PURE__*/function (_Component) {
 
   _proto.view = function view() {
     var badge = this.attrs.badge;
+    if (!badge) return null;
     return m("li", {
       "data-id": badge.id()
     }, m("div", {
@@ -5053,6 +5128,17 @@ module.exports = flarum.core.compat['components/ExtensionPage'];
 /***/ (function(module, exports) {
 
 module.exports = flarum.core.compat['components/Link'];
+
+/***/ }),
+
+/***/ "flarum/components/LoadingIndicator":
+/*!********************************************************************!*\
+  !*** external "flarum.core.compat['components/LoadingIndicator']" ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['components/LoadingIndicator'];
 
 /***/ }),
 

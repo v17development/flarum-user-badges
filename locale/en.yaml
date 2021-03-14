@@ -5,6 +5,8 @@ v17development-flarum-badges:
     create_category: Create category
     update_badge: Update badge
     update_category: Update category
+    edit_category: Edit category
+    nothing_here_yet: You did not create any badges or categories yet.
 
     confirm_dialog:
       title: Confirm

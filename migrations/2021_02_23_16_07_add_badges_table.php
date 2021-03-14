@@ -9,7 +9,7 @@ return [
             $schema->create('badges', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name', 46);
-                $table->string('icon', 30)->nullable();
+                $table->string('icon', 100)->nullable();
                 $table->integer('order')->default(0);
                 $table->text('image')->nullable();
                 $table->text('description')->nullable();

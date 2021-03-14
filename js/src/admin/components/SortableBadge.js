@@ -13,6 +13,8 @@ export default class SortableBadge extends Component {
   view() {
     const badge = this.attrs.badge;
 
+    if(!badge) return null;
+
     return (
       <li data-id={badge.id()}>
         <div className="SortableBadges-info">

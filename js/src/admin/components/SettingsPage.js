@@ -1,5 +1,6 @@
 import sortable from "sortablejs";
 import ExtensionPage from "flarum/components/ExtensionPage";
+import LoadingIndicator from 'flarum/components/LoadingIndicator';
 import SortableBadge from "./SortableBadge";
 import Button from "flarum/components/Button";
 import EditBadgeModal from "./EditBadgeModal";
@@ -34,20 +35,26 @@ export default class SettingsPage extends ExtensionPage {
 
     return (
       <div className="FlarumBadgesPage">
-        <Button
-          className={"Button"}
-          onclick={() => app.modal.show(EditBadgeCategoryModal)}
-        >
-          {app.translator.trans(
-            "v17development-flarum-badges.admin.create_category"
-          )}
-        </Button>
-        <Button
-          className={"Button"}
-          onclick={() => app.modal.show(EditBadgeModal)}
-        >
-          {app.translator.trans("v17development-flarum-badges.admin.new_badge")}
-        </Button>
+        <div className="FlarumBadgePageButtons">
+          <Button
+            className={"Button"}
+            onclick={() => app.modal.show(EditBadgeCategoryModal, {
+              onCreate: () => this.nextRefreshKey()
+            })}
+            icon={"fas fa-project-diagram"}
+          >
+            {app.translator.trans(
+              "v17development-flarum-badges.admin.create_category"
+            )}
+          </Button>
+          <Button
+            className={"Button"}
+            onclick={() => app.modal.show(EditBadgeModal)}
+            icon={"fas fa-icons"}
+          >
+            {app.translator.trans("v17development-flarum-badges.admin.new_badge")}
+          </Button>
+        </div>
 
         <div>
           {!this.loading && (
@@ -56,7 +63,7 @@ export default class SettingsPage extends ExtensionPage {
               key={this.forcedRefreshKey}
               oncreate={this.onBadgeListReady.bind(this)}
             >
-              {categories.map((category) => {
+              {categories && categories.map((category) => {
                 return (
                   <div
                     className={"FlarumBadgeCategory"}
@@ -79,7 +86,9 @@ export default class SettingsPage extends ExtensionPage {
                             })
                           }
                         >
-                          Edit category
+                          {app.translator.trans(
+                            "v17development-flarum-badges.admin.edit_category"
+                          )}
                         </a>
                         <a href={"javascript:void(0)"}>
                           <i className={"fas fa-caret-up"} />
@@ -95,8 +104,21 @@ export default class SettingsPage extends ExtensionPage {
                                 "v17development-flarum-badges.admin.confirm_messages.delete_category"
                               ),
                               promise: true,
-                              onconfirm: (resolve, reject) =>
-                                category.delete().then(resolve).catch(reject),
+                              onconfirm: (resolve, reject) => {
+                                const badges = category.badges();
+
+                                category.delete().then(() => {
+                                  resolve();
+
+                                  badges.forEach(badge => 
+                                    badge.pushData({
+                                      relationships: { 
+                                        category: null
+                                      }
+                                    })
+                                  );
+                                }).catch(reject);
+                              }
                             })
                           }
                         >
@@ -109,6 +131,7 @@ export default class SettingsPage extends ExtensionPage {
                       {category.badges() &&
                         category
                           .badges()
+                          .sort((a, b) => a.order() - b.order())
                           .map((badge) => <SortableBadge badge={badge} />)}
                     </ul>
                   </div>
@@ -116,32 +139,40 @@ export default class SettingsPage extends ExtensionPage {
               })}
 
               {/* Uncategorized badges */}
-              {uncategorizedBadges.length > 0 && (
-                <div className={"FlarumBadgeCategory"}>
-                  <div className={"CategoryHeader"}>
-                    <span className={"CategoryName"}>
-                      <b>
-                        {app.translator.trans(
-                          "v17development-flarum-badges.admin.uncategorized"
-                        )}
-                      </b>
-                    </span>
-                  </div>
-
-                  <ul className={"SortableBadges"}>
-                    {uncategorizedBadges.map((badge) => (
-                      <SortableBadge badge={badge} />
-                    ))}
-                  </ul>
+              <div className={"FlarumBadgeCategory"}>
+                <div className={"CategoryHeader"}>
+                  <span className={"CategoryName"}>
+                    <b>
+                      {app.translator.trans(
+                        "v17development-flarum-badges.admin.uncategorized"
+                      )}
+                    </b>
+                  </span>
                 </div>
-              )}
+
+                <ul className={"SortableBadges"}>
+                  {uncategorizedBadges
+                    .sort((a, b) => a.order() - b.order())
+                    .map((badge) => (
+                      <SortableBadge badge={badge} />
+                    )
+                  )}
+                </ul>
+              </div>
             </div>
           )}
         </div>
 
-        {/* </div> */}
-        {uncategorizedBadges.length === 0 && categories.length === 0 && (
-          <p>You did not create any badges or categories yet.</p>
+        {this.loading && (
+          <LoadingIndicator size={'big'} />
+        )}
+
+        {!this.loading && uncategorizedBadges.length === 0 && categories.length === 0 && (
+          <p>
+            {app.translator.trans(
+              "v17development-flarum-badges.admin.nothing_here_yet"
+            )}
+          </p>
         )}
       </div>
     );
@@ -165,7 +196,10 @@ export default class SettingsPage extends ExtensionPage {
 
   updateCategorySort(id, position) {}
 
-  onSortUpdate(e) {
+  /**
+   * Sort badges
+   */
+  onSortUpdate() {
     // Skip if already updating
     if (this.updating) return;
 
@@ -194,9 +228,48 @@ export default class SettingsPage extends ExtensionPage {
       })
       .catch((e) => console.error(e))
       .then(() => {
+        // Update local store
+        order.map(categoryObject => {
+          const category = categoryObject.id !== null ? app.store.getById('badgeCategories', categoryObject.id) : null;
+
+          // Loop through the badges
+          const badges = categoryObject.children.map((badgeId, badgePosition) => {
+            const badge = app.store.getById('badges', badgeId);
+
+            badge.pushData({
+              attributes: {
+                order: badgePosition
+              },
+              relationships: { 
+                category
+              }
+            });
+      
+            return badge;
+          });
+
+          // Update the category
+          if(category) {
+            category.pushData({
+              relationships: { 
+                badges: {
+                  data: badges.map(badge => ({
+                    type: 'badges',
+                    id: badge.id()
+                  }))
+                }
+               }
+            });
+          }
+        });
+
         this.updating = false;
-        this.forcedRefreshKey++;
-        m.redraw();
+        this.nextRefreshKey();
       });
+  }
+
+  nextRefreshKey() {
+    this.forcedRefreshKey++;
+    m.redraw();
   }
 }

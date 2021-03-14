@@ -795,6 +795,11 @@ var UserBadge = /*#__PURE__*/function (_Component) {
   _proto.view = function view() {
     var _this = this;
 
+    // Hide badge when not enabled
+    if (!this.attrs.badge.isVisible()) {
+      return null;
+    }
+
     return m("span", {
       className: "UserBadge",
       title: "" + (this.attrs.badge.description() ? this.attrs.badge.description() : ""),
@@ -852,21 +857,30 @@ var UserBadgeList = /*#__PURE__*/function (_Component) {
   _proto.view = function view() {
     var categories = {};
     this.attrs.user.userBadges().map(function (userBadge) {
-      var categoryId = userBadge.badge().category().id();
+      var category = userBadge.badge().category();
 
-      if (!categories[categoryId]) {
-        categories[categoryId] = [userBadge];
+      if (!categories[category.id()]) {
+        categories[category.id()] = {
+          category: category,
+          badges: [userBadge]
+        };
       } else {
-        categories[categoryId].push(userBadge);
+        categories[category.id()].badges.push(userBadge);
       }
     });
     return m("div", {
       className: "UserBadges"
     }, Object.keys(categories).length === 0 && m("div", {
       className: "Placeholder"
-    }, m("p", null, "This user does not have any badges yet.")), Object.keys(categories).length >= 1 && Object.keys(categories).map(function (categoryId) {
-      var category = categories[categoryId];
-      return m("div", null, m("h3", null, category[0].badge().category().name()), category.sort(function (a, b) {
+    }, m("p", null, "This user does not have any badges yet.")), Object.keys(categories).length >= 1 && Object.keys(categories).sort(function (a, b) {
+      return categories[a].category.order() - categories[b].category.order();
+    }).map(function (id) {
+      var category = categories[id].category;
+      var badges = categories[id].badges;
+      if (!category.isEnabled()) return null;
+      return m("div", {
+        className: "UserBadgesCategory"
+      }, m("h3", null, category.name()), category.description() && m("p", null, category.description()), badges.sort(function (a, b) {
         return a.badge().order() - b.badge().order();
       }).map(function (userBadge) {
         return m(_UserBadge__WEBPACK_IMPORTED_MODULE_2__["default"], {

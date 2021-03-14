@@ -3940,10 +3940,10 @@ var ConfirmModal = /*#__PURE__*/function (_Modal) {
   _proto.content = function content() {
     var _this = this;
 
-    return m("div", {
+    return [m("div", {
       className: "Modal-body"
-    }, m("p", null, this.attrs.text), m("div", {
-      className: "FlarumBadgesConfirmButtons"
+    }, m("p", null, this.attrs.text)), m("div", {
+      className: "Modal-footer FlarumBadgesConfirmButtons"
     }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default.a.component({
       className: "Button",
       disabled: this.loading,
@@ -3956,7 +3956,7 @@ var ConfirmModal = /*#__PURE__*/function (_Modal) {
       onclick: function onclick() {
         return _this.confirm();
       }
-    }, app.translator.trans("v17development-flarum-badges.admin.confirm_dialog.yes"))));
+    }, app.translator.trans("v17development-flarum-badges.admin.confirm_dialog.yes")))];
   }
   /**
    * Confirm
@@ -4048,11 +4048,17 @@ var EditBadgeCategoryModal = /*#__PURE__*/function (_Modal) {
   };
 
   _proto.content = function content() {
-    return m("div", {
+    return [m("div", {
       className: "Modal-body"
     }, m("div", {
       className: "Form"
-    }, this.data().toArray()));
+    }, this.data().toArray())), m("div", {
+      className: "Modal-footer"
+    }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default.a.component({
+      type: "submit",
+      className: "Button Button--primary",
+      loading: this.loading
+    }, app.translator.trans("core.admin.settings.submit_button")))];
   };
 
   _proto.data = function data() {
@@ -4084,13 +4090,6 @@ var EditBadgeCategoryModal = /*#__PURE__*/function (_Modal) {
     }, [m("b", null, app.translator.trans("v17development-flarum-badges.admin.badge_category.enabled")), m("div", {
       className: "helpText"
     }, app.translator.trans("v17development-flarum-badges.admin.badge_category.enabled_description"))])), 50);
-    items.add("submit", m("div", {
-      className: "Form-group"
-    }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-      type: "submit",
-      className: "Button Button--primary",
-      loading: this.loading
-    }, app.translator.trans("core.forum.composer_edit.submit_button"))), -10);
     return items;
   };
 
@@ -4184,11 +4183,17 @@ var EditBadgeModal = /*#__PURE__*/function (_Modal) {
   };
 
   _proto.content = function content() {
-    return m("div", {
+    return [m("div", {
       className: "Modal-body"
     }, m("div", {
       className: "Form"
-    }, this.data().toArray()));
+    }, this.data().toArray())), m("div", {
+      className: "Modal-footer"
+    }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default.a.component({
+      type: "submit",
+      className: "Button Button--primary",
+      loading: this.loading
+    }, app.translator.trans("core.admin.settings.submit_button")))];
   };
 
   _proto.data = function data() {
@@ -4231,13 +4236,6 @@ var EditBadgeModal = /*#__PURE__*/function (_Modal) {
     }, [m("b", null, app.translator.trans("v17development-flarum-badges.admin.badge.visible")), m("div", {
       className: "helpText"
     }, app.translator.trans("v17development-flarum-badges.admin.badge.visible_description"))])), 50);
-    items.add("submit", m("div", {
-      className: "Form-group"
-    }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default.a.component({
-      type: "submit",
-      className: "Button Button--primary",
-      loading: this.loading
-    }, app.translator.trans("core.forum.composer_edit.submit_button"))), -10);
     return items;
   };
 
@@ -4380,17 +4378,17 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
       }, app.translator.trans("v17development-flarum-badges.admin.edit_category")), m("a", {
         href: "javascript:void(0)",
         onclick: function onclick() {
-          return _this2.updateCategorySort(category, 'up');
+          return _this2.updateCategorySort(category, "up");
         },
-        className: key === 0 ? 'LinkDisabled' : null
+        className: key === 0 ? "LinkDisabled" : null
       }, m("i", {
         className: "fas fa-caret-up"
       })), m("a", {
         href: "javascript:void(0)",
         onclick: function onclick() {
-          return _this2.updateCategorySort(category, 'down');
+          return _this2.updateCategorySort(category, "down");
         },
-        className: key === categories.length - 1 ? 'LinkDisabled' : null
+        className: key === categories.length - 1 ? "LinkDisabled" : null
       }, m("i", {
         className: "fas fa-caret-down"
       })), m("a", {
@@ -4462,10 +4460,10 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
     });
   }
   /**
-   * 
-   * @param {categoryObject} category 
-   * @param {string} action 
-   * @returns 
+   *
+   * @param {categoryObject} category
+   * @param {string} action
+   * @returns
    */
   ;
 
@@ -4636,7 +4634,8 @@ var SortableBadge = /*#__PURE__*/function (_Component) {
     var badge = this.attrs.badge;
     if (!badge) return null;
     return m("li", {
-      "data-id": badge.id()
+      "data-id": badge.id(),
+      className: !badge.isVisible() ? 'BadgeDisabled' : ''
     }, m("div", {
       className: "SortableBadges-info"
     }, m("span", {

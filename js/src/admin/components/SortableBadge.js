@@ -16,7 +16,7 @@ export default class SortableBadge extends Component {
     if (!badge) return null;
 
     return (
-      <li data-id={badge.id()}>
+      <li data-id={badge.id()} className={!badge.isVisible() ? 'BadgeDisabled' : ''}>
         <div className="SortableBadges-info">
           <span className={"BadgeDetails"}>
             <span

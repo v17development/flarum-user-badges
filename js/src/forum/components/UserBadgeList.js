@@ -6,12 +6,15 @@ export default class UserBadgeList extends Component {
     const categories = {};
 
     this.attrs.user.userBadges().map((userBadge) => {
-      const categoryId = userBadge.badge().category().id();
+      const category = userBadge.badge().category();
 
-      if (!categories[categoryId]) {
-        categories[categoryId] = [userBadge];
+      if (!categories[category.id()]) {
+        categories[category.id()] = {
+          category,
+          badges: [userBadge]
+        };
       } else {
-        categories[categoryId].push(userBadge);
+        categories[category.id()].badges.push(userBadge);
       }
     });
 
@@ -24,23 +27,33 @@ export default class UserBadgeList extends Component {
         )}
 
         {Object.keys(categories).length >= 1 &&
-          Object.keys(categories).map((categoryId) => {
-            const category = categories[categoryId];
+          Object.keys(categories)
+            .sort((a, b) => categories[a].category.order() - categories[b].category.order())
+            .map(id => {
+              const category = categories[id].category;
+              const badges = categories[id].badges;
 
-            return (
-              <div>
-                <h3>{category[0].badge().category().name()}</h3>
-                {category
-                  .sort((a, b) => a.badge().order() - b.badge().order())
-                  .map((userBadge) => (
-                    <UserBadge
-                      badge={userBadge.badge()}
-                      userBadgeData={userBadge}
-                    />
-                  ))}
-              </div>
-            );
-          })}
+              if(!category.isEnabled()) return null;
+
+              return (
+                <div className={"UserBadgesCategory"}>
+                  <h3>{category.name()}</h3>
+
+                  {category.description() && (
+                    <p>{category.description()}</p>
+                  )}
+
+                  {badges
+                    .sort((a, b) => a.badge().order() - b.badge().order())
+                    .map((userBadge) => (
+                      <UserBadge
+                        badge={userBadge.badge()}
+                        userBadgeData={userBadge}
+                      />
+                    ))}
+                </div>
+              );
+            })}
       </div>
     );
   }

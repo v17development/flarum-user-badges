@@ -39,11 +39,21 @@ export default class EditBadgeModal extends Modal {
   }
 
   content() {
-    return (
+    return [
       <div className="Modal-body">
         <div className="Form">{this.data().toArray()}</div>
+      </div>,
+      <div className={"Modal-footer"}>
+        {Button.component(
+          {
+            type: "submit",
+            className: "Button Button--primary",
+            loading: this.loading,
+          },
+          app.translator.trans("core.admin.settings.submit_button")
+        )}
       </div>
-    );
+    ];
   }
 
   data() {
@@ -135,21 +145,6 @@ export default class EditBadgeModal extends Modal {
         )}
       </div>,
       50
-    );
-
-    items.add(
-      "submit",
-      <div className="Form-group">
-        {Button.component(
-          {
-            type: "submit",
-            className: "Button Button--primary",
-            loading: this.loading,
-          },
-          app.translator.trans("core.forum.composer_edit.submit_button")
-        )}
-      </div>,
-      -10
     );
 
     return items;

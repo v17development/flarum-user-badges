@@ -22,34 +22,34 @@ export default class ConfirmModal extends Modal {
   }
 
   content() {
-    return (
+    return [
       <div className="Modal-body">
         <p>{this.attrs.text}</p>
+      </div>,
 
-        <div className="FlarumBadgesConfirmButtons">
-          {Button.component(
-            {
-              className: "Button",
-              disabled: this.loading,
-              onclick: () => this.hide(),
-            },
-            app.translator.trans(
-              "v17development-flarum-badges.admin.confirm_dialog.no"
-            )
-          )}
-          {Button.component(
-            {
-              className: "Button Button--primary",
-              loading: this.loading,
-              onclick: () => this.confirm(),
-            },
-            app.translator.trans(
-              "v17development-flarum-badges.admin.confirm_dialog.yes"
-            )
-          )}
-        </div>
+      <div className="Modal-footer FlarumBadgesConfirmButtons">
+        {Button.component(
+          {
+            className: "Button",
+            disabled: this.loading,
+            onclick: () => this.hide(),
+          },
+          app.translator.trans(
+            "v17development-flarum-badges.admin.confirm_dialog.no"
+          )
+        )}
+        {Button.component(
+          {
+            className: "Button Button--primary",
+            loading: this.loading,
+            onclick: () => this.confirm(),
+          },
+          app.translator.trans(
+            "v17development-flarum-badges.admin.confirm_dialog.yes"
+          )
+        )}
       </div>
-    );
+    ];
   }
 
   /**

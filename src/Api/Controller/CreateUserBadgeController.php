@@ -1,14 +1,14 @@
 <?php
 
-namespace V17Development\FlarumBadges\Api\Controller;
+namespace V17Development\FlarumUserBadges\Api\Controller;
 
 use Flarum\Api\Controller\AbstractCreateController;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
-use V17Development\FlarumBadges\UserBadge\Command\CreateUserBadge;
-use V17Development\FlarumBadges\Api\Serializer\UserBadgeSerializer;
+use V17Development\FlarumUserBadges\UserBadge\Command\CreateUserBadge;
+use V17Development\FlarumUserBadges\Api\Serializer\UserBadgeSerializer;
 
 class CreateUserBadgeController extends AbstractCreateController
 {

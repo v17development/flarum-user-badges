@@ -1,11 +1,11 @@
 <?php
 
-namespace V17Development\FlarumBadges\UserBadge\Command;
+namespace V17Development\FlarumUserBadges\UserBadge\Command;
 
 use Flarum\Foundation\ValidationException;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Symfony\Component\Translation\TranslatorInterface;
-use V17Development\FlarumBadges\UserBadge\UserBadge;
+use V17Development\FlarumUserBadges\UserBadge\UserBadge;
 use Illuminate\Support\Arr;
 
 class UpdateUserBadgeHandler

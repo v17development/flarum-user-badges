@@ -1,6 +1,6 @@
 <?php
 
-namespace V17Development\FlarumBadges;
+namespace V17Development\FlarumUserBadges;
 
 use Flarum\Extend;
 use Flarum\Api\Serializer\UserSerializer;

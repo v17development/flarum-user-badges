@@ -1,6 +1,6 @@
 <?php
 
-namespace V17Development\FlarumBadges\Badge\Command;
+namespace V17Development\FlarumUserBadges\Badge\Command;
 
 use Flarum\User\User;
 

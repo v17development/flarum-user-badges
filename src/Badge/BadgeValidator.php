@@ -1,6 +1,6 @@
 <?php
 
-namespace V17Development\FlarumBadges\Badge;
+namespace V17Development\FlarumUserBadges\Badge;
 
 use Flarum\Foundation\AbstractValidator;
 

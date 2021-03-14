@@ -1,10 +1,10 @@
 <?php
 
-namespace V17Development\FlarumBadges\Badge;
+namespace V17Development\FlarumUserBadges\Badge;
 
 use Flarum\Database\AbstractModel;
-use V17Development\FlarumBadges\BadgeCategory\BadgeCategory;
-use V17Development\FlarumBadges\UserBadge\UserBadge;
+use V17Development\FlarumUserBadges\BadgeCategory\BadgeCategory;
+use V17Development\FlarumUserBadges\UserBadge\UserBadge;
 
 class Badge extends AbstractModel
 {

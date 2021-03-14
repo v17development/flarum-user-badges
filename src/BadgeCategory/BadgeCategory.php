@@ -1,9 +1,9 @@
 <?php
 
-namespace V17Development\FlarumBadges\BadgeCategory;
+namespace V17Development\FlarumUserBadges\BadgeCategory;
 
 use Flarum\Database\AbstractModel;
-use V17Development\FlarumBadges\Badge\Badge;
+use V17Development\FlarumUserBadges\Badge\Badge;
 
 class BadgeCategory extends AbstractModel
 {

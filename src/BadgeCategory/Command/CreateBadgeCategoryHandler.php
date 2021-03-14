@@ -1,12 +1,12 @@
 <?php
 
-namespace V17Development\FlarumBadges\BadgeCategory\Command;
+namespace V17Development\FlarumUserBadges\BadgeCategory\Command;
 
 use Flarum\Foundation\ValidationException;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Symfony\Component\Translation\TranslatorInterface;
-use V17Development\FlarumBadges\BadgeCategory\BadgeCategory;
-use V17Development\FlarumBadges\BadgeCategory\BadgeCategoryValidator;
+use V17Development\FlarumUserBadges\BadgeCategory\BadgeCategory;
+use V17Development\FlarumUserBadges\BadgeCategory\BadgeCategoryValidator;
 use Illuminate\Support\Arr;
 
 class CreateBadgeCategoryHandler

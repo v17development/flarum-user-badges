@@ -1,9 +1,9 @@
 <?php
 
-namespace V17Development\FlarumBadges\BadgeCategory\Command;
+namespace V17Development\FlarumUserBadges\BadgeCategory\Command;
 
 use Flarum\Foundation\ValidationException;
-use V17Development\FlarumBadges\BadgeCategory\BadgeCategory;
+use V17Development\FlarumUserBadges\BadgeCategory\BadgeCategory;
 
 class DeleteBadgeCategoryHandler
 {

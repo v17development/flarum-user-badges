@@ -1,12 +1,12 @@
 <?php
 
-namespace V17Development\FlarumBadges\Api\Controller;
+namespace V17Development\FlarumUserBadges\Api\Controller;
 
 use Flarum\Api\Controller\AbstractDeleteController;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
-use V17Development\FlarumBadges\BadgeCategory\Command\DeleteBadgeCategory;
+use V17Development\FlarumUserBadges\BadgeCategory\Command\DeleteBadgeCategory;
 
 class DeleteBadgeCategoryController extends AbstractDeleteController
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace V17Development\FlarumBadges\UserBadge\Command;
+namespace V17Development\FlarumUserBadges\UserBadge\Command;
 
 use Flarum\Foundation\ValidationException;
-use V17Development\FlarumBadges\UserBadge\UserBadge;
+use V17Development\FlarumUserBadges\UserBadge\UserBadge;
 
 class DeleteUserBadgeHandler
 {

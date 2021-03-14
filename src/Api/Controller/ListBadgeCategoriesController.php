@@ -1,12 +1,12 @@
 <?php
 
-namespace V17Development\FlarumBadges\Api\Controller;
+namespace V17Development\FlarumUserBadges\Api\Controller;
 
 use Flarum\Api\Controller\AbstractListController;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
-use V17Development\FlarumBadges\Api\Serializer\BadgeCategorySerializer;
-use V17Development\FlarumBadges\BadgeCategory\BadgeCategory;
+use V17Development\FlarumUserBadges\Api\Serializer\BadgeCategorySerializer;
+use V17Development\FlarumUserBadges\BadgeCategory\BadgeCategory;
 
 class ListBadgeCategoriesController extends AbstractListController
 {

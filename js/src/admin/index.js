@@ -33,5 +33,4 @@ app.initializers.add("v17development-badges", () => {
       "moderate",
       90
     );
-
 });

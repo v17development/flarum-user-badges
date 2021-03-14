@@ -3,7 +3,7 @@
   margin: 5px;
   padding: 6px 12px;
   color: @control-color;
-  background: @control-bg;
+  border: 1px solid darken(@control-bg, 20%);
   border-radius: @border-radius;
   transition: all 150ms ease-in-out;
   text-align: center;
@@ -16,21 +16,9 @@
   &:hover,
   &:focus,
   &.focus {
-    background-color: darken(fadein(@control-bg, 5%), 5%);
+    border-color: darken(@control-bg, 40%);
   }
 
-  &:active,
-  &.active,
-  .open > .Dropdown-toggle& {
-    background-color: darken(fadein(@control-bg, 10%), 10%);
-  }
-
-  &.disabled,
-  &[disabled],
-  fieldset[disabled] & {
-    background: @control-bg;
-  }
-  
   i {
     width: 15px;
     text-align: center;

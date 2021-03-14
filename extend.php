@@ -28,6 +28,7 @@ return [
         // Badge categories
         ->get('/badge_categories', 'badge.categories.overview', Api\Controller\ListBadgeCategoriesController::class)
         ->post('/badge_categories', 'badge.categories.create', Api\Controller\CreateBadgeCategoryController::class)
+        ->post('/badge_categories/order', 'badge.categories.order', Api\Controller\OrderBadgeCategoriesController::class)
         ->patch('/badge_categories/{id}', 'badge.categories.update', Api\Controller\UpdateBadgeCategoryController::class)
         ->delete('/badge_categories/{id}', 'badge.categories.delete', Api\Controller\DeleteBadgeCategoryController::class)
 

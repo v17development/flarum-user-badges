@@ -12,7 +12,7 @@ export default class ConfirmModal extends Modal {
   }
 
   className() {
-    return "Modal--small";
+    return "Modal--small FlarumBadgesConfirmModal";
   }
 
   title() {
@@ -26,7 +26,7 @@ export default class ConfirmModal extends Modal {
       <div className="Modal-body">
         <p>{this.attrs.text}</p>
 
-        <div className="Form-group">
+        <div className="FlarumBadgesConfirmButtons">
           {Button.component(
             {
               className: "Button",

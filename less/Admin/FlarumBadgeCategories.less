@@ -1,0 +1,55 @@
+.FlarumBadgeCategories {
+  .FlarumBadgeCategory {
+    max-width: 400px;
+    padding: 15px 20px 20px 20px;
+    margin-bottom: 20px;
+    border: 1px solid @control-bg;
+    border-radius: @border-radius;
+
+    .CategoryHeader {
+      margin: 0 0 10px;
+      display: flex;
+
+      .CategoryName {
+        flex-grow: 1;
+        padding: 3px 0;
+
+        i {
+          margin-right: 5px;
+          vertical-align: middle;
+        }
+
+        b {
+          display: inline-block;
+          margin-right: 10px;
+          vertical-align: middle;
+        }
+      }
+
+      .CategoryLinks {
+        flex-shrink: 0;
+        opacity: 0.5;
+        transition: opacity 150ms ease-in-out;
+
+        a {
+          display: inline-block;
+          padding: 5px 8px;
+          vertical-align: middle;
+
+          &.LinkDisabled {
+            pointer-events: none;
+            opacity: 0.3;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .CategoryHeader {
+        .CategoryLinks {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

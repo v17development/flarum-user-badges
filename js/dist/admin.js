@@ -3930,7 +3930,7 @@ var ConfirmModal = /*#__PURE__*/function (_Modal) {
   };
 
   _proto.className = function className() {
-    return "Modal--small";
+    return "Modal--small FlarumBadgesConfirmModal";
   };
 
   _proto.title = function title() {
@@ -3943,7 +3943,7 @@ var ConfirmModal = /*#__PURE__*/function (_Modal) {
     return m("div", {
       className: "Modal-body"
     }, m("p", null, this.attrs.text), m("div", {
-      className: "Form-group"
+      className: "FlarumBadgesConfirmButtons"
     }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default.a.component({
       className: "Button",
       disabled: this.loading,
@@ -4328,7 +4328,9 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
   _proto.content = function content() {
     var _this2 = this;
 
-    var categories = app.store.all("badgeCategories");
+    var categories = app.store.all("badgeCategories").sort(function (a, b) {
+      return a.order() - b.order();
+    });
     var uncategorizedBadges = app.store.all("badges").filter(function (badge) {
       return badge.category() == false;
     });
@@ -4356,7 +4358,7 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
       className: "FlarumBadgeCategories",
       key: this.forcedRefreshKey,
       oncreate: this.onBadgeListReady.bind(this)
-    }, categories && categories.map(function (category) {
+    }, categories && categories.map(function (category, key) {
       return m("div", {
         className: "FlarumBadgeCategory",
         "data-id": category.id()
@@ -4376,11 +4378,19 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
           });
         }
       }, app.translator.trans("v17development-flarum-badges.admin.edit_category")), m("a", {
-        href: "javascript:void(0)"
+        href: "javascript:void(0)",
+        onclick: function onclick() {
+          return _this2.updateCategorySort(category, 'up');
+        },
+        className: key === 0 ? 'LinkDisabled' : null
       }, m("i", {
         className: "fas fa-caret-up"
       })), m("a", {
-        href: "javascript:void(0)"
+        href: "javascript:void(0)",
+        onclick: function onclick() {
+          return _this2.updateCategorySort(category, 'down');
+        },
+        className: key === categories.length - 1 ? 'LinkDisabled' : null
       }, m("i", {
         className: "fas fa-caret-down"
       })), m("a", {
@@ -4450,16 +4460,68 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
         }
       });
     });
-  };
+  }
+  /**
+   * 
+   * @param {categoryObject} category 
+   * @param {string} action 
+   * @returns 
+   */
+  ;
 
-  _proto.updateCategorySort = function updateCategorySort(id, position) {}
+  _proto.updateCategorySort = function updateCategorySort(category, action) {
+    var _this4 = this;
+
+    var newPosition = action === "up" ? category.order() - 1 : category.order() + 1;
+    var order = [];
+    console.log(category.id(), action, newPosition); // Bring to top
+
+    if (newPosition <= 0) {
+      order.push(category.id());
+    } // Get all categories
+
+
+    var categories = app.store.all("badgeCategories").sort(function (a, b) {
+      return a.order() - b.order();
+    }); // Loop through the categories
+
+    categories.forEach(function (obj, key) {
+      // Skip current category
+      if (obj === category) return; // Add before current key
+
+      if (newPosition !== 0 && key === newPosition && action === "up") {
+        order.push(category.id());
+      } // Add object
+
+
+      order.push(obj.id()); // Add after current key
+
+      if (key === newPosition && action === "down") {
+        order.push(category.id());
+      }
+    }); // Save list
+
+    app.request({
+      url: app.forum.attribute("apiUrl") + "/badge_categories/order",
+      method: "POST",
+      body: {
+        order: order
+      }
+    })["catch"](function (e) {
+      return console.error(e);
+    }).then(function (payload) {
+      app.store.pushPayload(payload);
+
+      _this4.nextRefreshKey();
+    });
+  }
   /**
    * Sort badges
    */
   ;
 
   _proto.onSortUpdate = function onSortUpdate() {
-    var _this4 = this;
+    var _this5 = this;
 
     // Skip if already updating
     if (this.updating) return;
@@ -4514,9 +4576,9 @@ var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
           });
         }
       });
-      _this4.updating = false;
+      _this5.updating = false;
 
-      _this4.nextRefreshKey();
+      _this5.nextRefreshKey();
     });
   };
 

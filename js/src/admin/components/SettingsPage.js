@@ -27,7 +27,9 @@ export default class SettingsPage extends ExtensionPage {
   }
 
   content() {
-    const categories = app.store.all("badgeCategories");
+    const categories = 
+      app.store.all("badgeCategories")
+        .sort((a, b) => a.order() - b.order());
 
     const uncategorizedBadges = app.store
       .all("badges")
@@ -68,7 +70,7 @@ export default class SettingsPage extends ExtensionPage {
               oncreate={this.onBadgeListReady.bind(this)}
             >
               {categories &&
-                categories.map((category) => {
+                categories.map((category, key) => {
                   return (
                     <div
                       className={"FlarumBadgeCategory"}
@@ -95,10 +97,10 @@ export default class SettingsPage extends ExtensionPage {
                               "v17development-flarum-badges.admin.edit_category"
                             )}
                           </a>
-                          <a href={"javascript:void(0)"}>
+                          <a href={"javascript:void(0)"} onclick={() => this.updateCategorySort(category, 'up')} className={key === 0 ? 'LinkDisabled' : null}>
                             <i className={"fas fa-caret-up"} />
                           </a>
-                          <a href={"javascript:void(0)"}>
+                          <a href={"javascript:void(0)"} onclick={() => this.updateCategorySort(category, 'down')} className={key === (categories.length - 1) ? 'LinkDisabled' : null}>
                             <i className={"fas fa-caret-down"} />
                           </a>
                           <a
@@ -201,7 +203,61 @@ export default class SettingsPage extends ExtensionPage {
       });
   }
 
-  updateCategorySort(id, position) {}
+  /**
+   * 
+   * @param {categoryObject} category 
+   * @param {string} action 
+   * @returns 
+   */
+  updateCategorySort(category, action) {
+    const newPosition = action === "up" ? category.order() - 1 : category.order() + 1;
+    const order = [];
+
+    console.log(category.id(), action, newPosition)
+
+    // Bring to top
+    if(newPosition <= 0) {
+      order.push(category.id());
+    }
+
+    // Get all categories
+    const categories = 
+      app.store.all("badgeCategories")
+        .sort((a, b) => a.order() - b.order());
+
+    // Loop through the categories
+    categories.forEach((obj, key) => {
+      // Skip current category
+      if(obj === category) return;
+
+      // Add before current key
+      if(newPosition !== 0 && key === newPosition && action === "up") {
+        order.push(category.id());
+      }
+
+      // Add object
+      order.push(obj.id());
+
+      // Add after current key
+      if(key === newPosition && action === "down") {
+        order.push(category.id());
+      }
+    });
+    
+    // Save list
+    app
+      .request({
+        url: app.forum.attribute("apiUrl") + "/badge_categories/order",
+        method: "POST",
+        body: { order },
+      })
+      .catch((e) => console.error(e))
+      .then((payload) => {
+        app.store.pushPayload(payload);
+        
+        this.nextRefreshKey();
+      });
+    }
 
   /**
    * Sort badges

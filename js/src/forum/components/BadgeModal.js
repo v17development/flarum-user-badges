@@ -171,16 +171,13 @@ export default class BadgeModal extends Modal {
             </b>
           </p>
           <p>
-            {this.attrs.badge.category() && (
-              this.attrs.badge.category().name()
-            )}
+            {this.attrs.badge.category() && this.attrs.badge.category().name()}
 
             {/* Uncategorized */}
-            {!this.attrs.badge.category() && (
+            {!this.attrs.badge.category() &&
               app.translator.trans(
                 "v17development-flarum-badges.forum.uncategorized"
-              )
-            )}
+              )}
             {/* <Link
               href={app.route("badges.category", {
                 category: this.attrs.badge.category().id(),

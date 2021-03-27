@@ -38,15 +38,15 @@ export default class GiveBadgeModal extends Modal {
       this.loading = true;
 
       app.store
-        .find('badges', {
-          include: 'category'
+        .find("badges", {
+          include: "category",
         })
-        .then(badges => {
-          badges.forEach(badge => {
+        .then((badges) => {
+          badges.forEach((badge) => {
             // Categorized
-            if(badge.category()) {
+            if (badge.category()) {
               const category = badge.category();
-      
+
               if (!this.categories[category.id()]) {
                 this.categories[category.id()] = {
                   category,
@@ -57,7 +57,7 @@ export default class GiveBadgeModal extends Modal {
               }
             }
             // Uncategorized
-            else{
+            else {
               this.uncategorizedBadges.push(badge);
             }
           });
@@ -141,22 +141,25 @@ export default class GiveBadgeModal extends Modal {
 
             {/* When no badge is selected, show all available badges */}
             {!this.attrs.badge &&
-              Object.values(this.categories).map(({ category, badges}) => (
+              Object.values(this.categories).map(({ category, badges }) => (
                 <optgroup label={category.name()}>
                   {badges.map((badge) => (
                     <option value={badge.id()}>{badge.name()}</option>
                   ))}
                 </optgroup>
               ))}
-            
-            {!this.attrs.badge &&
-              this.uncategorizedBadges.length >= 1 && (
-                <optgroup label={app.translator.trans("v17development-flarum-badges.forum.uncategorized")}>
-                  {this.uncategorizedBadges.map((badge) => (
-                    <option value={badge.id()}>{badge.name()}</option>
-                  ))}
-                </optgroup>
-              )}
+
+            {!this.attrs.badge && this.uncategorizedBadges.length >= 1 && (
+              <optgroup
+                label={app.translator.trans(
+                  "v17development-flarum-badges.forum.uncategorized"
+                )}
+              >
+                {this.uncategorizedBadges.map((badge) => (
+                  <option value={badge.id()}>{badge.name()}</option>
+                ))}
+              </optgroup>
+            )}
 
             {/* When a badge is already assigned */}
             {!!this.attrs.badge && (

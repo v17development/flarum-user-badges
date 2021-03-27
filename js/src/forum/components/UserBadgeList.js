@@ -10,7 +10,7 @@ export default class UserBadgeList extends Component {
       if (!userBadge) return null;
 
       // Categorized
-      if(userBadge.badge().category()) {
+      if (userBadge.badge().category()) {
         const category = userBadge.badge().category();
 
         if (!categories[category.id()]) {
@@ -23,7 +23,7 @@ export default class UserBadgeList extends Component {
         }
       }
       // Uncategorized
-      else{
+      else {
         uncategorized.push(userBadge);
       }
     });

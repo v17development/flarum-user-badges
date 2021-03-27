@@ -15,9 +15,7 @@ export default class BadgesProfilePage extends UserPage {
 
   content() {
     if (!this.user || this.loading) {
-      return (
-        <LoadingIndicator size={46} />
-      );
+      return <LoadingIndicator size={46} />;
     }
 
     return UserBadgeList.component({
@@ -29,11 +27,13 @@ export default class BadgesProfilePage extends UserPage {
     super.show(user);
     this.user = user;
 
-    app.store.find('users', user.id(), {
-      include: 'userBadges,userBadges.badge,userBadges.badge.category'
-    }).then(() => {
-      this.loading = false;
-      m.redraw();
-    });
+    app.store
+      .find("users", user.id(), {
+        include: "userBadges,userBadges.badge,userBadges.badge.category",
+      })
+      .then(() => {
+        this.loading = false;
+        m.redraw();
+      });
   }
 }

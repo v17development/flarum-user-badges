@@ -22,7 +22,8 @@
         }
     },
     "require": {
-        "ext-json": "*"
+        "ext-json": "*",
+        "flarum/core": "^0.1.0-beta.16"
     },
     "extra": {
         "flarum-extension": {

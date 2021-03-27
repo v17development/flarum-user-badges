@@ -27,7 +27,9 @@ export default class GiveBadgeModal extends Modal {
     this.description = Stream(this.badge.description());
 
     // List of available bagges
-    this.availableBadges = [];
+    this.categories = {};
+
+    this.uncategorizedBadges = [];
 
     this.loading = false;
 
@@ -36,11 +38,29 @@ export default class GiveBadgeModal extends Modal {
       this.loading = true;
 
       app.store
-        .find("badge_categories", {
-          include: "badges",
+        .find('badges', {
+          include: 'category'
         })
-        .then((badgeCategories) => {
-          this.availableBadges = badgeCategories;
+        .then(badges => {
+          badges.forEach(badge => {
+            // Categorized
+            if(badge.category()) {
+              const category = badge.category();
+      
+              if (!this.categories[category.id()]) {
+                this.categories[category.id()] = {
+                  category,
+                  badges: [badge],
+                };
+              } else {
+                this.categories[category.id()].badges.push(badge);
+              }
+            }
+            // Uncategorized
+            else{
+              this.uncategorizedBadges.push(badge);
+            }
+          });
 
           this.loading = false;
 
@@ -121,13 +141,22 @@ export default class GiveBadgeModal extends Modal {
 
             {/* When no badge is selected, show all available badges */}
             {!this.attrs.badge &&
-              this.availableBadges.map((category) => (
+              Object.values(this.categories).map(({ category, badges}) => (
                 <optgroup label={category.name()}>
-                  {category.badges().map((badge) => (
+                  {badges.map((badge) => (
                     <option value={badge.id()}>{badge.name()}</option>
                   ))}
                 </optgroup>
               ))}
+            
+            {!this.attrs.badge &&
+              this.uncategorizedBadges.length >= 1 && (
+                <optgroup label={app.translator.trans("v17development-flarum-badges.forum.uncategorized")}>
+                  {this.uncategorizedBadges.map((badge) => (
+                    <option value={badge.id()}>{badge.name()}</option>
+                  ))}
+                </optgroup>
+              )}
 
             {/* When a badge is already assigned */}
             {!!this.attrs.badge && (

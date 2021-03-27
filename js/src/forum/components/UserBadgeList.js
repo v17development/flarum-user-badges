@@ -1,22 +1,30 @@
-import Component from "flarum/Component";
+import Component from "flarum/common/Component";
 import UserBadge from "./UserBadge";
 
 export default class UserBadgeList extends Component {
   view() {
     const categories = {};
+    const uncategorized = [];
 
     this.attrs.user.userBadges().map((userBadge) => {
       if (!userBadge) return null;
 
-      const category = userBadge.badge().category();
+      // Categorized
+      if(userBadge.badge().category()) {
+        const category = userBadge.badge().category();
 
-      if (!categories[category.id()]) {
-        categories[category.id()] = {
-          category,
-          badges: [userBadge],
-        };
-      } else {
-        categories[category.id()].badges.push(userBadge);
+        if (!categories[category.id()]) {
+          categories[category.id()] = {
+            category,
+            badges: [userBadge],
+          };
+        } else {
+          categories[category.id()].badges.push(userBadge);
+        }
+      }
+      // Uncategorized
+      else{
+        uncategorized.push(userBadge);
       }
     });
 
@@ -24,7 +32,11 @@ export default class UserBadgeList extends Component {
       <div className="UserBadges">
         {Object.keys(categories).length === 0 && (
           <div className={"Placeholder"}>
-            <p>This user does not have any badges yet.</p>
+            <p>
+              {app.translator.trans(
+                "v17development-flarum-badges.forum.user_no_badges"
+              )}
+            </p>
           </div>
         )}
 
@@ -57,6 +69,26 @@ export default class UserBadgeList extends Component {
                 </div>
               );
             })}
+
+        {/* Uncategorized badges */}
+        {uncategorized.length >= 1 && (
+          <div className={"UserBadgesCategory"}>
+            <h3>
+              {app.translator.trans(
+                "v17development-flarum-badges.forum.uncategorized"
+              )}
+            </h3>
+
+            {uncategorized
+              .sort((a, b) => a.badge().order() - b.badge().order())
+              .map((userBadge) => (
+                <UserBadge
+                  badge={userBadge.badge()}
+                  userBadgeData={userBadge}
+                />
+              ))}
+          </div>
+        )}
       </div>
     );
   }

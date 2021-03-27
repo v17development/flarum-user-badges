@@ -42,6 +42,8 @@ v17development-flarum-badges:
     update_badge: Update badge
     select_badge: Select badge
     user_has_badge: The user already has this badge.
+    user_no_badges: This user does not have any badges yet.
+    uncategorized: => v17development-flarum-badges.admin.uncategorized
 
     badge:
       badge: Badge

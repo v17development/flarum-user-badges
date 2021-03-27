@@ -1,4 +1,4 @@
-import Component from "flarum/Component";
+import Component from "flarum/common/Component";
 import BadgeModal from "./BadgeModal";
 
 export default class UserBadge extends Component {

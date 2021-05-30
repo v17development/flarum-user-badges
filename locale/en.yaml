@@ -35,10 +35,20 @@ v17development-flarum-badges:
       enabled_description: Enable this category. When disabled, all badges will be disabled and the category will be hidden.
     
     auto_moderator:
+      not_installed:
+        title: Automatically reward users with badges
+        content: This extension offers more functionality when <a>Auto Moderation</a> is installed and activated. When you install this extension, users can be automatically rewarded with badges without the intervention of a community employee! 
+        install: Install
+        dismiss: Do not show again
+
       action_drivers:
         badge_id: Badge ID
         give_badge: Give badge
         remove_badge: Remove badge
+
+      badge_selector:
+        placeholder: Select a badge
+        loading_badges: Loading badges
 
   forum: 
     badge_information: Badge information

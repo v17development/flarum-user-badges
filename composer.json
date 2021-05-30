@@ -33,7 +33,10 @@
                 "name": "fas fa-user-tag",
                 "backgroundColor": "#00ccb3",
                 "color": "#225650"
-            }
+            },
+            "optional-dependencies": [
+              "askvortsov/flarum-auto-moderator"
+            ]
         }
     }
 }

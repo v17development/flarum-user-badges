@@ -1,5 +1,6 @@
 import Badge from "../common/models/Badge";
 import BadgeCategory from "../common/models/BadgeCategory";
+import BadgeActionDriverSettings from "./components/BadgeActionDriverSettings";
 import SettingsPage from "./components/SettingsPage";
 
 app.initializers.add("v17development-user-badges", () => {
@@ -35,4 +36,10 @@ app.initializers.add("v17development-user-badges", () => {
       "moderate",
       90
     );
+
+    // Auto moderation
+    if(app.autoModeratorForms) {
+      app.autoModeratorForms.action.give_badge = BadgeActionDriverSettings;
+      app.autoModeratorForms.action.remove_badge = BadgeActionDriverSettings;
+    }
 });

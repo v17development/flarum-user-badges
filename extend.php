@@ -9,7 +9,7 @@ use Flarum\User\User;
 use Flarum\Api\Controller as FlarumController;
 use Askvortsov\AutoModerator\Extend\AutoModerator as AutoModeratorExtender;
 
-return [
+$extend = [
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
         ->css(__DIR__ . '/less/Forum.less')
@@ -65,9 +65,17 @@ return [
         ->addInclude(['userBadges', 'userPrimaryBadge', 'userPrimaryBadge.badge'])
         ->load('userBadges'),
 
-    (new AutoModeratorExtender())
-        ->actionDriver('give_badge', AutoModerator\Action\GiveBadge::class)
-        ->actionDriver('remove_badge', AutoModerator\Action\RemoveBadge::class),
-
     new Extend\Locales(__DIR__ . '/locale'),
 ];
+
+/**
+ * Initialize Auto Moderator functionalities when installed 
+ */
+if(class_exists("Askvortsov\AutoModerator\Extend\AutoModerator")) {
+    $extend[] = 
+        (new AutoModeratorExtender())
+            ->actionDriver('give_badge', AutoModerator\Action\GiveBadge::class)
+            ->actionDriver('remove_badge', AutoModerator\Action\RemoveBadge::class);
+}
+
+return $extend;

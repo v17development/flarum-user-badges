@@ -13,7 +13,8 @@ export default class UserBadge extends Component {
       <Tooltip
         text={`${
           this.attrs.badge.description() ? this.attrs.badge.description() : ""
-        }`}>
+        }`}
+      >
         <span
           className="UserBadge"
           onclick={() =>

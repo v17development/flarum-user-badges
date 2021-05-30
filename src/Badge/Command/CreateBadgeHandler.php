@@ -4,7 +4,7 @@ namespace V17Development\FlarumUserBadges\Badge\Command;
 
 use Flarum\Foundation\ValidationException;
 use Flarum\Settings\SettingsRepositoryInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use V17Development\FlarumUserBadges\Badge\Badge;
 use V17Development\FlarumUserBadges\Badge\BadgeValidator;
 use Illuminate\Support\Arr;

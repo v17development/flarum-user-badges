@@ -67,8 +67,6 @@ export default class GiveBadgeModal extends Modal {
           // Redraw
           m.redraw();
         });
-    } else {
-      this.availableBadges[this.selectedBadge.id()] = this.selectedBadge.name();
     }
   }
 

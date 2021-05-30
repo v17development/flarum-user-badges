@@ -198,9 +198,8 @@ export default class BadgeModal extends Modal {
         "earned_amount",
         <div className={"BadgeModalListItem"}>
           <p>
-            {app.translator.transChoice(
+            {app.translator.trans(
               "v17development-flarum-badges.forum.badge.earned_count",
-              this.attrs.badge.earnedAmount(),
               {
                 count: this.attrs.badge.earnedAmount(),
               }

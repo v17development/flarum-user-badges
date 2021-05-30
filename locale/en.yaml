@@ -56,7 +56,7 @@ v17development-flarum-badges:
       earned_on: Badge earned on
       category: Badge category
 
-      earned_count: "<b>{count} user</b> has earned this badge|<b>{count} users</b> have earned this badge"
+      earned_count: "{count, plural, one {<b># user</b> has earned this badge} other {<b># users</b> have earned this badge}}"
 
     moderation:
       remove_badge: Remove badge from user

@@ -57,10 +57,12 @@ return [
         ->hasOne('userPrimaryBadge', Api\Serializer\UserBadgeSerializer::class),
 
     (new Extend\ApiController(FlarumController\ShowUserController::class))
-        ->addInclude(['userBadges', 'userBadges.badge', 'userBadges.badge.category', 'userPrimaryBadge', 'userPrimaryBadge.badge']),
+        ->addInclude(['userBadges', 'userBadges.badge', 'userBadges.badge.category', 'userPrimaryBadge', 'userPrimaryBadge.badge'])
+        ->load('userBadges'),
 
     (new Extend\ApiController(FlarumController\ListUsersController::class))
-        ->addInclude(['userBadges', 'userPrimaryBadge', 'userPrimaryBadge.badge']),
+        ->addInclude(['userBadges', 'userPrimaryBadge', 'userPrimaryBadge.badge'])
+        ->load('userBadges'),
 
     new Extend\Locales(__DIR__ . '/locale'),
 ];

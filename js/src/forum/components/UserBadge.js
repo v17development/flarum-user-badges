@@ -1,4 +1,5 @@
 import Component from "flarum/common/Component";
+import Tooltip from "flarum/common/components/Tooltip";
 import BadgeModal from "./BadgeModal";
 
 export default class UserBadge extends Component {
@@ -9,26 +10,22 @@ export default class UserBadge extends Component {
     }
 
     return (
-      <span
-        className="UserBadge"
-        title={`${
+      <Tooltip
+        text={`${
           this.attrs.badge.description() ? this.attrs.badge.description() : ""
-        }`}
-        onclick={() =>
-          app.modal.show(BadgeModal, {
-            badge: this.attrs.badge,
-            userBadgeData: this.attrs.userBadgeData,
-          })
-        }
-      >
-        <i className={this.attrs.badge.icon()} /> {this.attrs.badge.name()}
-      </span>
+        }`}>
+        <span
+          className="UserBadge"
+          onclick={() =>
+            app.modal.show(BadgeModal, {
+              badge: this.attrs.badge,
+              userBadgeData: this.attrs.userBadgeData,
+            })
+          }
+        >
+          <i className={this.attrs.badge.icon()} /> {this.attrs.badge.name()}
+        </span>
+      </Tooltip>
     );
-  }
-
-  oncreate(vnode) {
-    super.oncreate(vnode);
-
-    this.$().tooltip();
   }
 }

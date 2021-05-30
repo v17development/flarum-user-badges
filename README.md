@@ -21,6 +21,11 @@ composer update v17development/flarum-user-badges
 - Add badges to users
 - Add badge earning reason
 - User badges page
+- Fully integrated with Auto Moderator
+  - Adds `Badges received` metric
+  - Adds `Give badge` action
+  - Adds `Remove badge` action
+  - Adds `Has badge` requirement
 
 ## 📝 To-do:
 - 'Earned badge' notification

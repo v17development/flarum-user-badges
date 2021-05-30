@@ -7,6 +7,7 @@ use Flarum\Api\Serializer\UserSerializer;
 use Flarum\Api\Serializer\ForumSerializer;
 use Flarum\User\User;
 use Flarum\Api\Controller as FlarumController;
+use Askvortsov\AutoModerator\Extend\AutoModerator as AutoModeratorExtender;
 
 return [
     (new Extend\Frontend('forum'))
@@ -63,6 +64,10 @@ return [
     (new Extend\ApiController(FlarumController\ListUsersController::class))
         ->addInclude(['userBadges', 'userPrimaryBadge', 'userPrimaryBadge.badge'])
         ->load('userBadges'),
+
+    (new AutoModeratorExtender())
+        ->actionDriver('give_badge', AutoModerator\Action\GiveBadge::class)
+        ->actionDriver('remove_badge', AutoModerator\Action\RemoveBadge::class),
 
     new Extend\Locales(__DIR__ . '/locale'),
 ];

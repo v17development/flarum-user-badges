@@ -34,6 +34,12 @@ v17development-flarum-badges:
       enabled: Enabled
       enabled_description: Enable this category. When disabled, all badges will be disabled and the category will be hidden.
     
+    auto_moderator:
+      action_drivers:
+        badge_id: Badge ID
+        give_badge: Give badge
+        remove_badge: Remove badge
+
   forum: 
     badge_information: Badge information
     all_badges: See all badges

@@ -25,6 +25,9 @@
         "ext-json": "*",
         "flarum/core": "^1.0.0"
     },
+    "suggest": {
+        "askvortsov/flarum-auto-moderator": "Allows you to automatically hand out badges to users"
+    },
     "extra": {
         "flarum-extension": {
             "title": "User badges",

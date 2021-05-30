@@ -41,5 +41,7 @@ app.initializers.add("v17development-user-badges", () => {
   if (app.autoModeratorForms) {
     app.autoModeratorForms.action.give_badge = BadgeActionDriverSettings;
     app.autoModeratorForms.action.remove_badge = BadgeActionDriverSettings;
+
+    app.autoModeratorForms.requirement.has_badge = BadgeActionDriverSettings;
   }
 });

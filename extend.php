@@ -75,7 +75,8 @@ if(class_exists("Askvortsov\AutoModerator\Extend\AutoModerator")) {
     $extend[] = 
         (new AutoModeratorExtender())
             ->actionDriver('give_badge', AutoModerator\Action\GiveBadge::class)
-            ->actionDriver('remove_badge', AutoModerator\Action\RemoveBadge::class);
+            ->actionDriver('remove_badge', AutoModerator\Action\RemoveBadge::class)
+            ->requirementDriver('has_badge', AutoModerator\Requirement\HasBadge::class);
 }
 
 return $extend;

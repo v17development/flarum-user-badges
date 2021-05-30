@@ -45,6 +45,9 @@ v17development-flarum-badges:
         badge_id: Badge ID
         give_badge: Give badge
         remove_badge: Remove badge
+      
+      requirement_drivers:
+        has_badge: Has badge
 
       badge_selector:
         placeholder: Select a badge

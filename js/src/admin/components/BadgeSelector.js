@@ -11,23 +11,26 @@ export default class BadgeSelector extends Component {
     this.loaded = false;
 
     // Load badges
-    loadAllBadges(() => this.loaded = true);
+    loadAllBadges(() => (this.loaded = true));
   }
 
   view() {
-    if(!this.loaded) {
+    if (!this.loaded) {
       return (
         <div className="Form-group">
           <label>{this.attrs.label}</label>
 
-          <Button className={"Button Button--danger"} style={{ float: 'none' }} loading>
+          <Button
+            className={"Button Button--danger"}
+            style={{ float: "none" }}
+            loading
+          >
             {app.translator.trans(
               "v17development-flarum-badges.admin.auto_moderator.badge_selector.loading_badges"
             )}
           </Button>
-
         </div>
-      )
+      );
     }
 
     const badge = app.store.getById("badges", this.attrs.value);
@@ -48,21 +51,19 @@ export default class BadgeSelector extends Component {
             disabled={this.attrs.disabled}
             buttonClassName="Button Button--danger"
           >
-            {app.store
-              .all("badges")
-              .map((g) =>
-                Button.component(
-                  {
-                    active: badge && badge.id() === g.id(),
-                    disabled: badge && badge.id() === g.id(),
-                    icon: g.icon(),
-                    onclick: () => {
-                      this.attrs.onchange(g.id());
-                    },
+            {app.store.all("badges").map((g) =>
+              Button.component(
+                {
+                  active: badge && badge.id() === g.id(),
+                  disabled: badge && badge.id() === g.id(),
+                  icon: g.icon(),
+                  onclick: () => {
+                    this.attrs.onchange(g.id());
                   },
-                  g.name()
-                )
-              )}
+                },
+                g.name()
+              )
+            )}
           </Dropdown>
         )}
       </div>

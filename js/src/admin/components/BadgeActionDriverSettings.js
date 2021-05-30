@@ -9,7 +9,7 @@ export default class BadgeActionDriverSettings extends Component {
       <BadgeSelector
         value={settings().badge_id}
         onchange={(val) => settings({ badge_id: val })}
-        />
+      />
     );
   }
 }

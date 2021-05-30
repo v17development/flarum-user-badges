@@ -4,13 +4,13 @@ let onLoadedCallbacks = [];
 
 export default function loadAllBadges(onLoadedCallback) {
   // Badges have already been loaded
-  if(hasLoaded) {
+  if (hasLoaded) {
     onLoadedCallback();
     return;
   }
 
   // Load badges if not already loading
-  if(!loading) {
+  if (!loading) {
     loading = true;
 
     // Load badges
@@ -25,7 +25,7 @@ export default function loadAllBadges(onLoadedCallback) {
 
       m.redraw();
     });
-  }else{
+  } else {
     onLoadedCallbacks.push(onLoadedCallback);
   }
 }

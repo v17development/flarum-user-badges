@@ -38,9 +38,9 @@ export default class SettingsPage extends ExtensionPage {
 
     return (
       <div className="FlarumBadgesPage">
-        {app.data.settings.extensions_enabled.indexOf('askvortsov-auto-moderator') === -1 && (
-          <InstallAutoModerationMessage />
-        )}
+        {app.data.settings.extensions_enabled.indexOf(
+          "askvortsov-auto-moderator"
+        ) === -1 && <InstallAutoModerationMessage />}
 
         <div className="FlarumBadgePageButtons">
           <Button

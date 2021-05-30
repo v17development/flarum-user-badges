@@ -37,9 +37,9 @@ app.initializers.add("v17development-user-badges", () => {
       90
     );
 
-    // Auto moderation
-    if(app.autoModeratorForms) {
-      app.autoModeratorForms.action.give_badge = BadgeActionDriverSettings;
-      app.autoModeratorForms.action.remove_badge = BadgeActionDriverSettings;
-    }
+  // Auto moderation
+  if (app.autoModeratorForms) {
+    app.autoModeratorForms.action.give_badge = BadgeActionDriverSettings;
+    app.autoModeratorForms.action.remove_badge = BadgeActionDriverSettings;
+  }
 });

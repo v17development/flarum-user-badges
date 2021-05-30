@@ -49,6 +49,9 @@ v17development-flarum-badges:
       requirement_drivers:
         has_badge: Has badge
 
+      metric_drivers:
+        badges_received: Badges received
+
       badge_selector:
         placeholder: Select a badge
         loading_badges: Loading badges

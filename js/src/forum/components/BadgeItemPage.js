@@ -13,9 +13,7 @@ export default class BadgeItemPage extends Page {
             <nav className="IndexPage-nav sideNav">
               {/* <ul>{listItems(this.sidebarItems().toArray())}</ul> */}
             </nav>
-            <div className="IndexPage-results sideNavOffset">
-              sfdsdf
-            </div>
+            <div className="IndexPage-results sideNavOffset">sfdsdf</div>
           </div>
         </div>
       </div>

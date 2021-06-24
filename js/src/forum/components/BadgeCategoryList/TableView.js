@@ -1,5 +1,5 @@
 import Component from "flarum/common/Component";
-import Link from 'flarum/components/Link';
+import Link from "flarum/components/Link";
 
 export default class TableView extends Component {
   view() {
@@ -13,16 +13,27 @@ export default class TableView extends Component {
       <table width={"100%"} className={"BadgeTable"}>
         <thead>
           <tr>
-            <th scope="col">{app.translator.trans('v17development-flarum-badges.forum.badge.badges')}</th>
-            <th scope="col">{app.translator.trans('v17development-flarum-badges.forum.badge.description')}</th>
+            <th scope="col">
+              {app.translator.trans(
+                "v17development-flarum-badges.forum.badge.badges"
+              )}
+            </th>
+            <th scope="col">
+              {app.translator.trans(
+                "v17development-flarum-badges.forum.badge.description"
+              )}
+            </th>
           </tr>
         </thead>
         <tbody>
-          {badges.map(badge => {
+          {badges.map((badge) => {
             return (
               <tr>
                 <td>
-                  <Link href={app.route('badges.item', { id: badge.id() })} className="UserBadge">
+                  <Link
+                    href={app.route("badges.item", { id: badge.id() })}
+                    className="UserBadge"
+                  >
                     <i className={badge.icon()} /> {badge.name()}
                   </Link>
                 </td>

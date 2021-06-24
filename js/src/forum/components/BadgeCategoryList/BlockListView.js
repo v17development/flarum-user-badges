@@ -1,5 +1,5 @@
 import Component from "flarum/common/Component";
-import Link from 'flarum/components/Link';
+import Link from "flarum/components/Link";
 
 export default class BlockListView extends Component {
   view() {
@@ -11,10 +11,13 @@ export default class BlockListView extends Component {
 
     return (
       <ul className={"BadgeCategoryList"}>
-        {badges.map(badge => {
+        {badges.map((badge) => {
           return (
             <li>
-              <Link href={app.route('badges.item', { id: badge.id() })} className={"BadgeContainer"}>
+              <Link
+                href={app.route("badges.item", { id: badge.id() })}
+                className={"BadgeContainer"}
+              >
                 <div className={"BadgeContainerInfo"}>
                   <span className="UserBadge">
                     <i className={badge.icon()} /> {badge.name()}

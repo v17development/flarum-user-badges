@@ -7,7 +7,9 @@ export default function addSidebarNav() {
     items.add(
       "badges",
       <LinkButton icon="fas fa-id-badge" href={app.route("badges")}>
-        {app.translator.trans("v17development-flarum-badges.forum.badge.badges")}
+        {app.translator.trans(
+          "v17development-flarum-badges.forum.badge.badges"
+        )}
       </LinkButton>,
       15
     );

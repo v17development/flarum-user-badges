@@ -13,6 +13,7 @@ $extend = [
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
         ->css(__DIR__ . '/less/Forum.less')
+        ->route('/badges', 'badges.overview', Controllers\BadgeOverviewController::class)
     ,
     (new Extend\Frontend('admin'))
         ->js(__DIR__.'/js/dist/admin.js')
@@ -69,10 +70,10 @@ $extend = [
 ];
 
 /**
- * Initialize Auto Moderator functionalities when installed 
+ * Initialize Auto Moderator functionalities when installed
  */
 if(class_exists("Askvortsov\AutoModerator\Extend\AutoModerator")) {
-    $extend[] = 
+    $extend[] =
         (new AutoModeratorExtender())
             ->actionDriver('give_badge', AutoModerator\Action\GiveBadge::class)
             ->actionDriver('remove_badge', AutoModerator\Action\RemoveBadge::class)

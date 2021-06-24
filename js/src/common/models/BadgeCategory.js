@@ -7,6 +7,7 @@ export default class BadgeCategory extends mixin(Model, {
   description: Model.attribute("description"),
   isEnabled: Model.attribute("isEnabled"),
   createdAt: Model.attribute("createdAt"),
+  isTable: Model.attribute("isTable"),
   users: Model.hasMany("users"),
   badges: Model.hasMany("badges"),
 }) {

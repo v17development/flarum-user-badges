@@ -22,7 +22,8 @@ class BadgeCategorySerializer extends AbstractSerializer
             'name'          => $badgeCategory->name,
             'description'   => $badgeCategory->description,
             'order'         => $badgeCategory->order,
-            'isEnabled'     => $badgeCategory->is_enabled,
+            'isEnabled'     => (bool) $badgeCategory->is_enabled,
+            'isTable'       => (bool) $badgeCategory->is_table,
             'createdAt'     => $this->formatDate($badgeCategory->created_at),
         ];
     }

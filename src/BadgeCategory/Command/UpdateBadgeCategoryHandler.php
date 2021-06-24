@@ -32,7 +32,7 @@ class UpdateBadgeCategoryHandler
      * @param BadgeCategoryValidator $validator
      */
     public function __construct(
-        TranslatorInterface $translator, 
+        TranslatorInterface $translator,
         SettingsRepositoryInterface $settings,
         BadgeCategoryValidator $validator
     ) {
@@ -58,6 +58,11 @@ class UpdateBadgeCategoryHandler
         // Update description
         if(Arr::has($command->data, "attributes.description")) {
             $badgeCategory->description = Arr::get($command->data, "attributes.description", null);
+        }
+
+        // Update is table
+        if(Arr::has($command->data, "attributes.isTable")) {
+            $badgeCategory->is_table = Arr::get($command->data, "attributes.isTable", false);
         }
 
         // Update is enabled

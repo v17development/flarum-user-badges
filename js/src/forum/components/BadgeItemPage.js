@@ -6,6 +6,19 @@ export default class BadgeItemPage extends Page {
   }
 
   view() {
-    return <p>Badge page</p>;
+    return (
+      <div className="IndexPage">
+        <div className="container">
+          <div className="sideNavContainer">
+            <nav className="IndexPage-nav sideNav">
+              {/* <ul>{listItems(this.sidebarItems().toArray())}</ul> */}
+            </nav>
+            <div className="IndexPage-results sideNavOffset">
+              sfdsdf
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }

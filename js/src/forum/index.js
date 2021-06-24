@@ -12,6 +12,7 @@ import BadgesProfilePage from "./components/BadgesProfilePage";
 import BadgesOverviewPage from "./components/BadgesOverviewPage";
 import BadgeItemPage from "./components/BadgeItemPage";
 import GiveBadgeModal from "./components/GiveBadgeModal";
+import addSidebarNav from "./addSidebarNav";
 
 app.initializers.add("v17development-flarum-badges", (app) => {
   app.store.models.badges = Badge;
@@ -27,24 +28,26 @@ app.initializers.add("v17development-flarum-badges", (app) => {
     component: BadgesProfilePage,
   };
 
-  // Future
-  // // Badges overview page
-  // app.routes["badges"] = {
-  //   path: "/badges",
-  //   component: BadgesOverviewPage,
-  // };
+  // Badges overview page
+  app.routes.badges = {
+    path: "/badges",
+    component: BadgesOverviewPage,
+  };
 
+  // Future
   // // Badges overview page
   // app.routes["badges.category"] = {
   //   path: "/badges/category/:id",
   //   component: BadgesOverviewPage,
   // };
 
-  // // Badge item page
-  // app.routes["badges.item"] = {
-  //   path: "/badges/:id",
-  //   component: BadgeItemPage,
-  // };
+  // Badge item page
+  app.routes["badges.item"] = {
+    path: "/badges/:id",
+    component: BadgeItemPage,
+  };
+
+  addSidebarNav();
 
   // Add uploads to user page menu items
   extend(UserPage.prototype, "navItems", function (items) {

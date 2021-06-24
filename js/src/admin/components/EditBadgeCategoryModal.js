@@ -20,6 +20,11 @@ export default class EditBadgeCategoryModal extends Modal {
     this.description = Stream(this.badgeCategory.description());
 
     // Is enabled
+    this.isTable = Stream(
+      this.badgeCategory.exists ? this.badgeCategory.isTable() : true
+    );
+
+    // Is enabled
     this.isEnabled = Stream(
       this.badgeCategory.exists ? this.badgeCategory.isEnabled() : true
     );
@@ -100,6 +105,32 @@ export default class EditBadgeCategoryModal extends Modal {
 
     // Enabled
     items.add(
+      "blockview",
+      <div className="Form-group">
+        {Switch.component(
+          {
+            state: this.isTable() === false,
+            onchange: (val) => this.isTable(!val),
+          },
+          [
+            <b>
+              {app.translator.trans(
+                "v17development-flarum-badges.admin.badge_category.blockview"
+              )}
+            </b>,
+            <div className="helpText">
+              {app.translator.trans(
+                "v17development-flarum-badges.admin.badge_category.blockview_description"
+              )}
+            </div>,
+          ]
+        )}
+      </div>,
+      50
+    );
+
+    // Enabled
+    items.add(
       "enabled",
       <div className="Form-group">
         {Switch.component(
@@ -136,6 +167,7 @@ export default class EditBadgeCategoryModal extends Modal {
       .save({
         name: this.name(),
         description: this.description(),
+        isTable: this.isTable(),
         isEnabled: this.isEnabled(),
       })
       .then(

@@ -16,7 +16,7 @@ v17development-flarum-badges:
       title: Confirm
       no: No
       yes: Yes
-    
+
     confirm_messages:
       delete_badge: Are you sure you want to remove this badge? It is removed from all users and is irreversible.
       delete_category: Are you sure you want to remove this category? If there are any badges in this category, they will be marked as 'uncategorized'.
@@ -31,13 +31,15 @@ v17development-flarum-badges:
     badge_category:
       name: Category name
       description: Category description
+      blockview: Block-view
+      blockview_description: Show category-badges in blockview on badge overview. When disabled, all badges will be displayed in a table.
       enabled: Enabled
       enabled_description: Enable this category. When disabled, all badges will be disabled and the category will be hidden.
-    
+
     auto_moderator:
       not_installed:
         title: Automatically reward users with badges
-        content: This extension offers more functionality when <a>Auto Moderator</a> is installed and activated. When you install this extension, users can be automatically rewarded with badges without the intervention of a community employee! 
+        content: This extension offers more functionality when <a>Auto Moderator</a> is installed and activated. When you install this extension, users can be automatically rewarded with badges without the intervention of a community employee!
         install: Install
         dismiss: Do not show again
 
@@ -45,7 +47,7 @@ v17development-flarum-badges:
         badge_id: Badge ID
         give_badge: Give badge
         remove_badge: Remove badge
-      
+
       requirement_drivers:
         has_badge: Has badge
 
@@ -56,7 +58,7 @@ v17development-flarum-badges:
         placeholder: Select a badge
         loading_badges: Loading badges
 
-  forum: 
+  forum:
     badge_information: Badge information
     all_badges: See all badges
     all_users: See all users

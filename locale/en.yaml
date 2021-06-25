@@ -89,3 +89,7 @@ v17development-flarum-badges:
       remove_badge: Remove badge from user
       remove_badge_confirm: Are you sure you want to remove this badge from this user?
       give_badge: Give badge
+
+    notification:
+      title: You have received a new badge
+      settings: I have received a badge

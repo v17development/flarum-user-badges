@@ -4,14 +4,21 @@ namespace V17Development\FlarumUserBadges\UserBadge\Command;
 
 use Flarum\Foundation\ValidationException;
 use Flarum\Settings\SettingsRepositoryInterface;
+use Flarum\Notification\NotificationSyncer;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use V17Development\FlarumUserBadges\Badge\Badge;
 use V17Development\FlarumUserBadges\UserBadge\UserBadge;
 use Flarum\User\User;
 use Illuminate\Support\Arr;
+use V17Development\FlarumUserBadges\Notification\BadgeReceivedBlueprint;
 
 class CreateUserBadgeHandler
 {
+    /**
+     * @var NotificationSyncer
+     */
+    protected $notifications;
+
     /**
      * @var TranslatorInterface
      */
@@ -25,11 +32,13 @@ class CreateUserBadgeHandler
     /**
      * @param TranslatorInterface $translator
      * @param SettingsRepositoryInterface $settings
+     * @param NotificationSyncer $notifications
      */
-    public function __construct(TranslatorInterface $translator, SettingsRepositoryInterface $settings)
+    public function __construct(TranslatorInterface $translator, SettingsRepositoryInterface $settings, NotificationSyncer $notifications)
     {
         $this->translator = $translator;
         $this->settings = $settings;
+        $this->notifications = $notifications;
     }
 
     /**
@@ -62,13 +71,19 @@ class CreateUserBadgeHandler
         $badgeUser->badge_id = $badge->id;
         $badgeUser->user_id = $user->id;
         $badgeUser->assigned_at = time();
-        
+
         // Set earned reason
         if(Arr::has($command->data, "attributes.description")) {
             $badgeUser->description = Arr::get($command->data, "attributes.description", null);
         }
 
         $badgeUser->save();
+
+        // Send notification
+        $this->notifications->sync(
+            new BadgeReceivedBlueprint($badgeUser),
+            [$user]
+        );
 
         return $badgeUser;
     }

@@ -71,6 +71,9 @@ $extend = [
     (new Extend\Filter(UserBadge\Filter\UserBadgeFilterer::class))
         ->addFilter(Query\FilterUserBadgesByBadge::class),
 
+    (new Extend\Notification())
+        ->type(Notification\BadgeReceivedBlueprint::class, Api\Serializer\UserBadgeSerializer::class, ['alert']),
+
     new Extend\Locales(__DIR__ . '/locale'),
 ];
 

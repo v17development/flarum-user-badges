@@ -7,9 +7,24 @@ use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Contracts\Support\MessageBag;
 use V17Development\FlarumUserBadges\UserBadge\UserBadge;
 use Flarum\User\User;
+use Flarum\Notification\NotificationSyncer;
+use V17Development\FlarumUserBadges\Notification\BadgeReceivedBlueprint;
 
 class GiveBadge implements ActionDriverInterface
 {
+    /**
+     * @var NotificationSyncer
+     */
+    protected $notifications;
+
+    /**
+     * @param NotificationSyncer $notifications
+     */
+    public function __construct(NotificationSyncer $notifications)
+    {
+        $this->notifications = $notifications;
+    }
+
     public function translationKey(): string
     {
         return 'v17development-flarum-badges.admin.auto_moderator.action_drivers.give_badge';
@@ -35,5 +50,11 @@ class GiveBadge implements ActionDriverInterface
     public function execute(User $user, array $settings = [], User $lastEditedBy ) {
         $badge = UserBadge::build($user->id, $settings['badge_id']);
         $badge->save();
+
+        // Send notification
+        $this->notifications->sync(
+            new BadgeReceivedBlueprint($badge),
+            [$user]
+        );
     }
 }

@@ -14,6 +14,8 @@ import BadgeItemPage from "./components/BadgeItemPage";
 import GiveBadgeModal from "./components/GiveBadgeModal";
 import addSidebarNav from "./addSidebarNav";
 import UserBadgeListState from "./states/UserBadgeListState";
+import BadgeReceivedNotification from "./notification/BadgeReceivedNotification";
+import NotificationGrid from 'flarum/forum/components/NotificationGrid';
 
 app.initializers.add("v17development-flarum-badges", (app) => {
   app.store.models.badges = Badge;
@@ -51,6 +53,18 @@ app.initializers.add("v17development-flarum-badges", (app) => {
   addSidebarNav();
 
   app.userBadgeListState = new UserBadgeListState();
+
+  // Badge received notification
+  app.notificationComponents.badgeReceived = BadgeReceivedNotification;
+
+  // Enable badge notifications?
+  extend(NotificationGrid.prototype, 'notificationTypes', function (items) {
+    items.add('badgeReceived', {
+      name: 'badgeReceived',
+      icon: 'fas fa-user-tag',
+      label: app.translator.trans('v17development-flarum-badges.forum.notification.settings')
+    });
+  });
 
   // Add uploads to user page menu items
   extend(UserPage.prototype, "navItems", function (items) {

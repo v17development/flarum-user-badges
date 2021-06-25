@@ -18,6 +18,7 @@ class UserBadge extends AbstractModel
         $userBadge->user_id = $userId;
         $userBadge->badge_id = $badgeId;
         $userBadge->description = $description;
+        $userBadge->assigned_at = time();
 
         return $userBadge;
     }

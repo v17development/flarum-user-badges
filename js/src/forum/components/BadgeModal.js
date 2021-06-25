@@ -28,16 +28,14 @@ export default class BadgeModal extends Modal {
         <div className="Modal-body">{this.data().toArray()}</div>
         <div className="Modal-footer">
           <LinkButton
-            href={
-              app.route("badges.item", {
-                id: this.attrs.badge.id()
-              })
-            }
+            href={app.route("badges.item", {
+              id: this.attrs.badge.id(),
+            })}
             className={"Button"}
             style={{
-              margin: '0 10px'
+              margin: "0 10px",
             }}
-            >
+          >
             {app.translator.trans(
               "v17development-flarum-badges.forum.badge.badge_details"
             )}

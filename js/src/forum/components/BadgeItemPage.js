@@ -2,7 +2,7 @@ import Page from "flarum/components/Page";
 import IndexPage from "flarum/components/IndexPage";
 import listItems from "flarum/common/helpers/listItems";
 import LoadingIndicator from "flarum/components/LoadingIndicator";
-import LinkButton from 'flarum/components/LinkButton';
+import LinkButton from "flarum/components/LinkButton";
 import BadgeUserList from "./BadgeUserList";
 
 export default class BadgeItemPage extends Page {
@@ -11,36 +11,38 @@ export default class BadgeItemPage extends Page {
 
     this.bodyClass = "App--index";
 
-    const found = app.store.getById('badges', m.route.param("id"));
+    const found = app.store.getById("badges", m.route.param("id"));
 
     this.loading = !found;
 
-    if(!found) {
+    if (!found) {
       // Load badge categories
-      app.store
-        .find(`badges/${m.route.param("id")}`)
-        .then(badge => {
-          this.loading = false;
+      app.store.find(`badges/${m.route.param("id")}`).then((badge) => {
+        this.loading = false;
 
-          app.history.push('badgeItemPage', badge.name());
+        app.history.push("badgeItemPage", badge.name());
 
-          this.setTitle(badge);
+        this.setTitle(badge);
 
-          m.redraw();
-        });
-    }else{
-      app.history.push('badgeItemPage', found.name());
+        m.redraw();
+      });
+    } else {
+      app.history.push("badgeItemPage", found.name());
 
       this.setTitle(found);
     }
   }
 
   setTitle(badge) {
-    app.setTitle(`${badge.name()} - ${app.translator.trans('v17development-flarum-badges.forum.badge.badges')}`);
+    app.setTitle(
+      `${badge.name()} - ${app.translator.trans(
+        "v17development-flarum-badges.forum.badge.badges"
+      )}`
+    );
   }
 
   view() {
-    const badge = app.store.getById('badges', m.route.param("id"));
+    const badge = app.store.getById("badges", m.route.param("id"));
 
     return (
       <div className="IndexPage">
@@ -54,10 +56,10 @@ export default class BadgeItemPage extends Page {
                 href={app.route("badges")}
                 icon={"fas fa-chevron-left"}
                 className={"Button BadgesOverviewButton"}
-                >
-                  {app.translator.trans(
-                    "v17development-flarum-badges.forum.badge.badges"
-                  )}
+              >
+                {app.translator.trans(
+                  "v17development-flarum-badges.forum.badge.badges"
+                )}
               </LinkButton>
 
               {this.loading && <LoadingIndicator size={"large"} />}
@@ -85,7 +87,10 @@ export default class BadgeItemPage extends Page {
               )}
 
               {!this.loading && (
-                <BadgeUserList state={app.userBadgeListState} badgeId={badge.id()} />
+                <BadgeUserList
+                  state={app.userBadgeListState}
+                  badgeId={badge.id()}
+                />
               )}
             </div>
           </div>

@@ -13,9 +13,11 @@ export default class BadgesOverviewPage extends Page {
 
     this.loading = true;
 
-    app.history.push('badgeOverviewPage');
+    app.history.push("badgeOverviewPage");
 
-    app.setTitle(app.translator.trans('v17development-flarum-badges.forum.badge.badges'));
+    app.setTitle(
+      app.translator.trans("v17development-flarum-badges.forum.badge.badges")
+    );
 
     // Load badge categories
     app.store.find("badge_categories").then(() => {

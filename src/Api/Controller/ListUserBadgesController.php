@@ -4,6 +4,7 @@ namespace V17Development\FlarumUserBadges\Api\Controller;
 
 use Flarum\Api\Controller\AbstractListController;
 use Flarum\Http\RequestUtil;
+use Flarum\Http\UrlGenerator;
 use Flarum\Query\QueryCriteria;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
@@ -28,13 +29,24 @@ class ListUserBadgesController extends AbstractListController
     public $sortFields = ['assignedAt'];
 
     /**
+     * {@inheritdoc}
+     */
+    public $limit = 18;
+
+    /**
      * @var UserBadgeFilterer
      */
     protected $filterer;
 
-    public function __construct(UserBadgeFilterer $filterer)
+    /**
+     * @var UrlGenerator
+     */
+    protected $url;
+
+    public function __construct(UserBadgeFilterer $filterer, UrlGenerator $url)
     {
         $this->filterer = $filterer;
+        $this->url = $url;
     }
 
     /**
@@ -53,6 +65,14 @@ class ListUserBadgesController extends AbstractListController
         $criteria = new QueryCriteria($actor, $filters, $sort, $sortIsDefault);
 
         $results = $this->filterer->filter($criteria, $limit, $offset);
+
+        $document->addPaginationLinks(
+            $this->url->to('api')->route('badge.users.overview'),
+            $request->getQueryParams(),
+            $offset,
+            $limit,
+            $results->areMoreResults() ? null : 0
+        );
 
         $results = $results->getResults();
 

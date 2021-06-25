@@ -21,6 +21,8 @@ composer update v17development/flarum-user-badges
 - Add badges to users
 - Add badge earning reason
 - User badges page
+- Public badge list page
+- `Received new badge` notification
 - Fully integrated with Askvortsov's [Auto Moderator](https://discuss.flarum.org/d/27306)
   - Adds `Badges received` metric
   - Adds `Give badge` action
@@ -28,9 +30,7 @@ composer update v17development/flarum-user-badges
   - Adds `Has badge` requirement
 
 ## 📝 To-do:
-- 'Earned badge' notification
 - User primary badge (next to name)
-- Public badge list page
 - Image badges
 - Introduce 'relevant tag' badges (karma badges?): Automatic selecting 'primary' badges based on tags of a discussion
 
@@ -41,6 +41,15 @@ If you have any questions related to this extension, don't hesistate and send us
 
 ### User Badges list
 ![User Badges list](https://i.imgur.com/yi48Mbw.png)
+
+## User badge notifications
+![User badge notifications](https://i.imgur.com/0aVQ0LB.png)
+
+## Public badges overview 
+![Public badges overview](https://i.imgur.com/r6lNDRf.png)
+
+## Public badge detail page
+![Public badge detail page](https://i.imgur.com/r1Vqej9.png)
 
 ### Admin badge management
 ![Admin badge management](https://i.imgur.com/bji13xf.png)

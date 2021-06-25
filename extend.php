@@ -47,6 +47,9 @@ $extend = [
     (new Extend\ApiSerializer(ForumSerializer::class))
         ->attribute('canGiveBadge', function(ForumSerializer $serializer) {
             return $serializer->getActor()->hasPermission("badges.giveBadge");
+        })
+        ->attribute('canViewDetailedBadgeUsers', function(ForumSerializer $serializer) {
+            return $serializer->getActor()->hasPermission("badges.canViewDetailedUsers");
         }),
 
     // Badges relation with User

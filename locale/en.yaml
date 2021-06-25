@@ -9,6 +9,7 @@ v17development-flarum-badges:
     nothing_here_yet: You did not create any badges or categories yet.
 
     permissions:
+      badge_detail_users: Can see users on badge details page
       give_badge: Give badge to user
       take_badge: Take badge from user
 

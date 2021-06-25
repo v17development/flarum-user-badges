@@ -55,6 +55,9 @@ class ListUserBadgesController extends AbstractListController
     protected function data(ServerRequestInterface $request, Document $document)
     {
         $actor = RequestUtil::getActor($request);
+
+        $actor->assertCan('badges.canViewDetailedUsers');
+
         $filters = $this->extractFilter($request);
         $limit = $this->extractLimit($request);
         $offset = $this->extractOffset($request);

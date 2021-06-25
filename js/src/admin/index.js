@@ -13,7 +13,19 @@ app.initializers.add("v17development-user-badges", () => {
     .registerPage(SettingsPage);
 
   app.extensionData
-    .for("v17development-badges")
+    .for("v17development-user-badges")
+    .registerPermission(
+      {
+        icon: "fas fa-users",
+        label: app.translator.trans(
+          "v17development-flarum-badges.admin.permissions.badge_detail_users"
+        ),
+        permission: "badges.canViewDetailedUsers",
+        allowGuest: true
+      },
+      "view",
+      90
+    )
     .registerPermission(
       {
         icon: "fas fa-user-tag",

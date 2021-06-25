@@ -1,0 +1,89 @@
+.BadgesOverviewButton {
+  margin-bottom: 10px;
+}
+
+.BadgeUserListInfo {
+  background: @control-bg;
+  color: @control-color;
+  border-radius: @border-radius;
+  padding: 20px;
+  display: flex;
+  margin-bottom: 20px;
+
+  i {
+    margin-right: 25px;
+    font-size: 40px;
+  }
+
+  .BadgeUserListInfo-meta {
+    flex-grow: 1;
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.BadgeUserList {
+  @media screen and (min-width: 540px) {
+    display: grid;
+    grid-gap: 0;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fill, ~"calc(100% / 2 - 10px)");
+  }
+
+  @media screen and (min-width: 900px) {
+    grid-template-columns: repeat(auto-fill, ~"calc(100% / 3 - 10px)");
+  }
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin: 10px 0;
+
+    .BadgeUserList-user {
+      display: block;
+      padding: 5px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: background-color 100ms ease-in;
+
+      &:hover {
+        background: @control-bg;
+      }
+
+      .Avatar {
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+
+      .BadgeUserList-userinfo {
+        flex-grow: 1;
+
+        h4 {
+          margin: 0 0 5px;
+          font-size: 15px;
+          color: @text-color;
+        }
+
+        p {
+          color: @control-color;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.BadgeUserList-empty {
+  font-size: 15px;
+}

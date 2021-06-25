@@ -14,6 +14,7 @@ $extend = [
         ->js(__DIR__.'/js/dist/forum.js')
         ->css(__DIR__ . '/less/Forum.less')
         ->route('/badges', 'badges.overview', Controllers\BadgeOverviewController::class)
+        ->route('/badges/{id}', 'badges.item', Controllers\BadgeOverviewController::class)
     ,
     (new Extend\Frontend('admin'))
         ->js(__DIR__.'/js/dist/admin.js')
@@ -24,6 +25,7 @@ $extend = [
         ->get('/badges', 'badges.overview', Api\Controller\ListBadgesController::class)
         ->post('/badges', 'badges.create', Api\Controller\CreateBadgeController::class)
         ->post('/badges/order', 'badges.order', Api\Controller\OrderBadgesController::class)
+        ->get('/badges/{id}', 'badges.show', Api\Controller\ShowBadgeController::class)
         ->patch('/badges/{id}', 'badges.update', Api\Controller\UpdateBadgeController::class)
         ->delete('/badges/{id}', 'badges.delete', Api\Controller\DeleteBadgeController::class)
 
@@ -65,6 +67,9 @@ $extend = [
     (new Extend\ApiController(FlarumController\ListUsersController::class))
         ->addInclude(['userBadges', 'userPrimaryBadge', 'userPrimaryBadge.badge'])
         ->load('userBadges'),
+
+    (new Extend\Filter(UserBadge\Filter\UserBadgeFilterer::class))
+        ->addFilter(Query\FilterUserBadgesByBadge::class),
 
     new Extend\Locales(__DIR__ . '/locale'),
 ];

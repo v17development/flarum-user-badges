@@ -13,6 +13,7 @@ import BadgesOverviewPage from "./components/BadgesOverviewPage";
 import BadgeItemPage from "./components/BadgeItemPage";
 import GiveBadgeModal from "./components/GiveBadgeModal";
 import addSidebarNav from "./addSidebarNav";
+import UserBadgeListState from "./states/UserBadgeListState";
 
 app.initializers.add("v17development-flarum-badges", (app) => {
   app.store.models.badges = Badge;
@@ -48,6 +49,8 @@ app.initializers.add("v17development-flarum-badges", (app) => {
   };
 
   addSidebarNav();
+
+  app.userBadgeListState = new UserBadgeListState();
 
   // Add uploads to user page menu items
   extend(UserPage.prototype, "navItems", function (items) {

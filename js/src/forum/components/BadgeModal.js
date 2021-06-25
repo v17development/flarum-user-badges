@@ -2,7 +2,7 @@ import Modal from "flarum/components/Modal";
 import Button from "flarum/components/Button";
 import fullTime from "flarum/helpers/fullTime";
 import ItemList from "flarum/utils/ItemList";
-import Link from "flarum/components/Link";
+import LinkButton from "flarum/components/LinkButton";
 import GiveBadgeModal from "./GiveBadgeModal";
 
 export default class BadgeModal extends Modal {
@@ -26,8 +26,24 @@ export default class BadgeModal extends Modal {
     return (
       <div>
         <div className="Modal-body">{this.data().toArray()}</div>
-        {this.attrs.userBadgeData && app.forum.attribute("canGiveBadge") && (
-          <div className="Modal-footer">
+        <div className="Modal-footer">
+          <LinkButton
+            href={
+              app.route("badges.item", {
+                id: this.attrs.badge.id()
+              })
+            }
+            className={"Button"}
+            style={{
+              margin: '0 10px'
+            }}
+            >
+            {app.translator.trans(
+              "v17development-flarum-badges.forum.badge.badge_details"
+            )}
+          </LinkButton>
+
+          {this.attrs.userBadgeData && app.forum.attribute("canGiveBadge") && (
             <Button
               className={"Button Button--primary"}
               onclick={() => {
@@ -48,8 +64,8 @@ export default class BadgeModal extends Modal {
                 "v17development-flarum-badges.forum.moderation.remove_badge"
               )}
             </Button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     );
   }

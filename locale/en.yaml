@@ -67,6 +67,7 @@ v17development-flarum-badges:
     select_badge: Select badge
     user_has_badge: The user already has this badge.
     user_no_badges: This user does not have any badges yet.
+    no_received: No user have earned this badge.
     uncategorized: => v17development-flarum-badges.admin.uncategorized
 
     badge:
@@ -79,8 +80,10 @@ v17development-flarum-badges:
       no_earning_reason: No earning reason set
       earned_on: Badge earned on
       category: Badge category
-
+      received_on: "Received on {date}"
+      badge_details: Badge details
       earned_count: "{count, plural, one {<b># user</b> has earned this badge} other {<b># users</b> have earned this badge}}"
+      earned_by_count: "{count, plural, one {Earned by <b># user</b>} other {Earned by <b># users</b>}}"
 
     moderation:
       remove_badge: Remove badge from user

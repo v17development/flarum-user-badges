@@ -15,7 +15,7 @@ import GiveBadgeModal from "./components/GiveBadgeModal";
 import addSidebarNav from "./addSidebarNav";
 import UserBadgeListState from "./states/UserBadgeListState";
 import BadgeReceivedNotification from "./notification/BadgeReceivedNotification";
-import NotificationGrid from 'flarum/forum/components/NotificationGrid';
+import NotificationGrid from "flarum/forum/components/NotificationGrid";
 
 app.initializers.add("v17development-flarum-badges", (app) => {
   app.store.models.badges = Badge;
@@ -58,11 +58,13 @@ app.initializers.add("v17development-flarum-badges", (app) => {
   app.notificationComponents.badgeReceived = BadgeReceivedNotification;
 
   // Enable badge notifications?
-  extend(NotificationGrid.prototype, 'notificationTypes', function (items) {
-    items.add('badgeReceived', {
-      name: 'badgeReceived',
-      icon: 'fas fa-user-tag',
-      label: app.translator.trans('v17development-flarum-badges.forum.notification.settings')
+  extend(NotificationGrid.prototype, "notificationTypes", function (items) {
+    items.add("badgeReceived", {
+      name: "badgeReceived",
+      icon: "fas fa-user-tag",
+      label: app.translator.trans(
+        "v17development-flarum-badges.forum.notification.settings"
+      ),
     });
   });
 

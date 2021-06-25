@@ -21,7 +21,7 @@ app.initializers.add("v17development-user-badges", () => {
           "v17development-flarum-badges.admin.permissions.badge_detail_users"
         ),
         permission: "badges.canViewDetailedUsers",
-        allowGuest: true
+        allowGuest: true,
       },
       "view",
       90

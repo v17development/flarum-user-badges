@@ -86,12 +86,13 @@ export default class BadgeItemPage extends Page {
                 </h3>
               )}
 
-              {!this.loading && app.forum.attribute("canViewDetailedBadgeUsers") && (
-                <BadgeUserList
-                  state={app.userBadgeListState}
-                  badgeId={badge.id()}
-                />
-              )}
+              {!this.loading &&
+                app.forum.attribute("canViewDetailedBadgeUsers") && (
+                  <BadgeUserList
+                    state={app.userBadgeListState}
+                    badgeId={badge.id()}
+                  />
+                )}
             </div>
           </div>
         </div>

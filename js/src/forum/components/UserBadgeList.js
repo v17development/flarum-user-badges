@@ -1,5 +1,5 @@
 import Component from "flarum/common/Component";
-import UserBadge from "./UserBadge";
+import UserBadge from "../../common/components/UserBadge";
 
 export default class UserBadgeList extends Component {
   view() {

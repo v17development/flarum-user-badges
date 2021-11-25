@@ -1,5 +1,6 @@
 import Component from "flarum/common/Component";
 import Button from "flarum/components/Button";
+import UserBadge from "../../common/components/UserBadge";
 import ConfirmModal from "./ConfirmModal";
 import EditBadgeModal from "./EditBadgeModal";
 
@@ -22,16 +23,14 @@ export default class SortableBadge extends Component {
       >
         <div className="SortableBadges-info">
           <span className={"BadgeDetails"}>
-            <span
-              className={"UserBadge"}
+            <UserBadge
+              badge={badge}
               onclick={() =>
                 app.modal.show(EditBadgeModal, {
                   badge,
                 })
               }
-            >
-              <i className={badge.icon()} /> {badge.name()}
-            </span>
+            />
           </span>
           <span className={"BadgeButtons"}>
             <Button

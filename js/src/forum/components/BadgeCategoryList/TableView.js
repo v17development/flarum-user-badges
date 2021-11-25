@@ -1,6 +1,6 @@
 import Component from "flarum/common/Component";
 import Link from "flarum/components/Link";
-import UserBadge from "../UserBadge";
+import UserBadge from "../../../common/components/UserBadge";
 
 export default class TableView extends Component {
   view() {

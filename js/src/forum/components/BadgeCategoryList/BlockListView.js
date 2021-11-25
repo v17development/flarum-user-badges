@@ -1,5 +1,6 @@
 import Component from "flarum/common/Component";
 import Link from "flarum/components/Link";
+import UserBadge from "../UserBadge";
 
 export default class BlockListView extends Component {
   view() {
@@ -19,9 +20,7 @@ export default class BlockListView extends Component {
                 className={"BadgeContainer"}
               >
                 <div className={"BadgeContainerInfo"}>
-                  <span className="UserBadge">
-                    <i className={badge.icon()} /> {badge.name()}
-                  </span>
+                  <UserBadge badge={badge} tooltip={false} />
 
                   <p className={"BadgeDescription"}>{badge.description()}</p>
 

@@ -1,5 +1,6 @@
 import Component from "flarum/common/Component";
 import Link from "flarum/components/Link";
+import UserBadge from "../UserBadge";
 
 export default class TableView extends Component {
   view() {
@@ -30,11 +31,8 @@ export default class TableView extends Component {
             return (
               <tr>
                 <td>
-                  <Link
-                    href={app.route("badges.item", { id: badge.id() })}
-                    className="UserBadge"
-                  >
-                    <i className={badge.icon()} /> {badge.name()}
+                  <Link href={app.route("badges.item", { id: badge.id() })}>
+                    <UserBadge badge={badge} tooltip={false} />
                   </Link>
                 </td>
                 <td>

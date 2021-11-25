@@ -168,7 +168,7 @@ export default class EditBadgeModal extends Modal {
     else {
       items.add(
         "icon",
-        <div className="Form-group BadgeForm-split" style="position: relative;">
+        <div className="Form-group BadgeForm-split BadgeForm-IconField">
           <label>
             {app.translator.trans(
               "v17development-flarum-badges.admin.badge.icon"
@@ -180,17 +180,14 @@ export default class EditBadgeModal extends Modal {
             placeholder="fas fa-icons"
             bidi={this.icon}
           />
-          <i
-            className={this.icon() || "fas fa-icons "}
-            style="position: absolute; bottom: 8px; right: 15px; font-size: 20px;"
-          />
+          <span className={this.icon() || "fas fa-icons "} />
         </div>,
         50
       );
 
       items.add(
         "icon_color",
-        <div className="Form-group BadgeForm-split">
+        <div className="Form-group BadgeForm-split BadgeForm-ColorField">
           <label>
             {app.translator.trans(
               "v17development-flarum-badges.admin.badge.icon_color"
@@ -202,13 +199,19 @@ export default class EditBadgeModal extends Modal {
             placeholder="auto"
             bidi={this.iconColor}
           />
+          <span
+            className={"BadgeForm-Chosen-Color"}
+            style={{
+              backgroundColor: this.iconColor(),
+            }}
+          />
         </div>,
         50
       );
 
       items.add(
         "background_color",
-        <div className="Form-group BadgeForm-split">
+        <div className="Form-group BadgeForm-split BadgeForm-ColorField">
           <label>
             {app.translator.trans(
               "v17development-flarum-badges.admin.badge.background_color"
@@ -220,13 +223,19 @@ export default class EditBadgeModal extends Modal {
             bidi={this.backgroundColor}
             placeholder="auto"
           />
+          <span
+            className={"BadgeForm-Chosen-Color"}
+            style={{
+              backgroundColor: this.backgroundColor(),
+            }}
+          />
         </div>,
         50
       );
 
       items.add(
         "label_color",
-        <div className="Form-group BadgeForm-split">
+        <div className="Form-group BadgeForm-split BadgeForm-ColorField">
           <label>
             {app.translator.trans(
               "v17development-flarum-badges.admin.badge.label_color"
@@ -237,6 +246,12 @@ export default class EditBadgeModal extends Modal {
             className="FormControl"
             placeholder="auto"
             bidi={this.labelColor}
+          />
+          <span
+            className={"BadgeForm-Chosen-Color"}
+            style={{
+              backgroundColor: this.labelColor(),
+            }}
           />
         </div>,
         50
@@ -281,8 +296,12 @@ export default class EditBadgeModal extends Modal {
       .save({
         name: this.name(),
         icon: this.icon(),
+        image: this.image(),
         description: this.description(),
         isVisible: this.isVisible(),
+        iconColor: this.iconColor(),
+        backgroundColor: this.backgroundColor(),
+        labelColor: this.labelColor(),
       })
       .then(
         () => this.hide(),

@@ -40,6 +40,11 @@ export default class UserBadge extends Component {
         <img
           src={this.attrs.badge.image()}
           className={"UserBadgeImage"}
+          onclick={() => {
+            if (this.attrs.onclick) {
+              this.attrs.onclick();
+            }
+          }}
           style={{
             opacity: isPartlyHidden ? 0.5 : undefined,
           }}
@@ -53,11 +58,6 @@ export default class UserBadge extends Component {
         onclick={() => {
           if (this.attrs.onclick) {
             this.attrs.onclick();
-          } else {
-            app.modal.show(BadgeModal, {
-              badge: this.attrs.badge,
-              userBadgeData: this.attrs.userBadgeData,
-            });
           }
         }}
         style={{

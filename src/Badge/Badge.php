@@ -12,7 +12,7 @@ class Badge extends AbstractModel
 
     protected $dates = ['created_at'];
 
-    public static function build($icon, $name, $image, $order = 0, $description = null, $isVisible = 0)
+    public static function build($icon, $name, $image, $order = 0, $description = null, $isVisible = 0, $backgroundColor = null, $iconColor = null, $labelColor = null)
     {
         $badge = new static();
         $badge->icon = $icon;
@@ -21,6 +21,9 @@ class Badge extends AbstractModel
         $badge->image = $image;
         $badge->description = $description;
         $badge->is_visible = $isVisible;
+        $badge->background_color = $backgroundColor;
+        $badge->icon_color = $iconColor;
+        $badge->label_color = $labelColor;
 
         return $badge;
     }
@@ -44,7 +47,8 @@ class Badge extends AbstractModel
     /**
      * User count
      */
-    public function earnedCount() {
+    public function earnedCount()
+    {
         return $this->hasMany(UserBadge::class, 'badge_id')->count();
     }
 }

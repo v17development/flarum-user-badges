@@ -31,7 +31,7 @@ class CreateBadgeHandler
      * @param SettingsRepositoryInterface $settings
      */
     public function __construct(
-        TranslatorInterface $translator, 
+        TranslatorInterface $translator,
         SettingsRepositoryInterface $settings,
         BadgeValidator $validator
     ) {
@@ -53,15 +53,18 @@ class CreateBadgeHandler
             Arr::get($command->data, "attributes.image", null),
             Arr::get($command->data, "attributes.order", 0),
             Arr::get($command->data, "attributes.description", null),
-            Arr::get($command->data, "attributes.isVisible", true)
+            Arr::get($command->data, "attributes.isVisible", true),
+            Arr::get($command->data, "attributes.backgroundColor", null),
+            Arr::get($command->data, "attributes.iconColor", null),
+            Arr::get($command->data, "attributes.labelColor", null)
         );
 
         $badge->created_at = time();
-        
+
         // Validate
         $this->validator->assertValid($badge->getDirty());
 
-        
+
         // Save
         $badge->save();
 

@@ -3,8 +3,6 @@
 namespace V17Development\FlarumUserBadges\Api\Serializer;
 
 use Flarum\Api\Serializer\AbstractSerializer;
-use Flarum\Api\Serializer\BasicUserSerializer;
-use Flarum\Api\Serializer\DiscussionSerializer;
 
 class BadgeCategorySerializer extends AbstractSerializer
 {
@@ -28,7 +26,8 @@ class BadgeCategorySerializer extends AbstractSerializer
         ];
     }
 
-    protected function badges($badge) {
+    protected function badges($badge)
+    {
         return $this->hasMany($badge, BadgeSerializer::class);
     }
 }

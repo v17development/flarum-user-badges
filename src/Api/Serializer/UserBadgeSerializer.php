@@ -24,11 +24,13 @@ class UserBadgeSerializer extends AbstractSerializer
         ];
     }
 
-    protected function badge($badge) {
+    protected function badge($badge)
+    {
         return $this->hasOne($badge, BadgeSerializer::class);
     }
 
-    protected function user($user) {
+    protected function user($user)
+    {
         return $this->hasOne($user, UserSerializer::class);
     }
 }

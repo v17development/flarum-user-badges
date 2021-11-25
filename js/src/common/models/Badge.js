@@ -12,6 +12,9 @@ export default class Badge extends mixin(Model, {
   createdAt: Model.attribute("createdAt"),
   earnedAmount: Model.attribute("earnedAmount"),
   category: Model.hasOne("category"),
+  backgroundColor: Model.attribute("backgroundColor"),
+  iconColor: Model.attribute("iconColor"),
+  labelColor: Model.attribute("labelColor"),
 }) {
   apiEndpoint() {
     return "/badges" + (this.exists ? "/" + this.data.id : "");

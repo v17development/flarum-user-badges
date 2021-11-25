@@ -16,18 +16,35 @@ export default class EditBadgeModal extends Modal {
     // Name
     this.name = Stream(this.badge.name());
 
+    // Is image
+    this.isImage = Stream(
+      this.badge.exists ? this.badge.image() !== null : false
+    );
+
     // Icon
     this.icon = Stream(this.badge.icon());
+
+    // Image
+    this.image = Stream(this.badge.image());
 
     // Description
     this.description = Stream(this.badge.description());
 
     // Is visible
     this.isVisible = Stream(this.badge.exists ? this.badge.isVisible() : true);
+
+    // Background color
+    this.backgroundColor = Stream(this.badge.backgroundColor());
+
+    // Icon color
+    this.iconColor = Stream(this.badge.iconColor());
+
+    // Label color
+    this.labelColor = Stream(this.badge.labelColor());
   }
 
   className() {
-    return "Modal--small";
+    return this.isImage() ? "Modal--small" : "Modal--large";
   }
 
   title() {
@@ -80,28 +97,6 @@ export default class EditBadgeModal extends Modal {
     );
 
     items.add(
-      "icon",
-      <div className="Form-group" style="position: relative;">
-        <label>
-          {app.translator.trans(
-            "v17development-flarum-badges.admin.badge.icon"
-          )}
-          :
-        </label>
-        <input
-          className="FormControl"
-          placeholder="fas fa-icons"
-          bidi={this.icon}
-        />
-        <i
-          className={this.icon() || "fas fa-icons"}
-          style="position: absolute; bottom: 8px; right: 15px; font-size: 20px;"
-        />
-      </div>,
-      50
-    );
-
-    items.add(
       "description",
       <div className="Form-group">
         <label>
@@ -120,6 +115,133 @@ export default class EditBadgeModal extends Modal {
       </div>,
       50
     );
+
+    // Is image
+    items.add(
+      "is_image",
+      <div className="Form-group">
+        {Switch.component(
+          {
+            state: this.isImage() == true,
+            onchange: (val) => this.isImage(val),
+          },
+          [
+            <b>
+              {app.translator.trans(
+                "v17development-flarum-badges.admin.badge.is_image"
+              )}
+            </b>,
+            <div className="helpText">
+              {app.translator.trans(
+                "v17development-flarum-badges.admin.badge.is_image_description"
+              )}
+            </div>,
+          ]
+        )}
+      </div>,
+      50
+    );
+
+    // Image field
+    if (this.isImage()) {
+      items.add(
+        "image",
+        <div className="Form-group">
+          <label>
+            {app.translator.trans(
+              "v17development-flarum-badges.admin.badge.image"
+            )}
+            :
+          </label>
+          <input
+            className="FormControl"
+            placeholder={app.translator.trans(
+              "v17development-flarum-badges.admin.badge.image_placeholder"
+            )}
+            bidi={this.image}
+          />
+        </div>,
+        50
+      );
+    }
+    // Non-image fields
+    else {
+      items.add(
+        "icon",
+        <div className="Form-group BadgeForm-split" style="position: relative;">
+          <label>
+            {app.translator.trans(
+              "v17development-flarum-badges.admin.badge.icon"
+            )}
+            :
+          </label>
+          <input
+            className="FormControl"
+            placeholder="fas fa-icons"
+            bidi={this.icon}
+          />
+          <i
+            className={this.icon() || "fas fa-icons "}
+            style="position: absolute; bottom: 8px; right: 15px; font-size: 20px;"
+          />
+        </div>,
+        50
+      );
+
+      items.add(
+        "icon_color",
+        <div className="Form-group BadgeForm-split">
+          <label>
+            {app.translator.trans(
+              "v17development-flarum-badges.admin.badge.icon_color"
+            )}
+            :
+          </label>
+          <input
+            className="FormControl"
+            placeholder="auto"
+            bidi={this.iconColor}
+          />
+        </div>,
+        50
+      );
+
+      items.add(
+        "background_color",
+        <div className="Form-group BadgeForm-split">
+          <label>
+            {app.translator.trans(
+              "v17development-flarum-badges.admin.badge.background_color"
+            )}
+            :
+          </label>
+          <input
+            className="FormControl"
+            bidi={this.backgroundColor}
+            placeholder="auto"
+          />
+        </div>,
+        50
+      );
+
+      items.add(
+        "label_color",
+        <div className="Form-group BadgeForm-split">
+          <label>
+            {app.translator.trans(
+              "v17development-flarum-badges.admin.badge.label_color"
+            )}
+            :
+          </label>
+          <input
+            className="FormControl"
+            placeholder="auto"
+            bidi={this.labelColor}
+          />
+        </div>,
+        50
+      );
+    }
 
     // Enabled
     items.add(

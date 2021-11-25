@@ -20,7 +20,7 @@
     margin-bottom: 20px;
     background: @control-bg;
     max-width: 600px;
-  
+
     &-title {
       font-size: 14px;
       font-weight: bold;
@@ -28,6 +28,17 @@
 
     &-content {
       margin: 5px 0 15px;
+    }
+  }
+}
+
+.BadgeForm-split {
+  @media screen and (min-width: 769px) {
+    display: inline-block;
+    width: 48%;
+
+    &:nth-child(odd) {
+      margin-left: 4%;
     }
   }
 }

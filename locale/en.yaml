@@ -29,6 +29,16 @@ v17development-flarum-badges:
       visible: Visible
       visible_description: Enable this badge. When disabled, the badge will not be visible.
 
+      is_image: Badge is an image
+      is_image_description: Use an image instead of the default badge
+
+      image: Badge image URL
+      image_placeholder: Enter URL to badge image
+
+      icon_color: Icon color
+      background_color: Background color
+      label_color: Text color
+
     badge_category:
       name: Category name
       description: Category description

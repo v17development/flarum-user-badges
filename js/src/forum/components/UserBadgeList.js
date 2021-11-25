@@ -86,10 +86,12 @@ export default class UserBadgeList extends Component {
                 <UserBadge
                   badge={userBadge.badge()}
                   userBadgeData={userBadge}
-                  onclick={app.modal.show(BadgeModal, {
-                    badge: userBadge.badge(),
-                    userBadgeData: userBadge,
-                  })}
+                  onclick={() =>
+                    app.modal.show(BadgeModal, {
+                      badge: userBadge.badge(),
+                      userBadgeData: userBadge,
+                    })
+                  }
                 />
               ))}
           </div>

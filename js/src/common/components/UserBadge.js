@@ -7,11 +7,12 @@ export default class UserBadge extends Component {
     super.oninit(vnode);
 
     this.tooltip = this.attrs.tooltip !== false;
+    this.forceVisibility = this.attrs.forceVisibility === true;
   }
 
   view() {
     // Hide badge when not enabled
-    if (!this.attrs.badge.isVisible()) {
+    if (!this.attrs.badge.isVisible() && !this.forceVisibility) {
       return null;
     }
 
@@ -30,10 +31,19 @@ export default class UserBadge extends Component {
   }
 
   badge() {
+    const isPartlyHidden =
+      !this.attrs.badge.isVisible() && this.forceVisibility;
+
     // This badge is an image
     if (this.attrs.badge.image()) {
       return (
-        <img src={this.attrs.badge.image()} className={"UserBadgeImage"} />
+        <img
+          src={this.attrs.badge.image()}
+          className={"UserBadgeImage"}
+          style={{
+            opacity: isPartlyHidden ? 0.5 : undefined,
+          }}
+        />
       );
     }
 
@@ -54,6 +64,7 @@ export default class UserBadge extends Component {
           backgroundColor: this.attrs.badge.backgroundColor(),
           color: this.attrs.badge.labelColor(),
           borderColor: this.attrs.badge.backgroundColor(),
+          opacity: isPartlyHidden ? 0.5 : undefined,
         }}
       >
         <i

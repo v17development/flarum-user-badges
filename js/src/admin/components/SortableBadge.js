@@ -30,6 +30,7 @@ export default class SortableBadge extends Component {
                   badge,
                 })
               }
+              forceVisibility={true}
             />
           </span>
           <span className={"BadgeButtons"}>

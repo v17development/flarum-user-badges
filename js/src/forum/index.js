@@ -52,7 +52,7 @@ app.initializers.add("v17development-flarum-badges", (app) => {
 
   addSidebarNav();
 
-  app.userBadgeListState = new UserBadgeListState();
+  app.userBadgeListState = new UserBadgeListState({});
 
   // Badge received notification
   app.notificationComponents.badgeReceived = BadgeReceivedNotification;

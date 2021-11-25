@@ -46,6 +46,8 @@ export default class BadgeItemPage extends Page {
 
     return (
       <div className="IndexPage">
+        {IndexPage.prototype.hero()}
+
         <div className="container">
           <div className="sideNavContainer">
             <nav className="IndexPage-nav sideNav">

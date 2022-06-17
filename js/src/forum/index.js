@@ -16,6 +16,7 @@ import addSidebarNav from './addSidebarNav';
 import UserBadgeListState from './states/UserBadgeListState';
 import BadgeReceivedNotification from './notification/BadgeReceivedNotification';
 import NotificationGrid from 'flarum/forum/components/NotificationGrid';
+import addBadgeListUserCard from './components/addBadgeListUserCard';
 
 app.initializers.add('v17development-flarum-badges', (app) => {
   app.store.models.badges = Badge;
@@ -105,4 +106,5 @@ app.initializers.add('v17development-flarum-badges', (app) => {
       );
     }
   });
+  addBadgeListUserCard();
 });

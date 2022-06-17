@@ -1,6 +1,6 @@
-import Component from "flarum/common/Component";
-import UserBadge from "../../common/components/UserBadge";
-import BadgeModal from "./BadgeModal";
+import Component from 'flarum/common/Component';
+import UserBadge from '../../common/components/UserBadge';
+import BadgeModal from './BadgeModal';
 
 export default class UserBadgeList extends Component {
   view() {
@@ -32,21 +32,14 @@ export default class UserBadgeList extends Component {
     return (
       <div className="UserBadges">
         {Object.keys(categories).length === 0 && (
-          <div className={"Placeholder"}>
-            <p>
-              {app.translator.trans(
-                "v17development-flarum-badges.forum.user_no_badges"
-              )}
-            </p>
+          <div className={'Placeholder'}>
+            <p>{app.translator.trans('v17development-flarum-badges.forum.user_no_badges')}</p>
           </div>
         )}
 
         {Object.keys(categories).length >= 1 &&
           Object.keys(categories)
-            .sort(
-              (a, b) =>
-                categories[a].category.order() - categories[b].category.order()
-            )
+            .sort((a, b) => categories[a].category.order() - categories[b].category.order())
             .map((id) => {
               const category = categories[id].category;
               const badges = categories[id].badges;
@@ -54,7 +47,7 @@ export default class UserBadgeList extends Component {
               if (!category.isEnabled()) return null;
 
               return (
-                <div className={"UserBadgesCategory"}>
+                <div className={'UserBadgesCategory'}>
                   <h3>{category.name()}</h3>
 
                   {category.description() && <p>{category.description()}</p>}
@@ -78,12 +71,8 @@ export default class UserBadgeList extends Component {
 
         {/* Uncategorized badges */}
         {uncategorized.length >= 1 && (
-          <div className={"UserBadgesCategory"}>
-            <h3>
-              {app.translator.trans(
-                "v17development-flarum-badges.forum.uncategorized"
-              )}
-            </h3>
+          <div className={'UserBadgesCategory'}>
+            <h3>{app.translator.trans('v17development-flarum-badges.forum.uncategorized')}</h3>
 
             {uncategorized
               .sort((a, b) => a.badge().order() - b.badge().order())

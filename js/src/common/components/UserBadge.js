@@ -1,6 +1,6 @@
-import Component from "flarum/common/Component";
-import Tooltip from "flarum/common/components/Tooltip";
-import BadgeModal from "../../forum/components/BadgeModal";
+import Component from 'flarum/common/Component';
+import Tooltip from 'flarum/common/components/Tooltip';
+import BadgeModal from '../../forum/components/BadgeModal';
 
 export default class UserBadge extends Component {
   oninit(vnode) {
@@ -19,27 +19,18 @@ export default class UserBadge extends Component {
     // Just show badge
     if (this.tooltip === false) return this.badge();
 
-    return (
-      <Tooltip
-        text={`${
-          this.attrs.badge.description() ? this.attrs.badge.description() : ""
-        }`}
-      >
-        {this.badge()}
-      </Tooltip>
-    );
+    return <Tooltip text={`${this.attrs.badge.description() ? this.attrs.badge.description() : ''}`}>{this.badge()}</Tooltip>;
   }
 
   badge() {
-    const isPartlyHidden =
-      !this.attrs.badge.isVisible() && this.forceVisibility;
+    const isPartlyHidden = !this.attrs.badge.isVisible() && this.forceVisibility;
 
     // This badge is an image
     if (this.attrs.badge.image()) {
       return (
         <img
           src={this.attrs.badge.image()}
-          className={"UserBadgeImage"}
+          className={'UserBadgeImage'}
           onclick={() => {
             if (this.attrs.onclick) {
               this.attrs.onclick();
@@ -67,11 +58,7 @@ export default class UserBadge extends Component {
           opacity: isPartlyHidden ? 0.5 : undefined,
         }}
       >
-        <i
-          className={this.attrs.badge.icon()}
-          style={{ color: this.attrs.badge.iconColor() }}
-        />{" "}
-        {this.attrs.badge.name()}
+        <i className={this.attrs.badge.icon()} style={{ color: this.attrs.badge.iconColor() }} /> {this.attrs.badge.name()}
       </span>
     );
   }

@@ -1,25 +1,21 @@
-import Modal from "flarum/components/Modal";
-import ItemList from "flarum/utils/ItemList";
-import Button from "flarum/components/Button";
-import Switch from "flarum/components/Switch";
-import Stream from "flarum/utils/Stream";
+import Modal from 'flarum/components/Modal';
+import ItemList from 'flarum/utils/ItemList';
+import Button from 'flarum/components/Button';
+import Switch from 'flarum/components/Switch';
+import Stream from 'flarum/utils/Stream';
 
 export default class EditBadgeModal extends Modal {
   oninit(vnode) {
     super.oninit(vnode);
 
     // Badge model
-    this.badge = this.attrs.badge
-      ? this.attrs.badge
-      : app.store.createRecord("badges");
+    this.badge = this.attrs.badge ? this.attrs.badge : app.store.createRecord('badges');
 
     // Name
     this.name = Stream(this.badge.name());
 
     // Is image
-    this.isImage = Stream(
-      this.badge.exists ? this.badge.image() !== null : false
-    );
+    this.isImage = Stream(this.badge.exists ? this.badge.image() !== null : false);
 
     // Icon
     this.icon = Stream(this.badge.icon());
@@ -44,15 +40,11 @@ export default class EditBadgeModal extends Modal {
   }
 
   className() {
-    return this.isImage() ? "Modal--small" : "Modal--large";
+    return this.isImage() ? 'Modal--small' : 'Modal--large';
   }
 
   title() {
-    return app.translator.trans(
-      `v17development-flarum-badges.admin.${
-        this.badge.exists ? "update_badge" : "new_badge"
-      }`
-    );
+    return app.translator.trans(`v17development-flarum-badges.admin.${this.badge.exists ? 'update_badge' : 'new_badge'}`);
   }
 
   content() {
@@ -60,14 +52,14 @@ export default class EditBadgeModal extends Modal {
       <div className="Modal-body">
         <div className="Form">{this.data().toArray()}</div>
       </div>,
-      <div className={"Modal-footer"}>
+      <div className={'Modal-footer'}>
         {Button.component(
           {
-            type: "submit",
-            className: "Button Button--primary",
+            type: 'submit',
+            className: 'Button Button--primary',
             loading: this.loading,
           },
-          app.translator.trans("core.admin.settings.submit_button")
+          app.translator.trans('core.admin.settings.submit_button')
         )}
       </div>,
     ];
@@ -77,39 +69,21 @@ export default class EditBadgeModal extends Modal {
     const items = new ItemList();
 
     items.add(
-      "name",
+      'name',
       <div className="Form-group">
-        <label>
-          {app.translator.trans(
-            "v17development-flarum-badges.admin.badge.name"
-          )}
-          :
-        </label>
-        <input
-          className="FormControl"
-          placeholder={app.translator.trans(
-            "v17development-flarum-badges.admin.badge.name"
-          )}
-          bidi={this.name}
-        />
+        <label>{app.translator.trans('v17development-flarum-badges.admin.badge.name')}:</label>
+        <input className="FormControl" placeholder={app.translator.trans('v17development-flarum-badges.admin.badge.name')} bidi={this.name} />
       </div>,
       50
     );
 
     items.add(
-      "description",
+      'description',
       <div className="Form-group">
-        <label>
-          {app.translator.trans(
-            "v17development-flarum-badges.admin.badge.description"
-          )}
-          :
-        </label>
+        <label>{app.translator.trans('v17development-flarum-badges.admin.badge.description')}:</label>
         <textarea
           className="FormControl"
-          placeholder={app.translator.trans(
-            "v17development-flarum-badges.admin.badge.description"
-          )}
+          placeholder={app.translator.trans('v17development-flarum-badges.admin.badge.description')}
           bidi={this.description}
         />
       </div>,
@@ -118,7 +92,7 @@ export default class EditBadgeModal extends Modal {
 
     // Is image
     items.add(
-      "is_image",
+      'is_image',
       <div className="Form-group">
         {Switch.component(
           {
@@ -126,16 +100,8 @@ export default class EditBadgeModal extends Modal {
             onchange: (val) => this.isImage(val),
           },
           [
-            <b>
-              {app.translator.trans(
-                "v17development-flarum-badges.admin.badge.is_image"
-              )}
-            </b>,
-            <div className="helpText">
-              {app.translator.trans(
-                "v17development-flarum-badges.admin.badge.is_image_description"
-              )}
-            </div>,
+            <b>{app.translator.trans('v17development-flarum-badges.admin.badge.is_image')}</b>,
+            <div className="helpText">{app.translator.trans('v17development-flarum-badges.admin.badge.is_image_description')}</div>,
           ]
         )}
       </div>,
@@ -145,19 +111,12 @@ export default class EditBadgeModal extends Modal {
     // Image field
     if (this.isImage()) {
       items.add(
-        "image",
+        'image',
         <div className="Form-group">
-          <label>
-            {app.translator.trans(
-              "v17development-flarum-badges.admin.badge.image"
-            )}
-            :
-          </label>
+          <label>{app.translator.trans('v17development-flarum-badges.admin.badge.image')}:</label>
           <input
             className="FormControl"
-            placeholder={app.translator.trans(
-              "v17development-flarum-badges.admin.badge.image_placeholder"
-            )}
+            placeholder={app.translator.trans('v17development-flarum-badges.admin.badge.image_placeholder')}
             bidi={this.image}
           />
         </div>,
@@ -167,40 +126,22 @@ export default class EditBadgeModal extends Modal {
     // Non-image fields
     else {
       items.add(
-        "icon",
+        'icon',
         <div className="Form-group BadgeForm-split BadgeForm-IconField">
-          <label>
-            {app.translator.trans(
-              "v17development-flarum-badges.admin.badge.icon"
-            )}
-            :
-          </label>
-          <input
-            className="FormControl"
-            placeholder="fas fa-icons"
-            bidi={this.icon}
-          />
-          <span className={this.icon() || "fas fa-icons "} />
+          <label>{app.translator.trans('v17development-flarum-badges.admin.badge.icon')}:</label>
+          <input className="FormControl" placeholder="fas fa-icons" bidi={this.icon} />
+          <span className={this.icon() || 'fas fa-icons '} />
         </div>,
         50
       );
 
       items.add(
-        "icon_color",
+        'icon_color',
         <div className="Form-group BadgeForm-split BadgeForm-ColorField">
-          <label>
-            {app.translator.trans(
-              "v17development-flarum-badges.admin.badge.icon_color"
-            )}
-            :
-          </label>
-          <input
-            className="FormControl"
-            placeholder="auto"
-            bidi={this.iconColor}
-          />
+          <label>{app.translator.trans('v17development-flarum-badges.admin.badge.icon_color')}:</label>
+          <input className="FormControl" placeholder="auto" bidi={this.iconColor} />
           <span
-            className={"BadgeForm-Chosen-Color"}
+            className={'BadgeForm-Chosen-Color'}
             style={{
               backgroundColor: this.iconColor(),
             }}
@@ -210,21 +151,12 @@ export default class EditBadgeModal extends Modal {
       );
 
       items.add(
-        "background_color",
+        'background_color',
         <div className="Form-group BadgeForm-split BadgeForm-ColorField">
-          <label>
-            {app.translator.trans(
-              "v17development-flarum-badges.admin.badge.background_color"
-            )}
-            :
-          </label>
-          <input
-            className="FormControl"
-            bidi={this.backgroundColor}
-            placeholder="auto"
-          />
+          <label>{app.translator.trans('v17development-flarum-badges.admin.badge.background_color')}:</label>
+          <input className="FormControl" bidi={this.backgroundColor} placeholder="auto" />
           <span
-            className={"BadgeForm-Chosen-Color"}
+            className={'BadgeForm-Chosen-Color'}
             style={{
               backgroundColor: this.backgroundColor(),
             }}
@@ -234,21 +166,12 @@ export default class EditBadgeModal extends Modal {
       );
 
       items.add(
-        "label_color",
+        'label_color',
         <div className="Form-group BadgeForm-split BadgeForm-ColorField">
-          <label>
-            {app.translator.trans(
-              "v17development-flarum-badges.admin.badge.label_color"
-            )}
-            :
-          </label>
-          <input
-            className="FormControl"
-            placeholder="auto"
-            bidi={this.labelColor}
-          />
+          <label>{app.translator.trans('v17development-flarum-badges.admin.badge.label_color')}:</label>
+          <input className="FormControl" placeholder="auto" bidi={this.labelColor} />
           <span
-            className={"BadgeForm-Chosen-Color"}
+            className={'BadgeForm-Chosen-Color'}
             style={{
               backgroundColor: this.labelColor(),
             }}
@@ -260,7 +183,7 @@ export default class EditBadgeModal extends Modal {
 
     // Enabled
     items.add(
-      "enabled",
+      'enabled',
       <div className="Form-group">
         {Switch.component(
           {
@@ -268,16 +191,8 @@ export default class EditBadgeModal extends Modal {
             onchange: (val) => this.isVisible(val),
           },
           [
-            <b>
-              {app.translator.trans(
-                "v17development-flarum-badges.admin.badge.visible"
-              )}
-            </b>,
-            <div className="helpText">
-              {app.translator.trans(
-                "v17development-flarum-badges.admin.badge.visible_description"
-              )}
-            </div>,
+            <b>{app.translator.trans('v17development-flarum-badges.admin.badge.visible')}</b>,
+            <div className="helpText">{app.translator.trans('v17development-flarum-badges.admin.badge.visible_description')}</div>,
           ]
         )}
       </div>,

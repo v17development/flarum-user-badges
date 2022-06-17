@@ -12,13 +12,13 @@ use Askvortsov\AutoModerator\Extend\AutoModerator as AutoModeratorExtender;
 $extend = [
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
-        ->css(__DIR__ . '/less/Forum.less')
+        ->css(__DIR__ . '/less/forum.less')
         ->route('/badges', 'badges.overview', Controllers\BadgeOverviewController::class)
         ->route('/badges/{id}', 'badges.item', Controllers\BadgeOverviewController::class)
     ,
     (new Extend\Frontend('admin'))
         ->js(__DIR__.'/js/dist/admin.js')
-        ->css(__DIR__ . '/less/Admin.less'),
+        ->css(__DIR__ . '/less/admin.less'),
 
     (new Extend\Routes('api'))
         // Badges

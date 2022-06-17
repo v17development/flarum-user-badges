@@ -1,9 +1,5910 @@
-module.exports=function(t){var e={};function a(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,a),o.l=!0,o.exports}return a.m=t,a.c=e,a.d=function(t,e,n){a.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},a.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},a.t=function(t,e){if(1&e&&(t=a(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(a.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)a.d(n,o,function(e){return t[e]}.bind(null,o));return n},a.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return a.d(e,"a",e),e},a.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},a.p="",a(a.s=38)}([function(t,e){t.exports=flarum.core.compat.Model},function(t,e,a){"use strict";function n(t,e){return(n=Object.setPrototypeOf||function(t,e){return t.__proto__=e,t})(t,e)}function o(t,e){t.prototype=Object.create(e.prototype),t.prototype.constructor=t,n(t,e)}a.d(e,"a",(function(){return o}))},function(t,e){t.exports=flarum.core.compat["components/Button"]},function(t,e){t.exports=flarum.core.compat["utils/Stream"]},function(t,e){t.exports=flarum.core.compat["common/Component"]},function(t,e){t.exports=flarum.core.compat["components/Modal"]},function(t,e){t.exports=flarum.core.compat["utils/ItemList"]},function(t,e,a){"use strict";a.d(e,"a",(function(){return f}));var n=a(1),o=a(5),r=a.n(o),i=a(2),s=a.n(i),l=a(18),d=a.n(l),c=a(6),u=a.n(c),p=a(9),g=a.n(p),h=a(13),f=function(t){function e(){return t.apply(this,arguments)||this}Object(n.a)(e,t);var a=e.prototype;return a.oninit=function(e){t.prototype.oninit.call(this,e),this.loading=!1},a.className=function(){return"Modal--small"},a.title=function(){return app.translator.trans("v17development-flarum-badges.forum.badge_information")},a.content=function(){var t=this;return m("div",null,m("div",{className:"Modal-body"},this.data().toArray()),m("div",{className:"Modal-footer"},m(g.a,{href:app.route("badges.item",{id:this.attrs.badge.id()}),className:"Button",style:{margin:"0 10px"}},app.translator.trans("v17development-flarum-badges.forum.badge.badge_details")),this.attrs.userBadgeData&&app.forum.attribute("canGiveBadge")&&m(s.a,{className:"Button Button--primary",onclick:function(){confirm(app.translator.trans("v17development-flarum-badges.forum.moderation.remove_badge_confirm"))&&(t.loading=!0,t.attrs.userBadgeData.delete().then((function(){return t.hide()})))},loading:this.loading},app.translator.trans("v17development-flarum-badges.forum.moderation.remove_badge"))))},a.data=function(){var t=this,e=new u.a;return e.add("name",m("div",{className:"BadgeModalListItem"},m("p",null,m("b",null,app.translator.trans("v17development-flarum-badges.forum.badge.name"),":")),m("p",null,this.attrs.badge.name()))),e.add("description",m("div",{className:"BadgeModalListItem"},m("p",null,m("b",null,app.translator.trans("v17development-flarum-badges.forum.badge.description"),":")),m("p",null,this.attrs.badge.description()))),this.attrs.userBadgeData&&(this.attrs.userBadgeData.description()||app.forum.attribute("canGiveBadge"))&&e.add("earning_reason",m("div",{className:"BadgeModalListItem"},m("p",null,m("b",null,app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason"),":")),m("p",null,this.attrs.userBadgeData.description()?this.attrs.userBadgeData.description():m("i",null,app.translator.trans("v17development-flarum-badges.forum.badge.no_earning_reason"))),m("p",null,app.forum.attribute("canGiveBadge")&&m("a",{href:"#",onclick:function(e){e.preventDefault(),app.modal.show(h.a,{badge:t.attrs.userBadgeData})}},app.translator.trans("v17development-flarum-badges.forum.badge.update_earning_reason"))))),this.attrs.userBadgeData&&e.add("earned_date",m("div",{className:"BadgeModalListItem"},m("p",null,m("b",null,app.translator.trans("v17development-flarum-badges.forum.badge.earned_on"),":")),m("p",null,d()(this.attrs.userBadgeData.assignedAt())))),this.attrs.userBadgeData&&e.add("category",m("div",{className:"BadgeModalListItem"},m("p",null,m("b",null,app.translator.trans("v17development-flarum-badges.forum.badge.category"),":")),m("p",null,this.attrs.badge.category()&&this.attrs.badge.category().name(),!this.attrs.badge.category()&&app.translator.trans("v17development-flarum-badges.forum.uncategorized")))),this.attrs.badge&&this.attrs.badge.earnedAmount()&&e.add("earned_amount",m("div",{className:"BadgeModalListItem"},m("p",null,app.translator.trans("v17development-flarum-badges.forum.badge.earned_count",{count:this.attrs.badge.earnedAmount()})))),e},e}(r.a)},function(t,e){t.exports=flarum.core.compat["components/LoadingIndicator"]},function(t,e){t.exports=flarum.core.compat["components/LinkButton"]},function(t,e){t.exports=flarum.core.compat["utils/mixin"]},function(t,e,a){"use strict";a.d(e,"a",(function(){return l}));var n=a(1),o=a(4),r=a.n(o),i=a(20),s=a.n(i),l=(a(7),function(t){function e(){return t.apply(this,arguments)||this}Object(n.a)(e,t);var a=e.prototype;return a.oninit=function(e){t.prototype.oninit.call(this,e),this.tooltip=!1!==this.attrs.tooltip,this.forceVisibility=!0===this.attrs.forceVisibility},a.view=function(){return this.attrs.badge.isVisible()||this.forceVisibility?!1===this.tooltip?this.badge():m(s.a,{text:""+(this.attrs.badge.description()?this.attrs.badge.description():"")},this.badge()):null},a.badge=function(){var t=this,e=!this.attrs.badge.isVisible()&&this.forceVisibility;return this.attrs.badge.image()?m("img",{src:this.attrs.badge.image(),className:"UserBadgeImage",onclick:function(){t.attrs.onclick&&t.attrs.onclick()},style:{opacity:e?.5:void 0}}):m("span",{className:"UserBadge UserBadge-"+this.attrs.badge.id(),onclick:function(){t.attrs.onclick&&t.attrs.onclick()},style:{backgroundColor:this.attrs.badge.backgroundColor(),color:this.attrs.badge.labelColor(),borderColor:this.attrs.badge.backgroundColor(),opacity:e?.5:void 0}},m("i",{className:this.attrs.badge.icon(),style:{color:this.attrs.badge.iconColor()}})," ",this.attrs.badge.name())},e}(r.a))},,function(t,e,a){"use strict";a.d(e,"a",(function(){return g}));var n=a(1),o=a(5),r=a.n(o),i=a(2),s=a.n(i),l=a(6),d=a.n(l),c=(a(25),a(3)),u=a.n(c),p=a(7),g=function(t){function e(){return t.apply(this,arguments)||this}Object(n.a)(e,t);var a=e.prototype;return a.oninit=function(e){var a=this;t.prototype.oninit.call(this,e),this.selectedBadge=this.attrs.badge?this.attrs.badge.badge():null,this.user=this.attrs.badge?this.attrs.badge.user():this.attrs.user,this.userHasBadge=!1,this.badge=this.attrs.badge?this.attrs.badge:app.store.createRecord("userBadges"),this.description=u()(this.badge.description()),this.categories={},this.uncategorizedBadges=[],this.loading=!1,this.attrs.badge||(this.loading=!0,app.store.find("badges",{include:"category"}).then((function(t){t.forEach((function(t){if(t.category()){var e=t.category();a.categories[e.id()]?a.categories[e.id()].badges.push(t):a.categories[e.id()]={category:e,badges:[t]}}else a.uncategorizedBadges.push(t)})),a.loading=!1,m.redraw()})))},a.className=function(){return"Modal--small BadgeModal"},a.title=function(){return app.translator.trans("v17development-flarum-badges.forum."+(this.badge.exists?"update":"give")+"_badge")},a.content=function(){return m("div",null,m("div",{className:"Modal-body"},m("div",{className:"Form"},this.fields().toArray())),m("div",{className:"Modal-footer"},m(s.a,{className:"Button Button--primary",type:"submit",loading:this.loading,disabled:this.userHasBadge},app.translator.trans("core.forum.composer_edit.submit_button"))))},a.fields=function(){var t=this,e=new d.a;return e.add("badge",m("div",{className:"BadgeModalListItem"},m("p",null,m("b",null,app.translator.trans("v17development-flarum-badges.forum.badge.badge"))),m("div",{className:"Select"},m("select",{value:this.selectedBadge?this.selectedBadge.id():"empty",disabled:!!this.attrs.badge,onchange:function(e){"empty"!==e.target.value&&(t.selectedBadge=app.store.getById("badges",e.target.value),t.checkUserHasBadge(t.selectedBadge))},className:"Select-input FormControl"},m("option",{value:"empty"},app.translator.trans("v17development-flarum-badges.forum.select_badge")),!this.attrs.badge&&Object.values(this.categories).map((function(t){var e=t.category,a=t.badges;return m("optgroup",{label:e.name()},a.map((function(t){return m("option",{value:t.id()},t.name())})))})),!this.attrs.badge&&this.uncategorizedBadges.length>=1&&m("optgroup",{label:app.translator.trans("v17development-flarum-badges.forum.uncategorized")},this.uncategorizedBadges.map((function(t){return m("option",{value:t.id()},t.name())}))),!!this.attrs.badge&&m("option",{value:this.selectedBadge.id()},this.selectedBadge.name())),m("i",{class:"icon fas fa-caret-down Select-caret"})),this.userHasBadge&&m("p",{className:"UserHasBadge"},app.translator.trans("v17development-flarum-badges.forum.user_has_badge"))),30),e.add("badge_description",m("div",{className:"BadgeModalListItem"},m("p",null,m("b",null,app.translator.trans("v17development-flarum-badges.forum.badge.description"),":")),m("p",null,this.selectedBadge?this.selectedBadge.description():app.translator.trans("v17development-flarum-badges.forum.select_badge"))),30),e.add("description",m("div",{className:"BadgeModalListItem"},m("p",null,m("b",null,app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason"))),m("textarea",{className:"FormControl",placeholder:app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason"),bidi:this.description})),30),e},a.checkUserHasBadge=function(t){var e=!1;this.user.userBadges().map((function(a){a.badge()==t&&(e=!0)})),this.userHasBadge=e,m.redraw()},a.onsubmit=function(t){var e=this;t.preventDefault(),this.loading=!0,this.badge.save({description:this.description(),relationships:this.attrs.badge?{}:{badge:this.selectedBadge,user:this.user}}).then((function(){e.attrs.badge?app.modal.show(p.a,{badge:e.attrs.badge.badge(),userBadgeData:e.attrs.badge}):e.hide(),m.redraw()}),(function(t){e.loading=!1,e.handleErrors(t)}))},e}(r.a)},function(t,e){t.exports=flarum.core.compat["components/Switch"]},,,function(t,e,a){"use strict";a.d(e,"a",(function(){return l}));var n=a(1),o=a(0),r=a.n(o),i=a(10),s=a.n(i),l=(a(7),function(t){function e(){return t.apply(this,arguments)||this}return Object(n.a)(e,t),e.prototype.apiEndpoint=function(){return"/badges"+(this.exists?"/"+this.data.id:"")},e}(s()(r.a,{name:r.a.attribute("name"),icon:r.a.attribute("icon"),order:r.a.attribute("order"),image:r.a.attribute("image"),description:r.a.attribute("description"),isVisible:r.a.attribute("isVisible"),createdAt:r.a.attribute("createdAt"),earnedAmount:r.a.attribute("earnedAmount"),category:r.a.hasOne("category"),backgroundColor:r.a.attribute("backgroundColor"),iconColor:r.a.attribute("iconColor"),labelColor:r.a.attribute("labelColor")})))},function(t,e){t.exports=flarum.core.compat["helpers/fullTime"]},function(t,e,a){"use strict";a.d(e,"a",(function(){return s}));var n=a(1),o=a(0),r=a.n(o),i=a(10),s=function(t){function e(){return t.apply(this,arguments)||this}return Object(n.a)(e,t),e.prototype.apiEndpoint=function(){return"/badge_categories"+(this.exists?"/"+this.data.id:"")},e}(a.n(i)()(r.a,{name:r.a.attribute("name"),order:r.a.attribute("order"),description:r.a.attribute("description"),isEnabled:r.a.attribute("isEnabled"),createdAt:r.a.attribute("createdAt"),isTable:r.a.attribute("isTable"),users:r.a.hasMany("users"),badges:r.a.hasMany("badges")}))},function(t,e){t.exports=flarum.core.compat["common/components/Tooltip"]},,,,function(t,e){t.exports=flarum.core.compat.Component},function(t,e){t.exports=flarum.core.compat["components/Select"]},,,,,,,,function(t,e){t.exports=flarum.core.compat["components/Dropdown"]},function(t,e){t.exports=flarum.core.compat["helpers/icon"]},function(t,e){t.exports=flarum.core.compat["components/ExtensionPage"]},function(t,e){t.exports=flarum.core.compat["utils/saveSettings"]},,function(t,e,a){"use strict";a.r(e);var n=a(17),o=a(19),r=a(1),i=a(24),s=a.n(i),l=a(2),d=a.n(l),c=a(33),u=a.n(c),p=a(34),g=a.n(p),h=!1,f=!1,v=[];var b=function(t){function e(){return t.apply(this,arguments)||this}Object(r.a)(e,t);var a=e.prototype;return a.oninit=function(e){var a,n=this;t.prototype.oninit.call(this,e),this.loaded=!1,a=function(){return n.loaded=!0},f?a():h?v.push(a):(h=!0,app.store.find("badges").then((function(){f=!0,h=!1,a(),v.map((function(t){return t()})),m.redraw()})))},a.view=function(){var t=this;if(!this.loaded)return m("div",{className:"Form-group"},m("label",null,this.attrs.label),m(d.a,{className:"Button Button--danger",style:{float:"none"},loading:!0},app.translator.trans("v17development-flarum-badges.admin.auto_moderator.badge_selector.loading_badges")));var e=app.store.getById("badges",this.attrs.value),a=e?[g()(e.icon()),"\t",e.name()]:app.translator.trans("v17development-flarum-badges.admin.auto_moderator.badge_selector.placeholder");return m("div",{className:"Form-group"},m("label",null,this.attrs.label),this.attrs.disabled?m("div",{className:"Button Button--danger"},a):m(u.a,{label:a,disabled:this.attrs.disabled,buttonClassName:"Button Button--danger"},app.store.all("badges").map((function(a){return d.a.component({active:e&&e.id()===a.id(),disabled:e&&e.id()===a.id(),icon:a.icon(),onclick:function(){t.attrs.onchange(a.id())}},a.name())}))))},e}(s.a),y=function(t){function e(){return t.apply(this,arguments)||this}return Object(r.a)(e,t),e.prototype.view=function(){var t=this.attrs.settings;return m(b,{value:t().badge_id,onchange:function(e){return t({badge_id:e})}})},e}(s.a);
+/******/ (() => { // webpackBootstrap
+/******/ 	// runtime can't be in strict mode because a global variable is assign and maybe created.
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./node_modules/sortablejs/modular/sortable.esm.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/sortablejs/modular/sortable.esm.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MultiDrag": () => (/* binding */ MultiDragPlugin),
+/* harmony export */   "Sortable": () => (/* binding */ Sortable),
+/* harmony export */   "Swap": () => (/* binding */ SwapPlugin),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 /**!
  * Sortable 1.14.0
  * @author	RubaXa   <trash@rubaxa.org>
  * @author	owenm    <owen23355@gmail.com>
  * @license MIT
  */
-function _(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(t);e&&(n=n.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,n)}return a}function w(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?_(Object(a),!0).forEach((function(e){N(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):_(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function C(t){return(C="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function N(t,e,a){return e in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}function E(){return(E=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var a=arguments[e];for(var n in a)Object.prototype.hasOwnProperty.call(a,n)&&(t[n]=a[n])}return t}).apply(this,arguments)}function D(t,e){if(null==t)return{};var a,n,o=function(t,e){if(null==t)return{};var a,n,o={},r=Object.keys(t);for(n=0;n<r.length;n++)a=r[n],e.indexOf(a)>=0||(o[a]=t[a]);return o}(t,e);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(t);for(n=0;n<r.length;n++)a=r[n],e.indexOf(a)>=0||Object.prototype.propertyIsEnumerable.call(t,a)&&(o[a]=t[a])}return o}function S(t){if("undefined"!=typeof window&&window.navigator)return!!navigator.userAgent.match(t)}var B=S(/(?:Trident.*rv[ :]?11\.|msie|iemobile|Windows Phone)/i),x=S(/Edge/i),T=S(/firefox/i),O=S(/safari/i)&&!S(/chrome/i)&&!S(/android/i),M=S(/iP(ad|od|hone)/i),k=S(/chrome/i)&&S(/android/i),F={capture:!1,passive:!1};function I(t,e,a){t.addEventListener(e,a,!B&&F)}function P(t,e,a){t.removeEventListener(e,a,!B&&F)}function A(t,e){if(e){if(">"===e[0]&&(e=e.substring(1)),t)try{if(t.matches)return t.matches(e);if(t.msMatchesSelector)return t.msMatchesSelector(e);if(t.webkitMatchesSelector)return t.webkitMatchesSelector(e)}catch(t){return!1}return!1}}function j(t){return t.host&&t!==document&&t.host.nodeType?t.host:t.parentNode}function R(t,e,a,n){if(t){a=a||document;do{if(null!=e&&(">"===e[0]?t.parentNode===a&&A(t,e):A(t,e))||n&&t===a)return t;if(t===a)break}while(t=j(t))}return null}var X,Y=/\s+/g;function L(t,e,a){if(t&&e)if(t.classList)t.classList[a?"add":"remove"](e);else{var n=(" "+t.className+" ").replace(Y," ").replace(" "+e+" "," ");t.className=(n+(a?" "+e:"")).replace(Y," ")}}function H(t,e,a){var n=t&&t.style;if(n){if(void 0===a)return document.defaultView&&document.defaultView.getComputedStyle?a=document.defaultView.getComputedStyle(t,""):t.currentStyle&&(a=t.currentStyle),void 0===e?a:a[e];e in n||-1!==e.indexOf("webkit")||(e="-webkit-"+e),n[e]=a+("string"==typeof a?"":"px")}}function z(t,e){var a="";if("string"==typeof t)a=t;else do{var n=H(t,"transform");n&&"none"!==n&&(a=n+" "+a)}while(!e&&(t=t.parentNode));var o=window.DOMMatrix||window.WebKitCSSMatrix||window.CSSMatrix||window.MSCSSMatrix;return o&&new o(a)}function V(t,e,a){if(t){var n=t.getElementsByTagName(e),o=0,r=n.length;if(a)for(;o<r;o++)a(n[o],o);return n}return[]}function W(){var t=document.scrollingElement;return t||document.documentElement}function U(t,e,a,n,o){if(t.getBoundingClientRect||t===window){var r,i,s,l,d,c,u;if(t!==window&&t.parentNode&&t!==W()?(i=(r=t.getBoundingClientRect()).top,s=r.left,l=r.bottom,d=r.right,c=r.height,u=r.width):(i=0,s=0,l=window.innerHeight,d=window.innerWidth,c=window.innerHeight,u=window.innerWidth),(e||a)&&t!==window&&(o=o||t.parentNode,!B))do{if(o&&o.getBoundingClientRect&&("none"!==H(o,"transform")||a&&"static"!==H(o,"position"))){var m=o.getBoundingClientRect();i-=m.top+parseInt(H(o,"border-top-width")),s-=m.left+parseInt(H(o,"border-left-width")),l=i+r.height,d=s+r.width;break}}while(o=o.parentNode);if(n&&t!==window){var p=z(o||t),g=p&&p.a,h=p&&p.d;p&&(l=(i/=h)+(c/=h),d=(s/=g)+(u/=g))}return{top:i,left:s,bottom:l,right:d,width:u,height:c}}}function G(t,e,a){for(var n=J(t,!0),o=U(t)[e];n;){var r=U(n)[a];if(!("top"===a||"left"===a?o>=r:o<=r))return n;if(n===W())break;n=J(n,!1)}return!1}function K(t,e,a,n){for(var o=0,r=0,i=t.children;r<i.length;){if("none"!==i[r].style.display&&i[r]!==ne.ghost&&(n||i[r]!==ne.dragged)&&R(i[r],a.draggable,t,!1)){if(o===e)return i[r];o++}r++}return null}function q(t,e){for(var a=t.lastElementChild;a&&(a===ne.ghost||"none"===H(a,"display")||e&&!A(a,e));)a=a.previousElementSibling;return a||null}function Z(t,e){var a=0;if(!t||!t.parentNode)return-1;for(;t=t.previousElementSibling;)"TEMPLATE"===t.nodeName.toUpperCase()||t===ne.clone||e&&!A(t,e)||a++;return a}function Q(t){var e=0,a=0,n=W();if(t)do{var o=z(t),r=o.a,i=o.d;e+=t.scrollLeft*r,a+=t.scrollTop*i}while(t!==n&&(t=t.parentNode));return[e,a]}function J(t,e){if(!t||!t.getBoundingClientRect)return W();var a=t,n=!1;do{if(a.clientWidth<a.scrollWidth||a.clientHeight<a.scrollHeight){var o=H(a);if(a.clientWidth<a.scrollWidth&&("auto"==o.overflowX||"scroll"==o.overflowX)||a.clientHeight<a.scrollHeight&&("auto"==o.overflowY||"scroll"==o.overflowY)){if(!a.getBoundingClientRect||a===document.body)return W();if(n||e)return a;n=!0}}}while(a=a.parentNode);return W()}function tt(t,e){return Math.round(t.top)===Math.round(e.top)&&Math.round(t.left)===Math.round(e.left)&&Math.round(t.height)===Math.round(e.height)&&Math.round(t.width)===Math.round(e.width)}function et(t,e){return function(){if(!X){var a=arguments,n=this;1===a.length?t.call(n,a[0]):t.apply(n,a),X=setTimeout((function(){X=void 0}),e)}}}function at(t,e,a){t.scrollLeft+=e,t.scrollTop+=a}function nt(t){var e=window.Polymer,a=window.jQuery||window.Zepto;return e&&e.dom?e.dom(t).cloneNode(!0):a?a(t).clone(!0)[0]:t.cloneNode(!0)}var ot="Sortable"+(new Date).getTime();function rt(){var t,e=[];return{captureAnimationState:function(){(e=[],this.options.animation)&&[].slice.call(this.el.children).forEach((function(t){if("none"!==H(t,"display")&&t!==ne.ghost){e.push({target:t,rect:U(t)});var a=w({},e[e.length-1].rect);if(t.thisAnimationDuration){var n=z(t,!0);n&&(a.top-=n.f,a.left-=n.e)}t.fromRect=a}}))},addAnimationState:function(t){e.push(t)},removeAnimationState:function(t){e.splice(function(t,e){for(var a in t)if(t.hasOwnProperty(a))for(var n in e)if(e.hasOwnProperty(n)&&e[n]===t[a][n])return Number(a);return-1}(e,{target:t}),1)},animateAll:function(a){var n=this;if(!this.options.animation)return clearTimeout(t),void("function"==typeof a&&a());var o=!1,r=0;e.forEach((function(t){var e=0,a=t.target,i=a.fromRect,s=U(a),l=a.prevFromRect,d=a.prevToRect,c=t.rect,u=z(a,!0);u&&(s.top-=u.f,s.left-=u.e),a.toRect=s,a.thisAnimationDuration&&tt(l,s)&&!tt(i,s)&&(c.top-s.top)/(c.left-s.left)==(i.top-s.top)/(i.left-s.left)&&(e=function(t,e,a,n){return Math.sqrt(Math.pow(e.top-t.top,2)+Math.pow(e.left-t.left,2))/Math.sqrt(Math.pow(e.top-a.top,2)+Math.pow(e.left-a.left,2))*n.animation}(c,l,d,n.options)),tt(s,i)||(a.prevFromRect=i,a.prevToRect=s,e||(e=n.options.animation),n.animate(a,c,s,e)),e&&(o=!0,r=Math.max(r,e),clearTimeout(a.animationResetTimer),a.animationResetTimer=setTimeout((function(){a.animationTime=0,a.prevFromRect=null,a.fromRect=null,a.prevToRect=null,a.thisAnimationDuration=null}),e),a.thisAnimationDuration=e)})),clearTimeout(t),o?t=setTimeout((function(){"function"==typeof a&&a()}),r):"function"==typeof a&&a(),e=[]},animate:function(t,e,a,n){if(n){H(t,"transition",""),H(t,"transform","");var o=z(this.el),r=o&&o.a,i=o&&o.d,s=(e.left-a.left)/(r||1),l=(e.top-a.top)/(i||1);t.animatingX=!!s,t.animatingY=!!l,H(t,"transform","translate3d("+s+"px,"+l+"px,0)"),this.forRepaintDummy=function(t){return t.offsetWidth}(t),H(t,"transition","transform "+n+"ms"+(this.options.easing?" "+this.options.easing:"")),H(t,"transform","translate3d(0,0,0)"),"number"==typeof t.animated&&clearTimeout(t.animated),t.animated=setTimeout((function(){H(t,"transition",""),H(t,"transform",""),t.animated=!1,t.animatingX=!1,t.animatingY=!1}),n)}}}}var it=[],st={initializeByDefault:!0},lt={mount:function(t){for(var e in st)st.hasOwnProperty(e)&&!(e in t)&&(t[e]=st[e]);it.forEach((function(e){if(e.pluginName===t.pluginName)throw"Sortable: Cannot mount plugin ".concat(t.pluginName," more than once")})),it.push(t)},pluginEvent:function(t,e,a){var n=this;this.eventCanceled=!1,a.cancel=function(){n.eventCanceled=!0};var o=t+"Global";it.forEach((function(n){e[n.pluginName]&&(e[n.pluginName][o]&&e[n.pluginName][o](w({sortable:e},a)),e.options[n.pluginName]&&e[n.pluginName][t]&&e[n.pluginName][t](w({sortable:e},a)))}))},initializePlugins:function(t,e,a,n){for(var o in it.forEach((function(n){var o=n.pluginName;if(t.options[o]||n.initializeByDefault){var r=new n(t,e,t.options);r.sortable=t,r.options=t.options,t[o]=r,E(a,r.defaults)}})),t.options)if(t.options.hasOwnProperty(o)){var r=this.modifyOption(t,o,t.options[o]);void 0!==r&&(t.options[o]=r)}},getEventProperties:function(t,e){var a={};return it.forEach((function(n){"function"==typeof n.eventProperties&&E(a,n.eventProperties.call(e[n.pluginName],t))})),a},modifyOption:function(t,e,a){var n;return it.forEach((function(o){t[o.pluginName]&&o.optionListeners&&"function"==typeof o.optionListeners[e]&&(n=o.optionListeners[e].call(t[o.pluginName],a))})),n}};function dt(t){var e=t.sortable,a=t.rootEl,n=t.name,o=t.targetEl,r=t.cloneEl,i=t.toEl,s=t.fromEl,l=t.oldIndex,d=t.newIndex,c=t.oldDraggableIndex,u=t.newDraggableIndex,m=t.originalEvent,p=t.putSortable,g=t.extraEventProperties;if(e=e||a&&a[ot]){var h,f=e.options,v="on"+n.charAt(0).toUpperCase()+n.substr(1);!window.CustomEvent||B||x?(h=document.createEvent("Event")).initEvent(n,!0,!0):h=new CustomEvent(n,{bubbles:!0,cancelable:!0}),h.to=i||a,h.from=s||a,h.item=o||a,h.clone=r,h.oldIndex=l,h.newIndex=d,h.oldDraggableIndex=c,h.newDraggableIndex=u,h.originalEvent=m,h.pullMode=p?p.lastPutMode:void 0;var b=w(w({},g),lt.getEventProperties(n,e));for(var y in b)h[y]=b[y];a&&a.dispatchEvent(h),f[v]&&f[v].call(e,h)}}var ct=["evt"],ut=function(t,e){var a=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},n=a.evt,o=D(a,ct);lt.pluginEvent.bind(ne)(t,e,w({dragEl:pt,parentEl:gt,ghostEl:ht,rootEl:ft,nextEl:vt,lastDownEl:bt,cloneEl:yt,cloneHidden:_t,dragStarted:Ft,putSortable:St,activeSortable:ne.active,originalEvent:n,oldIndex:wt,oldDraggableIndex:Nt,newIndex:Ct,newDraggableIndex:Et,hideGhostForTarget:Jt,unhideGhostForTarget:te,cloneNowHidden:function(){_t=!0},cloneNowShown:function(){_t=!1},dispatchSortableEvent:function(t){mt({sortable:e,name:t,originalEvent:n})}},o))};function mt(t){dt(w({putSortable:St,cloneEl:yt,targetEl:pt,rootEl:ft,oldIndex:wt,oldDraggableIndex:Nt,newIndex:Ct,newDraggableIndex:Et},t))}var pt,gt,ht,ft,vt,bt,yt,_t,wt,Ct,Nt,Et,Dt,St,Bt,xt,Tt,Ot,Mt,kt,Ft,It,Pt,At,jt,Rt=!1,Xt=!1,Yt=[],Lt=!1,Ht=!1,zt=[],Vt=!1,Wt=[],Ut="undefined"!=typeof document,Gt=M,Kt=x||B?"cssFloat":"float",$t=Ut&&!k&&!M&&"draggable"in document.createElement("div"),qt=function(){if(Ut){if(B)return!1;var t=document.createElement("x");return t.style.cssText="pointer-events:auto","auto"===t.style.pointerEvents}}(),Zt=function(t,e){var a=H(t),n=parseInt(a.width)-parseInt(a.paddingLeft)-parseInt(a.paddingRight)-parseInt(a.borderLeftWidth)-parseInt(a.borderRightWidth),o=K(t,0,e),r=K(t,1,e),i=o&&H(o),s=r&&H(r),l=i&&parseInt(i.marginLeft)+parseInt(i.marginRight)+U(o).width,d=s&&parseInt(s.marginLeft)+parseInt(s.marginRight)+U(r).width;if("flex"===a.display)return"column"===a.flexDirection||"column-reverse"===a.flexDirection?"vertical":"horizontal";if("grid"===a.display)return a.gridTemplateColumns.split(" ").length<=1?"vertical":"horizontal";if(o&&i.float&&"none"!==i.float){var c="left"===i.float?"left":"right";return!r||"both"!==s.clear&&s.clear!==c?"horizontal":"vertical"}return o&&("block"===i.display||"flex"===i.display||"table"===i.display||"grid"===i.display||l>=n&&"none"===a[Kt]||r&&"none"===a[Kt]&&l+d>n)?"vertical":"horizontal"},Qt=function(t){function e(t,a){return function(n,o,r,i){var s=n.options.group.name&&o.options.group.name&&n.options.group.name===o.options.group.name;if(null==t&&(a||s))return!0;if(null==t||!1===t)return!1;if(a&&"clone"===t)return t;if("function"==typeof t)return e(t(n,o,r,i),a)(n,o,r,i);var l=(a?n:o).options.group.name;return!0===t||"string"==typeof t&&t===l||t.join&&t.indexOf(l)>-1}}var a={},n=t.group;n&&"object"==C(n)||(n={name:n}),a.name=n.name,a.checkPull=e(n.pull,!0),a.checkPut=e(n.put),a.revertClone=n.revertClone,t.group=a},Jt=function(){!qt&&ht&&H(ht,"display","none")},te=function(){!qt&&ht&&H(ht,"display","")};Ut&&document.addEventListener("click",(function(t){if(Xt)return t.preventDefault(),t.stopPropagation&&t.stopPropagation(),t.stopImmediatePropagation&&t.stopImmediatePropagation(),Xt=!1,!1}),!0);var ee=function(t){if(pt){t=t.touches?t.touches[0]:t;var e=(o=t.clientX,r=t.clientY,Yt.some((function(t){var e=t[ot].options.emptyInsertThreshold;if(e&&!q(t)){var a=U(t),n=o>=a.left-e&&o<=a.right+e,s=r>=a.top-e&&r<=a.bottom+e;return n&&s?i=t:void 0}})),i);if(e){var a={};for(var n in t)t.hasOwnProperty(n)&&(a[n]=t[n]);a.target=a.rootEl=e,a.preventDefault=void 0,a.stopPropagation=void 0,e[ot]._onDragOver(a)}}var o,r,i},ae=function(t){pt&&pt.parentNode[ot]._isOutsideThisEl(t.target)};function ne(t,e){if(!t||!t.nodeType||1!==t.nodeType)throw"Sortable: `el` must be an HTMLElement, not ".concat({}.toString.call(t));this.el=t,this.options=e=E({},e),t[ot]=this;var a={group:null,sort:!0,disabled:!1,store:null,handle:null,draggable:/^[uo]l$/i.test(t.nodeName)?">li":">*",swapThreshold:1,invertSwap:!1,invertedSwapThreshold:null,removeCloneOnHide:!0,direction:function(){return Zt(t,this.options)},ghostClass:"sortable-ghost",chosenClass:"sortable-chosen",dragClass:"sortable-drag",ignore:"a, img",filter:null,preventOnFilter:!0,animation:0,easing:null,setData:function(t,e){t.setData("Text",e.textContent)},dropBubble:!1,dragoverBubble:!1,dataIdAttr:"data-id",delay:0,delayOnTouchOnly:!1,touchStartThreshold:(Number.parseInt?Number:window).parseInt(window.devicePixelRatio,10)||1,forceFallback:!1,fallbackClass:"sortable-fallback",fallbackOnBody:!1,fallbackTolerance:0,fallbackOffset:{x:0,y:0},supportPointer:!1!==ne.supportPointer&&"PointerEvent"in window&&!O,emptyInsertThreshold:5};for(var n in lt.initializePlugins(this,t,a),a)!(n in e)&&(e[n]=a[n]);for(var o in Qt(e),this)"_"===o.charAt(0)&&"function"==typeof this[o]&&(this[o]=this[o].bind(this));this.nativeDraggable=!e.forceFallback&&$t,this.nativeDraggable&&(this.options.touchStartThreshold=1),e.supportPointer?I(t,"pointerdown",this._onTapStart):(I(t,"mousedown",this._onTapStart),I(t,"touchstart",this._onTapStart)),this.nativeDraggable&&(I(t,"dragover",this),I(t,"dragenter",this)),Yt.push(this.el),e.store&&e.store.get&&this.sort(e.store.get(this)||[]),E(this,rt())}function oe(t,e,a,n,o,r,i,s){var l,d,c=t[ot],u=c.options.onMove;return!window.CustomEvent||B||x?(l=document.createEvent("Event")).initEvent("move",!0,!0):l=new CustomEvent("move",{bubbles:!0,cancelable:!0}),l.to=e,l.from=t,l.dragged=a,l.draggedRect=n,l.related=o||e,l.relatedRect=r||U(e),l.willInsertAfter=s,l.originalEvent=i,t.dispatchEvent(l),u&&(d=u.call(c,l,i)),d}function re(t){t.draggable=!1}function ie(){Vt=!1}function se(t){for(var e=t.tagName+t.className+t.src+t.href+t.textContent,a=e.length,n=0;a--;)n+=e.charCodeAt(a);return n.toString(36)}function le(t){return setTimeout(t,0)}function de(t){return clearTimeout(t)}ne.prototype={constructor:ne,_isOutsideThisEl:function(t){this.el.contains(t)||t===this.el||(It=null)},_getDirection:function(t,e){return"function"==typeof this.options.direction?this.options.direction.call(this,t,e,pt):this.options.direction},_onTapStart:function(t){if(t.cancelable){var e=this,a=this.el,n=this.options,o=n.preventOnFilter,r=t.type,i=t.touches&&t.touches[0]||t.pointerType&&"touch"===t.pointerType&&t,s=(i||t).target,l=t.target.shadowRoot&&(t.path&&t.path[0]||t.composedPath&&t.composedPath()[0])||s,d=n.filter;if(function(t){Wt.length=0;var e=t.getElementsByTagName("input"),a=e.length;for(;a--;){var n=e[a];n.checked&&Wt.push(n)}}(a),!pt&&!(/mousedown|pointerdown/.test(r)&&0!==t.button||n.disabled)&&!l.isContentEditable&&(this.nativeDraggable||!O||!s||"SELECT"!==s.tagName.toUpperCase())&&!((s=R(s,n.draggable,a,!1))&&s.animated||bt===s)){if(wt=Z(s),Nt=Z(s,n.draggable),"function"==typeof d){if(d.call(this,t,s,this))return mt({sortable:e,rootEl:l,name:"filter",targetEl:s,toEl:a,fromEl:a}),ut("filter",e,{evt:t}),void(o&&t.cancelable&&t.preventDefault())}else if(d&&(d=d.split(",").some((function(n){if(n=R(l,n.trim(),a,!1))return mt({sortable:e,rootEl:n,name:"filter",targetEl:s,fromEl:a,toEl:a}),ut("filter",e,{evt:t}),!0}))))return void(o&&t.cancelable&&t.preventDefault());n.handle&&!R(l,n.handle,a,!1)||this._prepareDragStart(t,i,s)}}},_prepareDragStart:function(t,e,a){var n,o=this,r=o.el,i=o.options,s=r.ownerDocument;if(a&&!pt&&a.parentNode===r){var l=U(a);if(ft=r,gt=(pt=a).parentNode,vt=pt.nextSibling,bt=a,Dt=i.group,ne.dragged=pt,Bt={target:pt,clientX:(e||t).clientX,clientY:(e||t).clientY},Mt=Bt.clientX-l.left,kt=Bt.clientY-l.top,this._lastX=(e||t).clientX,this._lastY=(e||t).clientY,pt.style["will-change"]="all",n=function(){ut("delayEnded",o,{evt:t}),ne.eventCanceled?o._onDrop():(o._disableDelayedDragEvents(),!T&&o.nativeDraggable&&(pt.draggable=!0),o._triggerDragStart(t,e),mt({sortable:o,name:"choose",originalEvent:t}),L(pt,i.chosenClass,!0))},i.ignore.split(",").forEach((function(t){V(pt,t.trim(),re)})),I(s,"dragover",ee),I(s,"mousemove",ee),I(s,"touchmove",ee),I(s,"mouseup",o._onDrop),I(s,"touchend",o._onDrop),I(s,"touchcancel",o._onDrop),T&&this.nativeDraggable&&(this.options.touchStartThreshold=4,pt.draggable=!0),ut("delayStart",this,{evt:t}),!i.delay||i.delayOnTouchOnly&&!e||this.nativeDraggable&&(x||B))n();else{if(ne.eventCanceled)return void this._onDrop();I(s,"mouseup",o._disableDelayedDrag),I(s,"touchend",o._disableDelayedDrag),I(s,"touchcancel",o._disableDelayedDrag),I(s,"mousemove",o._delayedDragTouchMoveHandler),I(s,"touchmove",o._delayedDragTouchMoveHandler),i.supportPointer&&I(s,"pointermove",o._delayedDragTouchMoveHandler),o._dragStartTimer=setTimeout(n,i.delay)}}},_delayedDragTouchMoveHandler:function(t){var e=t.touches?t.touches[0]:t;Math.max(Math.abs(e.clientX-this._lastX),Math.abs(e.clientY-this._lastY))>=Math.floor(this.options.touchStartThreshold/(this.nativeDraggable&&window.devicePixelRatio||1))&&this._disableDelayedDrag()},_disableDelayedDrag:function(){pt&&re(pt),clearTimeout(this._dragStartTimer),this._disableDelayedDragEvents()},_disableDelayedDragEvents:function(){var t=this.el.ownerDocument;P(t,"mouseup",this._disableDelayedDrag),P(t,"touchend",this._disableDelayedDrag),P(t,"touchcancel",this._disableDelayedDrag),P(t,"mousemove",this._delayedDragTouchMoveHandler),P(t,"touchmove",this._delayedDragTouchMoveHandler),P(t,"pointermove",this._delayedDragTouchMoveHandler)},_triggerDragStart:function(t,e){e=e||"touch"==t.pointerType&&t,!this.nativeDraggable||e?this.options.supportPointer?I(document,"pointermove",this._onTouchMove):I(document,e?"touchmove":"mousemove",this._onTouchMove):(I(pt,"dragend",this),I(ft,"dragstart",this._onDragStart));try{document.selection?le((function(){document.selection.empty()})):window.getSelection().removeAllRanges()}catch(t){}},_dragStarted:function(t,e){if(Rt=!1,ft&&pt){ut("dragStarted",this,{evt:e}),this.nativeDraggable&&I(document,"dragover",ae);var a=this.options;!t&&L(pt,a.dragClass,!1),L(pt,a.ghostClass,!0),ne.active=this,t&&this._appendGhost(),mt({sortable:this,name:"start",originalEvent:e})}else this._nulling()},_emulateDragOver:function(){if(xt){this._lastX=xt.clientX,this._lastY=xt.clientY,Jt();for(var t=document.elementFromPoint(xt.clientX,xt.clientY),e=t;t&&t.shadowRoot&&(t=t.shadowRoot.elementFromPoint(xt.clientX,xt.clientY))!==e;)e=t;if(pt.parentNode[ot]._isOutsideThisEl(t),e)do{if(e[ot]){if(e[ot]._onDragOver({clientX:xt.clientX,clientY:xt.clientY,target:t,rootEl:e})&&!this.options.dragoverBubble)break}t=e}while(e=e.parentNode);te()}},_onTouchMove:function(t){if(Bt){var e=this.options,a=e.fallbackTolerance,n=e.fallbackOffset,o=t.touches?t.touches[0]:t,r=ht&&z(ht,!0),i=ht&&r&&r.a,s=ht&&r&&r.d,l=Gt&&jt&&Q(jt),d=(o.clientX-Bt.clientX+n.x)/(i||1)+(l?l[0]-zt[0]:0)/(i||1),c=(o.clientY-Bt.clientY+n.y)/(s||1)+(l?l[1]-zt[1]:0)/(s||1);if(!ne.active&&!Rt){if(a&&Math.max(Math.abs(o.clientX-this._lastX),Math.abs(o.clientY-this._lastY))<a)return;this._onDragStart(t,!0)}if(ht){r?(r.e+=d-(Tt||0),r.f+=c-(Ot||0)):r={a:1,b:0,c:0,d:1,e:d,f:c};var u="matrix(".concat(r.a,",").concat(r.b,",").concat(r.c,",").concat(r.d,",").concat(r.e,",").concat(r.f,")");H(ht,"webkitTransform",u),H(ht,"mozTransform",u),H(ht,"msTransform",u),H(ht,"transform",u),Tt=d,Ot=c,xt=o}t.cancelable&&t.preventDefault()}},_appendGhost:function(){if(!ht){var t=this.options.fallbackOnBody?document.body:ft,e=U(pt,!0,Gt,!0,t),a=this.options;if(Gt){for(jt=t;"static"===H(jt,"position")&&"none"===H(jt,"transform")&&jt!==document;)jt=jt.parentNode;jt!==document.body&&jt!==document.documentElement?(jt===document&&(jt=W()),e.top+=jt.scrollTop,e.left+=jt.scrollLeft):jt=W(),zt=Q(jt)}L(ht=pt.cloneNode(!0),a.ghostClass,!1),L(ht,a.fallbackClass,!0),L(ht,a.dragClass,!0),H(ht,"transition",""),H(ht,"transform",""),H(ht,"box-sizing","border-box"),H(ht,"margin",0),H(ht,"top",e.top),H(ht,"left",e.left),H(ht,"width",e.width),H(ht,"height",e.height),H(ht,"opacity","0.8"),H(ht,"position",Gt?"absolute":"fixed"),H(ht,"zIndex","100000"),H(ht,"pointerEvents","none"),ne.ghost=ht,t.appendChild(ht),H(ht,"transform-origin",Mt/parseInt(ht.style.width)*100+"% "+kt/parseInt(ht.style.height)*100+"%")}},_onDragStart:function(t,e){var a=this,n=t.dataTransfer,o=a.options;ut("dragStart",this,{evt:t}),ne.eventCanceled?this._onDrop():(ut("setupClone",this),ne.eventCanceled||((yt=nt(pt)).draggable=!1,yt.style["will-change"]="",this._hideClone(),L(yt,this.options.chosenClass,!1),ne.clone=yt),a.cloneId=le((function(){ut("clone",a),ne.eventCanceled||(a.options.removeCloneOnHide||ft.insertBefore(yt,pt),a._hideClone(),mt({sortable:a,name:"clone"}))})),!e&&L(pt,o.dragClass,!0),e?(Xt=!0,a._loopId=setInterval(a._emulateDragOver,50)):(P(document,"mouseup",a._onDrop),P(document,"touchend",a._onDrop),P(document,"touchcancel",a._onDrop),n&&(n.effectAllowed="move",o.setData&&o.setData.call(a,n,pt)),I(document,"drop",a),H(pt,"transform","translateZ(0)")),Rt=!0,a._dragStartId=le(a._dragStarted.bind(a,e,t)),I(document,"selectstart",a),Ft=!0,O&&H(document.body,"user-select","none"))},_onDragOver:function(t){var e,a,n,o,r=this.el,i=t.target,s=this.options,l=s.group,d=ne.active,c=Dt===l,u=s.sort,m=St||d,p=this,g=!1;if(!Vt){if(void 0!==t.preventDefault&&t.cancelable&&t.preventDefault(),i=R(i,s.draggable,r,!0),O("dragOver"),ne.eventCanceled)return g;if(pt.contains(t.target)||i.animated&&i.animatingX&&i.animatingY||p._ignoreWhileAnimating===i)return k(!1);if(Xt=!1,d&&!s.disabled&&(c?u||(n=gt!==ft):St===this||(this.lastPutMode=Dt.checkPull(this,d,pt,t))&&l.checkPut(this,d,pt,t))){if(o="vertical"===this._getDirection(t,i),e=U(pt),O("dragOverValid"),ne.eventCanceled)return g;if(n)return gt=ft,M(),this._hideClone(),O("revert"),ne.eventCanceled||(vt?ft.insertBefore(pt,vt):ft.appendChild(pt)),k(!0);var h=q(r,s.draggable);if(!h||function(t,e,a){var n=U(q(a.el,a.options.draggable));return e?t.clientX>n.right+10||t.clientX<=n.right&&t.clientY>n.bottom&&t.clientX>=n.left:t.clientX>n.right&&t.clientY>n.top||t.clientX<=n.right&&t.clientY>n.bottom+10}(t,o,this)&&!h.animated){if(h===pt)return k(!1);if(h&&r===t.target&&(i=h),i&&(a=U(i)),!1!==oe(ft,r,pt,e,i,a,t,!!i))return M(),r.appendChild(pt),gt=r,F(),k(!0)}else if(h&&function(t,e,a){var n=U(K(a.el,0,a.options,!0));return e?t.clientX<n.left-10||t.clientY<n.top&&t.clientX<n.right:t.clientY<n.top-10||t.clientY<n.bottom&&t.clientX<n.left}(t,o,this)){var f=K(r,0,s,!0);if(f===pt)return k(!1);if(a=U(i=f),!1!==oe(ft,r,pt,e,i,a,t,!1))return M(),r.insertBefore(pt,f),gt=r,F(),k(!0)}else if(i.parentNode===r){a=U(i);var v,b,y,_=pt.parentNode!==r,C=!function(t,e,a){var n=a?t.left:t.top,o=a?t.right:t.bottom,r=a?t.width:t.height,i=a?e.left:e.top,s=a?e.right:e.bottom,l=a?e.width:e.height;return n===i||o===s||n+r/2===i+l/2}(pt.animated&&pt.toRect||e,i.animated&&i.toRect||a,o),N=o?"top":"left",E=G(i,"top","top")||G(pt,"top","top"),D=E?E.scrollTop:void 0;if(It!==i&&(b=a[N],Lt=!1,Ht=!C&&s.invertSwap||_),0!==(v=function(t,e,a,n,o,r,i,s){var l=n?t.clientY:t.clientX,d=n?a.height:a.width,c=n?a.top:a.left,u=n?a.bottom:a.right,m=!1;if(!i)if(s&&At<d*o){if(!Lt&&(1===Pt?l>c+d*r/2:l<u-d*r/2)&&(Lt=!0),Lt)m=!0;else if(1===Pt?l<c+At:l>u-At)return-Pt}else if(l>c+d*(1-o)/2&&l<u-d*(1-o)/2)return function(t){return Z(pt)<Z(t)?1:-1}(e);if((m=m||i)&&(l<c+d*r/2||l>u-d*r/2))return l>c+d/2?1:-1;return 0}(t,i,a,o,C?1:s.swapThreshold,null==s.invertedSwapThreshold?s.swapThreshold:s.invertedSwapThreshold,Ht,It===i))){var S=Z(pt);do{S-=v,y=gt.children[S]}while(y&&("none"===H(y,"display")||y===ht))}if(0===v||y===i)return k(!1);It=i,Pt=v;var B=i.nextElementSibling,x=!1,T=oe(ft,r,pt,e,i,a,t,x=1===v);if(!1!==T)return 1!==T&&-1!==T||(x=1===T),Vt=!0,setTimeout(ie,30),M(),x&&!B?r.appendChild(pt):i.parentNode.insertBefore(pt,x?B:i),E&&at(E,0,D-E.scrollTop),gt=pt.parentNode,void 0===b||Ht||(At=Math.abs(b-U(i)[N])),F(),k(!0)}if(r.contains(pt))return k(!1)}return!1}function O(s,l){ut(s,p,w({evt:t,isOwner:c,axis:o?"vertical":"horizontal",revert:n,dragRect:e,targetRect:a,canSort:u,fromSortable:m,target:i,completed:k,onMove:function(a,n){return oe(ft,r,pt,e,a,U(a),t,n)},changed:F},l))}function M(){O("dragOverAnimationCapture"),p.captureAnimationState(),p!==m&&m.captureAnimationState()}function k(e){return O("dragOverCompleted",{insertion:e}),e&&(c?d._hideClone():d._showClone(p),p!==m&&(L(pt,St?St.options.ghostClass:d.options.ghostClass,!1),L(pt,s.ghostClass,!0)),St!==p&&p!==ne.active?St=p:p===ne.active&&St&&(St=null),m===p&&(p._ignoreWhileAnimating=i),p.animateAll((function(){O("dragOverAnimationComplete"),p._ignoreWhileAnimating=null})),p!==m&&(m.animateAll(),m._ignoreWhileAnimating=null)),(i===pt&&!pt.animated||i===r&&!i.animated)&&(It=null),s.dragoverBubble||t.rootEl||i===document||(pt.parentNode[ot]._isOutsideThisEl(t.target),!e&&ee(t)),!s.dragoverBubble&&t.stopPropagation&&t.stopPropagation(),g=!0}function F(){Ct=Z(pt),Et=Z(pt,s.draggable),mt({sortable:p,name:"change",toEl:r,newIndex:Ct,newDraggableIndex:Et,originalEvent:t})}},_ignoreWhileAnimating:null,_offMoveEvents:function(){P(document,"mousemove",this._onTouchMove),P(document,"touchmove",this._onTouchMove),P(document,"pointermove",this._onTouchMove),P(document,"dragover",ee),P(document,"mousemove",ee),P(document,"touchmove",ee)},_offUpEvents:function(){var t=this.el.ownerDocument;P(t,"mouseup",this._onDrop),P(t,"touchend",this._onDrop),P(t,"pointerup",this._onDrop),P(t,"touchcancel",this._onDrop),P(document,"selectstart",this)},_onDrop:function(t){var e=this.el,a=this.options;Ct=Z(pt),Et=Z(pt,a.draggable),ut("drop",this,{evt:t}),gt=pt&&pt.parentNode,Ct=Z(pt),Et=Z(pt,a.draggable),ne.eventCanceled||(Rt=!1,Ht=!1,Lt=!1,clearInterval(this._loopId),clearTimeout(this._dragStartTimer),de(this.cloneId),de(this._dragStartId),this.nativeDraggable&&(P(document,"drop",this),P(e,"dragstart",this._onDragStart)),this._offMoveEvents(),this._offUpEvents(),O&&H(document.body,"user-select",""),H(pt,"transform",""),t&&(Ft&&(t.cancelable&&t.preventDefault(),!a.dropBubble&&t.stopPropagation()),ht&&ht.parentNode&&ht.parentNode.removeChild(ht),(ft===gt||St&&"clone"!==St.lastPutMode)&&yt&&yt.parentNode&&yt.parentNode.removeChild(yt),pt&&(this.nativeDraggable&&P(pt,"dragend",this),re(pt),pt.style["will-change"]="",Ft&&!Rt&&L(pt,St?St.options.ghostClass:this.options.ghostClass,!1),L(pt,this.options.chosenClass,!1),mt({sortable:this,name:"unchoose",toEl:gt,newIndex:null,newDraggableIndex:null,originalEvent:t}),ft!==gt?(Ct>=0&&(mt({rootEl:gt,name:"add",toEl:gt,fromEl:ft,originalEvent:t}),mt({sortable:this,name:"remove",toEl:gt,originalEvent:t}),mt({rootEl:gt,name:"sort",toEl:gt,fromEl:ft,originalEvent:t}),mt({sortable:this,name:"sort",toEl:gt,originalEvent:t})),St&&St.save()):Ct!==wt&&Ct>=0&&(mt({sortable:this,name:"update",toEl:gt,originalEvent:t}),mt({sortable:this,name:"sort",toEl:gt,originalEvent:t})),ne.active&&(null!=Ct&&-1!==Ct||(Ct=wt,Et=Nt),mt({sortable:this,name:"end",toEl:gt,originalEvent:t}),this.save())))),this._nulling()},_nulling:function(){ut("nulling",this),ft=pt=gt=ht=vt=yt=bt=_t=Bt=xt=Ft=Ct=Et=wt=Nt=It=Pt=St=Dt=ne.dragged=ne.ghost=ne.clone=ne.active=null,Wt.forEach((function(t){t.checked=!0})),Wt.length=Tt=Ot=0},handleEvent:function(t){switch(t.type){case"drop":case"dragend":this._onDrop(t);break;case"dragenter":case"dragover":pt&&(this._onDragOver(t),function(t){t.dataTransfer&&(t.dataTransfer.dropEffect="move");t.cancelable&&t.preventDefault()}(t));break;case"selectstart":t.preventDefault()}},toArray:function(){for(var t,e=[],a=this.el.children,n=0,o=a.length,r=this.options;n<o;n++)R(t=a[n],r.draggable,this.el,!1)&&e.push(t.getAttribute(r.dataIdAttr)||se(t));return e},sort:function(t,e){var a={},n=this.el;this.toArray().forEach((function(t,e){var o=n.children[e];R(o,this.options.draggable,n,!1)&&(a[t]=o)}),this),e&&this.captureAnimationState(),t.forEach((function(t){a[t]&&(n.removeChild(a[t]),n.appendChild(a[t]))})),e&&this.animateAll()},save:function(){var t=this.options.store;t&&t.set&&t.set(this)},closest:function(t,e){return R(t,e||this.options.draggable,this.el,!1)},option:function(t,e){var a=this.options;if(void 0===e)return a[t];var n=lt.modifyOption(this,t,e);a[t]=void 0!==n?n:e,"group"===t&&Qt(a)},destroy:function(){ut("destroy",this);var t=this.el;t[ot]=null,P(t,"mousedown",this._onTapStart),P(t,"touchstart",this._onTapStart),P(t,"pointerdown",this._onTapStart),this.nativeDraggable&&(P(t,"dragover",this),P(t,"dragenter",this)),Array.prototype.forEach.call(t.querySelectorAll("[draggable]"),(function(t){t.removeAttribute("draggable")})),this._onDrop(),this._disableDelayedDragEvents(),Yt.splice(Yt.indexOf(this.el),1),this.el=t=null},_hideClone:function(){if(!_t){if(ut("hideClone",this),ne.eventCanceled)return;H(yt,"display","none"),this.options.removeCloneOnHide&&yt.parentNode&&yt.parentNode.removeChild(yt),_t=!0}},_showClone:function(t){if("clone"===t.lastPutMode){if(_t){if(ut("showClone",this),ne.eventCanceled)return;pt.parentNode!=ft||this.options.group.revertClone?vt?ft.insertBefore(yt,vt):ft.appendChild(yt):ft.insertBefore(yt,pt),this.options.group.revertClone&&this.animate(pt,yt),H(yt,"display",""),_t=!1}}else this._hideClone()}},Ut&&I(document,"touchmove",(function(t){(ne.active||Rt)&&t.cancelable&&t.preventDefault()})),ne.utils={on:I,off:P,css:H,find:V,is:function(t,e){return!!R(t,e,t,!1)},extend:function(t,e){if(t&&e)for(var a in e)e.hasOwnProperty(a)&&(t[a]=e[a]);return t},throttle:et,closest:R,toggleClass:L,clone:nt,index:Z,nextTick:le,cancelNextTick:de,detectDirection:Zt,getChild:K},ne.get=function(t){return t[ot]},ne.mount=function(){for(var t=arguments.length,e=new Array(t),a=0;a<t;a++)e[a]=arguments[a];e[0].constructor===Array&&(e=e[0]),e.forEach((function(t){if(!t.prototype||!t.prototype.constructor)throw"Sortable: Mounted plugin must be a constructor function, not ".concat({}.toString.call(t));t.utils&&(ne.utils=w(w({},ne.utils),t.utils)),lt.mount(t)}))},ne.create=function(t,e){return new ne(t,e)},ne.version="1.14.0";var ce,ue,me,pe,ge,he,fe=[],ve=!1;function be(){fe.forEach((function(t){clearInterval(t.pid)})),fe=[]}function ye(){clearInterval(he)}var _e=et((function(t,e,a,n){if(e.scroll){var o,r=(t.touches?t.touches[0]:t).clientX,i=(t.touches?t.touches[0]:t).clientY,s=e.scrollSensitivity,l=e.scrollSpeed,d=W(),c=!1;ue!==a&&(ue=a,be(),ce=e.scroll,o=e.scrollFn,!0===ce&&(ce=J(a,!0)));var u=0,m=ce;do{var p=m,g=U(p),h=g.top,f=g.bottom,v=g.left,b=g.right,y=g.width,_=g.height,w=void 0,C=void 0,N=p.scrollWidth,E=p.scrollHeight,D=H(p),S=p.scrollLeft,B=p.scrollTop;p===d?(w=y<N&&("auto"===D.overflowX||"scroll"===D.overflowX||"visible"===D.overflowX),C=_<E&&("auto"===D.overflowY||"scroll"===D.overflowY||"visible"===D.overflowY)):(w=y<N&&("auto"===D.overflowX||"scroll"===D.overflowX),C=_<E&&("auto"===D.overflowY||"scroll"===D.overflowY));var x=w&&(Math.abs(b-r)<=s&&S+y<N)-(Math.abs(v-r)<=s&&!!S),T=C&&(Math.abs(f-i)<=s&&B+_<E)-(Math.abs(h-i)<=s&&!!B);if(!fe[u])for(var O=0;O<=u;O++)fe[O]||(fe[O]={});fe[u].vx==x&&fe[u].vy==T&&fe[u].el===p||(fe[u].el=p,fe[u].vx=x,fe[u].vy=T,clearInterval(fe[u].pid),0==x&&0==T||(c=!0,fe[u].pid=setInterval(function(){n&&0===this.layer&&ne.active._onTouchMove(ge);var e=fe[this.layer].vy?fe[this.layer].vy*l:0,a=fe[this.layer].vx?fe[this.layer].vx*l:0;"function"==typeof o&&"continue"!==o.call(ne.dragged.parentNode[ot],a,e,t,ge,fe[this.layer].el)||at(fe[this.layer].el,a,e)}.bind({layer:u}),24))),u++}while(e.bubbleScroll&&m!==d&&(m=J(m,!1)));ve=c}}),30),we=function(t){var e=t.originalEvent,a=t.putSortable,n=t.dragEl,o=t.activeSortable,r=t.dispatchSortableEvent,i=t.hideGhostForTarget,s=t.unhideGhostForTarget;if(e){var l=a||o;i();var d=e.changedTouches&&e.changedTouches.length?e.changedTouches[0]:e,c=document.elementFromPoint(d.clientX,d.clientY);s(),l&&!l.el.contains(c)&&(r("spill"),this.onSpill({dragEl:n,putSortable:a}))}};function Ce(){}function Ne(){}Ce.prototype={startIndex:null,dragStart:function(t){var e=t.oldDraggableIndex;this.startIndex=e},onSpill:function(t){var e=t.dragEl,a=t.putSortable;this.sortable.captureAnimationState(),a&&a.captureAnimationState();var n=K(this.sortable.el,this.startIndex,this.options);n?this.sortable.el.insertBefore(e,n):this.sortable.el.appendChild(e),this.sortable.animateAll(),a&&a.animateAll()},drop:we},E(Ce,{pluginName:"revertOnSpill"}),Ne.prototype={onSpill:function(t){var e=t.dragEl,a=t.putSortable||this.sortable;a.captureAnimationState(),e.parentNode&&e.parentNode.removeChild(e),a.animateAll()},drop:we},E(Ne,{pluginName:"removeOnSpill"});ne.mount(new function(){function t(){for(var t in this.defaults={scroll:!0,forceAutoScrollFallback:!1,scrollSensitivity:30,scrollSpeed:10,bubbleScroll:!0},this)"_"===t.charAt(0)&&"function"==typeof this[t]&&(this[t]=this[t].bind(this))}return t.prototype={dragStarted:function(t){var e=t.originalEvent;this.sortable.nativeDraggable?I(document,"dragover",this._handleAutoScroll):this.options.supportPointer?I(document,"pointermove",this._handleFallbackAutoScroll):e.touches?I(document,"touchmove",this._handleFallbackAutoScroll):I(document,"mousemove",this._handleFallbackAutoScroll)},dragOverCompleted:function(t){var e=t.originalEvent;this.options.dragOverBubble||e.rootEl||this._handleAutoScroll(e)},drop:function(){this.sortable.nativeDraggable?P(document,"dragover",this._handleAutoScroll):(P(document,"pointermove",this._handleFallbackAutoScroll),P(document,"touchmove",this._handleFallbackAutoScroll),P(document,"mousemove",this._handleFallbackAutoScroll)),ye(),be(),clearTimeout(X),X=void 0},nulling:function(){ge=ue=ce=ve=he=me=pe=null,fe.length=0},_handleFallbackAutoScroll:function(t){this._handleAutoScroll(t,!0)},_handleAutoScroll:function(t,e){var a=this,n=(t.touches?t.touches[0]:t).clientX,o=(t.touches?t.touches[0]:t).clientY,r=document.elementFromPoint(n,o);if(ge=t,e||this.options.forceAutoScrollFallback||x||B||O){_e(t,this.options,r,e);var i=J(r,!0);!ve||he&&n===me&&o===pe||(he&&ye(),he=setInterval((function(){var r=J(document.elementFromPoint(n,o),!0);r!==i&&(i=r,be()),_e(t,a.options,r,e)}),10),me=n,pe=o)}else{if(!this.options.bubbleScroll||J(r,!0)===W())return void be();_e(t,this.options,J(r,!1),!1)}}},E(t,{pluginName:"scroll",initializeByDefault:!0})}),ne.mount(Ne,Ce);var Ee=ne,De=a(35),Se=a.n(De),Be=a(8),xe=a.n(Be),Te=a(4),Oe=a.n(Te),Me=a(11),ke=a(5),Fe=a.n(ke),Ie=a(6),Pe=a.n(Ie),Ae=a(14),je=a.n(Ae),Re=a(3),Xe=a.n(Re),Ye=function(t){function e(){return t.apply(this,arguments)||this}Object(r.a)(e,t);var a=e.prototype;return a.oninit=function(e){t.prototype.oninit.call(this,e),this.loading=!1},a.className=function(){return"Modal--small FlarumBadgesConfirmModal"},a.title=function(){return app.translator.trans("v17development-flarum-badges.admin.confirm_dialog.title")},a.content=function(){var t=this;return[m("div",{className:"Modal-body"},m("p",null,this.attrs.text)),m("div",{className:"Modal-footer FlarumBadgesConfirmButtons"},d.a.component({className:"Button",disabled:this.loading,onclick:function(){return t.hide()}},app.translator.trans("v17development-flarum-badges.admin.confirm_dialog.no")),d.a.component({className:"Button Button--primary",loading:this.loading,onclick:function(){return t.confirm()}},app.translator.trans("v17development-flarum-badges.admin.confirm_dialog.yes")))]},a.confirm=function(){var t=this;if(this.attrs.promise)return this.loading=!0,void this.attrs.onconfirm((function(){return t.hide()}),(function(){t.loading=!1,m.redraw()}));this.attrs.onconfirm(),this.hide()},e}(Fe.a),Le=function(t){function e(){return t.apply(this,arguments)||this}Object(r.a)(e,t);var a=e.prototype;return a.oninit=function(e){t.prototype.oninit.call(this,e),this.badge=this.attrs.badge?this.attrs.badge:app.store.createRecord("badges"),this.name=Xe()(this.badge.name()),this.isImage=Xe()(!!this.badge.exists&&null!==this.badge.image()),this.icon=Xe()(this.badge.icon()),this.image=Xe()(this.badge.image()),this.description=Xe()(this.badge.description()),this.isVisible=Xe()(!this.badge.exists||this.badge.isVisible()),this.backgroundColor=Xe()(this.badge.backgroundColor()),this.iconColor=Xe()(this.badge.iconColor()),this.labelColor=Xe()(this.badge.labelColor())},a.className=function(){return this.isImage()?"Modal--small":"Modal--large"},a.title=function(){return app.translator.trans("v17development-flarum-badges.admin."+(this.badge.exists?"update_badge":"new_badge"))},a.content=function(){return[m("div",{className:"Modal-body"},m("div",{className:"Form"},this.data().toArray())),m("div",{className:"Modal-footer"},d.a.component({type:"submit",className:"Button Button--primary",loading:this.loading},app.translator.trans("core.admin.settings.submit_button")))]},a.data=function(){var t=this,e=new Pe.a;return e.add("name",m("div",{className:"Form-group"},m("label",null,app.translator.trans("v17development-flarum-badges.admin.badge.name"),":"),m("input",{className:"FormControl",placeholder:app.translator.trans("v17development-flarum-badges.admin.badge.name"),bidi:this.name})),50),e.add("description",m("div",{className:"Form-group"},m("label",null,app.translator.trans("v17development-flarum-badges.admin.badge.description"),":"),m("textarea",{className:"FormControl",placeholder:app.translator.trans("v17development-flarum-badges.admin.badge.description"),bidi:this.description})),50),e.add("is_image",m("div",{className:"Form-group"},je.a.component({state:1==this.isImage(),onchange:function(e){return t.isImage(e)}},[m("b",null,app.translator.trans("v17development-flarum-badges.admin.badge.is_image")),m("div",{className:"helpText"},app.translator.trans("v17development-flarum-badges.admin.badge.is_image_description"))])),50),this.isImage()?e.add("image",m("div",{className:"Form-group"},m("label",null,app.translator.trans("v17development-flarum-badges.admin.badge.image"),":"),m("input",{className:"FormControl",placeholder:app.translator.trans("v17development-flarum-badges.admin.badge.image_placeholder"),bidi:this.image})),50):(e.add("icon",m("div",{className:"Form-group BadgeForm-split BadgeForm-IconField"},m("label",null,app.translator.trans("v17development-flarum-badges.admin.badge.icon"),":"),m("input",{className:"FormControl",placeholder:"fas fa-icons",bidi:this.icon}),m("span",{className:this.icon()||"fas fa-icons "})),50),e.add("icon_color",m("div",{className:"Form-group BadgeForm-split BadgeForm-ColorField"},m("label",null,app.translator.trans("v17development-flarum-badges.admin.badge.icon_color"),":"),m("input",{className:"FormControl",placeholder:"auto",bidi:this.iconColor}),m("span",{className:"BadgeForm-Chosen-Color",style:{backgroundColor:this.iconColor()}})),50),e.add("background_color",m("div",{className:"Form-group BadgeForm-split BadgeForm-ColorField"},m("label",null,app.translator.trans("v17development-flarum-badges.admin.badge.background_color"),":"),m("input",{className:"FormControl",bidi:this.backgroundColor,placeholder:"auto"}),m("span",{className:"BadgeForm-Chosen-Color",style:{backgroundColor:this.backgroundColor()}})),50),e.add("label_color",m("div",{className:"Form-group BadgeForm-split BadgeForm-ColorField"},m("label",null,app.translator.trans("v17development-flarum-badges.admin.badge.label_color"),":"),m("input",{className:"FormControl",placeholder:"auto",bidi:this.labelColor}),m("span",{className:"BadgeForm-Chosen-Color",style:{backgroundColor:this.labelColor()}})),50)),e.add("enabled",m("div",{className:"Form-group"},je.a.component({state:1==this.isVisible(),onchange:function(e){return t.isVisible(e)}},[m("b",null,app.translator.trans("v17development-flarum-badges.admin.badge.visible")),m("div",{className:"helpText"},app.translator.trans("v17development-flarum-badges.admin.badge.visible_description"))])),50),e},a.onsubmit=function(t){var e=this;t.preventDefault(),this.loading=!0,this.badge.save({name:this.name(),icon:this.icon(),image:this.image(),description:this.description(),isVisible:this.isVisible(),iconColor:this.iconColor(),backgroundColor:this.backgroundColor(),labelColor:this.labelColor()}).then((function(){return e.hide()}),(function(t){e.loading=!1,e.handleErrors(t)}))},e}(Fe.a),He=function(t){function e(){return t.apply(this,arguments)||this}Object(r.a)(e,t);var a=e.prototype;return a.oninit=function(e){t.prototype.oninit.call(this,e),this.loading=!1},a.view=function(){var t=this.attrs.badge;return t?m("li",{"data-id":t.id(),className:t.isVisible()?"":"BadgeDisabled"},m("div",{className:"SortableBadges-info"},m("span",{className:"BadgeDetails"},m(Me.a,{badge:t,onclick:function(){return app.modal.show(Le,{badge:t})},forceVisibility:!0})),m("span",{className:"BadgeButtons"},m(d.a,{className:"Button",disabled:this.loading,onclick:function(){return app.modal.show(Le,{badge:t})}},m("i",{className:"fas fa-edit"})),m(d.a,{className:"Button",disabled:this.loading,onclick:function(){return app.modal.show(Ye,{text:app.translator.trans("v17development-flarum-badges.admin.confirm_messages.delete_badge"),promise:!0,onconfirm:function(e,a){return t.delete().then(e).catch(a)}})}},m("i",{className:"fas fa-trash"}))))):null},e}(Oe.a),ze=function(t){function e(){return t.apply(this,arguments)||this}Object(r.a)(e,t);var a=e.prototype;return a.oninit=function(e){t.prototype.oninit.call(this,e),this.badgeCategory=this.attrs.badgeCategory?this.attrs.badgeCategory:app.store.createRecord("badgeCategories"),this.name=Xe()(this.badgeCategory.name()),this.description=Xe()(this.badgeCategory.description()),this.isTable=Xe()(!this.badgeCategory.exists||this.badgeCategory.isTable()),this.isEnabled=Xe()(!this.badgeCategory.exists||this.badgeCategory.isEnabled())},a.className=function(){return"Modal--small"},a.title=function(){return app.translator.trans("v17development-flarum-badges.admin."+(this.badgeCategory.exists?"update_category":"create_category"))},a.content=function(){return[m("div",{className:"Modal-body"},m("div",{className:"Form"},this.data().toArray())),m("div",{className:"Modal-footer"},d.a.component({type:"submit",className:"Button Button--primary",loading:this.loading},app.translator.trans("core.admin.settings.submit_button")))]},a.data=function(){var t=this,e=new Pe.a;return e.add("name",m("div",{className:"Form-group"},m("label",null,app.translator.trans("v17development-flarum-badges.admin.badge_category.name"),":"),m("input",{className:"FormControl",placeholder:app.translator.trans("v17development-flarum-badges.admin.badge_category.name"),bidi:this.name})),50),e.add("description",m("div",{className:"Form-group"},m("label",null,app.translator.trans("v17development-flarum-badges.admin.badge_category.description"),":"),m("textarea",{className:"FormControl",placeholder:app.translator.trans("v17development-flarum-badges.admin.badge_category.description"),bidi:this.description})),50),e.add("blockview",m("div",{className:"Form-group"},je.a.component({state:!1===this.isTable(),onchange:function(e){return t.isTable(!e)}},[m("b",null,app.translator.trans("v17development-flarum-badges.admin.badge_category.blockview")),m("div",{className:"helpText"},app.translator.trans("v17development-flarum-badges.admin.badge_category.blockview_description"))])),50),e.add("enabled",m("div",{className:"Form-group"},je.a.component({state:1==this.isEnabled(),onchange:function(e){return t.isEnabled(e)}},[m("b",null,app.translator.trans("v17development-flarum-badges.admin.badge_category.enabled")),m("div",{className:"helpText"},app.translator.trans("v17development-flarum-badges.admin.badge_category.enabled_description"))])),50),e},a.onsubmit=function(t){var e=this;t.preventDefault(),this.loading=!0,this.badgeCategory.save({name:this.name(),description:this.description(),isTable:this.isTable(),isEnabled:this.isEnabled()}).then((function(){e.hide(),e.attrs.onCreate&&e.attrs.onCreate()}),(function(t){e.loading=!1,e.handleErrors(t)}))},e}(Fe.a),Ve=a(36),We=a.n(Ve),Ue=function(t){function e(){return t.apply(this,arguments)||this}return Object(r.a)(e,t),e.prototype.view=function(){if(void 0!==app.data.settings.badges_install_automoderation)return null;var t=void 0!==app.data.extensions["askvortsov-auto-moderator"];return m("div",{className:"FlarumBadges-install-dependency"},m("div",{className:"FlarumBadges-install-dependency-title"},app.translator.trans("v17development-flarum-badges.admin.auto_moderator.not_installed.title")),m("div",{className:"FlarumBadges-install-dependency-content"},app.translator.trans("v17development-flarum-badges.admin.auto_moderator.not_installed.content",{a:m("a",{href:"https://discuss.flarum.org/d/27306",target:"_blank"})})),m("div",{className:"FlarumBadges-install-dependency-buttons"},m("a",{className:"Button",href:t?"#/extension/askvortsov-auto-moderator":"https://discuss.flarum.org/d/27306",target:t?"":"_blank"},m("i",{class:"icon fas "+(t?"fa-robot":"fa-download")+" Button-icon"}),m("span",{class:"Button-label"},app.translator.trans(t?"core.admin.extension.open_modal":"v17development-flarum-badges.admin.auto_moderator.not_installed.install"))),m(d.a,{className:"Button",onclick:function(){return We()({badges_install_automoderation:"dismissed"})},icon:"fas fa-times"},app.translator.trans("v17development-flarum-badges.admin.auto_moderator.not_installed.dismiss"))))},e}(Oe.a),Ge=function(t){function e(){return t.apply(this,arguments)||this}Object(r.a)(e,t);var a=e.prototype;return a.oninit=function(e){var a=this;t.prototype.oninit.call(this,e),this.loading=!0,this.updating=!1,this.forcedRefreshKey=0,app.store.find("badge_categories").then((function(){app.store.find("badges").then((function(){a.loading=!1,m.redraw()}))}))},a.content=function(){var t=this,e=app.store.all("badgeCategories").sort((function(t,e){return t.order()-e.order()})),a=app.store.all("badges").filter((function(t){return 0==t.category()}));return m("div",{className:"FlarumBadgesPage"},-1===app.data.settings.extensions_enabled.indexOf("askvortsov-auto-moderator")&&m(Ue,null),m("div",{className:"FlarumBadgePageButtons"},m(d.a,{className:"Button",onclick:function(){return app.modal.show(ze,{onCreate:function(){return t.nextRefreshKey()}})},icon:"fas fa-project-diagram"},app.translator.trans("v17development-flarum-badges.admin.create_category")),m(d.a,{className:"Button",onclick:function(){return app.modal.show(Le)},icon:"fas fa-icons"},app.translator.trans("v17development-flarum-badges.admin.new_badge"))),m("div",null,!this.loading&&m("div",{className:"FlarumBadgeCategories",key:this.forcedRefreshKey,oncreate:this.onBadgeListReady.bind(this)},e&&e.map((function(a,n){return m("div",{className:"FlarumBadgeCategory","data-id":a.id()},m("div",{className:"CategoryHeader"},m("span",{className:"CategoryName"},!a.isEnabled()&&m("i",{className:"fas fa-eye-slash"}),m("b",null,a.name())),m("span",{className:"CategoryLinks"},m("a",{href:"javascript:void(0)",onclick:function(){return app.modal.show(ze,{badgeCategory:a})}},app.translator.trans("v17development-flarum-badges.admin.edit_category")),m("a",{href:"javascript:void(0)",onclick:function(){return t.updateCategorySort(a,"up")},className:0===n?"LinkDisabled":null},m("i",{className:"fas fa-caret-up"})),m("a",{href:"javascript:void(0)",onclick:function(){return t.updateCategorySort(a,"down")},className:n===e.length-1?"LinkDisabled":null},m("i",{className:"fas fa-caret-down"})),m("a",{href:"javascript:void(0)",onclick:function(){return app.modal.show(Ye,{text:app.translator.trans("v17development-flarum-badges.admin.confirm_messages.delete_category"),promise:!0,onconfirm:function(t,e){var n=a.badges();a.delete().then((function(){t(),n.forEach((function(t){return t.pushData({relationships:{category:null}})}))})).catch(e)}})}},m("i",{className:"fas fa-trash"})))),m("ul",{className:"SortableBadges"},a.badges()&&a.badges().sort((function(t,e){return t.order()-e.order()})).map((function(t){return m(He,{badge:t})}))))})),m("div",{className:"FlarumBadgeCategory"},m("div",{className:"CategoryHeader"},m("span",{className:"CategoryName"},m("b",null,app.translator.trans("v17development-flarum-badges.admin.uncategorized")))),m("ul",{className:"SortableBadges"},a.sort((function(t,e){return t.order()-e.order()})).map((function(t){return m(He,{badge:t})})))))),this.loading&&m(xe.a,{size:"big"}),!this.loading&&0===a.length&&0===e.length&&m("p",null,app.translator.trans("v17development-flarum-badges.admin.nothing_here_yet")))},a.onBadgeListReady=function(t){var e=this;this.$(".SortableBadges").get().map((function(t){Ee.create(t,{group:"tags",animation:150,swapThreshold:.65,dragClass:"SortableBadges-dragging",ghostClass:"SortableBadges-placeholder",direction:"horizontal",onSort:function(t){return e.onSortUpdate(t)}})}))},a.updateCategorySort=function(t,e){var a=this,n="up"===e?t.order()-1:t.order()+1,o=[];console.log(t.id(),e,n),n<=0&&o.push(t.id()),app.store.all("badgeCategories").sort((function(t,e){return t.order()-e.order()})).forEach((function(a,r){a!==t&&(0!==n&&r===n&&"up"===e&&o.push(t.id()),o.push(a.id()),r===n&&"down"===e&&o.push(t.id()))})),app.request({url:app.forum.attribute("apiUrl")+"/badge_categories/order",method:"POST",body:{order:o}}).catch((function(t){return console.error(t)})).then((function(t){app.store.pushPayload(t),a.nextRefreshKey()}))},a.onSortUpdate=function(){var t=this;if(!this.updating){this.updating=!0;var e=this.$(".FlarumBadgeCategory").map((function(){return{id:$(this).data("id")?$(this).data("id"):null,children:$(this).find("li").map((function(){return $(this).data("id")})).get()}})).get();app.request({url:app.forum.attribute("apiUrl")+"/badges/order",method:"POST",body:{order:e}}).catch((function(t){return console.error(t)})).then((function(){e.map((function(t){var e=null!==t.id?app.store.getById("badgeCategories",t.id):null,a=t.children.map((function(t,a){var n=app.store.getById("badges",t);return n.pushData({attributes:{order:a},relationships:{category:e}}),n}));e&&e.pushData({relationships:{badges:{data:a.map((function(t){return{type:"badges",id:t.id()}}))}}})})),t.updating=!1,t.nextRefreshKey()}))}},a.nextRefreshKey=function(){this.forcedRefreshKey++,m.redraw()},e}(Se.a);app.initializers.add("v17development-user-badges",(function(){app.store.models.badges=n.a,app.store.models.badgeCategories=o.a,app.extensionData.for("v17development-user-badges").registerPage(Ge),app.extensionData.for("v17development-user-badges").registerPermission({icon:"fas fa-users",label:app.translator.trans("v17development-flarum-badges.admin.permissions.badge_detail_users"),permission:"badges.canViewDetailedUsers",allowGuest:!0},"view",90).registerPermission({icon:"fas fa-user-tag",label:app.translator.trans("v17development-flarum-badges.admin.permissions.give_badge"),permission:"badges.giveBadge"},"moderate",90).registerPermission({icon:"fas fa-user-times",label:app.translator.trans("v17development-flarum-badges.admin.permissions.take_badge"),permission:"badges.removeBadge"},"moderate",90),app.autoModeratorForms&&(app.autoModeratorForms.action.give_badge=y,app.autoModeratorForms.action.remove_badge=y,app.autoModeratorForms.requirement.has_badge=y)}))}]);
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+
+    if (enumerableOnly) {
+      symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+    }
+
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+var version = "1.14.0";
+
+function userAgent(pattern) {
+  if (typeof window !== 'undefined' && window.navigator) {
+    return !! /*@__PURE__*/navigator.userAgent.match(pattern);
+  }
+}
+
+var IE11OrLess = userAgent(/(?:Trident.*rv[ :]?11\.|msie|iemobile|Windows Phone)/i);
+var Edge = userAgent(/Edge/i);
+var FireFox = userAgent(/firefox/i);
+var Safari = userAgent(/safari/i) && !userAgent(/chrome/i) && !userAgent(/android/i);
+var IOS = userAgent(/iP(ad|od|hone)/i);
+var ChromeForAndroid = userAgent(/chrome/i) && userAgent(/android/i);
+var captureMode = {
+  capture: false,
+  passive: false
+};
+
+function on(el, event, fn) {
+  el.addEventListener(event, fn, !IE11OrLess && captureMode);
+}
+
+function off(el, event, fn) {
+  el.removeEventListener(event, fn, !IE11OrLess && captureMode);
+}
+
+function matches(
+/**HTMLElement*/
+el,
+/**String*/
+selector) {
+  if (!selector) return;
+  selector[0] === '>' && (selector = selector.substring(1));
+
+  if (el) {
+    try {
+      if (el.matches) {
+        return el.matches(selector);
+      } else if (el.msMatchesSelector) {
+        return el.msMatchesSelector(selector);
+      } else if (el.webkitMatchesSelector) {
+        return el.webkitMatchesSelector(selector);
+      }
+    } catch (_) {
+      return false;
+    }
+  }
+
+  return false;
+}
+
+function getParentOrHost(el) {
+  return el.host && el !== document && el.host.nodeType ? el.host : el.parentNode;
+}
+
+function closest(
+/**HTMLElement*/
+el,
+/**String*/
+selector,
+/**HTMLElement*/
+ctx, includeCTX) {
+  if (el) {
+    ctx = ctx || document;
+
+    do {
+      if (selector != null && (selector[0] === '>' ? el.parentNode === ctx && matches(el, selector) : matches(el, selector)) || includeCTX && el === ctx) {
+        return el;
+      }
+
+      if (el === ctx) break;
+      /* jshint boss:true */
+    } while (el = getParentOrHost(el));
+  }
+
+  return null;
+}
+
+var R_SPACE = /\s+/g;
+
+function toggleClass(el, name, state) {
+  if (el && name) {
+    if (el.classList) {
+      el.classList[state ? 'add' : 'remove'](name);
+    } else {
+      var className = (' ' + el.className + ' ').replace(R_SPACE, ' ').replace(' ' + name + ' ', ' ');
+      el.className = (className + (state ? ' ' + name : '')).replace(R_SPACE, ' ');
+    }
+  }
+}
+
+function css(el, prop, val) {
+  var style = el && el.style;
+
+  if (style) {
+    if (val === void 0) {
+      if (document.defaultView && document.defaultView.getComputedStyle) {
+        val = document.defaultView.getComputedStyle(el, '');
+      } else if (el.currentStyle) {
+        val = el.currentStyle;
+      }
+
+      return prop === void 0 ? val : val[prop];
+    } else {
+      if (!(prop in style) && prop.indexOf('webkit') === -1) {
+        prop = '-webkit-' + prop;
+      }
+
+      style[prop] = val + (typeof val === 'string' ? '' : 'px');
+    }
+  }
+}
+
+function matrix(el, selfOnly) {
+  var appliedTransforms = '';
+
+  if (typeof el === 'string') {
+    appliedTransforms = el;
+  } else {
+    do {
+      var transform = css(el, 'transform');
+
+      if (transform && transform !== 'none') {
+        appliedTransforms = transform + ' ' + appliedTransforms;
+      }
+      /* jshint boss:true */
+
+    } while (!selfOnly && (el = el.parentNode));
+  }
+
+  var matrixFn = window.DOMMatrix || window.WebKitCSSMatrix || window.CSSMatrix || window.MSCSSMatrix;
+  /*jshint -W056 */
+
+  return matrixFn && new matrixFn(appliedTransforms);
+}
+
+function find(ctx, tagName, iterator) {
+  if (ctx) {
+    var list = ctx.getElementsByTagName(tagName),
+        i = 0,
+        n = list.length;
+
+    if (iterator) {
+      for (; i < n; i++) {
+        iterator(list[i], i);
+      }
+    }
+
+    return list;
+  }
+
+  return [];
+}
+
+function getWindowScrollingElement() {
+  var scrollingElement = document.scrollingElement;
+
+  if (scrollingElement) {
+    return scrollingElement;
+  } else {
+    return document.documentElement;
+  }
+}
+/**
+ * Returns the "bounding client rect" of given element
+ * @param  {HTMLElement} el                       The element whose boundingClientRect is wanted
+ * @param  {[Boolean]} relativeToContainingBlock  Whether the rect should be relative to the containing block of (including) the container
+ * @param  {[Boolean]} relativeToNonStaticParent  Whether the rect should be relative to the relative parent of (including) the contaienr
+ * @param  {[Boolean]} undoScale                  Whether the container's scale() should be undone
+ * @param  {[HTMLElement]} container              The parent the element will be placed in
+ * @return {Object}                               The boundingClientRect of el, with specified adjustments
+ */
+
+
+function getRect(el, relativeToContainingBlock, relativeToNonStaticParent, undoScale, container) {
+  if (!el.getBoundingClientRect && el !== window) return;
+  var elRect, top, left, bottom, right, height, width;
+
+  if (el !== window && el.parentNode && el !== getWindowScrollingElement()) {
+    elRect = el.getBoundingClientRect();
+    top = elRect.top;
+    left = elRect.left;
+    bottom = elRect.bottom;
+    right = elRect.right;
+    height = elRect.height;
+    width = elRect.width;
+  } else {
+    top = 0;
+    left = 0;
+    bottom = window.innerHeight;
+    right = window.innerWidth;
+    height = window.innerHeight;
+    width = window.innerWidth;
+  }
+
+  if ((relativeToContainingBlock || relativeToNonStaticParent) && el !== window) {
+    // Adjust for translate()
+    container = container || el.parentNode; // solves #1123 (see: https://stackoverflow.com/a/37953806/6088312)
+    // Not needed on <= IE11
+
+    if (!IE11OrLess) {
+      do {
+        if (container && container.getBoundingClientRect && (css(container, 'transform') !== 'none' || relativeToNonStaticParent && css(container, 'position') !== 'static')) {
+          var containerRect = container.getBoundingClientRect(); // Set relative to edges of padding box of container
+
+          top -= containerRect.top + parseInt(css(container, 'border-top-width'));
+          left -= containerRect.left + parseInt(css(container, 'border-left-width'));
+          bottom = top + elRect.height;
+          right = left + elRect.width;
+          break;
+        }
+        /* jshint boss:true */
+
+      } while (container = container.parentNode);
+    }
+  }
+
+  if (undoScale && el !== window) {
+    // Adjust for scale()
+    var elMatrix = matrix(container || el),
+        scaleX = elMatrix && elMatrix.a,
+        scaleY = elMatrix && elMatrix.d;
+
+    if (elMatrix) {
+      top /= scaleY;
+      left /= scaleX;
+      width /= scaleX;
+      height /= scaleY;
+      bottom = top + height;
+      right = left + width;
+    }
+  }
+
+  return {
+    top: top,
+    left: left,
+    bottom: bottom,
+    right: right,
+    width: width,
+    height: height
+  };
+}
+/**
+ * Checks if a side of an element is scrolled past a side of its parents
+ * @param  {HTMLElement}  el           The element who's side being scrolled out of view is in question
+ * @param  {String}       elSide       Side of the element in question ('top', 'left', 'right', 'bottom')
+ * @param  {String}       parentSide   Side of the parent in question ('top', 'left', 'right', 'bottom')
+ * @return {HTMLElement}               The parent scroll element that the el's side is scrolled past, or null if there is no such element
+ */
+
+
+function isScrolledPast(el, elSide, parentSide) {
+  var parent = getParentAutoScrollElement(el, true),
+      elSideVal = getRect(el)[elSide];
+  /* jshint boss:true */
+
+  while (parent) {
+    var parentSideVal = getRect(parent)[parentSide],
+        visible = void 0;
+
+    if (parentSide === 'top' || parentSide === 'left') {
+      visible = elSideVal >= parentSideVal;
+    } else {
+      visible = elSideVal <= parentSideVal;
+    }
+
+    if (!visible) return parent;
+    if (parent === getWindowScrollingElement()) break;
+    parent = getParentAutoScrollElement(parent, false);
+  }
+
+  return false;
+}
+/**
+ * Gets nth child of el, ignoring hidden children, sortable's elements (does not ignore clone if it's visible)
+ * and non-draggable elements
+ * @param  {HTMLElement} el       The parent element
+ * @param  {Number} childNum      The index of the child
+ * @param  {Object} options       Parent Sortable's options
+ * @return {HTMLElement}          The child at index childNum, or null if not found
+ */
+
+
+function getChild(el, childNum, options, includeDragEl) {
+  var currentChild = 0,
+      i = 0,
+      children = el.children;
+
+  while (i < children.length) {
+    if (children[i].style.display !== 'none' && children[i] !== Sortable.ghost && (includeDragEl || children[i] !== Sortable.dragged) && closest(children[i], options.draggable, el, false)) {
+      if (currentChild === childNum) {
+        return children[i];
+      }
+
+      currentChild++;
+    }
+
+    i++;
+  }
+
+  return null;
+}
+/**
+ * Gets the last child in the el, ignoring ghostEl or invisible elements (clones)
+ * @param  {HTMLElement} el       Parent element
+ * @param  {selector} selector    Any other elements that should be ignored
+ * @return {HTMLElement}          The last child, ignoring ghostEl
+ */
+
+
+function lastChild(el, selector) {
+  var last = el.lastElementChild;
+
+  while (last && (last === Sortable.ghost || css(last, 'display') === 'none' || selector && !matches(last, selector))) {
+    last = last.previousElementSibling;
+  }
+
+  return last || null;
+}
+/**
+ * Returns the index of an element within its parent for a selected set of
+ * elements
+ * @param  {HTMLElement} el
+ * @param  {selector} selector
+ * @return {number}
+ */
+
+
+function index(el, selector) {
+  var index = 0;
+
+  if (!el || !el.parentNode) {
+    return -1;
+  }
+  /* jshint boss:true */
+
+
+  while (el = el.previousElementSibling) {
+    if (el.nodeName.toUpperCase() !== 'TEMPLATE' && el !== Sortable.clone && (!selector || matches(el, selector))) {
+      index++;
+    }
+  }
+
+  return index;
+}
+/**
+ * Returns the scroll offset of the given element, added with all the scroll offsets of parent elements.
+ * The value is returned in real pixels.
+ * @param  {HTMLElement} el
+ * @return {Array}             Offsets in the format of [left, top]
+ */
+
+
+function getRelativeScrollOffset(el) {
+  var offsetLeft = 0,
+      offsetTop = 0,
+      winScroller = getWindowScrollingElement();
+
+  if (el) {
+    do {
+      var elMatrix = matrix(el),
+          scaleX = elMatrix.a,
+          scaleY = elMatrix.d;
+      offsetLeft += el.scrollLeft * scaleX;
+      offsetTop += el.scrollTop * scaleY;
+    } while (el !== winScroller && (el = el.parentNode));
+  }
+
+  return [offsetLeft, offsetTop];
+}
+/**
+ * Returns the index of the object within the given array
+ * @param  {Array} arr   Array that may or may not hold the object
+ * @param  {Object} obj  An object that has a key-value pair unique to and identical to a key-value pair in the object you want to find
+ * @return {Number}      The index of the object in the array, or -1
+ */
+
+
+function indexOfObject(arr, obj) {
+  for (var i in arr) {
+    if (!arr.hasOwnProperty(i)) continue;
+
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key) && obj[key] === arr[i][key]) return Number(i);
+    }
+  }
+
+  return -1;
+}
+
+function getParentAutoScrollElement(el, includeSelf) {
+  // skip to window
+  if (!el || !el.getBoundingClientRect) return getWindowScrollingElement();
+  var elem = el;
+  var gotSelf = false;
+
+  do {
+    // we don't need to get elem css if it isn't even overflowing in the first place (performance)
+    if (elem.clientWidth < elem.scrollWidth || elem.clientHeight < elem.scrollHeight) {
+      var elemCSS = css(elem);
+
+      if (elem.clientWidth < elem.scrollWidth && (elemCSS.overflowX == 'auto' || elemCSS.overflowX == 'scroll') || elem.clientHeight < elem.scrollHeight && (elemCSS.overflowY == 'auto' || elemCSS.overflowY == 'scroll')) {
+        if (!elem.getBoundingClientRect || elem === document.body) return getWindowScrollingElement();
+        if (gotSelf || includeSelf) return elem;
+        gotSelf = true;
+      }
+    }
+    /* jshint boss:true */
+
+  } while (elem = elem.parentNode);
+
+  return getWindowScrollingElement();
+}
+
+function extend(dst, src) {
+  if (dst && src) {
+    for (var key in src) {
+      if (src.hasOwnProperty(key)) {
+        dst[key] = src[key];
+      }
+    }
+  }
+
+  return dst;
+}
+
+function isRectEqual(rect1, rect2) {
+  return Math.round(rect1.top) === Math.round(rect2.top) && Math.round(rect1.left) === Math.round(rect2.left) && Math.round(rect1.height) === Math.round(rect2.height) && Math.round(rect1.width) === Math.round(rect2.width);
+}
+
+var _throttleTimeout;
+
+function throttle(callback, ms) {
+  return function () {
+    if (!_throttleTimeout) {
+      var args = arguments,
+          _this = this;
+
+      if (args.length === 1) {
+        callback.call(_this, args[0]);
+      } else {
+        callback.apply(_this, args);
+      }
+
+      _throttleTimeout = setTimeout(function () {
+        _throttleTimeout = void 0;
+      }, ms);
+    }
+  };
+}
+
+function cancelThrottle() {
+  clearTimeout(_throttleTimeout);
+  _throttleTimeout = void 0;
+}
+
+function scrollBy(el, x, y) {
+  el.scrollLeft += x;
+  el.scrollTop += y;
+}
+
+function clone(el) {
+  var Polymer = window.Polymer;
+  var $ = window.jQuery || window.Zepto;
+
+  if (Polymer && Polymer.dom) {
+    return Polymer.dom(el).cloneNode(true);
+  } else if ($) {
+    return $(el).clone(true)[0];
+  } else {
+    return el.cloneNode(true);
+  }
+}
+
+function setRect(el, rect) {
+  css(el, 'position', 'absolute');
+  css(el, 'top', rect.top);
+  css(el, 'left', rect.left);
+  css(el, 'width', rect.width);
+  css(el, 'height', rect.height);
+}
+
+function unsetRect(el) {
+  css(el, 'position', '');
+  css(el, 'top', '');
+  css(el, 'left', '');
+  css(el, 'width', '');
+  css(el, 'height', '');
+}
+
+var expando = 'Sortable' + new Date().getTime();
+
+function AnimationStateManager() {
+  var animationStates = [],
+      animationCallbackId;
+  return {
+    captureAnimationState: function captureAnimationState() {
+      animationStates = [];
+      if (!this.options.animation) return;
+      var children = [].slice.call(this.el.children);
+      children.forEach(function (child) {
+        if (css(child, 'display') === 'none' || child === Sortable.ghost) return;
+        animationStates.push({
+          target: child,
+          rect: getRect(child)
+        });
+
+        var fromRect = _objectSpread2({}, animationStates[animationStates.length - 1].rect); // If animating: compensate for current animation
+
+
+        if (child.thisAnimationDuration) {
+          var childMatrix = matrix(child, true);
+
+          if (childMatrix) {
+            fromRect.top -= childMatrix.f;
+            fromRect.left -= childMatrix.e;
+          }
+        }
+
+        child.fromRect = fromRect;
+      });
+    },
+    addAnimationState: function addAnimationState(state) {
+      animationStates.push(state);
+    },
+    removeAnimationState: function removeAnimationState(target) {
+      animationStates.splice(indexOfObject(animationStates, {
+        target: target
+      }), 1);
+    },
+    animateAll: function animateAll(callback) {
+      var _this = this;
+
+      if (!this.options.animation) {
+        clearTimeout(animationCallbackId);
+        if (typeof callback === 'function') callback();
+        return;
+      }
+
+      var animating = false,
+          animationTime = 0;
+      animationStates.forEach(function (state) {
+        var time = 0,
+            target = state.target,
+            fromRect = target.fromRect,
+            toRect = getRect(target),
+            prevFromRect = target.prevFromRect,
+            prevToRect = target.prevToRect,
+            animatingRect = state.rect,
+            targetMatrix = matrix(target, true);
+
+        if (targetMatrix) {
+          // Compensate for current animation
+          toRect.top -= targetMatrix.f;
+          toRect.left -= targetMatrix.e;
+        }
+
+        target.toRect = toRect;
+
+        if (target.thisAnimationDuration) {
+          // Could also check if animatingRect is between fromRect and toRect
+          if (isRectEqual(prevFromRect, toRect) && !isRectEqual(fromRect, toRect) && // Make sure animatingRect is on line between toRect & fromRect
+          (animatingRect.top - toRect.top) / (animatingRect.left - toRect.left) === (fromRect.top - toRect.top) / (fromRect.left - toRect.left)) {
+            // If returning to same place as started from animation and on same axis
+            time = calculateRealTime(animatingRect, prevFromRect, prevToRect, _this.options);
+          }
+        } // if fromRect != toRect: animate
+
+
+        if (!isRectEqual(toRect, fromRect)) {
+          target.prevFromRect = fromRect;
+          target.prevToRect = toRect;
+
+          if (!time) {
+            time = _this.options.animation;
+          }
+
+          _this.animate(target, animatingRect, toRect, time);
+        }
+
+        if (time) {
+          animating = true;
+          animationTime = Math.max(animationTime, time);
+          clearTimeout(target.animationResetTimer);
+          target.animationResetTimer = setTimeout(function () {
+            target.animationTime = 0;
+            target.prevFromRect = null;
+            target.fromRect = null;
+            target.prevToRect = null;
+            target.thisAnimationDuration = null;
+          }, time);
+          target.thisAnimationDuration = time;
+        }
+      });
+      clearTimeout(animationCallbackId);
+
+      if (!animating) {
+        if (typeof callback === 'function') callback();
+      } else {
+        animationCallbackId = setTimeout(function () {
+          if (typeof callback === 'function') callback();
+        }, animationTime);
+      }
+
+      animationStates = [];
+    },
+    animate: function animate(target, currentRect, toRect, duration) {
+      if (duration) {
+        css(target, 'transition', '');
+        css(target, 'transform', '');
+        var elMatrix = matrix(this.el),
+            scaleX = elMatrix && elMatrix.a,
+            scaleY = elMatrix && elMatrix.d,
+            translateX = (currentRect.left - toRect.left) / (scaleX || 1),
+            translateY = (currentRect.top - toRect.top) / (scaleY || 1);
+        target.animatingX = !!translateX;
+        target.animatingY = !!translateY;
+        css(target, 'transform', 'translate3d(' + translateX + 'px,' + translateY + 'px,0)');
+        this.forRepaintDummy = repaint(target); // repaint
+
+        css(target, 'transition', 'transform ' + duration + 'ms' + (this.options.easing ? ' ' + this.options.easing : ''));
+        css(target, 'transform', 'translate3d(0,0,0)');
+        typeof target.animated === 'number' && clearTimeout(target.animated);
+        target.animated = setTimeout(function () {
+          css(target, 'transition', '');
+          css(target, 'transform', '');
+          target.animated = false;
+          target.animatingX = false;
+          target.animatingY = false;
+        }, duration);
+      }
+    }
+  };
+}
+
+function repaint(target) {
+  return target.offsetWidth;
+}
+
+function calculateRealTime(animatingRect, fromRect, toRect, options) {
+  return Math.sqrt(Math.pow(fromRect.top - animatingRect.top, 2) + Math.pow(fromRect.left - animatingRect.left, 2)) / Math.sqrt(Math.pow(fromRect.top - toRect.top, 2) + Math.pow(fromRect.left - toRect.left, 2)) * options.animation;
+}
+
+var plugins = [];
+var defaults = {
+  initializeByDefault: true
+};
+var PluginManager = {
+  mount: function mount(plugin) {
+    // Set default static properties
+    for (var option in defaults) {
+      if (defaults.hasOwnProperty(option) && !(option in plugin)) {
+        plugin[option] = defaults[option];
+      }
+    }
+
+    plugins.forEach(function (p) {
+      if (p.pluginName === plugin.pluginName) {
+        throw "Sortable: Cannot mount plugin ".concat(plugin.pluginName, " more than once");
+      }
+    });
+    plugins.push(plugin);
+  },
+  pluginEvent: function pluginEvent(eventName, sortable, evt) {
+    var _this = this;
+
+    this.eventCanceled = false;
+
+    evt.cancel = function () {
+      _this.eventCanceled = true;
+    };
+
+    var eventNameGlobal = eventName + 'Global';
+    plugins.forEach(function (plugin) {
+      if (!sortable[plugin.pluginName]) return; // Fire global events if it exists in this sortable
+
+      if (sortable[plugin.pluginName][eventNameGlobal]) {
+        sortable[plugin.pluginName][eventNameGlobal](_objectSpread2({
+          sortable: sortable
+        }, evt));
+      } // Only fire plugin event if plugin is enabled in this sortable,
+      // and plugin has event defined
+
+
+      if (sortable.options[plugin.pluginName] && sortable[plugin.pluginName][eventName]) {
+        sortable[plugin.pluginName][eventName](_objectSpread2({
+          sortable: sortable
+        }, evt));
+      }
+    });
+  },
+  initializePlugins: function initializePlugins(sortable, el, defaults, options) {
+    plugins.forEach(function (plugin) {
+      var pluginName = plugin.pluginName;
+      if (!sortable.options[pluginName] && !plugin.initializeByDefault) return;
+      var initialized = new plugin(sortable, el, sortable.options);
+      initialized.sortable = sortable;
+      initialized.options = sortable.options;
+      sortable[pluginName] = initialized; // Add default options from plugin
+
+      _extends(defaults, initialized.defaults);
+    });
+
+    for (var option in sortable.options) {
+      if (!sortable.options.hasOwnProperty(option)) continue;
+      var modified = this.modifyOption(sortable, option, sortable.options[option]);
+
+      if (typeof modified !== 'undefined') {
+        sortable.options[option] = modified;
+      }
+    }
+  },
+  getEventProperties: function getEventProperties(name, sortable) {
+    var eventProperties = {};
+    plugins.forEach(function (plugin) {
+      if (typeof plugin.eventProperties !== 'function') return;
+
+      _extends(eventProperties, plugin.eventProperties.call(sortable[plugin.pluginName], name));
+    });
+    return eventProperties;
+  },
+  modifyOption: function modifyOption(sortable, name, value) {
+    var modifiedValue;
+    plugins.forEach(function (plugin) {
+      // Plugin must exist on the Sortable
+      if (!sortable[plugin.pluginName]) return; // If static option listener exists for this option, call in the context of the Sortable's instance of this plugin
+
+      if (plugin.optionListeners && typeof plugin.optionListeners[name] === 'function') {
+        modifiedValue = plugin.optionListeners[name].call(sortable[plugin.pluginName], value);
+      }
+    });
+    return modifiedValue;
+  }
+};
+
+function dispatchEvent(_ref) {
+  var sortable = _ref.sortable,
+      rootEl = _ref.rootEl,
+      name = _ref.name,
+      targetEl = _ref.targetEl,
+      cloneEl = _ref.cloneEl,
+      toEl = _ref.toEl,
+      fromEl = _ref.fromEl,
+      oldIndex = _ref.oldIndex,
+      newIndex = _ref.newIndex,
+      oldDraggableIndex = _ref.oldDraggableIndex,
+      newDraggableIndex = _ref.newDraggableIndex,
+      originalEvent = _ref.originalEvent,
+      putSortable = _ref.putSortable,
+      extraEventProperties = _ref.extraEventProperties;
+  sortable = sortable || rootEl && rootEl[expando];
+  if (!sortable) return;
+  var evt,
+      options = sortable.options,
+      onName = 'on' + name.charAt(0).toUpperCase() + name.substr(1); // Support for new CustomEvent feature
+
+  if (window.CustomEvent && !IE11OrLess && !Edge) {
+    evt = new CustomEvent(name, {
+      bubbles: true,
+      cancelable: true
+    });
+  } else {
+    evt = document.createEvent('Event');
+    evt.initEvent(name, true, true);
+  }
+
+  evt.to = toEl || rootEl;
+  evt.from = fromEl || rootEl;
+  evt.item = targetEl || rootEl;
+  evt.clone = cloneEl;
+  evt.oldIndex = oldIndex;
+  evt.newIndex = newIndex;
+  evt.oldDraggableIndex = oldDraggableIndex;
+  evt.newDraggableIndex = newDraggableIndex;
+  evt.originalEvent = originalEvent;
+  evt.pullMode = putSortable ? putSortable.lastPutMode : undefined;
+
+  var allEventProperties = _objectSpread2(_objectSpread2({}, extraEventProperties), PluginManager.getEventProperties(name, sortable));
+
+  for (var option in allEventProperties) {
+    evt[option] = allEventProperties[option];
+  }
+
+  if (rootEl) {
+    rootEl.dispatchEvent(evt);
+  }
+
+  if (options[onName]) {
+    options[onName].call(sortable, evt);
+  }
+}
+
+var _excluded = ["evt"];
+
+var pluginEvent = function pluginEvent(eventName, sortable) {
+  var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+      originalEvent = _ref.evt,
+      data = _objectWithoutProperties(_ref, _excluded);
+
+  PluginManager.pluginEvent.bind(Sortable)(eventName, sortable, _objectSpread2({
+    dragEl: dragEl,
+    parentEl: parentEl,
+    ghostEl: ghostEl,
+    rootEl: rootEl,
+    nextEl: nextEl,
+    lastDownEl: lastDownEl,
+    cloneEl: cloneEl,
+    cloneHidden: cloneHidden,
+    dragStarted: moved,
+    putSortable: putSortable,
+    activeSortable: Sortable.active,
+    originalEvent: originalEvent,
+    oldIndex: oldIndex,
+    oldDraggableIndex: oldDraggableIndex,
+    newIndex: newIndex,
+    newDraggableIndex: newDraggableIndex,
+    hideGhostForTarget: _hideGhostForTarget,
+    unhideGhostForTarget: _unhideGhostForTarget,
+    cloneNowHidden: function cloneNowHidden() {
+      cloneHidden = true;
+    },
+    cloneNowShown: function cloneNowShown() {
+      cloneHidden = false;
+    },
+    dispatchSortableEvent: function dispatchSortableEvent(name) {
+      _dispatchEvent({
+        sortable: sortable,
+        name: name,
+        originalEvent: originalEvent
+      });
+    }
+  }, data));
+};
+
+function _dispatchEvent(info) {
+  dispatchEvent(_objectSpread2({
+    putSortable: putSortable,
+    cloneEl: cloneEl,
+    targetEl: dragEl,
+    rootEl: rootEl,
+    oldIndex: oldIndex,
+    oldDraggableIndex: oldDraggableIndex,
+    newIndex: newIndex,
+    newDraggableIndex: newDraggableIndex
+  }, info));
+}
+
+var dragEl,
+    parentEl,
+    ghostEl,
+    rootEl,
+    nextEl,
+    lastDownEl,
+    cloneEl,
+    cloneHidden,
+    oldIndex,
+    newIndex,
+    oldDraggableIndex,
+    newDraggableIndex,
+    activeGroup,
+    putSortable,
+    awaitingDragStarted = false,
+    ignoreNextClick = false,
+    sortables = [],
+    tapEvt,
+    touchEvt,
+    lastDx,
+    lastDy,
+    tapDistanceLeft,
+    tapDistanceTop,
+    moved,
+    lastTarget,
+    lastDirection,
+    pastFirstInvertThresh = false,
+    isCircumstantialInvert = false,
+    targetMoveDistance,
+    // For positioning ghost absolutely
+ghostRelativeParent,
+    ghostRelativeParentInitialScroll = [],
+    // (left, top)
+_silent = false,
+    savedInputChecked = [];
+/** @const */
+
+var documentExists = typeof document !== 'undefined',
+    PositionGhostAbsolutely = IOS,
+    CSSFloatProperty = Edge || IE11OrLess ? 'cssFloat' : 'float',
+    // This will not pass for IE9, because IE9 DnD only works on anchors
+supportDraggable = documentExists && !ChromeForAndroid && !IOS && 'draggable' in document.createElement('div'),
+    supportCssPointerEvents = function () {
+  if (!documentExists) return; // false when <= IE11
+
+  if (IE11OrLess) {
+    return false;
+  }
+
+  var el = document.createElement('x');
+  el.style.cssText = 'pointer-events:auto';
+  return el.style.pointerEvents === 'auto';
+}(),
+    _detectDirection = function _detectDirection(el, options) {
+  var elCSS = css(el),
+      elWidth = parseInt(elCSS.width) - parseInt(elCSS.paddingLeft) - parseInt(elCSS.paddingRight) - parseInt(elCSS.borderLeftWidth) - parseInt(elCSS.borderRightWidth),
+      child1 = getChild(el, 0, options),
+      child2 = getChild(el, 1, options),
+      firstChildCSS = child1 && css(child1),
+      secondChildCSS = child2 && css(child2),
+      firstChildWidth = firstChildCSS && parseInt(firstChildCSS.marginLeft) + parseInt(firstChildCSS.marginRight) + getRect(child1).width,
+      secondChildWidth = secondChildCSS && parseInt(secondChildCSS.marginLeft) + parseInt(secondChildCSS.marginRight) + getRect(child2).width;
+
+  if (elCSS.display === 'flex') {
+    return elCSS.flexDirection === 'column' || elCSS.flexDirection === 'column-reverse' ? 'vertical' : 'horizontal';
+  }
+
+  if (elCSS.display === 'grid') {
+    return elCSS.gridTemplateColumns.split(' ').length <= 1 ? 'vertical' : 'horizontal';
+  }
+
+  if (child1 && firstChildCSS["float"] && firstChildCSS["float"] !== 'none') {
+    var touchingSideChild2 = firstChildCSS["float"] === 'left' ? 'left' : 'right';
+    return child2 && (secondChildCSS.clear === 'both' || secondChildCSS.clear === touchingSideChild2) ? 'vertical' : 'horizontal';
+  }
+
+  return child1 && (firstChildCSS.display === 'block' || firstChildCSS.display === 'flex' || firstChildCSS.display === 'table' || firstChildCSS.display === 'grid' || firstChildWidth >= elWidth && elCSS[CSSFloatProperty] === 'none' || child2 && elCSS[CSSFloatProperty] === 'none' && firstChildWidth + secondChildWidth > elWidth) ? 'vertical' : 'horizontal';
+},
+    _dragElInRowColumn = function _dragElInRowColumn(dragRect, targetRect, vertical) {
+  var dragElS1Opp = vertical ? dragRect.left : dragRect.top,
+      dragElS2Opp = vertical ? dragRect.right : dragRect.bottom,
+      dragElOppLength = vertical ? dragRect.width : dragRect.height,
+      targetS1Opp = vertical ? targetRect.left : targetRect.top,
+      targetS2Opp = vertical ? targetRect.right : targetRect.bottom,
+      targetOppLength = vertical ? targetRect.width : targetRect.height;
+  return dragElS1Opp === targetS1Opp || dragElS2Opp === targetS2Opp || dragElS1Opp + dragElOppLength / 2 === targetS1Opp + targetOppLength / 2;
+},
+
+/**
+ * Detects first nearest empty sortable to X and Y position using emptyInsertThreshold.
+ * @param  {Number} x      X position
+ * @param  {Number} y      Y position
+ * @return {HTMLElement}   Element of the first found nearest Sortable
+ */
+_detectNearestEmptySortable = function _detectNearestEmptySortable(x, y) {
+  var ret;
+  sortables.some(function (sortable) {
+    var threshold = sortable[expando].options.emptyInsertThreshold;
+    if (!threshold || lastChild(sortable)) return;
+    var rect = getRect(sortable),
+        insideHorizontally = x >= rect.left - threshold && x <= rect.right + threshold,
+        insideVertically = y >= rect.top - threshold && y <= rect.bottom + threshold;
+
+    if (insideHorizontally && insideVertically) {
+      return ret = sortable;
+    }
+  });
+  return ret;
+},
+    _prepareGroup = function _prepareGroup(options) {
+  function toFn(value, pull) {
+    return function (to, from, dragEl, evt) {
+      var sameGroup = to.options.group.name && from.options.group.name && to.options.group.name === from.options.group.name;
+
+      if (value == null && (pull || sameGroup)) {
+        // Default pull value
+        // Default pull and put value if same group
+        return true;
+      } else if (value == null || value === false) {
+        return false;
+      } else if (pull && value === 'clone') {
+        return value;
+      } else if (typeof value === 'function') {
+        return toFn(value(to, from, dragEl, evt), pull)(to, from, dragEl, evt);
+      } else {
+        var otherGroup = (pull ? to : from).options.group.name;
+        return value === true || typeof value === 'string' && value === otherGroup || value.join && value.indexOf(otherGroup) > -1;
+      }
+    };
+  }
+
+  var group = {};
+  var originalGroup = options.group;
+
+  if (!originalGroup || _typeof(originalGroup) != 'object') {
+    originalGroup = {
+      name: originalGroup
+    };
+  }
+
+  group.name = originalGroup.name;
+  group.checkPull = toFn(originalGroup.pull, true);
+  group.checkPut = toFn(originalGroup.put);
+  group.revertClone = originalGroup.revertClone;
+  options.group = group;
+},
+    _hideGhostForTarget = function _hideGhostForTarget() {
+  if (!supportCssPointerEvents && ghostEl) {
+    css(ghostEl, 'display', 'none');
+  }
+},
+    _unhideGhostForTarget = function _unhideGhostForTarget() {
+  if (!supportCssPointerEvents && ghostEl) {
+    css(ghostEl, 'display', '');
+  }
+}; // #1184 fix - Prevent click event on fallback if dragged but item not changed position
+
+
+if (documentExists) {
+  document.addEventListener('click', function (evt) {
+    if (ignoreNextClick) {
+      evt.preventDefault();
+      evt.stopPropagation && evt.stopPropagation();
+      evt.stopImmediatePropagation && evt.stopImmediatePropagation();
+      ignoreNextClick = false;
+      return false;
+    }
+  }, true);
+}
+
+var nearestEmptyInsertDetectEvent = function nearestEmptyInsertDetectEvent(evt) {
+  if (dragEl) {
+    evt = evt.touches ? evt.touches[0] : evt;
+
+    var nearest = _detectNearestEmptySortable(evt.clientX, evt.clientY);
+
+    if (nearest) {
+      // Create imitation event
+      var event = {};
+
+      for (var i in evt) {
+        if (evt.hasOwnProperty(i)) {
+          event[i] = evt[i];
+        }
+      }
+
+      event.target = event.rootEl = nearest;
+      event.preventDefault = void 0;
+      event.stopPropagation = void 0;
+
+      nearest[expando]._onDragOver(event);
+    }
+  }
+};
+
+var _checkOutsideTargetEl = function _checkOutsideTargetEl(evt) {
+  if (dragEl) {
+    dragEl.parentNode[expando]._isOutsideThisEl(evt.target);
+  }
+};
+/**
+ * @class  Sortable
+ * @param  {HTMLElement}  el
+ * @param  {Object}       [options]
+ */
+
+
+function Sortable(el, options) {
+  if (!(el && el.nodeType && el.nodeType === 1)) {
+    throw "Sortable: `el` must be an HTMLElement, not ".concat({}.toString.call(el));
+  }
+
+  this.el = el; // root element
+
+  this.options = options = _extends({}, options); // Export instance
+
+  el[expando] = this;
+  var defaults = {
+    group: null,
+    sort: true,
+    disabled: false,
+    store: null,
+    handle: null,
+    draggable: /^[uo]l$/i.test(el.nodeName) ? '>li' : '>*',
+    swapThreshold: 1,
+    // percentage; 0 <= x <= 1
+    invertSwap: false,
+    // invert always
+    invertedSwapThreshold: null,
+    // will be set to same as swapThreshold if default
+    removeCloneOnHide: true,
+    direction: function direction() {
+      return _detectDirection(el, this.options);
+    },
+    ghostClass: 'sortable-ghost',
+    chosenClass: 'sortable-chosen',
+    dragClass: 'sortable-drag',
+    ignore: 'a, img',
+    filter: null,
+    preventOnFilter: true,
+    animation: 0,
+    easing: null,
+    setData: function setData(dataTransfer, dragEl) {
+      dataTransfer.setData('Text', dragEl.textContent);
+    },
+    dropBubble: false,
+    dragoverBubble: false,
+    dataIdAttr: 'data-id',
+    delay: 0,
+    delayOnTouchOnly: false,
+    touchStartThreshold: (Number.parseInt ? Number : window).parseInt(window.devicePixelRatio, 10) || 1,
+    forceFallback: false,
+    fallbackClass: 'sortable-fallback',
+    fallbackOnBody: false,
+    fallbackTolerance: 0,
+    fallbackOffset: {
+      x: 0,
+      y: 0
+    },
+    supportPointer: Sortable.supportPointer !== false && 'PointerEvent' in window && !Safari,
+    emptyInsertThreshold: 5
+  };
+  PluginManager.initializePlugins(this, el, defaults); // Set default options
+
+  for (var name in defaults) {
+    !(name in options) && (options[name] = defaults[name]);
+  }
+
+  _prepareGroup(options); // Bind all private methods
+
+
+  for (var fn in this) {
+    if (fn.charAt(0) === '_' && typeof this[fn] === 'function') {
+      this[fn] = this[fn].bind(this);
+    }
+  } // Setup drag mode
+
+
+  this.nativeDraggable = options.forceFallback ? false : supportDraggable;
+
+  if (this.nativeDraggable) {
+    // Touch start threshold cannot be greater than the native dragstart threshold
+    this.options.touchStartThreshold = 1;
+  } // Bind events
+
+
+  if (options.supportPointer) {
+    on(el, 'pointerdown', this._onTapStart);
+  } else {
+    on(el, 'mousedown', this._onTapStart);
+    on(el, 'touchstart', this._onTapStart);
+  }
+
+  if (this.nativeDraggable) {
+    on(el, 'dragover', this);
+    on(el, 'dragenter', this);
+  }
+
+  sortables.push(this.el); // Restore sorting
+
+  options.store && options.store.get && this.sort(options.store.get(this) || []); // Add animation state manager
+
+  _extends(this, AnimationStateManager());
+}
+
+Sortable.prototype =
+/** @lends Sortable.prototype */
+{
+  constructor: Sortable,
+  _isOutsideThisEl: function _isOutsideThisEl(target) {
+    if (!this.el.contains(target) && target !== this.el) {
+      lastTarget = null;
+    }
+  },
+  _getDirection: function _getDirection(evt, target) {
+    return typeof this.options.direction === 'function' ? this.options.direction.call(this, evt, target, dragEl) : this.options.direction;
+  },
+  _onTapStart: function _onTapStart(
+  /** Event|TouchEvent */
+  evt) {
+    if (!evt.cancelable) return;
+
+    var _this = this,
+        el = this.el,
+        options = this.options,
+        preventOnFilter = options.preventOnFilter,
+        type = evt.type,
+        touch = evt.touches && evt.touches[0] || evt.pointerType && evt.pointerType === 'touch' && evt,
+        target = (touch || evt).target,
+        originalTarget = evt.target.shadowRoot && (evt.path && evt.path[0] || evt.composedPath && evt.composedPath()[0]) || target,
+        filter = options.filter;
+
+    _saveInputCheckedState(el); // Don't trigger start event when an element is been dragged, otherwise the evt.oldindex always wrong when set option.group.
+
+
+    if (dragEl) {
+      return;
+    }
+
+    if (/mousedown|pointerdown/.test(type) && evt.button !== 0 || options.disabled) {
+      return; // only left button and enabled
+    } // cancel dnd if original target is content editable
+
+
+    if (originalTarget.isContentEditable) {
+      return;
+    } // Safari ignores further event handling after mousedown
+
+
+    if (!this.nativeDraggable && Safari && target && target.tagName.toUpperCase() === 'SELECT') {
+      return;
+    }
+
+    target = closest(target, options.draggable, el, false);
+
+    if (target && target.animated) {
+      return;
+    }
+
+    if (lastDownEl === target) {
+      // Ignoring duplicate `down`
+      return;
+    } // Get the index of the dragged element within its parent
+
+
+    oldIndex = index(target);
+    oldDraggableIndex = index(target, options.draggable); // Check filter
+
+    if (typeof filter === 'function') {
+      if (filter.call(this, evt, target, this)) {
+        _dispatchEvent({
+          sortable: _this,
+          rootEl: originalTarget,
+          name: 'filter',
+          targetEl: target,
+          toEl: el,
+          fromEl: el
+        });
+
+        pluginEvent('filter', _this, {
+          evt: evt
+        });
+        preventOnFilter && evt.cancelable && evt.preventDefault();
+        return; // cancel dnd
+      }
+    } else if (filter) {
+      filter = filter.split(',').some(function (criteria) {
+        criteria = closest(originalTarget, criteria.trim(), el, false);
+
+        if (criteria) {
+          _dispatchEvent({
+            sortable: _this,
+            rootEl: criteria,
+            name: 'filter',
+            targetEl: target,
+            fromEl: el,
+            toEl: el
+          });
+
+          pluginEvent('filter', _this, {
+            evt: evt
+          });
+          return true;
+        }
+      });
+
+      if (filter) {
+        preventOnFilter && evt.cancelable && evt.preventDefault();
+        return; // cancel dnd
+      }
+    }
+
+    if (options.handle && !closest(originalTarget, options.handle, el, false)) {
+      return;
+    } // Prepare `dragstart`
+
+
+    this._prepareDragStart(evt, touch, target);
+  },
+  _prepareDragStart: function _prepareDragStart(
+  /** Event */
+  evt,
+  /** Touch */
+  touch,
+  /** HTMLElement */
+  target) {
+    var _this = this,
+        el = _this.el,
+        options = _this.options,
+        ownerDocument = el.ownerDocument,
+        dragStartFn;
+
+    if (target && !dragEl && target.parentNode === el) {
+      var dragRect = getRect(target);
+      rootEl = el;
+      dragEl = target;
+      parentEl = dragEl.parentNode;
+      nextEl = dragEl.nextSibling;
+      lastDownEl = target;
+      activeGroup = options.group;
+      Sortable.dragged = dragEl;
+      tapEvt = {
+        target: dragEl,
+        clientX: (touch || evt).clientX,
+        clientY: (touch || evt).clientY
+      };
+      tapDistanceLeft = tapEvt.clientX - dragRect.left;
+      tapDistanceTop = tapEvt.clientY - dragRect.top;
+      this._lastX = (touch || evt).clientX;
+      this._lastY = (touch || evt).clientY;
+      dragEl.style['will-change'] = 'all';
+
+      dragStartFn = function dragStartFn() {
+        pluginEvent('delayEnded', _this, {
+          evt: evt
+        });
+
+        if (Sortable.eventCanceled) {
+          _this._onDrop();
+
+          return;
+        } // Delayed drag has been triggered
+        // we can re-enable the events: touchmove/mousemove
+
+
+        _this._disableDelayedDragEvents();
+
+        if (!FireFox && _this.nativeDraggable) {
+          dragEl.draggable = true;
+        } // Bind the events: dragstart/dragend
+
+
+        _this._triggerDragStart(evt, touch); // Drag start event
+
+
+        _dispatchEvent({
+          sortable: _this,
+          name: 'choose',
+          originalEvent: evt
+        }); // Chosen item
+
+
+        toggleClass(dragEl, options.chosenClass, true);
+      }; // Disable "draggable"
+
+
+      options.ignore.split(',').forEach(function (criteria) {
+        find(dragEl, criteria.trim(), _disableDraggable);
+      });
+      on(ownerDocument, 'dragover', nearestEmptyInsertDetectEvent);
+      on(ownerDocument, 'mousemove', nearestEmptyInsertDetectEvent);
+      on(ownerDocument, 'touchmove', nearestEmptyInsertDetectEvent);
+      on(ownerDocument, 'mouseup', _this._onDrop);
+      on(ownerDocument, 'touchend', _this._onDrop);
+      on(ownerDocument, 'touchcancel', _this._onDrop); // Make dragEl draggable (must be before delay for FireFox)
+
+      if (FireFox && this.nativeDraggable) {
+        this.options.touchStartThreshold = 4;
+        dragEl.draggable = true;
+      }
+
+      pluginEvent('delayStart', this, {
+        evt: evt
+      }); // Delay is impossible for native DnD in Edge or IE
+
+      if (options.delay && (!options.delayOnTouchOnly || touch) && (!this.nativeDraggable || !(Edge || IE11OrLess))) {
+        if (Sortable.eventCanceled) {
+          this._onDrop();
+
+          return;
+        } // If the user moves the pointer or let go the click or touch
+        // before the delay has been reached:
+        // disable the delayed drag
+
+
+        on(ownerDocument, 'mouseup', _this._disableDelayedDrag);
+        on(ownerDocument, 'touchend', _this._disableDelayedDrag);
+        on(ownerDocument, 'touchcancel', _this._disableDelayedDrag);
+        on(ownerDocument, 'mousemove', _this._delayedDragTouchMoveHandler);
+        on(ownerDocument, 'touchmove', _this._delayedDragTouchMoveHandler);
+        options.supportPointer && on(ownerDocument, 'pointermove', _this._delayedDragTouchMoveHandler);
+        _this._dragStartTimer = setTimeout(dragStartFn, options.delay);
+      } else {
+        dragStartFn();
+      }
+    }
+  },
+  _delayedDragTouchMoveHandler: function _delayedDragTouchMoveHandler(
+  /** TouchEvent|PointerEvent **/
+  e) {
+    var touch = e.touches ? e.touches[0] : e;
+
+    if (Math.max(Math.abs(touch.clientX - this._lastX), Math.abs(touch.clientY - this._lastY)) >= Math.floor(this.options.touchStartThreshold / (this.nativeDraggable && window.devicePixelRatio || 1))) {
+      this._disableDelayedDrag();
+    }
+  },
+  _disableDelayedDrag: function _disableDelayedDrag() {
+    dragEl && _disableDraggable(dragEl);
+    clearTimeout(this._dragStartTimer);
+
+    this._disableDelayedDragEvents();
+  },
+  _disableDelayedDragEvents: function _disableDelayedDragEvents() {
+    var ownerDocument = this.el.ownerDocument;
+    off(ownerDocument, 'mouseup', this._disableDelayedDrag);
+    off(ownerDocument, 'touchend', this._disableDelayedDrag);
+    off(ownerDocument, 'touchcancel', this._disableDelayedDrag);
+    off(ownerDocument, 'mousemove', this._delayedDragTouchMoveHandler);
+    off(ownerDocument, 'touchmove', this._delayedDragTouchMoveHandler);
+    off(ownerDocument, 'pointermove', this._delayedDragTouchMoveHandler);
+  },
+  _triggerDragStart: function _triggerDragStart(
+  /** Event */
+  evt,
+  /** Touch */
+  touch) {
+    touch = touch || evt.pointerType == 'touch' && evt;
+
+    if (!this.nativeDraggable || touch) {
+      if (this.options.supportPointer) {
+        on(document, 'pointermove', this._onTouchMove);
+      } else if (touch) {
+        on(document, 'touchmove', this._onTouchMove);
+      } else {
+        on(document, 'mousemove', this._onTouchMove);
+      }
+    } else {
+      on(dragEl, 'dragend', this);
+      on(rootEl, 'dragstart', this._onDragStart);
+    }
+
+    try {
+      if (document.selection) {
+        // Timeout neccessary for IE9
+        _nextTick(function () {
+          document.selection.empty();
+        });
+      } else {
+        window.getSelection().removeAllRanges();
+      }
+    } catch (err) {}
+  },
+  _dragStarted: function _dragStarted(fallback, evt) {
+    awaitingDragStarted = false;
+
+    if (rootEl && dragEl) {
+      pluginEvent('dragStarted', this, {
+        evt: evt
+      });
+
+      if (this.nativeDraggable) {
+        on(document, 'dragover', _checkOutsideTargetEl);
+      }
+
+      var options = this.options; // Apply effect
+
+      !fallback && toggleClass(dragEl, options.dragClass, false);
+      toggleClass(dragEl, options.ghostClass, true);
+      Sortable.active = this;
+      fallback && this._appendGhost(); // Drag start event
+
+      _dispatchEvent({
+        sortable: this,
+        name: 'start',
+        originalEvent: evt
+      });
+    } else {
+      this._nulling();
+    }
+  },
+  _emulateDragOver: function _emulateDragOver() {
+    if (touchEvt) {
+      this._lastX = touchEvt.clientX;
+      this._lastY = touchEvt.clientY;
+
+      _hideGhostForTarget();
+
+      var target = document.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
+      var parent = target;
+
+      while (target && target.shadowRoot) {
+        target = target.shadowRoot.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
+        if (target === parent) break;
+        parent = target;
+      }
+
+      dragEl.parentNode[expando]._isOutsideThisEl(target);
+
+      if (parent) {
+        do {
+          if (parent[expando]) {
+            var inserted = void 0;
+            inserted = parent[expando]._onDragOver({
+              clientX: touchEvt.clientX,
+              clientY: touchEvt.clientY,
+              target: target,
+              rootEl: parent
+            });
+
+            if (inserted && !this.options.dragoverBubble) {
+              break;
+            }
+          }
+
+          target = parent; // store last element
+        }
+        /* jshint boss:true */
+        while (parent = parent.parentNode);
+      }
+
+      _unhideGhostForTarget();
+    }
+  },
+  _onTouchMove: function _onTouchMove(
+  /**TouchEvent*/
+  evt) {
+    if (tapEvt) {
+      var options = this.options,
+          fallbackTolerance = options.fallbackTolerance,
+          fallbackOffset = options.fallbackOffset,
+          touch = evt.touches ? evt.touches[0] : evt,
+          ghostMatrix = ghostEl && matrix(ghostEl, true),
+          scaleX = ghostEl && ghostMatrix && ghostMatrix.a,
+          scaleY = ghostEl && ghostMatrix && ghostMatrix.d,
+          relativeScrollOffset = PositionGhostAbsolutely && ghostRelativeParent && getRelativeScrollOffset(ghostRelativeParent),
+          dx = (touch.clientX - tapEvt.clientX + fallbackOffset.x) / (scaleX || 1) + (relativeScrollOffset ? relativeScrollOffset[0] - ghostRelativeParentInitialScroll[0] : 0) / (scaleX || 1),
+          dy = (touch.clientY - tapEvt.clientY + fallbackOffset.y) / (scaleY || 1) + (relativeScrollOffset ? relativeScrollOffset[1] - ghostRelativeParentInitialScroll[1] : 0) / (scaleY || 1); // only set the status to dragging, when we are actually dragging
+
+      if (!Sortable.active && !awaitingDragStarted) {
+        if (fallbackTolerance && Math.max(Math.abs(touch.clientX - this._lastX), Math.abs(touch.clientY - this._lastY)) < fallbackTolerance) {
+          return;
+        }
+
+        this._onDragStart(evt, true);
+      }
+
+      if (ghostEl) {
+        if (ghostMatrix) {
+          ghostMatrix.e += dx - (lastDx || 0);
+          ghostMatrix.f += dy - (lastDy || 0);
+        } else {
+          ghostMatrix = {
+            a: 1,
+            b: 0,
+            c: 0,
+            d: 1,
+            e: dx,
+            f: dy
+          };
+        }
+
+        var cssMatrix = "matrix(".concat(ghostMatrix.a, ",").concat(ghostMatrix.b, ",").concat(ghostMatrix.c, ",").concat(ghostMatrix.d, ",").concat(ghostMatrix.e, ",").concat(ghostMatrix.f, ")");
+        css(ghostEl, 'webkitTransform', cssMatrix);
+        css(ghostEl, 'mozTransform', cssMatrix);
+        css(ghostEl, 'msTransform', cssMatrix);
+        css(ghostEl, 'transform', cssMatrix);
+        lastDx = dx;
+        lastDy = dy;
+        touchEvt = touch;
+      }
+
+      evt.cancelable && evt.preventDefault();
+    }
+  },
+  _appendGhost: function _appendGhost() {
+    // Bug if using scale(): https://stackoverflow.com/questions/2637058
+    // Not being adjusted for
+    if (!ghostEl) {
+      var container = this.options.fallbackOnBody ? document.body : rootEl,
+          rect = getRect(dragEl, true, PositionGhostAbsolutely, true, container),
+          options = this.options; // Position absolutely
+
+      if (PositionGhostAbsolutely) {
+        // Get relatively positioned parent
+        ghostRelativeParent = container;
+
+        while (css(ghostRelativeParent, 'position') === 'static' && css(ghostRelativeParent, 'transform') === 'none' && ghostRelativeParent !== document) {
+          ghostRelativeParent = ghostRelativeParent.parentNode;
+        }
+
+        if (ghostRelativeParent !== document.body && ghostRelativeParent !== document.documentElement) {
+          if (ghostRelativeParent === document) ghostRelativeParent = getWindowScrollingElement();
+          rect.top += ghostRelativeParent.scrollTop;
+          rect.left += ghostRelativeParent.scrollLeft;
+        } else {
+          ghostRelativeParent = getWindowScrollingElement();
+        }
+
+        ghostRelativeParentInitialScroll = getRelativeScrollOffset(ghostRelativeParent);
+      }
+
+      ghostEl = dragEl.cloneNode(true);
+      toggleClass(ghostEl, options.ghostClass, false);
+      toggleClass(ghostEl, options.fallbackClass, true);
+      toggleClass(ghostEl, options.dragClass, true);
+      css(ghostEl, 'transition', '');
+      css(ghostEl, 'transform', '');
+      css(ghostEl, 'box-sizing', 'border-box');
+      css(ghostEl, 'margin', 0);
+      css(ghostEl, 'top', rect.top);
+      css(ghostEl, 'left', rect.left);
+      css(ghostEl, 'width', rect.width);
+      css(ghostEl, 'height', rect.height);
+      css(ghostEl, 'opacity', '0.8');
+      css(ghostEl, 'position', PositionGhostAbsolutely ? 'absolute' : 'fixed');
+      css(ghostEl, 'zIndex', '100000');
+      css(ghostEl, 'pointerEvents', 'none');
+      Sortable.ghost = ghostEl;
+      container.appendChild(ghostEl); // Set transform-origin
+
+      css(ghostEl, 'transform-origin', tapDistanceLeft / parseInt(ghostEl.style.width) * 100 + '% ' + tapDistanceTop / parseInt(ghostEl.style.height) * 100 + '%');
+    }
+  },
+  _onDragStart: function _onDragStart(
+  /**Event*/
+  evt,
+  /**boolean*/
+  fallback) {
+    var _this = this;
+
+    var dataTransfer = evt.dataTransfer;
+    var options = _this.options;
+    pluginEvent('dragStart', this, {
+      evt: evt
+    });
+
+    if (Sortable.eventCanceled) {
+      this._onDrop();
+
+      return;
+    }
+
+    pluginEvent('setupClone', this);
+
+    if (!Sortable.eventCanceled) {
+      cloneEl = clone(dragEl);
+      cloneEl.draggable = false;
+      cloneEl.style['will-change'] = '';
+
+      this._hideClone();
+
+      toggleClass(cloneEl, this.options.chosenClass, false);
+      Sortable.clone = cloneEl;
+    } // #1143: IFrame support workaround
+
+
+    _this.cloneId = _nextTick(function () {
+      pluginEvent('clone', _this);
+      if (Sortable.eventCanceled) return;
+
+      if (!_this.options.removeCloneOnHide) {
+        rootEl.insertBefore(cloneEl, dragEl);
+      }
+
+      _this._hideClone();
+
+      _dispatchEvent({
+        sortable: _this,
+        name: 'clone'
+      });
+    });
+    !fallback && toggleClass(dragEl, options.dragClass, true); // Set proper drop events
+
+    if (fallback) {
+      ignoreNextClick = true;
+      _this._loopId = setInterval(_this._emulateDragOver, 50);
+    } else {
+      // Undo what was set in _prepareDragStart before drag started
+      off(document, 'mouseup', _this._onDrop);
+      off(document, 'touchend', _this._onDrop);
+      off(document, 'touchcancel', _this._onDrop);
+
+      if (dataTransfer) {
+        dataTransfer.effectAllowed = 'move';
+        options.setData && options.setData.call(_this, dataTransfer, dragEl);
+      }
+
+      on(document, 'drop', _this); // #1276 fix:
+
+      css(dragEl, 'transform', 'translateZ(0)');
+    }
+
+    awaitingDragStarted = true;
+    _this._dragStartId = _nextTick(_this._dragStarted.bind(_this, fallback, evt));
+    on(document, 'selectstart', _this);
+    moved = true;
+
+    if (Safari) {
+      css(document.body, 'user-select', 'none');
+    }
+  },
+  // Returns true - if no further action is needed (either inserted or another condition)
+  _onDragOver: function _onDragOver(
+  /**Event*/
+  evt) {
+    var el = this.el,
+        target = evt.target,
+        dragRect,
+        targetRect,
+        revert,
+        options = this.options,
+        group = options.group,
+        activeSortable = Sortable.active,
+        isOwner = activeGroup === group,
+        canSort = options.sort,
+        fromSortable = putSortable || activeSortable,
+        vertical,
+        _this = this,
+        completedFired = false;
+
+    if (_silent) return;
+
+    function dragOverEvent(name, extra) {
+      pluginEvent(name, _this, _objectSpread2({
+        evt: evt,
+        isOwner: isOwner,
+        axis: vertical ? 'vertical' : 'horizontal',
+        revert: revert,
+        dragRect: dragRect,
+        targetRect: targetRect,
+        canSort: canSort,
+        fromSortable: fromSortable,
+        target: target,
+        completed: completed,
+        onMove: function onMove(target, after) {
+          return _onMove(rootEl, el, dragEl, dragRect, target, getRect(target), evt, after);
+        },
+        changed: changed
+      }, extra));
+    } // Capture animation state
+
+
+    function capture() {
+      dragOverEvent('dragOverAnimationCapture');
+
+      _this.captureAnimationState();
+
+      if (_this !== fromSortable) {
+        fromSortable.captureAnimationState();
+      }
+    } // Return invocation when dragEl is inserted (or completed)
+
+
+    function completed(insertion) {
+      dragOverEvent('dragOverCompleted', {
+        insertion: insertion
+      });
+
+      if (insertion) {
+        // Clones must be hidden before folding animation to capture dragRectAbsolute properly
+        if (isOwner) {
+          activeSortable._hideClone();
+        } else {
+          activeSortable._showClone(_this);
+        }
+
+        if (_this !== fromSortable) {
+          // Set ghost class to new sortable's ghost class
+          toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : activeSortable.options.ghostClass, false);
+          toggleClass(dragEl, options.ghostClass, true);
+        }
+
+        if (putSortable !== _this && _this !== Sortable.active) {
+          putSortable = _this;
+        } else if (_this === Sortable.active && putSortable) {
+          putSortable = null;
+        } // Animation
+
+
+        if (fromSortable === _this) {
+          _this._ignoreWhileAnimating = target;
+        }
+
+        _this.animateAll(function () {
+          dragOverEvent('dragOverAnimationComplete');
+          _this._ignoreWhileAnimating = null;
+        });
+
+        if (_this !== fromSortable) {
+          fromSortable.animateAll();
+          fromSortable._ignoreWhileAnimating = null;
+        }
+      } // Null lastTarget if it is not inside a previously swapped element
+
+
+      if (target === dragEl && !dragEl.animated || target === el && !target.animated) {
+        lastTarget = null;
+      } // no bubbling and not fallback
+
+
+      if (!options.dragoverBubble && !evt.rootEl && target !== document) {
+        dragEl.parentNode[expando]._isOutsideThisEl(evt.target); // Do not detect for empty insert if already inserted
+
+
+        !insertion && nearestEmptyInsertDetectEvent(evt);
+      }
+
+      !options.dragoverBubble && evt.stopPropagation && evt.stopPropagation();
+      return completedFired = true;
+    } // Call when dragEl has been inserted
+
+
+    function changed() {
+      newIndex = index(dragEl);
+      newDraggableIndex = index(dragEl, options.draggable);
+
+      _dispatchEvent({
+        sortable: _this,
+        name: 'change',
+        toEl: el,
+        newIndex: newIndex,
+        newDraggableIndex: newDraggableIndex,
+        originalEvent: evt
+      });
+    }
+
+    if (evt.preventDefault !== void 0) {
+      evt.cancelable && evt.preventDefault();
+    }
+
+    target = closest(target, options.draggable, el, true);
+    dragOverEvent('dragOver');
+    if (Sortable.eventCanceled) return completedFired;
+
+    if (dragEl.contains(evt.target) || target.animated && target.animatingX && target.animatingY || _this._ignoreWhileAnimating === target) {
+      return completed(false);
+    }
+
+    ignoreNextClick = false;
+
+    if (activeSortable && !options.disabled && (isOwner ? canSort || (revert = parentEl !== rootEl) // Reverting item into the original list
+    : putSortable === this || (this.lastPutMode = activeGroup.checkPull(this, activeSortable, dragEl, evt)) && group.checkPut(this, activeSortable, dragEl, evt))) {
+      vertical = this._getDirection(evt, target) === 'vertical';
+      dragRect = getRect(dragEl);
+      dragOverEvent('dragOverValid');
+      if (Sortable.eventCanceled) return completedFired;
+
+      if (revert) {
+        parentEl = rootEl; // actualization
+
+        capture();
+
+        this._hideClone();
+
+        dragOverEvent('revert');
+
+        if (!Sortable.eventCanceled) {
+          if (nextEl) {
+            rootEl.insertBefore(dragEl, nextEl);
+          } else {
+            rootEl.appendChild(dragEl);
+          }
+        }
+
+        return completed(true);
+      }
+
+      var elLastChild = lastChild(el, options.draggable);
+
+      if (!elLastChild || _ghostIsLast(evt, vertical, this) && !elLastChild.animated) {
+        // Insert to end of list
+        // If already at end of list: Do not insert
+        if (elLastChild === dragEl) {
+          return completed(false);
+        } // if there is a last element, it is the target
+
+
+        if (elLastChild && el === evt.target) {
+          target = elLastChild;
+        }
+
+        if (target) {
+          targetRect = getRect(target);
+        }
+
+        if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, !!target) !== false) {
+          capture();
+          el.appendChild(dragEl);
+          parentEl = el; // actualization
+
+          changed();
+          return completed(true);
+        }
+      } else if (elLastChild && _ghostIsFirst(evt, vertical, this)) {
+        // Insert to start of list
+        var firstChild = getChild(el, 0, options, true);
+
+        if (firstChild === dragEl) {
+          return completed(false);
+        }
+
+        target = firstChild;
+        targetRect = getRect(target);
+
+        if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, false) !== false) {
+          capture();
+          el.insertBefore(dragEl, firstChild);
+          parentEl = el; // actualization
+
+          changed();
+          return completed(true);
+        }
+      } else if (target.parentNode === el) {
+        targetRect = getRect(target);
+        var direction = 0,
+            targetBeforeFirstSwap,
+            differentLevel = dragEl.parentNode !== el,
+            differentRowCol = !_dragElInRowColumn(dragEl.animated && dragEl.toRect || dragRect, target.animated && target.toRect || targetRect, vertical),
+            side1 = vertical ? 'top' : 'left',
+            scrolledPastTop = isScrolledPast(target, 'top', 'top') || isScrolledPast(dragEl, 'top', 'top'),
+            scrollBefore = scrolledPastTop ? scrolledPastTop.scrollTop : void 0;
+
+        if (lastTarget !== target) {
+          targetBeforeFirstSwap = targetRect[side1];
+          pastFirstInvertThresh = false;
+          isCircumstantialInvert = !differentRowCol && options.invertSwap || differentLevel;
+        }
+
+        direction = _getSwapDirection(evt, target, targetRect, vertical, differentRowCol ? 1 : options.swapThreshold, options.invertedSwapThreshold == null ? options.swapThreshold : options.invertedSwapThreshold, isCircumstantialInvert, lastTarget === target);
+        var sibling;
+
+        if (direction !== 0) {
+          // Check if target is beside dragEl in respective direction (ignoring hidden elements)
+          var dragIndex = index(dragEl);
+
+          do {
+            dragIndex -= direction;
+            sibling = parentEl.children[dragIndex];
+          } while (sibling && (css(sibling, 'display') === 'none' || sibling === ghostEl));
+        } // If dragEl is already beside target: Do not insert
+
+
+        if (direction === 0 || sibling === target) {
+          return completed(false);
+        }
+
+        lastTarget = target;
+        lastDirection = direction;
+        var nextSibling = target.nextElementSibling,
+            after = false;
+        after = direction === 1;
+
+        var moveVector = _onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, after);
+
+        if (moveVector !== false) {
+          if (moveVector === 1 || moveVector === -1) {
+            after = moveVector === 1;
+          }
+
+          _silent = true;
+          setTimeout(_unsilent, 30);
+          capture();
+
+          if (after && !nextSibling) {
+            el.appendChild(dragEl);
+          } else {
+            target.parentNode.insertBefore(dragEl, after ? nextSibling : target);
+          } // Undo chrome's scroll adjustment (has no effect on other browsers)
+
+
+          if (scrolledPastTop) {
+            scrollBy(scrolledPastTop, 0, scrollBefore - scrolledPastTop.scrollTop);
+          }
+
+          parentEl = dragEl.parentNode; // actualization
+          // must be done before animation
+
+          if (targetBeforeFirstSwap !== undefined && !isCircumstantialInvert) {
+            targetMoveDistance = Math.abs(targetBeforeFirstSwap - getRect(target)[side1]);
+          }
+
+          changed();
+          return completed(true);
+        }
+      }
+
+      if (el.contains(dragEl)) {
+        return completed(false);
+      }
+    }
+
+    return false;
+  },
+  _ignoreWhileAnimating: null,
+  _offMoveEvents: function _offMoveEvents() {
+    off(document, 'mousemove', this._onTouchMove);
+    off(document, 'touchmove', this._onTouchMove);
+    off(document, 'pointermove', this._onTouchMove);
+    off(document, 'dragover', nearestEmptyInsertDetectEvent);
+    off(document, 'mousemove', nearestEmptyInsertDetectEvent);
+    off(document, 'touchmove', nearestEmptyInsertDetectEvent);
+  },
+  _offUpEvents: function _offUpEvents() {
+    var ownerDocument = this.el.ownerDocument;
+    off(ownerDocument, 'mouseup', this._onDrop);
+    off(ownerDocument, 'touchend', this._onDrop);
+    off(ownerDocument, 'pointerup', this._onDrop);
+    off(ownerDocument, 'touchcancel', this._onDrop);
+    off(document, 'selectstart', this);
+  },
+  _onDrop: function _onDrop(
+  /**Event*/
+  evt) {
+    var el = this.el,
+        options = this.options; // Get the index of the dragged element within its parent
+
+    newIndex = index(dragEl);
+    newDraggableIndex = index(dragEl, options.draggable);
+    pluginEvent('drop', this, {
+      evt: evt
+    });
+    parentEl = dragEl && dragEl.parentNode; // Get again after plugin event
+
+    newIndex = index(dragEl);
+    newDraggableIndex = index(dragEl, options.draggable);
+
+    if (Sortable.eventCanceled) {
+      this._nulling();
+
+      return;
+    }
+
+    awaitingDragStarted = false;
+    isCircumstantialInvert = false;
+    pastFirstInvertThresh = false;
+    clearInterval(this._loopId);
+    clearTimeout(this._dragStartTimer);
+
+    _cancelNextTick(this.cloneId);
+
+    _cancelNextTick(this._dragStartId); // Unbind events
+
+
+    if (this.nativeDraggable) {
+      off(document, 'drop', this);
+      off(el, 'dragstart', this._onDragStart);
+    }
+
+    this._offMoveEvents();
+
+    this._offUpEvents();
+
+    if (Safari) {
+      css(document.body, 'user-select', '');
+    }
+
+    css(dragEl, 'transform', '');
+
+    if (evt) {
+      if (moved) {
+        evt.cancelable && evt.preventDefault();
+        !options.dropBubble && evt.stopPropagation();
+      }
+
+      ghostEl && ghostEl.parentNode && ghostEl.parentNode.removeChild(ghostEl);
+
+      if (rootEl === parentEl || putSortable && putSortable.lastPutMode !== 'clone') {
+        // Remove clone(s)
+        cloneEl && cloneEl.parentNode && cloneEl.parentNode.removeChild(cloneEl);
+      }
+
+      if (dragEl) {
+        if (this.nativeDraggable) {
+          off(dragEl, 'dragend', this);
+        }
+
+        _disableDraggable(dragEl);
+
+        dragEl.style['will-change'] = ''; // Remove classes
+        // ghostClass is added in dragStarted
+
+        if (moved && !awaitingDragStarted) {
+          toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : this.options.ghostClass, false);
+        }
+
+        toggleClass(dragEl, this.options.chosenClass, false); // Drag stop event
+
+        _dispatchEvent({
+          sortable: this,
+          name: 'unchoose',
+          toEl: parentEl,
+          newIndex: null,
+          newDraggableIndex: null,
+          originalEvent: evt
+        });
+
+        if (rootEl !== parentEl) {
+          if (newIndex >= 0) {
+            // Add event
+            _dispatchEvent({
+              rootEl: parentEl,
+              name: 'add',
+              toEl: parentEl,
+              fromEl: rootEl,
+              originalEvent: evt
+            }); // Remove event
+
+
+            _dispatchEvent({
+              sortable: this,
+              name: 'remove',
+              toEl: parentEl,
+              originalEvent: evt
+            }); // drag from one list and drop into another
+
+
+            _dispatchEvent({
+              rootEl: parentEl,
+              name: 'sort',
+              toEl: parentEl,
+              fromEl: rootEl,
+              originalEvent: evt
+            });
+
+            _dispatchEvent({
+              sortable: this,
+              name: 'sort',
+              toEl: parentEl,
+              originalEvent: evt
+            });
+          }
+
+          putSortable && putSortable.save();
+        } else {
+          if (newIndex !== oldIndex) {
+            if (newIndex >= 0) {
+              // drag & drop within the same list
+              _dispatchEvent({
+                sortable: this,
+                name: 'update',
+                toEl: parentEl,
+                originalEvent: evt
+              });
+
+              _dispatchEvent({
+                sortable: this,
+                name: 'sort',
+                toEl: parentEl,
+                originalEvent: evt
+              });
+            }
+          }
+        }
+
+        if (Sortable.active) {
+          /* jshint eqnull:true */
+          if (newIndex == null || newIndex === -1) {
+            newIndex = oldIndex;
+            newDraggableIndex = oldDraggableIndex;
+          }
+
+          _dispatchEvent({
+            sortable: this,
+            name: 'end',
+            toEl: parentEl,
+            originalEvent: evt
+          }); // Save sorting
+
+
+          this.save();
+        }
+      }
+    }
+
+    this._nulling();
+  },
+  _nulling: function _nulling() {
+    pluginEvent('nulling', this);
+    rootEl = dragEl = parentEl = ghostEl = nextEl = cloneEl = lastDownEl = cloneHidden = tapEvt = touchEvt = moved = newIndex = newDraggableIndex = oldIndex = oldDraggableIndex = lastTarget = lastDirection = putSortable = activeGroup = Sortable.dragged = Sortable.ghost = Sortable.clone = Sortable.active = null;
+    savedInputChecked.forEach(function (el) {
+      el.checked = true;
+    });
+    savedInputChecked.length = lastDx = lastDy = 0;
+  },
+  handleEvent: function handleEvent(
+  /**Event*/
+  evt) {
+    switch (evt.type) {
+      case 'drop':
+      case 'dragend':
+        this._onDrop(evt);
+
+        break;
+
+      case 'dragenter':
+      case 'dragover':
+        if (dragEl) {
+          this._onDragOver(evt);
+
+          _globalDragOver(evt);
+        }
+
+        break;
+
+      case 'selectstart':
+        evt.preventDefault();
+        break;
+    }
+  },
+
+  /**
+   * Serializes the item into an array of string.
+   * @returns {String[]}
+   */
+  toArray: function toArray() {
+    var order = [],
+        el,
+        children = this.el.children,
+        i = 0,
+        n = children.length,
+        options = this.options;
+
+    for (; i < n; i++) {
+      el = children[i];
+
+      if (closest(el, options.draggable, this.el, false)) {
+        order.push(el.getAttribute(options.dataIdAttr) || _generateId(el));
+      }
+    }
+
+    return order;
+  },
+
+  /**
+   * Sorts the elements according to the array.
+   * @param  {String[]}  order  order of the items
+   */
+  sort: function sort(order, useAnimation) {
+    var items = {},
+        rootEl = this.el;
+    this.toArray().forEach(function (id, i) {
+      var el = rootEl.children[i];
+
+      if (closest(el, this.options.draggable, rootEl, false)) {
+        items[id] = el;
+      }
+    }, this);
+    useAnimation && this.captureAnimationState();
+    order.forEach(function (id) {
+      if (items[id]) {
+        rootEl.removeChild(items[id]);
+        rootEl.appendChild(items[id]);
+      }
+    });
+    useAnimation && this.animateAll();
+  },
+
+  /**
+   * Save the current sorting
+   */
+  save: function save() {
+    var store = this.options.store;
+    store && store.set && store.set(this);
+  },
+
+  /**
+   * For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.
+   * @param   {HTMLElement}  el
+   * @param   {String}       [selector]  default: `options.draggable`
+   * @returns {HTMLElement|null}
+   */
+  closest: function closest$1(el, selector) {
+    return closest(el, selector || this.options.draggable, this.el, false);
+  },
+
+  /**
+   * Set/get option
+   * @param   {string} name
+   * @param   {*}      [value]
+   * @returns {*}
+   */
+  option: function option(name, value) {
+    var options = this.options;
+
+    if (value === void 0) {
+      return options[name];
+    } else {
+      var modifiedValue = PluginManager.modifyOption(this, name, value);
+
+      if (typeof modifiedValue !== 'undefined') {
+        options[name] = modifiedValue;
+      } else {
+        options[name] = value;
+      }
+
+      if (name === 'group') {
+        _prepareGroup(options);
+      }
+    }
+  },
+
+  /**
+   * Destroy
+   */
+  destroy: function destroy() {
+    pluginEvent('destroy', this);
+    var el = this.el;
+    el[expando] = null;
+    off(el, 'mousedown', this._onTapStart);
+    off(el, 'touchstart', this._onTapStart);
+    off(el, 'pointerdown', this._onTapStart);
+
+    if (this.nativeDraggable) {
+      off(el, 'dragover', this);
+      off(el, 'dragenter', this);
+    } // Remove draggable attributes
+
+
+    Array.prototype.forEach.call(el.querySelectorAll('[draggable]'), function (el) {
+      el.removeAttribute('draggable');
+    });
+
+    this._onDrop();
+
+    this._disableDelayedDragEvents();
+
+    sortables.splice(sortables.indexOf(this.el), 1);
+    this.el = el = null;
+  },
+  _hideClone: function _hideClone() {
+    if (!cloneHidden) {
+      pluginEvent('hideClone', this);
+      if (Sortable.eventCanceled) return;
+      css(cloneEl, 'display', 'none');
+
+      if (this.options.removeCloneOnHide && cloneEl.parentNode) {
+        cloneEl.parentNode.removeChild(cloneEl);
+      }
+
+      cloneHidden = true;
+    }
+  },
+  _showClone: function _showClone(putSortable) {
+    if (putSortable.lastPutMode !== 'clone') {
+      this._hideClone();
+
+      return;
+    }
+
+    if (cloneHidden) {
+      pluginEvent('showClone', this);
+      if (Sortable.eventCanceled) return; // show clone at dragEl or original position
+
+      if (dragEl.parentNode == rootEl && !this.options.group.revertClone) {
+        rootEl.insertBefore(cloneEl, dragEl);
+      } else if (nextEl) {
+        rootEl.insertBefore(cloneEl, nextEl);
+      } else {
+        rootEl.appendChild(cloneEl);
+      }
+
+      if (this.options.group.revertClone) {
+        this.animate(dragEl, cloneEl);
+      }
+
+      css(cloneEl, 'display', '');
+      cloneHidden = false;
+    }
+  }
+};
+
+function _globalDragOver(
+/**Event*/
+evt) {
+  if (evt.dataTransfer) {
+    evt.dataTransfer.dropEffect = 'move';
+  }
+
+  evt.cancelable && evt.preventDefault();
+}
+
+function _onMove(fromEl, toEl, dragEl, dragRect, targetEl, targetRect, originalEvent, willInsertAfter) {
+  var evt,
+      sortable = fromEl[expando],
+      onMoveFn = sortable.options.onMove,
+      retVal; // Support for new CustomEvent feature
+
+  if (window.CustomEvent && !IE11OrLess && !Edge) {
+    evt = new CustomEvent('move', {
+      bubbles: true,
+      cancelable: true
+    });
+  } else {
+    evt = document.createEvent('Event');
+    evt.initEvent('move', true, true);
+  }
+
+  evt.to = toEl;
+  evt.from = fromEl;
+  evt.dragged = dragEl;
+  evt.draggedRect = dragRect;
+  evt.related = targetEl || toEl;
+  evt.relatedRect = targetRect || getRect(toEl);
+  evt.willInsertAfter = willInsertAfter;
+  evt.originalEvent = originalEvent;
+  fromEl.dispatchEvent(evt);
+
+  if (onMoveFn) {
+    retVal = onMoveFn.call(sortable, evt, originalEvent);
+  }
+
+  return retVal;
+}
+
+function _disableDraggable(el) {
+  el.draggable = false;
+}
+
+function _unsilent() {
+  _silent = false;
+}
+
+function _ghostIsFirst(evt, vertical, sortable) {
+  var rect = getRect(getChild(sortable.el, 0, sortable.options, true));
+  var spacer = 10;
+  return vertical ? evt.clientX < rect.left - spacer || evt.clientY < rect.top && evt.clientX < rect.right : evt.clientY < rect.top - spacer || evt.clientY < rect.bottom && evt.clientX < rect.left;
+}
+
+function _ghostIsLast(evt, vertical, sortable) {
+  var rect = getRect(lastChild(sortable.el, sortable.options.draggable));
+  var spacer = 10;
+  return vertical ? evt.clientX > rect.right + spacer || evt.clientX <= rect.right && evt.clientY > rect.bottom && evt.clientX >= rect.left : evt.clientX > rect.right && evt.clientY > rect.top || evt.clientX <= rect.right && evt.clientY > rect.bottom + spacer;
+}
+
+function _getSwapDirection(evt, target, targetRect, vertical, swapThreshold, invertedSwapThreshold, invertSwap, isLastTarget) {
+  var mouseOnAxis = vertical ? evt.clientY : evt.clientX,
+      targetLength = vertical ? targetRect.height : targetRect.width,
+      targetS1 = vertical ? targetRect.top : targetRect.left,
+      targetS2 = vertical ? targetRect.bottom : targetRect.right,
+      invert = false;
+
+  if (!invertSwap) {
+    // Never invert or create dragEl shadow when target movemenet causes mouse to move past the end of regular swapThreshold
+    if (isLastTarget && targetMoveDistance < targetLength * swapThreshold) {
+      // multiplied only by swapThreshold because mouse will already be inside target by (1 - threshold) * targetLength / 2
+      // check if past first invert threshold on side opposite of lastDirection
+      if (!pastFirstInvertThresh && (lastDirection === 1 ? mouseOnAxis > targetS1 + targetLength * invertedSwapThreshold / 2 : mouseOnAxis < targetS2 - targetLength * invertedSwapThreshold / 2)) {
+        // past first invert threshold, do not restrict inverted threshold to dragEl shadow
+        pastFirstInvertThresh = true;
+      }
+
+      if (!pastFirstInvertThresh) {
+        // dragEl shadow (target move distance shadow)
+        if (lastDirection === 1 ? mouseOnAxis < targetS1 + targetMoveDistance // over dragEl shadow
+        : mouseOnAxis > targetS2 - targetMoveDistance) {
+          return -lastDirection;
+        }
+      } else {
+        invert = true;
+      }
+    } else {
+      // Regular
+      if (mouseOnAxis > targetS1 + targetLength * (1 - swapThreshold) / 2 && mouseOnAxis < targetS2 - targetLength * (1 - swapThreshold) / 2) {
+        return _getInsertDirection(target);
+      }
+    }
+  }
+
+  invert = invert || invertSwap;
+
+  if (invert) {
+    // Invert of regular
+    if (mouseOnAxis < targetS1 + targetLength * invertedSwapThreshold / 2 || mouseOnAxis > targetS2 - targetLength * invertedSwapThreshold / 2) {
+      return mouseOnAxis > targetS1 + targetLength / 2 ? 1 : -1;
+    }
+  }
+
+  return 0;
+}
+/**
+ * Gets the direction dragEl must be swapped relative to target in order to make it
+ * seem that dragEl has been "inserted" into that element's position
+ * @param  {HTMLElement} target       The target whose position dragEl is being inserted at
+ * @return {Number}                   Direction dragEl must be swapped
+ */
+
+
+function _getInsertDirection(target) {
+  if (index(dragEl) < index(target)) {
+    return 1;
+  } else {
+    return -1;
+  }
+}
+/**
+ * Generate id
+ * @param   {HTMLElement} el
+ * @returns {String}
+ * @private
+ */
+
+
+function _generateId(el) {
+  var str = el.tagName + el.className + el.src + el.href + el.textContent,
+      i = str.length,
+      sum = 0;
+
+  while (i--) {
+    sum += str.charCodeAt(i);
+  }
+
+  return sum.toString(36);
+}
+
+function _saveInputCheckedState(root) {
+  savedInputChecked.length = 0;
+  var inputs = root.getElementsByTagName('input');
+  var idx = inputs.length;
+
+  while (idx--) {
+    var el = inputs[idx];
+    el.checked && savedInputChecked.push(el);
+  }
+}
+
+function _nextTick(fn) {
+  return setTimeout(fn, 0);
+}
+
+function _cancelNextTick(id) {
+  return clearTimeout(id);
+} // Fixed #973:
+
+
+if (documentExists) {
+  on(document, 'touchmove', function (evt) {
+    if ((Sortable.active || awaitingDragStarted) && evt.cancelable) {
+      evt.preventDefault();
+    }
+  });
+} // Export utils
+
+
+Sortable.utils = {
+  on: on,
+  off: off,
+  css: css,
+  find: find,
+  is: function is(el, selector) {
+    return !!closest(el, selector, el, false);
+  },
+  extend: extend,
+  throttle: throttle,
+  closest: closest,
+  toggleClass: toggleClass,
+  clone: clone,
+  index: index,
+  nextTick: _nextTick,
+  cancelNextTick: _cancelNextTick,
+  detectDirection: _detectDirection,
+  getChild: getChild
+};
+/**
+ * Get the Sortable instance of an element
+ * @param  {HTMLElement} element The element
+ * @return {Sortable|undefined}         The instance of Sortable
+ */
+
+Sortable.get = function (element) {
+  return element[expando];
+};
+/**
+ * Mount a plugin to Sortable
+ * @param  {...SortablePlugin|SortablePlugin[]} plugins       Plugins being mounted
+ */
+
+
+Sortable.mount = function () {
+  for (var _len = arguments.length, plugins = new Array(_len), _key = 0; _key < _len; _key++) {
+    plugins[_key] = arguments[_key];
+  }
+
+  if (plugins[0].constructor === Array) plugins = plugins[0];
+  plugins.forEach(function (plugin) {
+    if (!plugin.prototype || !plugin.prototype.constructor) {
+      throw "Sortable: Mounted plugin must be a constructor function, not ".concat({}.toString.call(plugin));
+    }
+
+    if (plugin.utils) Sortable.utils = _objectSpread2(_objectSpread2({}, Sortable.utils), plugin.utils);
+    PluginManager.mount(plugin);
+  });
+};
+/**
+ * Create sortable instance
+ * @param {HTMLElement}  el
+ * @param {Object}      [options]
+ */
+
+
+Sortable.create = function (el, options) {
+  return new Sortable(el, options);
+}; // Export
+
+
+Sortable.version = version;
+var autoScrolls = [],
+    scrollEl,
+    scrollRootEl,
+    scrolling = false,
+    lastAutoScrollX,
+    lastAutoScrollY,
+    touchEvt$1,
+    pointerElemChangedInterval;
+
+function AutoScrollPlugin() {
+  function AutoScroll() {
+    this.defaults = {
+      scroll: true,
+      forceAutoScrollFallback: false,
+      scrollSensitivity: 30,
+      scrollSpeed: 10,
+      bubbleScroll: true
+    }; // Bind all private methods
+
+    for (var fn in this) {
+      if (fn.charAt(0) === '_' && typeof this[fn] === 'function') {
+        this[fn] = this[fn].bind(this);
+      }
+    }
+  }
+
+  AutoScroll.prototype = {
+    dragStarted: function dragStarted(_ref) {
+      var originalEvent = _ref.originalEvent;
+
+      if (this.sortable.nativeDraggable) {
+        on(document, 'dragover', this._handleAutoScroll);
+      } else {
+        if (this.options.supportPointer) {
+          on(document, 'pointermove', this._handleFallbackAutoScroll);
+        } else if (originalEvent.touches) {
+          on(document, 'touchmove', this._handleFallbackAutoScroll);
+        } else {
+          on(document, 'mousemove', this._handleFallbackAutoScroll);
+        }
+      }
+    },
+    dragOverCompleted: function dragOverCompleted(_ref2) {
+      var originalEvent = _ref2.originalEvent; // For when bubbling is canceled and using fallback (fallback 'touchmove' always reached)
+
+      if (!this.options.dragOverBubble && !originalEvent.rootEl) {
+        this._handleAutoScroll(originalEvent);
+      }
+    },
+    drop: function drop() {
+      if (this.sortable.nativeDraggable) {
+        off(document, 'dragover', this._handleAutoScroll);
+      } else {
+        off(document, 'pointermove', this._handleFallbackAutoScroll);
+        off(document, 'touchmove', this._handleFallbackAutoScroll);
+        off(document, 'mousemove', this._handleFallbackAutoScroll);
+      }
+
+      clearPointerElemChangedInterval();
+      clearAutoScrolls();
+      cancelThrottle();
+    },
+    nulling: function nulling() {
+      touchEvt$1 = scrollRootEl = scrollEl = scrolling = pointerElemChangedInterval = lastAutoScrollX = lastAutoScrollY = null;
+      autoScrolls.length = 0;
+    },
+    _handleFallbackAutoScroll: function _handleFallbackAutoScroll(evt) {
+      this._handleAutoScroll(evt, true);
+    },
+    _handleAutoScroll: function _handleAutoScroll(evt, fallback) {
+      var _this = this;
+
+      var x = (evt.touches ? evt.touches[0] : evt).clientX,
+          y = (evt.touches ? evt.touches[0] : evt).clientY,
+          elem = document.elementFromPoint(x, y);
+      touchEvt$1 = evt; // IE does not seem to have native autoscroll,
+      // Edge's autoscroll seems too conditional,
+      // MACOS Safari does not have autoscroll,
+      // Firefox and Chrome are good
+
+      if (fallback || this.options.forceAutoScrollFallback || Edge || IE11OrLess || Safari) {
+        autoScroll(evt, this.options, elem, fallback); // Listener for pointer element change
+
+        var ogElemScroller = getParentAutoScrollElement(elem, true);
+
+        if (scrolling && (!pointerElemChangedInterval || x !== lastAutoScrollX || y !== lastAutoScrollY)) {
+          pointerElemChangedInterval && clearPointerElemChangedInterval(); // Detect for pointer elem change, emulating native DnD behaviour
+
+          pointerElemChangedInterval = setInterval(function () {
+            var newElem = getParentAutoScrollElement(document.elementFromPoint(x, y), true);
+
+            if (newElem !== ogElemScroller) {
+              ogElemScroller = newElem;
+              clearAutoScrolls();
+            }
+
+            autoScroll(evt, _this.options, newElem, fallback);
+          }, 10);
+          lastAutoScrollX = x;
+          lastAutoScrollY = y;
+        }
+      } else {
+        // if DnD is enabled (and browser has good autoscrolling), first autoscroll will already scroll, so get parent autoscroll of first autoscroll
+        if (!this.options.bubbleScroll || getParentAutoScrollElement(elem, true) === getWindowScrollingElement()) {
+          clearAutoScrolls();
+          return;
+        }
+
+        autoScroll(evt, this.options, getParentAutoScrollElement(elem, false), false);
+      }
+    }
+  };
+  return _extends(AutoScroll, {
+    pluginName: 'scroll',
+    initializeByDefault: true
+  });
+}
+
+function clearAutoScrolls() {
+  autoScrolls.forEach(function (autoScroll) {
+    clearInterval(autoScroll.pid);
+  });
+  autoScrolls = [];
+}
+
+function clearPointerElemChangedInterval() {
+  clearInterval(pointerElemChangedInterval);
+}
+
+var autoScroll = throttle(function (evt, options, rootEl, isFallback) {
+  // Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=505521
+  if (!options.scroll) return;
+  var x = (evt.touches ? evt.touches[0] : evt).clientX,
+      y = (evt.touches ? evt.touches[0] : evt).clientY,
+      sens = options.scrollSensitivity,
+      speed = options.scrollSpeed,
+      winScroller = getWindowScrollingElement();
+  var scrollThisInstance = false,
+      scrollCustomFn; // New scroll root, set scrollEl
+
+  if (scrollRootEl !== rootEl) {
+    scrollRootEl = rootEl;
+    clearAutoScrolls();
+    scrollEl = options.scroll;
+    scrollCustomFn = options.scrollFn;
+
+    if (scrollEl === true) {
+      scrollEl = getParentAutoScrollElement(rootEl, true);
+    }
+  }
+
+  var layersOut = 0;
+  var currentParent = scrollEl;
+
+  do {
+    var el = currentParent,
+        rect = getRect(el),
+        top = rect.top,
+        bottom = rect.bottom,
+        left = rect.left,
+        right = rect.right,
+        width = rect.width,
+        height = rect.height,
+        canScrollX = void 0,
+        canScrollY = void 0,
+        scrollWidth = el.scrollWidth,
+        scrollHeight = el.scrollHeight,
+        elCSS = css(el),
+        scrollPosX = el.scrollLeft,
+        scrollPosY = el.scrollTop;
+
+    if (el === winScroller) {
+      canScrollX = width < scrollWidth && (elCSS.overflowX === 'auto' || elCSS.overflowX === 'scroll' || elCSS.overflowX === 'visible');
+      canScrollY = height < scrollHeight && (elCSS.overflowY === 'auto' || elCSS.overflowY === 'scroll' || elCSS.overflowY === 'visible');
+    } else {
+      canScrollX = width < scrollWidth && (elCSS.overflowX === 'auto' || elCSS.overflowX === 'scroll');
+      canScrollY = height < scrollHeight && (elCSS.overflowY === 'auto' || elCSS.overflowY === 'scroll');
+    }
+
+    var vx = canScrollX && (Math.abs(right - x) <= sens && scrollPosX + width < scrollWidth) - (Math.abs(left - x) <= sens && !!scrollPosX);
+    var vy = canScrollY && (Math.abs(bottom - y) <= sens && scrollPosY + height < scrollHeight) - (Math.abs(top - y) <= sens && !!scrollPosY);
+
+    if (!autoScrolls[layersOut]) {
+      for (var i = 0; i <= layersOut; i++) {
+        if (!autoScrolls[i]) {
+          autoScrolls[i] = {};
+        }
+      }
+    }
+
+    if (autoScrolls[layersOut].vx != vx || autoScrolls[layersOut].vy != vy || autoScrolls[layersOut].el !== el) {
+      autoScrolls[layersOut].el = el;
+      autoScrolls[layersOut].vx = vx;
+      autoScrolls[layersOut].vy = vy;
+      clearInterval(autoScrolls[layersOut].pid);
+
+      if (vx != 0 || vy != 0) {
+        scrollThisInstance = true;
+        /* jshint loopfunc:true */
+
+        autoScrolls[layersOut].pid = setInterval(function () {
+          // emulate drag over during autoscroll (fallback), emulating native DnD behaviour
+          if (isFallback && this.layer === 0) {
+            Sortable.active._onTouchMove(touchEvt$1); // To move ghost if it is positioned absolutely
+
+          }
+
+          var scrollOffsetY = autoScrolls[this.layer].vy ? autoScrolls[this.layer].vy * speed : 0;
+          var scrollOffsetX = autoScrolls[this.layer].vx ? autoScrolls[this.layer].vx * speed : 0;
+
+          if (typeof scrollCustomFn === 'function') {
+            if (scrollCustomFn.call(Sortable.dragged.parentNode[expando], scrollOffsetX, scrollOffsetY, evt, touchEvt$1, autoScrolls[this.layer].el) !== 'continue') {
+              return;
+            }
+          }
+
+          scrollBy(autoScrolls[this.layer].el, scrollOffsetX, scrollOffsetY);
+        }.bind({
+          layer: layersOut
+        }), 24);
+      }
+    }
+
+    layersOut++;
+  } while (options.bubbleScroll && currentParent !== winScroller && (currentParent = getParentAutoScrollElement(currentParent, false)));
+
+  scrolling = scrollThisInstance; // in case another function catches scrolling as false in between when it is not
+}, 30);
+
+var drop = function drop(_ref) {
+  var originalEvent = _ref.originalEvent,
+      putSortable = _ref.putSortable,
+      dragEl = _ref.dragEl,
+      activeSortable = _ref.activeSortable,
+      dispatchSortableEvent = _ref.dispatchSortableEvent,
+      hideGhostForTarget = _ref.hideGhostForTarget,
+      unhideGhostForTarget = _ref.unhideGhostForTarget;
+  if (!originalEvent) return;
+  var toSortable = putSortable || activeSortable;
+  hideGhostForTarget();
+  var touch = originalEvent.changedTouches && originalEvent.changedTouches.length ? originalEvent.changedTouches[0] : originalEvent;
+  var target = document.elementFromPoint(touch.clientX, touch.clientY);
+  unhideGhostForTarget();
+
+  if (toSortable && !toSortable.el.contains(target)) {
+    dispatchSortableEvent('spill');
+    this.onSpill({
+      dragEl: dragEl,
+      putSortable: putSortable
+    });
+  }
+};
+
+function Revert() {}
+
+Revert.prototype = {
+  startIndex: null,
+  dragStart: function dragStart(_ref2) {
+    var oldDraggableIndex = _ref2.oldDraggableIndex;
+    this.startIndex = oldDraggableIndex;
+  },
+  onSpill: function onSpill(_ref3) {
+    var dragEl = _ref3.dragEl,
+        putSortable = _ref3.putSortable;
+    this.sortable.captureAnimationState();
+
+    if (putSortable) {
+      putSortable.captureAnimationState();
+    }
+
+    var nextSibling = getChild(this.sortable.el, this.startIndex, this.options);
+
+    if (nextSibling) {
+      this.sortable.el.insertBefore(dragEl, nextSibling);
+    } else {
+      this.sortable.el.appendChild(dragEl);
+    }
+
+    this.sortable.animateAll();
+
+    if (putSortable) {
+      putSortable.animateAll();
+    }
+  },
+  drop: drop
+};
+
+_extends(Revert, {
+  pluginName: 'revertOnSpill'
+});
+
+function Remove() {}
+
+Remove.prototype = {
+  onSpill: function onSpill(_ref4) {
+    var dragEl = _ref4.dragEl,
+        putSortable = _ref4.putSortable;
+    var parentSortable = putSortable || this.sortable;
+    parentSortable.captureAnimationState();
+    dragEl.parentNode && dragEl.parentNode.removeChild(dragEl);
+    parentSortable.animateAll();
+  },
+  drop: drop
+};
+
+_extends(Remove, {
+  pluginName: 'removeOnSpill'
+});
+
+var lastSwapEl;
+
+function SwapPlugin() {
+  function Swap() {
+    this.defaults = {
+      swapClass: 'sortable-swap-highlight'
+    };
+  }
+
+  Swap.prototype = {
+    dragStart: function dragStart(_ref) {
+      var dragEl = _ref.dragEl;
+      lastSwapEl = dragEl;
+    },
+    dragOverValid: function dragOverValid(_ref2) {
+      var completed = _ref2.completed,
+          target = _ref2.target,
+          onMove = _ref2.onMove,
+          activeSortable = _ref2.activeSortable,
+          changed = _ref2.changed,
+          cancel = _ref2.cancel;
+      if (!activeSortable.options.swap) return;
+      var el = this.sortable.el,
+          options = this.options;
+
+      if (target && target !== el) {
+        var prevSwapEl = lastSwapEl;
+
+        if (onMove(target) !== false) {
+          toggleClass(target, options.swapClass, true);
+          lastSwapEl = target;
+        } else {
+          lastSwapEl = null;
+        }
+
+        if (prevSwapEl && prevSwapEl !== lastSwapEl) {
+          toggleClass(prevSwapEl, options.swapClass, false);
+        }
+      }
+
+      changed();
+      completed(true);
+      cancel();
+    },
+    drop: function drop(_ref3) {
+      var activeSortable = _ref3.activeSortable,
+          putSortable = _ref3.putSortable,
+          dragEl = _ref3.dragEl;
+      var toSortable = putSortable || this.sortable;
+      var options = this.options;
+      lastSwapEl && toggleClass(lastSwapEl, options.swapClass, false);
+
+      if (lastSwapEl && (options.swap || putSortable && putSortable.options.swap)) {
+        if (dragEl !== lastSwapEl) {
+          toSortable.captureAnimationState();
+          if (toSortable !== activeSortable) activeSortable.captureAnimationState();
+          swapNodes(dragEl, lastSwapEl);
+          toSortable.animateAll();
+          if (toSortable !== activeSortable) activeSortable.animateAll();
+        }
+      }
+    },
+    nulling: function nulling() {
+      lastSwapEl = null;
+    }
+  };
+  return _extends(Swap, {
+    pluginName: 'swap',
+    eventProperties: function eventProperties() {
+      return {
+        swapItem: lastSwapEl
+      };
+    }
+  });
+}
+
+function swapNodes(n1, n2) {
+  var p1 = n1.parentNode,
+      p2 = n2.parentNode,
+      i1,
+      i2;
+  if (!p1 || !p2 || p1.isEqualNode(n2) || p2.isEqualNode(n1)) return;
+  i1 = index(n1);
+  i2 = index(n2);
+
+  if (p1.isEqualNode(p2) && i1 < i2) {
+    i2++;
+  }
+
+  p1.insertBefore(n2, p1.children[i1]);
+  p2.insertBefore(n1, p2.children[i2]);
+}
+
+var multiDragElements = [],
+    multiDragClones = [],
+    lastMultiDragSelect,
+    // for selection with modifier key down (SHIFT)
+multiDragSortable,
+    initialFolding = false,
+    // Initial multi-drag fold when drag started
+folding = false,
+    // Folding any other time
+dragStarted = false,
+    dragEl$1,
+    clonesFromRect,
+    clonesHidden;
+
+function MultiDragPlugin() {
+  function MultiDrag(sortable) {
+    // Bind all private methods
+    for (var fn in this) {
+      if (fn.charAt(0) === '_' && typeof this[fn] === 'function') {
+        this[fn] = this[fn].bind(this);
+      }
+    }
+
+    if (sortable.options.supportPointer) {
+      on(document, 'pointerup', this._deselectMultiDrag);
+    } else {
+      on(document, 'mouseup', this._deselectMultiDrag);
+      on(document, 'touchend', this._deselectMultiDrag);
+    }
+
+    on(document, 'keydown', this._checkKeyDown);
+    on(document, 'keyup', this._checkKeyUp);
+    this.defaults = {
+      selectedClass: 'sortable-selected',
+      multiDragKey: null,
+      setData: function setData(dataTransfer, dragEl) {
+        var data = '';
+
+        if (multiDragElements.length && multiDragSortable === sortable) {
+          multiDragElements.forEach(function (multiDragElement, i) {
+            data += (!i ? '' : ', ') + multiDragElement.textContent;
+          });
+        } else {
+          data = dragEl.textContent;
+        }
+
+        dataTransfer.setData('Text', data);
+      }
+    };
+  }
+
+  MultiDrag.prototype = {
+    multiDragKeyDown: false,
+    isMultiDrag: false,
+    delayStartGlobal: function delayStartGlobal(_ref) {
+      var dragged = _ref.dragEl;
+      dragEl$1 = dragged;
+    },
+    delayEnded: function delayEnded() {
+      this.isMultiDrag = ~multiDragElements.indexOf(dragEl$1);
+    },
+    setupClone: function setupClone(_ref2) {
+      var sortable = _ref2.sortable,
+          cancel = _ref2.cancel;
+      if (!this.isMultiDrag) return;
+
+      for (var i = 0; i < multiDragElements.length; i++) {
+        multiDragClones.push(clone(multiDragElements[i]));
+        multiDragClones[i].sortableIndex = multiDragElements[i].sortableIndex;
+        multiDragClones[i].draggable = false;
+        multiDragClones[i].style['will-change'] = '';
+        toggleClass(multiDragClones[i], this.options.selectedClass, false);
+        multiDragElements[i] === dragEl$1 && toggleClass(multiDragClones[i], this.options.chosenClass, false);
+      }
+
+      sortable._hideClone();
+
+      cancel();
+    },
+    clone: function clone(_ref3) {
+      var sortable = _ref3.sortable,
+          rootEl = _ref3.rootEl,
+          dispatchSortableEvent = _ref3.dispatchSortableEvent,
+          cancel = _ref3.cancel;
+      if (!this.isMultiDrag) return;
+
+      if (!this.options.removeCloneOnHide) {
+        if (multiDragElements.length && multiDragSortable === sortable) {
+          insertMultiDragClones(true, rootEl);
+          dispatchSortableEvent('clone');
+          cancel();
+        }
+      }
+    },
+    showClone: function showClone(_ref4) {
+      var cloneNowShown = _ref4.cloneNowShown,
+          rootEl = _ref4.rootEl,
+          cancel = _ref4.cancel;
+      if (!this.isMultiDrag) return;
+      insertMultiDragClones(false, rootEl);
+      multiDragClones.forEach(function (clone) {
+        css(clone, 'display', '');
+      });
+      cloneNowShown();
+      clonesHidden = false;
+      cancel();
+    },
+    hideClone: function hideClone(_ref5) {
+      var _this = this;
+
+      var sortable = _ref5.sortable,
+          cloneNowHidden = _ref5.cloneNowHidden,
+          cancel = _ref5.cancel;
+      if (!this.isMultiDrag) return;
+      multiDragClones.forEach(function (clone) {
+        css(clone, 'display', 'none');
+
+        if (_this.options.removeCloneOnHide && clone.parentNode) {
+          clone.parentNode.removeChild(clone);
+        }
+      });
+      cloneNowHidden();
+      clonesHidden = true;
+      cancel();
+    },
+    dragStartGlobal: function dragStartGlobal(_ref6) {
+      var sortable = _ref6.sortable;
+
+      if (!this.isMultiDrag && multiDragSortable) {
+        multiDragSortable.multiDrag._deselectMultiDrag();
+      }
+
+      multiDragElements.forEach(function (multiDragElement) {
+        multiDragElement.sortableIndex = index(multiDragElement);
+      }); // Sort multi-drag elements
+
+      multiDragElements = multiDragElements.sort(function (a, b) {
+        return a.sortableIndex - b.sortableIndex;
+      });
+      dragStarted = true;
+    },
+    dragStarted: function dragStarted(_ref7) {
+      var _this2 = this;
+
+      var sortable = _ref7.sortable;
+      if (!this.isMultiDrag) return;
+
+      if (this.options.sort) {
+        // Capture rects,
+        // hide multi drag elements (by positioning them absolute),
+        // set multi drag elements rects to dragRect,
+        // show multi drag elements,
+        // animate to rects,
+        // unset rects & remove from DOM
+        sortable.captureAnimationState();
+
+        if (this.options.animation) {
+          multiDragElements.forEach(function (multiDragElement) {
+            if (multiDragElement === dragEl$1) return;
+            css(multiDragElement, 'position', 'absolute');
+          });
+          var dragRect = getRect(dragEl$1, false, true, true);
+          multiDragElements.forEach(function (multiDragElement) {
+            if (multiDragElement === dragEl$1) return;
+            setRect(multiDragElement, dragRect);
+          });
+          folding = true;
+          initialFolding = true;
+        }
+      }
+
+      sortable.animateAll(function () {
+        folding = false;
+        initialFolding = false;
+
+        if (_this2.options.animation) {
+          multiDragElements.forEach(function (multiDragElement) {
+            unsetRect(multiDragElement);
+          });
+        } // Remove all auxiliary multidrag items from el, if sorting enabled
+
+
+        if (_this2.options.sort) {
+          removeMultiDragElements();
+        }
+      });
+    },
+    dragOver: function dragOver(_ref8) {
+      var target = _ref8.target,
+          completed = _ref8.completed,
+          cancel = _ref8.cancel;
+
+      if (folding && ~multiDragElements.indexOf(target)) {
+        completed(false);
+        cancel();
+      }
+    },
+    revert: function revert(_ref9) {
+      var fromSortable = _ref9.fromSortable,
+          rootEl = _ref9.rootEl,
+          sortable = _ref9.sortable,
+          dragRect = _ref9.dragRect;
+
+      if (multiDragElements.length > 1) {
+        // Setup unfold animation
+        multiDragElements.forEach(function (multiDragElement) {
+          sortable.addAnimationState({
+            target: multiDragElement,
+            rect: folding ? getRect(multiDragElement) : dragRect
+          });
+          unsetRect(multiDragElement);
+          multiDragElement.fromRect = dragRect;
+          fromSortable.removeAnimationState(multiDragElement);
+        });
+        folding = false;
+        insertMultiDragElements(!this.options.removeCloneOnHide, rootEl);
+      }
+    },
+    dragOverCompleted: function dragOverCompleted(_ref10) {
+      var sortable = _ref10.sortable,
+          isOwner = _ref10.isOwner,
+          insertion = _ref10.insertion,
+          activeSortable = _ref10.activeSortable,
+          parentEl = _ref10.parentEl,
+          putSortable = _ref10.putSortable;
+      var options = this.options;
+
+      if (insertion) {
+        // Clones must be hidden before folding animation to capture dragRectAbsolute properly
+        if (isOwner) {
+          activeSortable._hideClone();
+        }
+
+        initialFolding = false; // If leaving sort:false root, or already folding - Fold to new location
+
+        if (options.animation && multiDragElements.length > 1 && (folding || !isOwner && !activeSortable.options.sort && !putSortable)) {
+          // Fold: Set all multi drag elements's rects to dragEl's rect when multi-drag elements are invisible
+          var dragRectAbsolute = getRect(dragEl$1, false, true, true);
+          multiDragElements.forEach(function (multiDragElement) {
+            if (multiDragElement === dragEl$1) return;
+            setRect(multiDragElement, dragRectAbsolute); // Move element(s) to end of parentEl so that it does not interfere with multi-drag clones insertion if they are inserted
+            // while folding, and so that we can capture them again because old sortable will no longer be fromSortable
+
+            parentEl.appendChild(multiDragElement);
+          });
+          folding = true;
+        } // Clones must be shown (and check to remove multi drags) after folding when interfering multiDragElements are moved out
+
+
+        if (!isOwner) {
+          // Only remove if not folding (folding will remove them anyways)
+          if (!folding) {
+            removeMultiDragElements();
+          }
+
+          if (multiDragElements.length > 1) {
+            var clonesHiddenBefore = clonesHidden;
+
+            activeSortable._showClone(sortable); // Unfold animation for clones if showing from hidden
+
+
+            if (activeSortable.options.animation && !clonesHidden && clonesHiddenBefore) {
+              multiDragClones.forEach(function (clone) {
+                activeSortable.addAnimationState({
+                  target: clone,
+                  rect: clonesFromRect
+                });
+                clone.fromRect = clonesFromRect;
+                clone.thisAnimationDuration = null;
+              });
+            }
+          } else {
+            activeSortable._showClone(sortable);
+          }
+        }
+      }
+    },
+    dragOverAnimationCapture: function dragOverAnimationCapture(_ref11) {
+      var dragRect = _ref11.dragRect,
+          isOwner = _ref11.isOwner,
+          activeSortable = _ref11.activeSortable;
+      multiDragElements.forEach(function (multiDragElement) {
+        multiDragElement.thisAnimationDuration = null;
+      });
+
+      if (activeSortable.options.animation && !isOwner && activeSortable.multiDrag.isMultiDrag) {
+        clonesFromRect = _extends({}, dragRect);
+        var dragMatrix = matrix(dragEl$1, true);
+        clonesFromRect.top -= dragMatrix.f;
+        clonesFromRect.left -= dragMatrix.e;
+      }
+    },
+    dragOverAnimationComplete: function dragOverAnimationComplete() {
+      if (folding) {
+        folding = false;
+        removeMultiDragElements();
+      }
+    },
+    drop: function drop(_ref12) {
+      var evt = _ref12.originalEvent,
+          rootEl = _ref12.rootEl,
+          parentEl = _ref12.parentEl,
+          sortable = _ref12.sortable,
+          dispatchSortableEvent = _ref12.dispatchSortableEvent,
+          oldIndex = _ref12.oldIndex,
+          putSortable = _ref12.putSortable;
+      var toSortable = putSortable || this.sortable;
+      if (!evt) return;
+      var options = this.options,
+          children = parentEl.children; // Multi-drag selection
+
+      if (!dragStarted) {
+        if (options.multiDragKey && !this.multiDragKeyDown) {
+          this._deselectMultiDrag();
+        }
+
+        toggleClass(dragEl$1, options.selectedClass, !~multiDragElements.indexOf(dragEl$1));
+
+        if (!~multiDragElements.indexOf(dragEl$1)) {
+          multiDragElements.push(dragEl$1);
+          dispatchEvent({
+            sortable: sortable,
+            rootEl: rootEl,
+            name: 'select',
+            targetEl: dragEl$1,
+            originalEvt: evt
+          }); // Modifier activated, select from last to dragEl
+
+          if (evt.shiftKey && lastMultiDragSelect && sortable.el.contains(lastMultiDragSelect)) {
+            var lastIndex = index(lastMultiDragSelect),
+                currentIndex = index(dragEl$1);
+
+            if (~lastIndex && ~currentIndex && lastIndex !== currentIndex) {
+              // Must include lastMultiDragSelect (select it), in case modified selection from no selection
+              // (but previous selection existed)
+              var n, i;
+
+              if (currentIndex > lastIndex) {
+                i = lastIndex;
+                n = currentIndex;
+              } else {
+                i = currentIndex;
+                n = lastIndex + 1;
+              }
+
+              for (; i < n; i++) {
+                if (~multiDragElements.indexOf(children[i])) continue;
+                toggleClass(children[i], options.selectedClass, true);
+                multiDragElements.push(children[i]);
+                dispatchEvent({
+                  sortable: sortable,
+                  rootEl: rootEl,
+                  name: 'select',
+                  targetEl: children[i],
+                  originalEvt: evt
+                });
+              }
+            }
+          } else {
+            lastMultiDragSelect = dragEl$1;
+          }
+
+          multiDragSortable = toSortable;
+        } else {
+          multiDragElements.splice(multiDragElements.indexOf(dragEl$1), 1);
+          lastMultiDragSelect = null;
+          dispatchEvent({
+            sortable: sortable,
+            rootEl: rootEl,
+            name: 'deselect',
+            targetEl: dragEl$1,
+            originalEvt: evt
+          });
+        }
+      } // Multi-drag drop
+
+
+      if (dragStarted && this.isMultiDrag) {
+        folding = false; // Do not "unfold" after around dragEl if reverted
+
+        if ((parentEl[expando].options.sort || parentEl !== rootEl) && multiDragElements.length > 1) {
+          var dragRect = getRect(dragEl$1),
+              multiDragIndex = index(dragEl$1, ':not(.' + this.options.selectedClass + ')');
+          if (!initialFolding && options.animation) dragEl$1.thisAnimationDuration = null;
+          toSortable.captureAnimationState();
+
+          if (!initialFolding) {
+            if (options.animation) {
+              dragEl$1.fromRect = dragRect;
+              multiDragElements.forEach(function (multiDragElement) {
+                multiDragElement.thisAnimationDuration = null;
+
+                if (multiDragElement !== dragEl$1) {
+                  var rect = folding ? getRect(multiDragElement) : dragRect;
+                  multiDragElement.fromRect = rect; // Prepare unfold animation
+
+                  toSortable.addAnimationState({
+                    target: multiDragElement,
+                    rect: rect
+                  });
+                }
+              });
+            } // Multi drag elements are not necessarily removed from the DOM on drop, so to reinsert
+            // properly they must all be removed
+
+
+            removeMultiDragElements();
+            multiDragElements.forEach(function (multiDragElement) {
+              if (children[multiDragIndex]) {
+                parentEl.insertBefore(multiDragElement, children[multiDragIndex]);
+              } else {
+                parentEl.appendChild(multiDragElement);
+              }
+
+              multiDragIndex++;
+            }); // If initial folding is done, the elements may have changed position because they are now
+            // unfolding around dragEl, even though dragEl may not have his index changed, so update event
+            // must be fired here as Sortable will not.
+
+            if (oldIndex === index(dragEl$1)) {
+              var update = false;
+              multiDragElements.forEach(function (multiDragElement) {
+                if (multiDragElement.sortableIndex !== index(multiDragElement)) {
+                  update = true;
+                  return;
+                }
+              });
+
+              if (update) {
+                dispatchSortableEvent('update');
+              }
+            }
+          } // Must be done after capturing individual rects (scroll bar)
+
+
+          multiDragElements.forEach(function (multiDragElement) {
+            unsetRect(multiDragElement);
+          });
+          toSortable.animateAll();
+        }
+
+        multiDragSortable = toSortable;
+      } // Remove clones if necessary
+
+
+      if (rootEl === parentEl || putSortable && putSortable.lastPutMode !== 'clone') {
+        multiDragClones.forEach(function (clone) {
+          clone.parentNode && clone.parentNode.removeChild(clone);
+        });
+      }
+    },
+    nullingGlobal: function nullingGlobal() {
+      this.isMultiDrag = dragStarted = false;
+      multiDragClones.length = 0;
+    },
+    destroyGlobal: function destroyGlobal() {
+      this._deselectMultiDrag();
+
+      off(document, 'pointerup', this._deselectMultiDrag);
+      off(document, 'mouseup', this._deselectMultiDrag);
+      off(document, 'touchend', this._deselectMultiDrag);
+      off(document, 'keydown', this._checkKeyDown);
+      off(document, 'keyup', this._checkKeyUp);
+    },
+    _deselectMultiDrag: function _deselectMultiDrag(evt) {
+      if (typeof dragStarted !== "undefined" && dragStarted) return; // Only deselect if selection is in this sortable
+
+      if (multiDragSortable !== this.sortable) return; // Only deselect if target is not item in this sortable
+
+      if (evt && closest(evt.target, this.options.draggable, this.sortable.el, false)) return; // Only deselect if left click
+
+      if (evt && evt.button !== 0) return;
+
+      while (multiDragElements.length) {
+        var el = multiDragElements[0];
+        toggleClass(el, this.options.selectedClass, false);
+        multiDragElements.shift();
+        dispatchEvent({
+          sortable: this.sortable,
+          rootEl: this.sortable.el,
+          name: 'deselect',
+          targetEl: el,
+          originalEvt: evt
+        });
+      }
+    },
+    _checkKeyDown: function _checkKeyDown(evt) {
+      if (evt.key === this.options.multiDragKey) {
+        this.multiDragKeyDown = true;
+      }
+    },
+    _checkKeyUp: function _checkKeyUp(evt) {
+      if (evt.key === this.options.multiDragKey) {
+        this.multiDragKeyDown = false;
+      }
+    }
+  };
+  return _extends(MultiDrag, {
+    // Static methods & properties
+    pluginName: 'multiDrag',
+    utils: {
+      /**
+       * Selects the provided multi-drag item
+       * @param  {HTMLElement} el    The element to be selected
+       */
+      select: function select(el) {
+        var sortable = el.parentNode[expando];
+        if (!sortable || !sortable.options.multiDrag || ~multiDragElements.indexOf(el)) return;
+
+        if (multiDragSortable && multiDragSortable !== sortable) {
+          multiDragSortable.multiDrag._deselectMultiDrag();
+
+          multiDragSortable = sortable;
+        }
+
+        toggleClass(el, sortable.options.selectedClass, true);
+        multiDragElements.push(el);
+      },
+
+      /**
+       * Deselects the provided multi-drag item
+       * @param  {HTMLElement} el    The element to be deselected
+       */
+      deselect: function deselect(el) {
+        var sortable = el.parentNode[expando],
+            index = multiDragElements.indexOf(el);
+        if (!sortable || !sortable.options.multiDrag || !~index) return;
+        toggleClass(el, sortable.options.selectedClass, false);
+        multiDragElements.splice(index, 1);
+      }
+    },
+    eventProperties: function eventProperties() {
+      var _this3 = this;
+
+      var oldIndicies = [],
+          newIndicies = [];
+      multiDragElements.forEach(function (multiDragElement) {
+        oldIndicies.push({
+          multiDragElement: multiDragElement,
+          index: multiDragElement.sortableIndex
+        }); // multiDragElements will already be sorted if folding
+
+        var newIndex;
+
+        if (folding && multiDragElement !== dragEl$1) {
+          newIndex = -1;
+        } else if (folding) {
+          newIndex = index(multiDragElement, ':not(.' + _this3.options.selectedClass + ')');
+        } else {
+          newIndex = index(multiDragElement);
+        }
+
+        newIndicies.push({
+          multiDragElement: multiDragElement,
+          index: newIndex
+        });
+      });
+      return {
+        items: _toConsumableArray(multiDragElements),
+        clones: [].concat(multiDragClones),
+        oldIndicies: oldIndicies,
+        newIndicies: newIndicies
+      };
+    },
+    optionListeners: {
+      multiDragKey: function multiDragKey(key) {
+        key = key.toLowerCase();
+
+        if (key === 'ctrl') {
+          key = 'Control';
+        } else if (key.length > 1) {
+          key = key.charAt(0).toUpperCase() + key.substr(1);
+        }
+
+        return key;
+      }
+    }
+  });
+}
+
+function insertMultiDragElements(clonesInserted, rootEl) {
+  multiDragElements.forEach(function (multiDragElement, i) {
+    var target = rootEl.children[multiDragElement.sortableIndex + (clonesInserted ? Number(i) : 0)];
+
+    if (target) {
+      rootEl.insertBefore(multiDragElement, target);
+    } else {
+      rootEl.appendChild(multiDragElement);
+    }
+  });
+}
+/**
+ * Insert multi-drag clones
+ * @param  {[Boolean]} elementsInserted  Whether the multi-drag elements are inserted
+ * @param  {HTMLElement} rootEl
+ */
+
+
+function insertMultiDragClones(elementsInserted, rootEl) {
+  multiDragClones.forEach(function (clone, i) {
+    var target = rootEl.children[clone.sortableIndex + (elementsInserted ? Number(i) : 0)];
+
+    if (target) {
+      rootEl.insertBefore(clone, target);
+    } else {
+      rootEl.appendChild(clone);
+    }
+  });
+}
+
+function removeMultiDragElements() {
+  multiDragElements.forEach(function (multiDragElement) {
+    if (multiDragElement === dragEl$1) return;
+    multiDragElement.parentNode && multiDragElement.parentNode.removeChild(multiDragElement);
+  });
+}
+
+Sortable.mount(new AutoScrollPlugin());
+Sortable.mount(Remove, Revert);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Sortable);
+
+
+/***/ }),
+
+/***/ "./src/admin/components/BadgeActionDriverSettings.js":
+/*!***********************************************************!*\
+  !*** ./src/admin/components/BadgeActionDriverSettings.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BadgeActionDriverSettings)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/Component */ "flarum/Component");
+/* harmony import */ var flarum_Component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_Component__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _BadgeSelector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BadgeSelector */ "./src/admin/components/BadgeSelector.js");
+
+
+
+
+var BadgeActionDriverSettings = /*#__PURE__*/function (_Component) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(BadgeActionDriverSettings, _Component);
+
+  function BadgeActionDriverSettings() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = BadgeActionDriverSettings.prototype;
+
+  _proto.view = function view() {
+    var settings = this.attrs.settings;
+    return m(_BadgeSelector__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      value: settings().badge_id,
+      onchange: function onchange(val) {
+        return settings({
+          badge_id: val
+        });
+      }
+    });
+  };
+
+  return BadgeActionDriverSettings;
+}((flarum_Component__WEBPACK_IMPORTED_MODULE_1___default()));
+
+
+
+/***/ }),
+
+/***/ "./src/admin/components/BadgeSelector.js":
+/*!***********************************************!*\
+  !*** ./src/admin/components/BadgeSelector.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BadgeSelector)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/Component */ "flarum/Component");
+/* harmony import */ var flarum_Component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_Component__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_components_Dropdown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/components/Dropdown */ "flarum/components/Dropdown");
+/* harmony import */ var flarum_components_Dropdown__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Dropdown__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var flarum_helpers_icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/helpers/icon */ "flarum/helpers/icon");
+/* harmony import */ var flarum_helpers_icon__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_helpers_icon__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _utils_loadBadges__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/loadBadges */ "./src/admin/utils/loadBadges.js");
+
+
+
+
+
+
+
+var BadgeSelector = /*#__PURE__*/function (_Component) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(BadgeSelector, _Component);
+
+  function BadgeSelector() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = BadgeSelector.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    var _this = this;
+
+    _Component.prototype.oninit.call(this, vnode);
+
+    this.loaded = false; // Load badges
+
+    (0,_utils_loadBadges__WEBPACK_IMPORTED_MODULE_5__["default"])(function () {
+      return _this.loaded = true;
+    });
+  };
+
+  _proto.view = function view() {
+    var _this2 = this;
+
+    if (!this.loaded) {
+      return m("div", {
+        className: "Form-group"
+      }, m("label", null, this.attrs.label), m((flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default()), {
+        className: "Button Button--danger",
+        style: {
+          "float": "none"
+        },
+        loading: true
+      }, app.translator.trans("v17development-flarum-badges.admin.auto_moderator.badge_selector.loading_badges")));
+    }
+
+    var badge = app.store.getById("badges", this.attrs.value);
+    var label = badge ? [flarum_helpers_icon__WEBPACK_IMPORTED_MODULE_4___default()(badge.icon()), "\t", badge.name()] : app.translator.trans("v17development-flarum-badges.admin.auto_moderator.badge_selector.placeholder");
+    return m("div", {
+      className: "Form-group"
+    }, m("label", null, this.attrs.label), this.attrs.disabled ? m("div", {
+      className: "Button Button--danger"
+    }, label) : m((flarum_components_Dropdown__WEBPACK_IMPORTED_MODULE_3___default()), {
+      label: label,
+      disabled: this.attrs.disabled,
+      buttonClassName: "Button Button--danger"
+    }, app.store.all("badges").map(function (g) {
+      return flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default().component({
+        active: badge && badge.id() === g.id(),
+        disabled: badge && badge.id() === g.id(),
+        icon: g.icon(),
+        onclick: function onclick() {
+          _this2.attrs.onchange(g.id());
+        }
+      }, g.name());
+    })));
+  };
+
+  return BadgeSelector;
+}((flarum_Component__WEBPACK_IMPORTED_MODULE_1___default()));
+
+
+
+/***/ }),
+
+/***/ "./src/admin/components/ConfirmModal.js":
+/*!**********************************************!*\
+  !*** ./src/admin/components/ConfirmModal.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ConfirmModal)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/utils/ItemList */ "flarum/utils/ItemList");
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/Switch */ "flarum/components/Switch");
+/* harmony import */ var flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/utils/Stream */ "flarum/utils/Stream");
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+
+var ConfirmModal = /*#__PURE__*/function (_Modal) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(ConfirmModal, _Modal);
+
+  function ConfirmModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = ConfirmModal.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    _Modal.prototype.oninit.call(this, vnode);
+
+    this.loading = false;
+  };
+
+  _proto.className = function className() {
+    return "Modal--small FlarumBadgesConfirmModal";
+  };
+
+  _proto.title = function title() {
+    return app.translator.trans("v17development-flarum-badges.admin.confirm_dialog.title");
+  };
+
+  _proto.content = function content() {
+    var _this = this;
+
+    return [m("div", {
+      className: "Modal-body"
+    }, m("p", null, this.attrs.text)), m("div", {
+      className: "Modal-footer FlarumBadgesConfirmButtons"
+    }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default().component({
+      className: "Button",
+      disabled: this.loading,
+      onclick: function onclick() {
+        return _this.hide();
+      }
+    }, app.translator.trans("v17development-flarum-badges.admin.confirm_dialog.no")), flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default().component({
+      className: "Button Button--primary",
+      loading: this.loading,
+      onclick: function onclick() {
+        return _this.confirm();
+      }
+    }, app.translator.trans("v17development-flarum-badges.admin.confirm_dialog.yes")))];
+  }
+  /**
+   * Confirm
+   */
+  ;
+
+  _proto.confirm = function confirm() {
+    var _this2 = this;
+
+    // Act as promise
+    if (this.attrs.promise) {
+      this.loading = true;
+      this.attrs.onconfirm(function () {
+        return _this2.hide();
+      }, function () {
+        _this2.loading = false;
+        m.redraw();
+      });
+      return;
+    }
+
+    this.attrs.onconfirm();
+    this.hide();
+  };
+
+  return ConfirmModal;
+}((flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default()));
+
+
+
+/***/ }),
+
+/***/ "./src/admin/components/EditBadgeCategoryModal.js":
+/*!********************************************************!*\
+  !*** ./src/admin/components/EditBadgeCategoryModal.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ EditBadgeCategoryModal)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/utils/ItemList */ "flarum/utils/ItemList");
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/Switch */ "flarum/components/Switch");
+/* harmony import */ var flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/utils/Stream */ "flarum/utils/Stream");
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+
+var EditBadgeCategoryModal = /*#__PURE__*/function (_Modal) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(EditBadgeCategoryModal, _Modal);
+
+  function EditBadgeCategoryModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = EditBadgeCategoryModal.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    _Modal.prototype.oninit.call(this, vnode); // Badge model
+
+
+    this.badgeCategory = this.attrs.badgeCategory ? this.attrs.badgeCategory : app.store.createRecord("badgeCategories"); // Name
+
+    this.name = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badgeCategory.name()); // Description
+
+    this.description = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badgeCategory.description()); // Is enabled
+
+    this.isTable = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badgeCategory.exists ? this.badgeCategory.isTable() : true); // Is enabled
+
+    this.isEnabled = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badgeCategory.exists ? this.badgeCategory.isEnabled() : true);
+  };
+
+  _proto.className = function className() {
+    return "Modal--small";
+  };
+
+  _proto.title = function title() {
+    return app.translator.trans("v17development-flarum-badges.admin." + (this.badgeCategory.exists ? "update_category" : "create_category"));
+  };
+
+  _proto.content = function content() {
+    return [m("div", {
+      className: "Modal-body"
+    }, m("div", {
+      className: "Form"
+    }, this.data().toArray())), m("div", {
+      className: "Modal-footer"
+    }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default().component({
+      type: "submit",
+      className: "Button Button--primary",
+      loading: this.loading
+    }, app.translator.trans("core.admin.settings.submit_button")))];
+  };
+
+  _proto.data = function data() {
+    var _this = this;
+
+    var items = new (flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2___default())();
+    items.add("name", m("div", {
+      className: "Form-group"
+    }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge_category.name"), ":"), m("input", {
+      className: "FormControl",
+      placeholder: app.translator.trans("v17development-flarum-badges.admin.badge_category.name"),
+      bidi: this.name
+    })), 50);
+    items.add("description", m("div", {
+      className: "Form-group"
+    }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge_category.description"), ":"), m("textarea", {
+      className: "FormControl",
+      placeholder: app.translator.trans("v17development-flarum-badges.admin.badge_category.description"),
+      bidi: this.description
+    })), 50); // Enabled
+
+    items.add("blockview", m("div", {
+      className: "Form-group"
+    }, flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4___default().component({
+      state: this.isTable() === false,
+      onchange: function onchange(val) {
+        return _this.isTable(!val);
+      }
+    }, [m("b", null, app.translator.trans("v17development-flarum-badges.admin.badge_category.blockview")), m("div", {
+      className: "helpText"
+    }, app.translator.trans("v17development-flarum-badges.admin.badge_category.blockview_description"))])), 50); // Enabled
+
+    items.add("enabled", m("div", {
+      className: "Form-group"
+    }, flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4___default().component({
+      state: this.isEnabled() == true,
+      onchange: function onchange(val) {
+        return _this.isEnabled(val);
+      }
+    }, [m("b", null, app.translator.trans("v17development-flarum-badges.admin.badge_category.enabled")), m("div", {
+      className: "helpText"
+    }, app.translator.trans("v17development-flarum-badges.admin.badge_category.enabled_description"))])), 50);
+    return items;
+  };
+
+  _proto.onsubmit = function onsubmit(e) {
+    var _this2 = this;
+
+    e.preventDefault();
+    this.loading = true;
+    this.badgeCategory.save({
+      name: this.name(),
+      description: this.description(),
+      isTable: this.isTable(),
+      isEnabled: this.isEnabled()
+    }).then(function () {
+      _this2.hide();
+
+      if (_this2.attrs.onCreate) {
+        _this2.attrs.onCreate();
+      }
+    }, function (response) {
+      _this2.loading = false;
+
+      _this2.handleErrors(response);
+    });
+  };
+
+  return EditBadgeCategoryModal;
+}((flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default()));
+
+
+
+/***/ }),
+
+/***/ "./src/admin/components/EditBadgeModal.js":
+/*!************************************************!*\
+  !*** ./src/admin/components/EditBadgeModal.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ EditBadgeModal)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/utils/ItemList */ "flarum/utils/ItemList");
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/Switch */ "flarum/components/Switch");
+/* harmony import */ var flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/utils/Stream */ "flarum/utils/Stream");
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+
+var EditBadgeModal = /*#__PURE__*/function (_Modal) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(EditBadgeModal, _Modal);
+
+  function EditBadgeModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = EditBadgeModal.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    _Modal.prototype.oninit.call(this, vnode); // Badge model
+
+
+    this.badge = this.attrs.badge ? this.attrs.badge : app.store.createRecord("badges"); // Name
+
+    this.name = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badge.name()); // Is image
+
+    this.isImage = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badge.exists ? this.badge.image() !== null : false); // Icon
+
+    this.icon = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badge.icon()); // Image
+
+    this.image = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badge.image()); // Description
+
+    this.description = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badge.description()); // Is visible
+
+    this.isVisible = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badge.exists ? this.badge.isVisible() : true); // Background color
+
+    this.backgroundColor = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badge.backgroundColor()); // Icon color
+
+    this.iconColor = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badge.iconColor()); // Label color
+
+    this.labelColor = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badge.labelColor());
+  };
+
+  _proto.className = function className() {
+    return this.isImage() ? "Modal--small" : "Modal--large";
+  };
+
+  _proto.title = function title() {
+    return app.translator.trans("v17development-flarum-badges.admin." + (this.badge.exists ? "update_badge" : "new_badge"));
+  };
+
+  _proto.content = function content() {
+    return [m("div", {
+      className: "Modal-body"
+    }, m("div", {
+      className: "Form"
+    }, this.data().toArray())), m("div", {
+      className: "Modal-footer"
+    }, flarum_components_Button__WEBPACK_IMPORTED_MODULE_3___default().component({
+      type: "submit",
+      className: "Button Button--primary",
+      loading: this.loading
+    }, app.translator.trans("core.admin.settings.submit_button")))];
+  };
+
+  _proto.data = function data() {
+    var _this = this;
+
+    var items = new (flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_2___default())();
+    items.add("name", m("div", {
+      className: "Form-group"
+    }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge.name"), ":"), m("input", {
+      className: "FormControl",
+      placeholder: app.translator.trans("v17development-flarum-badges.admin.badge.name"),
+      bidi: this.name
+    })), 50);
+    items.add("description", m("div", {
+      className: "Form-group"
+    }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge.description"), ":"), m("textarea", {
+      className: "FormControl",
+      placeholder: app.translator.trans("v17development-flarum-badges.admin.badge.description"),
+      bidi: this.description
+    })), 50); // Is image
+
+    items.add("is_image", m("div", {
+      className: "Form-group"
+    }, flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4___default().component({
+      state: this.isImage() == true,
+      onchange: function onchange(val) {
+        return _this.isImage(val);
+      }
+    }, [m("b", null, app.translator.trans("v17development-flarum-badges.admin.badge.is_image")), m("div", {
+      className: "helpText"
+    }, app.translator.trans("v17development-flarum-badges.admin.badge.is_image_description"))])), 50); // Image field
+
+    if (this.isImage()) {
+      items.add("image", m("div", {
+        className: "Form-group"
+      }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge.image"), ":"), m("input", {
+        className: "FormControl",
+        placeholder: app.translator.trans("v17development-flarum-badges.admin.badge.image_placeholder"),
+        bidi: this.image
+      })), 50);
+    } // Non-image fields
+    else {
+      items.add("icon", m("div", {
+        className: "Form-group BadgeForm-split BadgeForm-IconField"
+      }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge.icon"), ":"), m("input", {
+        className: "FormControl",
+        placeholder: "fas fa-icons",
+        bidi: this.icon
+      }), m("span", {
+        className: this.icon() || "fas fa-icons "
+      })), 50);
+      items.add("icon_color", m("div", {
+        className: "Form-group BadgeForm-split BadgeForm-ColorField"
+      }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge.icon_color"), ":"), m("input", {
+        className: "FormControl",
+        placeholder: "auto",
+        bidi: this.iconColor
+      }), m("span", {
+        className: "BadgeForm-Chosen-Color",
+        style: {
+          backgroundColor: this.iconColor()
+        }
+      })), 50);
+      items.add("background_color", m("div", {
+        className: "Form-group BadgeForm-split BadgeForm-ColorField"
+      }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge.background_color"), ":"), m("input", {
+        className: "FormControl",
+        bidi: this.backgroundColor,
+        placeholder: "auto"
+      }), m("span", {
+        className: "BadgeForm-Chosen-Color",
+        style: {
+          backgroundColor: this.backgroundColor()
+        }
+      })), 50);
+      items.add("label_color", m("div", {
+        className: "Form-group BadgeForm-split BadgeForm-ColorField"
+      }, m("label", null, app.translator.trans("v17development-flarum-badges.admin.badge.label_color"), ":"), m("input", {
+        className: "FormControl",
+        placeholder: "auto",
+        bidi: this.labelColor
+      }), m("span", {
+        className: "BadgeForm-Chosen-Color",
+        style: {
+          backgroundColor: this.labelColor()
+        }
+      })), 50);
+    } // Enabled
+
+
+    items.add("enabled", m("div", {
+      className: "Form-group"
+    }, flarum_components_Switch__WEBPACK_IMPORTED_MODULE_4___default().component({
+      state: this.isVisible() == true,
+      onchange: function onchange(val) {
+        return _this.isVisible(val);
+      }
+    }, [m("b", null, app.translator.trans("v17development-flarum-badges.admin.badge.visible")), m("div", {
+      className: "helpText"
+    }, app.translator.trans("v17development-flarum-badges.admin.badge.visible_description"))])), 50);
+    return items;
+  };
+
+  _proto.onsubmit = function onsubmit(e) {
+    var _this2 = this;
+
+    e.preventDefault();
+    this.loading = true;
+    this.badge.save({
+      name: this.name(),
+      icon: this.icon(),
+      image: this.image(),
+      description: this.description(),
+      isVisible: this.isVisible(),
+      iconColor: this.iconColor(),
+      backgroundColor: this.backgroundColor(),
+      labelColor: this.labelColor()
+    }).then(function () {
+      return _this2.hide();
+    }, function (response) {
+      _this2.loading = false;
+
+      _this2.handleErrors(response);
+    });
+  };
+
+  return EditBadgeModal;
+}((flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default()));
+
+
+
+/***/ }),
+
+/***/ "./src/admin/components/InstallAutoModerationMessage.js":
+/*!**************************************************************!*\
+  !*** ./src/admin/components/InstallAutoModerationMessage.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ InstallAutoModerationMessage)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/common/Component */ "flarum/common/Component");
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_utils_saveSettings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/utils/saveSettings */ "flarum/utils/saveSettings");
+/* harmony import */ var flarum_utils_saveSettings__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_saveSettings__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+var InstallAutoModerationMessage = /*#__PURE__*/function (_Component) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(InstallAutoModerationMessage, _Component);
+
+  function InstallAutoModerationMessage() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = InstallAutoModerationMessage.prototype;
+
+  _proto.view = function view() {
+    // Message is dismissed
+    if (typeof app.data.settings.badges_install_automoderation !== "undefined") {
+      return null;
+    }
+
+    var extensionInstalled = typeof app.data.extensions["askvortsov-auto-moderator"] !== "undefined";
+    return m("div", {
+      className: "FlarumBadges-install-dependency"
+    }, m("div", {
+      className: "FlarumBadges-install-dependency-title"
+    }, app.translator.trans("v17development-flarum-badges.admin.auto_moderator.not_installed.title")), m("div", {
+      className: "FlarumBadges-install-dependency-content"
+    }, app.translator.trans("v17development-flarum-badges.admin.auto_moderator.not_installed.content", {
+      a: m("a", {
+        href: "https://discuss.flarum.org/d/27306",
+        target: "_blank"
+      })
+    })), m("div", {
+      className: "FlarumBadges-install-dependency-buttons"
+    }, m("a", {
+      className: "Button",
+      href: extensionInstalled ? "#/extension/askvortsov-auto-moderator" : "https://discuss.flarum.org/d/27306",
+      target: extensionInstalled ? "" : "_blank"
+    }, m("i", {
+      "class": "icon fas " + (extensionInstalled ? "fa-robot" : "fa-download") + " Button-icon"
+    }), m("span", {
+      "class": "Button-label"
+    }, app.translator.trans(extensionInstalled ? "core.admin.extension.open_modal" : "v17development-flarum-badges.admin.auto_moderator.not_installed.install"))), m((flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default()), {
+      className: "Button",
+      onclick: function onclick() {
+        return flarum_utils_saveSettings__WEBPACK_IMPORTED_MODULE_3___default()({
+          badges_install_automoderation: "dismissed"
+        });
+      },
+      icon: "fas fa-times"
+    }, app.translator.trans("v17development-flarum-badges.admin.auto_moderator.not_installed.dismiss"))));
+  };
+
+  return InstallAutoModerationMessage;
+}((flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default()));
+
+
+
+/***/ }),
+
+/***/ "./src/admin/components/SettingsPage.js":
+/*!**********************************************!*\
+  !*** ./src/admin/components/SettingsPage.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SettingsPage)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js");
+/* harmony import */ var flarum_components_ExtensionPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/ExtensionPage */ "flarum/components/ExtensionPage");
+/* harmony import */ var flarum_components_ExtensionPage__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_ExtensionPage__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/components/LoadingIndicator */ "flarum/components/LoadingIndicator");
+/* harmony import */ var flarum_components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _SortableBadge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SortableBadge */ "./src/admin/components/SortableBadge.js");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _EditBadgeModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EditBadgeModal */ "./src/admin/components/EditBadgeModal.js");
+/* harmony import */ var _EditBadgeCategoryModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./EditBadgeCategoryModal */ "./src/admin/components/EditBadgeCategoryModal.js");
+/* harmony import */ var _ConfirmModal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ConfirmModal */ "./src/admin/components/ConfirmModal.js");
+/* harmony import */ var _InstallAutoModerationMessage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./InstallAutoModerationMessage */ "./src/admin/components/InstallAutoModerationMessage.js");
+
+
+
+
+
+
+
+
+
+
+
+var SettingsPage = /*#__PURE__*/function (_ExtensionPage) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(SettingsPage, _ExtensionPage);
+
+  function SettingsPage() {
+    return _ExtensionPage.apply(this, arguments) || this;
+  }
+
+  var _proto = SettingsPage.prototype;
+
+  _proto.oninit = function oninit(attrs) {
+    var _this = this;
+
+    _ExtensionPage.prototype.oninit.call(this, attrs);
+
+    this.loading = true;
+    this.updating = false;
+    this.forcedRefreshKey = 0;
+    app.store.find("badge_categories").then(function () {
+      app.store.find("badges").then(function () {
+        _this.loading = false; // Redraw
+
+        m.redraw();
+      });
+    });
+  };
+
+  _proto.content = function content() {
+    var _this2 = this;
+
+    var categories = app.store.all("badgeCategories").sort(function (a, b) {
+      return a.order() - b.order();
+    });
+    var uncategorizedBadges = app.store.all("badges").filter(function (badge) {
+      return badge.category() == false;
+    });
+    return m("div", {
+      className: "FlarumBadgesPage"
+    }, app.data.settings.extensions_enabled.indexOf("askvortsov-auto-moderator") === -1 && m(_InstallAutoModerationMessage__WEBPACK_IMPORTED_MODULE_9__["default"], null), m("div", {
+      className: "FlarumBadgePageButtons"
+    }, m((flarum_components_Button__WEBPACK_IMPORTED_MODULE_5___default()), {
+      className: "Button",
+      onclick: function onclick() {
+        return app.modal.show(_EditBadgeCategoryModal__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          onCreate: function onCreate() {
+            return _this2.nextRefreshKey();
+          }
+        });
+      },
+      icon: "fas fa-project-diagram"
+    }, app.translator.trans("v17development-flarum-badges.admin.create_category")), m((flarum_components_Button__WEBPACK_IMPORTED_MODULE_5___default()), {
+      className: "Button",
+      onclick: function onclick() {
+        return app.modal.show(_EditBadgeModal__WEBPACK_IMPORTED_MODULE_6__["default"]);
+      },
+      icon: "fas fa-icons"
+    }, app.translator.trans("v17development-flarum-badges.admin.new_badge"))), m("div", null, !this.loading && m("div", {
+      className: "FlarumBadgeCategories",
+      key: this.forcedRefreshKey,
+      oncreate: this.onBadgeListReady.bind(this)
+    }, categories && categories.map(function (category, key) {
+      return m("div", {
+        className: "FlarumBadgeCategory",
+        "data-id": category.id()
+      }, m("div", {
+        className: "CategoryHeader"
+      }, m("span", {
+        className: "CategoryName"
+      }, !category.isEnabled() && m("i", {
+        className: "fas fa-eye-slash"
+      }), m("b", null, category.name())), m("span", {
+        className: "CategoryLinks"
+      }, m("a", {
+        href: "javascript:void(0)",
+        onclick: function onclick() {
+          return app.modal.show(_EditBadgeCategoryModal__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            badgeCategory: category
+          });
+        }
+      }, app.translator.trans("v17development-flarum-badges.admin.edit_category")), m("a", {
+        href: "javascript:void(0)",
+        onclick: function onclick() {
+          return _this2.updateCategorySort(category, "up");
+        },
+        className: key === 0 ? "LinkDisabled" : null
+      }, m("i", {
+        className: "fas fa-caret-up"
+      })), m("a", {
+        href: "javascript:void(0)",
+        onclick: function onclick() {
+          return _this2.updateCategorySort(category, "down");
+        },
+        className: key === categories.length - 1 ? "LinkDisabled" : null
+      }, m("i", {
+        className: "fas fa-caret-down"
+      })), m("a", {
+        href: "javascript:void(0)",
+        onclick: function onclick() {
+          return app.modal.show(_ConfirmModal__WEBPACK_IMPORTED_MODULE_8__["default"], {
+            text: app.translator.trans("v17development-flarum-badges.admin.confirm_messages.delete_category"),
+            promise: true,
+            onconfirm: function onconfirm(resolve, reject) {
+              var badges = category.badges();
+              category["delete"]().then(function () {
+                resolve();
+                badges.forEach(function (badge) {
+                  return badge.pushData({
+                    relationships: {
+                      category: null
+                    }
+                  });
+                });
+              })["catch"](reject);
+            }
+          });
+        }
+      }, m("i", {
+        className: "fas fa-trash"
+      })))), m("ul", {
+        className: "SortableBadges"
+      }, category.badges() && category.badges().sort(function (a, b) {
+        return a.order() - b.order();
+      }).map(function (badge) {
+        return m(_SortableBadge__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          badge: badge
+        });
+      })));
+    }), m("div", {
+      className: "FlarumBadgeCategory"
+    }, m("div", {
+      className: "CategoryHeader"
+    }, m("span", {
+      className: "CategoryName"
+    }, m("b", null, app.translator.trans("v17development-flarum-badges.admin.uncategorized")))), m("ul", {
+      className: "SortableBadges"
+    }, uncategorizedBadges.sort(function (a, b) {
+      return a.order() - b.order();
+    }).map(function (badge) {
+      return m(_SortableBadge__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        badge: badge
+      });
+    }))))), this.loading && m((flarum_components_LoadingIndicator__WEBPACK_IMPORTED_MODULE_3___default()), {
+      size: "big"
+    }), !this.loading && uncategorizedBadges.length === 0 && categories.length === 0 && m("p", null, app.translator.trans("v17development-flarum-badges.admin.nothing_here_yet")));
+  };
+
+  _proto.onBadgeListReady = function onBadgeListReady(vnode) {
+    var _this3 = this;
+
+    this.$(".SortableBadges").get().map(function (e) {
+      sortablejs__WEBPACK_IMPORTED_MODULE_1__["default"].create(e, {
+        group: "tags",
+        animation: 150,
+        swapThreshold: 0.65,
+        dragClass: "SortableBadges-dragging",
+        ghostClass: "SortableBadges-placeholder",
+        direction: "horizontal",
+        onSort: function onSort(e) {
+          return _this3.onSortUpdate(e);
+        }
+      });
+    });
+  }
+  /**
+   *
+   * @param {categoryObject} category
+   * @param {string} action
+   * @returns
+   */
+  ;
+
+  _proto.updateCategorySort = function updateCategorySort(category, action) {
+    var _this4 = this;
+
+    var newPosition = action === "up" ? category.order() - 1 : category.order() + 1;
+    var order = [];
+    console.log(category.id(), action, newPosition); // Bring to top
+
+    if (newPosition <= 0) {
+      order.push(category.id());
+    } // Get all categories
+
+
+    var categories = app.store.all("badgeCategories").sort(function (a, b) {
+      return a.order() - b.order();
+    }); // Loop through the categories
+
+    categories.forEach(function (obj, key) {
+      // Skip current category
+      if (obj === category) return; // Add before current key
+
+      if (newPosition !== 0 && key === newPosition && action === "up") {
+        order.push(category.id());
+      } // Add object
+
+
+      order.push(obj.id()); // Add after current key
+
+      if (key === newPosition && action === "down") {
+        order.push(category.id());
+      }
+    }); // Save list
+
+    app.request({
+      url: app.forum.attribute("apiUrl") + "/badge_categories/order",
+      method: "POST",
+      body: {
+        order: order
+      }
+    })["catch"](function (e) {
+      return console.error(e);
+    }).then(function (payload) {
+      app.store.pushPayload(payload);
+
+      _this4.nextRefreshKey();
+    });
+  }
+  /**
+   * Sort badges
+   */
+  ;
+
+  _proto.onSortUpdate = function onSortUpdate() {
+    var _this5 = this;
+
+    // Skip if already updating
+    if (this.updating) return;
+    this.updating = true; // Get through the categories and find the children currently attached to them
+
+    var order = this.$(".FlarumBadgeCategory").map(function () {
+      return {
+        id: $(this).data("id") ? $(this).data("id") : null,
+        children: $(this).find("li").map(function () {
+          return $(this).data("id");
+        }).get()
+      };
+    }).get();
+    app.request({
+      url: app.forum.attribute("apiUrl") + "/badges/order",
+      method: "POST",
+      body: {
+        order: order
+      }
+    })["catch"](function (e) {
+      return console.error(e);
+    }).then(function () {
+      // Update local store
+      order.map(function (categoryObject) {
+        var category = categoryObject.id !== null ? app.store.getById("badgeCategories", categoryObject.id) : null; // Loop through the badges
+
+        var badges = categoryObject.children.map(function (badgeId, badgePosition) {
+          var badge = app.store.getById("badges", badgeId);
+          badge.pushData({
+            attributes: {
+              order: badgePosition
+            },
+            relationships: {
+              category: category
+            }
+          });
+          return badge;
+        }); // Update the category
+
+        if (category) {
+          category.pushData({
+            relationships: {
+              badges: {
+                data: badges.map(function (badge) {
+                  return {
+                    type: "badges",
+                    id: badge.id()
+                  };
+                })
+              }
+            }
+          });
+        }
+      });
+      _this5.updating = false;
+
+      _this5.nextRefreshKey();
+    });
+  };
+
+  _proto.nextRefreshKey = function nextRefreshKey() {
+    this.forcedRefreshKey++;
+    m.redraw();
+  };
+
+  return SettingsPage;
+}((flarum_components_ExtensionPage__WEBPACK_IMPORTED_MODULE_2___default()));
+
+
+
+/***/ }),
+
+/***/ "./src/admin/components/SortableBadge.js":
+/*!***********************************************!*\
+  !*** ./src/admin/components/SortableBadge.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SortableBadge)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/common/Component */ "flarum/common/Component");
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _common_components_UserBadge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../common/components/UserBadge */ "./src/common/components/UserBadge.js");
+/* harmony import */ var _ConfirmModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ConfirmModal */ "./src/admin/components/ConfirmModal.js");
+/* harmony import */ var _EditBadgeModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditBadgeModal */ "./src/admin/components/EditBadgeModal.js");
+
+
+
+
+
+
+
+var SortableBadge = /*#__PURE__*/function (_Component) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(SortableBadge, _Component);
+
+  function SortableBadge() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = SortableBadge.prototype;
+
+  _proto.oninit = function oninit(attrs) {
+    _Component.prototype.oninit.call(this, attrs);
+
+    this.loading = false;
+  };
+
+  _proto.view = function view() {
+    var badge = this.attrs.badge;
+    if (!badge) return null;
+    return m("li", {
+      "data-id": badge.id(),
+      className: !badge.isVisible() ? "BadgeDisabled" : ""
+    }, m("div", {
+      className: "SortableBadges-info"
+    }, m("span", {
+      className: "BadgeDetails"
+    }, m(_common_components_UserBadge__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      badge: badge,
+      onclick: function onclick() {
+        return app.modal.show(_EditBadgeModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          badge: badge
+        });
+      },
+      forceVisibility: true
+    })), m("span", {
+      className: "BadgeButtons"
+    }, m((flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default()), {
+      className: "Button",
+      disabled: this.loading,
+      onclick: function onclick() {
+        return app.modal.show(_EditBadgeModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          badge: badge
+        });
+      }
+    }, m("i", {
+      className: "fas fa-edit"
+    })), m((flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default()), {
+      className: "Button",
+      disabled: this.loading,
+      onclick: function onclick() {
+        return app.modal.show(_ConfirmModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          text: app.translator.trans("v17development-flarum-badges.admin.confirm_messages.delete_badge"),
+          promise: true,
+          onconfirm: function onconfirm(resolve, reject) {
+            return badge["delete"]().then(resolve)["catch"](reject);
+          }
+        });
+      }
+    }, m("i", {
+      className: "fas fa-trash"
+    })))));
+  };
+
+  return SortableBadge;
+}((flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default()));
+
+
+
+/***/ }),
+
+/***/ "./src/admin/index.js":
+/*!****************************!*\
+  !*** ./src/admin/index.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _common_models_Badge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/models/Badge */ "./src/common/models/Badge.js");
+/* harmony import */ var _common_models_BadgeCategory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/models/BadgeCategory */ "./src/common/models/BadgeCategory.js");
+/* harmony import */ var _components_BadgeActionDriverSettings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/BadgeActionDriverSettings */ "./src/admin/components/BadgeActionDriverSettings.js");
+/* harmony import */ var _components_SettingsPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/SettingsPage */ "./src/admin/components/SettingsPage.js");
+
+
+
+
+app.initializers.add("v17development-user-badges", function () {
+  app.store.models.badges = _common_models_Badge__WEBPACK_IMPORTED_MODULE_0__["default"];
+  app.store.models.badgeCategories = _common_models_BadgeCategory__WEBPACK_IMPORTED_MODULE_1__["default"]; // Register extension settings page
+
+  app.extensionData["for"]("v17development-user-badges").registerPage(_components_SettingsPage__WEBPACK_IMPORTED_MODULE_3__["default"]);
+  app.extensionData["for"]("v17development-user-badges").registerPermission({
+    icon: "fas fa-users",
+    label: app.translator.trans("v17development-flarum-badges.admin.permissions.badge_detail_users"),
+    permission: "badges.canViewDetailedUsers",
+    allowGuest: true
+  }, "view", 90).registerPermission({
+    icon: "fas fa-user-tag",
+    label: app.translator.trans("v17development-flarum-badges.admin.permissions.give_badge"),
+    permission: "badges.giveBadge"
+  }, "moderate", 90).registerPermission({
+    icon: "fas fa-user-times",
+    label: app.translator.trans("v17development-flarum-badges.admin.permissions.take_badge"),
+    permission: "badges.removeBadge"
+  }, "moderate", 90); // Auto moderation
+
+  if (app.autoModeratorForms) {
+    app.autoModeratorForms.action.give_badge = _components_BadgeActionDriverSettings__WEBPACK_IMPORTED_MODULE_2__["default"];
+    app.autoModeratorForms.action.remove_badge = _components_BadgeActionDriverSettings__WEBPACK_IMPORTED_MODULE_2__["default"];
+    app.autoModeratorForms.requirement.has_badge = _components_BadgeActionDriverSettings__WEBPACK_IMPORTED_MODULE_2__["default"];
+  }
+});
+
+/***/ }),
+
+/***/ "./src/admin/utils/loadBadges.js":
+/*!***************************************!*\
+  !*** ./src/admin/utils/loadBadges.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ loadAllBadges)
+/* harmony export */ });
+var loading = false;
+var hasLoaded = false;
+var onLoadedCallbacks = [];
+function loadAllBadges(onLoadedCallback) {
+  // Badges have already been loaded
+  if (hasLoaded) {
+    onLoadedCallback();
+    return;
+  } // Load badges if not already loading
+
+
+  if (!loading) {
+    loading = true; // Load badges
+
+    app.store.find("badges").then(function () {
+      hasLoaded = true;
+      loading = false;
+      onLoadedCallback(); // Give callback
+
+      onLoadedCallbacks.map(function (cb) {
+        return cb();
+      });
+      m.redraw();
+    });
+  } else {
+    onLoadedCallbacks.push(onLoadedCallback);
+  }
+}
+
+/***/ }),
+
+/***/ "./src/common/components/UserBadge.js":
+/*!********************************************!*\
+  !*** ./src/common/components/UserBadge.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ UserBadge)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/common/Component */ "flarum/common/Component");
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_common_components_Tooltip__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/common/components/Tooltip */ "flarum/common/components/Tooltip");
+/* harmony import */ var flarum_common_components_Tooltip__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_common_components_Tooltip__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _forum_components_BadgeModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../forum/components/BadgeModal */ "./src/forum/components/BadgeModal.js");
+
+
+
+
+
+var UserBadge = /*#__PURE__*/function (_Component) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(UserBadge, _Component);
+
+  function UserBadge() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = UserBadge.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    _Component.prototype.oninit.call(this, vnode);
+
+    this.tooltip = this.attrs.tooltip !== false;
+    this.forceVisibility = this.attrs.forceVisibility === true;
+  };
+
+  _proto.view = function view() {
+    // Hide badge when not enabled
+    if (!this.attrs.badge.isVisible() && !this.forceVisibility) {
+      return null;
+    } // Just show badge
+
+
+    if (this.tooltip === false) return this.badge();
+    return m((flarum_common_components_Tooltip__WEBPACK_IMPORTED_MODULE_2___default()), {
+      text: "" + (this.attrs.badge.description() ? this.attrs.badge.description() : "")
+    }, this.badge());
+  };
+
+  _proto.badge = function badge() {
+    var _this = this;
+
+    var isPartlyHidden = !this.attrs.badge.isVisible() && this.forceVisibility; // This badge is an image
+
+    if (this.attrs.badge.image()) {
+      return m("img", {
+        src: this.attrs.badge.image(),
+        className: "UserBadgeImage",
+        onclick: function onclick() {
+          if (_this.attrs.onclick) {
+            _this.attrs.onclick();
+          }
+        },
+        style: {
+          opacity: isPartlyHidden ? 0.5 : undefined
+        }
+      });
+    }
+
+    return m("span", {
+      className: "UserBadge UserBadge-" + this.attrs.badge.id(),
+      onclick: function onclick() {
+        if (_this.attrs.onclick) {
+          _this.attrs.onclick();
+        }
+      },
+      style: {
+        backgroundColor: this.attrs.badge.backgroundColor(),
+        color: this.attrs.badge.labelColor(),
+        borderColor: this.attrs.badge.backgroundColor(),
+        opacity: isPartlyHidden ? 0.5 : undefined
+      }
+    }, m("i", {
+      className: this.attrs.badge.icon(),
+      style: {
+        color: this.attrs.badge.iconColor()
+      }
+    }), " ", this.attrs.badge.name());
+  };
+
+  return UserBadge;
+}((flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default()));
+
+
+
+/***/ }),
+
+/***/ "./src/common/index.js":
+/*!*****************************!*\
+  !*** ./src/common/index.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var flarum_common_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! flarum/common/app */ "flarum/common/app");
+/* harmony import */ var flarum_common_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(flarum_common_app__WEBPACK_IMPORTED_MODULE_0__);
+
+flarum_common_app__WEBPACK_IMPORTED_MODULE_0___default().initializers.add('v17development/flarum-user-badges', function () {// console.log('[v17development/flarum-user-badges] Hello, forum and admin!')
+});
+
+/***/ }),
+
+/***/ "./src/common/models/Badge.js":
+/*!************************************!*\
+  !*** ./src/common/models/Badge.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Badge)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_Model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/Model */ "flarum/Model");
+/* harmony import */ var flarum_Model__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_Model__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/utils/mixin */ "flarum/utils/mixin");
+/* harmony import */ var flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _forum_components_BadgeModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../forum/components/BadgeModal */ "./src/forum/components/BadgeModal.js");
+
+
+
+
+
+var Badge = /*#__PURE__*/function (_mixin) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(Badge, _mixin);
+
+  function Badge() {
+    return _mixin.apply(this, arguments) || this;
+  }
+
+  var _proto = Badge.prototype;
+
+  _proto.apiEndpoint = function apiEndpoint() {
+    return "/badges" + (this.exists ? "/" + this.data.id : "");
+  };
+
+  return Badge;
+}(flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2___default()((flarum_Model__WEBPACK_IMPORTED_MODULE_1___default()), {
+  name: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("name"),
+  icon: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("icon"),
+  order: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("order"),
+  image: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("image"),
+  description: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("description"),
+  isVisible: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("isVisible"),
+  createdAt: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("createdAt"),
+  earnedAmount: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("earnedAmount"),
+  category: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().hasOne("category"),
+  backgroundColor: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("backgroundColor"),
+  iconColor: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("iconColor"),
+  labelColor: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("labelColor")
+}));
+
+
+
+/***/ }),
+
+/***/ "./src/common/models/BadgeCategory.js":
+/*!********************************************!*\
+  !*** ./src/common/models/BadgeCategory.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BadgeCategory)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_Model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/Model */ "flarum/Model");
+/* harmony import */ var flarum_Model__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_Model__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/utils/mixin */ "flarum/utils/mixin");
+/* harmony import */ var flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var BadgeCategory = /*#__PURE__*/function (_mixin) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(BadgeCategory, _mixin);
+
+  function BadgeCategory() {
+    return _mixin.apply(this, arguments) || this;
+  }
+
+  var _proto = BadgeCategory.prototype;
+
+  _proto.apiEndpoint = function apiEndpoint() {
+    return "/badge_categories" + (this.exists ? "/" + this.data.id : "");
+  };
+
+  return BadgeCategory;
+}(flarum_utils_mixin__WEBPACK_IMPORTED_MODULE_2___default()((flarum_Model__WEBPACK_IMPORTED_MODULE_1___default()), {
+  name: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("name"),
+  order: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("order"),
+  description: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("description"),
+  isEnabled: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("isEnabled"),
+  createdAt: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("createdAt"),
+  isTable: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().attribute("isTable"),
+  users: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().hasMany("users"),
+  badges: flarum_Model__WEBPACK_IMPORTED_MODULE_1___default().hasMany("badges")
+}));
+
+
+
+/***/ }),
+
+/***/ "./src/forum/components/BadgeModal.js":
+/*!********************************************!*\
+  !*** ./src/forum/components/BadgeModal.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BadgeModal)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_helpers_fullTime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/helpers/fullTime */ "flarum/helpers/fullTime");
+/* harmony import */ var flarum_helpers_fullTime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_helpers_fullTime__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/utils/ItemList */ "flarum/utils/ItemList");
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/components/LinkButton */ "flarum/components/LinkButton");
+/* harmony import */ var flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _GiveBadgeModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./GiveBadgeModal */ "./src/forum/components/GiveBadgeModal.js");
+
+
+
+
+
+
+
+
+var BadgeModal = /*#__PURE__*/function (_Modal) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(BadgeModal, _Modal);
+
+  function BadgeModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = BadgeModal.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    _Modal.prototype.oninit.call(this, vnode);
+
+    this.loading = false;
+  };
+
+  _proto.className = function className() {
+    return "Modal--small";
+  };
+
+  _proto.title = function title() {
+    return app.translator.trans("v17development-flarum-badges.forum.badge_information");
+  };
+
+  _proto.content = function content() {
+    var _this = this;
+
+    return m("div", null, m("div", {
+      className: "Modal-body"
+    }, this.data().toArray()), m("div", {
+      className: "Modal-footer"
+    }, m((flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_5___default()), {
+      href: app.route("badges.item", {
+        id: this.attrs.badge.id()
+      }),
+      className: "Button",
+      style: {
+        margin: "0 10px"
+      }
+    }, app.translator.trans("v17development-flarum-badges.forum.badge.badge_details")), this.attrs.userBadgeData && app.forum.attribute("canGiveBadge") && m((flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default()), {
+      className: "Button Button--primary",
+      onclick: function onclick() {
+        if (confirm(app.translator.trans("v17development-flarum-badges.forum.moderation.remove_badge_confirm"))) {
+          _this.loading = true;
+
+          _this.attrs.userBadgeData["delete"]().then(function () {
+            return _this.hide();
+          });
+        }
+      },
+      loading: this.loading
+    }, app.translator.trans("v17development-flarum-badges.forum.moderation.remove_badge"))));
+  };
+
+  _proto.data = function data() {
+    var _this2 = this;
+
+    var items = new (flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_4___default())(); // Badge name
+
+    items.add("name", m("div", {
+      className: "BadgeModalListItem"
+    }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.name"), ":")), m("p", null, this.attrs.badge.name()))); // Badge description
+
+    items.add("description", m("div", {
+      className: "BadgeModalListItem"
+    }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.description"), ":")), m("p", null, this.attrs.badge.description()))); // Badge earning reason
+
+    if (this.attrs.userBadgeData && (this.attrs.userBadgeData.description() || app.forum.attribute("canGiveBadge"))) {
+      items.add("earning_reason", m("div", {
+        className: "BadgeModalListItem"
+      }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason"), ":")), m("p", null, this.attrs.userBadgeData.description() ? this.attrs.userBadgeData.description() : m("i", null, app.translator.trans("v17development-flarum-badges.forum.badge.no_earning_reason"))), m("p", null, app.forum.attribute("canGiveBadge") && m("a", {
+        href: "#",
+        onclick: function onclick(e) {
+          e.preventDefault();
+          app.modal.show(_GiveBadgeModal__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            badge: _this2.attrs.userBadgeData
+          });
+        }
+      }, app.translator.trans("v17development-flarum-badges.forum.badge.update_earning_reason")))));
+    } // Badge earned on
+
+
+    if (this.attrs.userBadgeData) {
+      items.add("earned_date", m("div", {
+        className: "BadgeModalListItem"
+      }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.earned_on"), ":")), m("p", null, flarum_helpers_fullTime__WEBPACK_IMPORTED_MODULE_3___default()(this.attrs.userBadgeData.assignedAt()))));
+    } // Badge category
+
+
+    if (this.attrs.userBadgeData) {
+      items.add("category", m("div", {
+        className: "BadgeModalListItem"
+      }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.category"), ":")), m("p", null, this.attrs.badge.category() && this.attrs.badge.category().name(), !this.attrs.badge.category() && app.translator.trans("v17development-flarum-badges.forum.uncategorized"))));
+    } // Badge category
+
+
+    if (this.attrs.badge && this.attrs.badge.earnedAmount()) {
+      items.add("earned_amount", m("div", {
+        className: "BadgeModalListItem"
+      }, m("p", null, app.translator.trans("v17development-flarum-badges.forum.badge.earned_count", {
+        count: this.attrs.badge.earnedAmount()
+      }))));
+    }
+
+    return items;
+  };
+
+  return BadgeModal;
+}((flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default()));
+
+
+
+/***/ }),
+
+/***/ "./src/forum/components/GiveBadgeModal.js":
+/*!************************************************!*\
+  !*** ./src/forum/components/GiveBadgeModal.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ GiveBadgeModal)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/components/Modal */ "flarum/components/Modal");
+/* harmony import */ var flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/utils/ItemList */ "flarum/utils/ItemList");
+/* harmony import */ var flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var flarum_components_Select__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/Select */ "flarum/components/Select");
+/* harmony import */ var flarum_components_Select__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Select__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/utils/Stream */ "flarum/utils/Stream");
+/* harmony import */ var flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _BadgeModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./BadgeModal */ "./src/forum/components/BadgeModal.js");
+
+
+
+
+
+
+
+
+var GiveBadgeModal = /*#__PURE__*/function (_Modal) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(GiveBadgeModal, _Modal);
+
+  function GiveBadgeModal() {
+    return _Modal.apply(this, arguments) || this;
+  }
+
+  var _proto = GiveBadgeModal.prototype;
+
+  _proto.oninit = function oninit(vnode) {
+    var _this = this;
+
+    _Modal.prototype.oninit.call(this, vnode); // Select image
+
+
+    this.selectedBadge = this.attrs.badge ? this.attrs.badge.badge() : null; // Current user
+
+    this.user = this.attrs.badge ? this.attrs.badge.user() : this.attrs.user; // User has badge
+
+    this.userHasBadge = false; // Badge model
+
+    this.badge = this.attrs.badge ? this.attrs.badge : app.store.createRecord("userBadges"); // Earning reason
+
+    this.description = flarum_utils_Stream__WEBPACK_IMPORTED_MODULE_5___default()(this.badge.description()); // List of available bagges
+
+    this.categories = {};
+    this.uncategorizedBadges = [];
+    this.loading = false; // Load all available badges
+
+    if (!this.attrs.badge) {
+      this.loading = true;
+      app.store.find("badges", {
+        include: "category"
+      }).then(function (badges) {
+        badges.forEach(function (badge) {
+          // Categorized
+          if (badge.category()) {
+            var category = badge.category();
+
+            if (!_this.categories[category.id()]) {
+              _this.categories[category.id()] = {
+                category: category,
+                badges: [badge]
+              };
+            } else {
+              _this.categories[category.id()].badges.push(badge);
+            }
+          } // Uncategorized
+          else {
+            _this.uncategorizedBadges.push(badge);
+          }
+        });
+        _this.loading = false; // Redraw
+
+        m.redraw();
+      });
+    }
+  };
+
+  _proto.className = function className() {
+    return "Modal--small BadgeModal";
+  };
+
+  _proto.title = function title() {
+    return app.translator.trans("v17development-flarum-badges.forum." + (this.badge.exists ? "update" : "give") + "_badge");
+  };
+
+  _proto.content = function content() {
+    return m("div", null, m("div", {
+      className: "Modal-body"
+    }, m("div", {
+      className: "Form"
+    }, this.fields().toArray())), m("div", {
+      className: "Modal-footer"
+    }, m((flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default()), {
+      className: "Button Button--primary",
+      type: "submit",
+      loading: this.loading,
+      disabled: this.userHasBadge
+    }, app.translator.trans("core.forum.composer_edit.submit_button"))));
+  };
+
+  _proto.fields = function fields() {
+    var _this2 = this;
+
+    var items = new (flarum_utils_ItemList__WEBPACK_IMPORTED_MODULE_3___default())(); // Badge selector
+
+    items.add("badge", m("div", {
+      className: "BadgeModalListItem"
+    }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.badge"))), m("div", {
+      className: "Select"
+    }, m("select", {
+      value: this.selectedBadge ? this.selectedBadge.id() : "empty",
+      disabled: !!this.attrs.badge,
+      onchange: function onchange(e) {
+        if (e.target.value === "empty") return;
+        _this2.selectedBadge = app.store.getById("badges", e.target.value); // Check if the user already has this badge
+
+        _this2.checkUserHasBadge(_this2.selectedBadge);
+      },
+      className: "Select-input FormControl"
+    }, m("option", {
+      value: "empty"
+    }, app.translator.trans("v17development-flarum-badges.forum.select_badge")), !this.attrs.badge && Object.values(this.categories).map(function (_ref) {
+      var category = _ref.category,
+          badges = _ref.badges;
+      return m("optgroup", {
+        label: category.name()
+      }, badges.map(function (badge) {
+        return m("option", {
+          value: badge.id()
+        }, badge.name());
+      }));
+    }), !this.attrs.badge && this.uncategorizedBadges.length >= 1 && m("optgroup", {
+      label: app.translator.trans("v17development-flarum-badges.forum.uncategorized")
+    }, this.uncategorizedBadges.map(function (badge) {
+      return m("option", {
+        value: badge.id()
+      }, badge.name());
+    })), !!this.attrs.badge && m("option", {
+      value: this.selectedBadge.id()
+    }, this.selectedBadge.name())), m("i", {
+      "class": "icon fas fa-caret-down Select-caret"
+    })), this.userHasBadge && m("p", {
+      className: "UserHasBadge"
+    }, app.translator.trans("v17development-flarum-badges.forum.user_has_badge"))), 30); // Badge description
+
+    items.add("badge_description", m("div", {
+      className: "BadgeModalListItem"
+    }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.description"), ":")), m("p", null, this.selectedBadge ? this.selectedBadge.description() : app.translator.trans("v17development-flarum-badges.forum.select_badge"))), 30); // Badge earning reason
+
+    items.add("description", m("div", {
+      className: "BadgeModalListItem"
+    }, m("p", null, m("b", null, app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason"))), m("textarea", {
+      className: "FormControl",
+      placeholder: app.translator.trans("v17development-flarum-badges.forum.badge.earning_reason"),
+      bidi: this.description
+    })), 30);
+    return items;
+  };
+
+  _proto.checkUserHasBadge = function checkUserHasBadge(badge) {
+    var foundBadge = false;
+    this.user.userBadges().map(function (userBadge) {
+      if (userBadge.badge() == badge) {
+        foundBadge = true;
+      }
+    });
+    this.userHasBadge = foundBadge;
+    m.redraw();
+  };
+
+  _proto.onsubmit = function onsubmit(e) {
+    var _this3 = this;
+
+    e.preventDefault();
+    this.loading = true;
+    this.badge.save({
+      description: this.description(),
+      relationships: this.attrs.badge ? {} : {
+        badge: this.selectedBadge,
+        user: this.user
+      }
+    }).then(function () {
+      // Re-open badge modal
+      if (_this3.attrs.badge) {
+        app.modal.show(_BadgeModal__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          badge: _this3.attrs.badge.badge(),
+          userBadgeData: _this3.attrs.badge
+        });
+      } else {
+        _this3.hide();
+      }
+
+      m.redraw();
+    }, function (response) {
+      _this3.loading = false;
+
+      _this3.handleErrors(response);
+    });
+  };
+
+  return GiveBadgeModal;
+}((flarum_components_Modal__WEBPACK_IMPORTED_MODULE_1___default()));
+
+
+
+/***/ }),
+
+/***/ "flarum/Component":
+/*!**************************************************!*\
+  !*** external "flarum.core.compat['Component']" ***!
+  \**************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['Component'];
+
+/***/ }),
+
+/***/ "flarum/Model":
+/*!**********************************************!*\
+  !*** external "flarum.core.compat['Model']" ***!
+  \**********************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['Model'];
+
+/***/ }),
+
+/***/ "flarum/common/Component":
+/*!*********************************************************!*\
+  !*** external "flarum.core.compat['common/Component']" ***!
+  \*********************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['common/Component'];
+
+/***/ }),
+
+/***/ "flarum/common/app":
+/*!***************************************************!*\
+  !*** external "flarum.core.compat['common/app']" ***!
+  \***************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['common/app'];
+
+/***/ }),
+
+/***/ "flarum/common/components/Tooltip":
+/*!******************************************************************!*\
+  !*** external "flarum.core.compat['common/components/Tooltip']" ***!
+  \******************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['common/components/Tooltip'];
+
+/***/ }),
+
+/***/ "flarum/components/Button":
+/*!**********************************************************!*\
+  !*** external "flarum.core.compat['components/Button']" ***!
+  \**********************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['components/Button'];
+
+/***/ }),
+
+/***/ "flarum/components/Dropdown":
+/*!************************************************************!*\
+  !*** external "flarum.core.compat['components/Dropdown']" ***!
+  \************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['components/Dropdown'];
+
+/***/ }),
+
+/***/ "flarum/components/ExtensionPage":
+/*!*****************************************************************!*\
+  !*** external "flarum.core.compat['components/ExtensionPage']" ***!
+  \*****************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['components/ExtensionPage'];
+
+/***/ }),
+
+/***/ "flarum/components/LinkButton":
+/*!**************************************************************!*\
+  !*** external "flarum.core.compat['components/LinkButton']" ***!
+  \**************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['components/LinkButton'];
+
+/***/ }),
+
+/***/ "flarum/components/LoadingIndicator":
+/*!********************************************************************!*\
+  !*** external "flarum.core.compat['components/LoadingIndicator']" ***!
+  \********************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['components/LoadingIndicator'];
+
+/***/ }),
+
+/***/ "flarum/components/Modal":
+/*!*********************************************************!*\
+  !*** external "flarum.core.compat['components/Modal']" ***!
+  \*********************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['components/Modal'];
+
+/***/ }),
+
+/***/ "flarum/components/Select":
+/*!**********************************************************!*\
+  !*** external "flarum.core.compat['components/Select']" ***!
+  \**********************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['components/Select'];
+
+/***/ }),
+
+/***/ "flarum/components/Switch":
+/*!**********************************************************!*\
+  !*** external "flarum.core.compat['components/Switch']" ***!
+  \**********************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['components/Switch'];
+
+/***/ }),
+
+/***/ "flarum/helpers/fullTime":
+/*!*********************************************************!*\
+  !*** external "flarum.core.compat['helpers/fullTime']" ***!
+  \*********************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['helpers/fullTime'];
+
+/***/ }),
+
+/***/ "flarum/helpers/icon":
+/*!*****************************************************!*\
+  !*** external "flarum.core.compat['helpers/icon']" ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['helpers/icon'];
+
+/***/ }),
+
+/***/ "flarum/utils/ItemList":
+/*!*******************************************************!*\
+  !*** external "flarum.core.compat['utils/ItemList']" ***!
+  \*******************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['utils/ItemList'];
+
+/***/ }),
+
+/***/ "flarum/utils/Stream":
+/*!*****************************************************!*\
+  !*** external "flarum.core.compat['utils/Stream']" ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['utils/Stream'];
+
+/***/ }),
+
+/***/ "flarum/utils/mixin":
+/*!****************************************************!*\
+  !*** external "flarum.core.compat['utils/mixin']" ***!
+  \****************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['utils/mixin'];
+
+/***/ }),
+
+/***/ "flarum/utils/saveSettings":
+/*!***********************************************************!*\
+  !*** external "flarum.core.compat['utils/saveSettings']" ***!
+  \***********************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = flarum.core.compat['utils/saveSettings'];
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _inheritsLoose)
+/* harmony export */ });
+/* harmony import */ var _setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./setPrototypeOf.js */ "./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js");
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  (0,_setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__["default"])(subClass, superClass);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _setPrototypeOf)
+/* harmony export */ });
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!******************!*\
+  !*** ./admin.js ***!
+  \******************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _src_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/common */ "./src/common/index.js");
+/* harmony import */ var _src_admin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/admin */ "./src/admin/index.js");
+
+
+})();
+
+module.exports = __webpack_exports__;
+/******/ })()
+;
 //# sourceMappingURL=admin.js.map

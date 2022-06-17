@@ -159,6 +159,12 @@ export default class SettingsPage extends ExtensionPage {
         {!this.loading && uncategorizedBadges.length === 0 && categories.length === 0 && (
           <p>{app.translator.trans('v17development-flarum-badges.admin.nothing_here_yet')}</p>
         )}
+        {this.buildSettingComponent({
+          type: 'switch',
+          setting: 'v17development-user-badges.show_badges_on_user_card',
+          label: app.translator.trans('v17development-flarum-badges.admin.show_badges_on_user_card'),
+        })}
+        <div className="Form-group">{this.submitButton()}</div>
       </div>
     );
   }

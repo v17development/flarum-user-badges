@@ -78,6 +78,9 @@ $extend = [
         ->type(Notification\BadgeReceivedBlueprint::class, Api\Serializer\UserBadgeSerializer::class, ['alert']),
 
     new Extend\Locales(__DIR__ . '/locale'),
+
+    (new Extend\Settings)
+        ->serializeToForum('showBadgesOnUserCard', 'v17development-user-badges.show_badges_on_user_card', 'boolval'),
 ];
 
 /**

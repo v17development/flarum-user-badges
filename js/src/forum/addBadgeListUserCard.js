@@ -1,3 +1,4 @@
+import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
 import UserCard from 'flarum/forum/components/UserCard';
 import UserBadge from '../common/components/UserBadge';
@@ -7,7 +8,7 @@ export default function addBadgeListUserCard() {
   extend(UserCard.prototype, 'infoItems', function (items) {
     const userBadges = this.attrs.user.userBadges();
 
-    if (userBadges.length < 1) return;
+    if (userBadges.length < 1 || !app.forum.attribute('showBadgesOnUserCard')) return;
 
     items.add(
       'badges',

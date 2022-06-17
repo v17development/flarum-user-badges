@@ -33,144 +33,146 @@ export default class SettingsPage extends ExtensionPage {
     const uncategorizedBadges = app.store.all('badges').filter((badge) => badge.category() == false);
 
     return (
-      <div className="FlarumBadgesPage">
-        {app.data.settings.extensions_enabled.indexOf('askvortsov-auto-moderator') === -1 && <InstallAutoModerationMessage />}
+      <div className="ExtensionPage-settings FlarumBadgesPage">
+        <div className="container">
+          {app.data.settings.extensions_enabled.indexOf('askvortsov-auto-moderator') === -1 && <InstallAutoModerationMessage />}
 
-        <div className="FlarumBadgePageButtons">
-          <Button
-            className={'Button'}
-            onclick={() =>
-              app.modal.show(EditBadgeCategoryModal, {
-                onCreate: () => this.nextRefreshKey(),
-              })
-            }
-            icon={'fas fa-project-diagram'}
-          >
-            {app.translator.trans('v17development-flarum-badges.admin.create_category')}
-          </Button>
-          <Button className={'Button'} onclick={() => app.modal.show(EditBadgeModal)} icon={'fas fa-icons'}>
-            {app.translator.trans('v17development-flarum-badges.admin.new_badge')}
-          </Button>
-        </div>
+          <div className="FlarumBadgePageButtons">
+            <Button
+              className={'Button'}
+              onclick={() =>
+                app.modal.show(EditBadgeCategoryModal, {
+                  onCreate: () => this.nextRefreshKey(),
+                })
+              }
+              icon={'fas fa-project-diagram'}
+            >
+              {app.translator.trans('v17development-flarum-badges.admin.create_category')}
+            </Button>
+            <Button className={'Button'} onclick={() => app.modal.show(EditBadgeModal)} icon={'fas fa-icons'}>
+              {app.translator.trans('v17development-flarum-badges.admin.new_badge')}
+            </Button>
+          </div>
 
-        <div>
-          {!this.loading && (
-            <div className="FlarumBadgeCategories" key={this.forcedRefreshKey} oncreate={this.onBadgeListReady.bind(this)}>
-              {categories &&
-                categories.map((category, key) => {
-                  return (
-                    <div className={'FlarumBadgeCategory'} data-id={category.id()}>
-                      <div className={'CategoryHeader'}>
-                        <span className={'CategoryName'}>
-                          {!category.isEnabled() && <i className={'fas fa-eye-slash'} />}
-                          <b>{category.name()}</b>
-                        </span>
+          <div>
+            {!this.loading && (
+              <div className="FlarumBadgeCategories" key={this.forcedRefreshKey} oncreate={this.onBadgeListReady.bind(this)}>
+                {categories &&
+                  categories.map((category, key) => {
+                    return (
+                      <div className={'FlarumBadgeCategory'} data-id={category.id()}>
+                        <div className={'CategoryHeader'}>
+                          <span className={'CategoryName'}>
+                            {!category.isEnabled() && <i className={'fas fa-eye-slash'} />}
+                            <b>{category.name()}</b>
+                          </span>
 
-                        <span className={'CategoryLinks'}>
-                          <a
-                            href={'javascript:void(0)'}
-                            onclick={() =>
-                              app.modal.show(EditBadgeCategoryModal, {
-                                badgeCategory: category,
-                              })
-                            }
-                          >
-                            {app.translator.trans('v17development-flarum-badges.admin.edit_category')}
-                          </a>
-                          <a
-                            href={'javascript:void(0)'}
-                            onclick={() => this.updateCategorySort(category, 'up')}
-                            className={key === 0 ? 'LinkDisabled' : null}
-                          >
-                            <i className={'fas fa-caret-up'} />
-                          </a>
-                          <a
-                            href={'javascript:void(0)'}
-                            onclick={() => this.updateCategorySort(category, 'down')}
-                            className={key === categories.length - 1 ? 'LinkDisabled' : null}
-                          >
-                            <i className={'fas fa-caret-down'} />
-                          </a>
-                          <a
-                            href={'javascript:void(0)'}
-                            onclick={() =>
-                              app.modal.show(ConfirmModal, {
-                                text: app.translator.trans('v17development-flarum-badges.admin.confirm_messages.delete_category'),
-                                promise: true,
-                                onconfirm: (resolve, reject) => {
-                                  const badges = category.badges();
+                          <span className={'CategoryLinks'}>
+                            <a
+                              href={'javascript:void(0)'}
+                              onclick={() =>
+                                app.modal.show(EditBadgeCategoryModal, {
+                                  badgeCategory: category,
+                                })
+                              }
+                            >
+                              {app.translator.trans('v17development-flarum-badges.admin.edit_category')}
+                            </a>
+                            <a
+                              href={'javascript:void(0)'}
+                              onclick={() => this.updateCategorySort(category, 'up')}
+                              className={key === 0 ? 'LinkDisabled' : null}
+                            >
+                              <i className={'fas fa-caret-up'} />
+                            </a>
+                            <a
+                              href={'javascript:void(0)'}
+                              onclick={() => this.updateCategorySort(category, 'down')}
+                              className={key === categories.length - 1 ? 'LinkDisabled' : null}
+                            >
+                              <i className={'fas fa-caret-down'} />
+                            </a>
+                            <a
+                              href={'javascript:void(0)'}
+                              onclick={() =>
+                                app.modal.show(ConfirmModal, {
+                                  text: app.translator.trans('v17development-flarum-badges.admin.confirm_messages.delete_category'),
+                                  promise: true,
+                                  onconfirm: (resolve, reject) => {
+                                    const badges = category.badges();
 
-                                  category
-                                    .delete()
-                                    .then(() => {
-                                      resolve();
+                                    category
+                                      .delete()
+                                      .then(() => {
+                                        resolve();
 
-                                      badges.forEach((badge) =>
-                                        badge.pushData({
-                                          relationships: {
-                                            category: null,
-                                          },
-                                        })
-                                      );
-                                    })
-                                    .catch(reject);
-                                },
-                              })
-                            }
-                          >
-                            <i className={'fas fa-trash'} />
-                          </a>
-                        </span>
+                                        badges.forEach((badge) =>
+                                          badge.pushData({
+                                            relationships: {
+                                              category: null,
+                                            },
+                                          })
+                                        );
+                                      })
+                                      .catch(reject);
+                                  },
+                                })
+                              }
+                            >
+                              <i className={'fas fa-trash'} />
+                            </a>
+                          </span>
+                        </div>
+
+                        <ul className={'SortableBadges'}>
+                          {category.badges() &&
+                            category
+                              .badges()
+                              .sort((a, b) => a.order() - b.order())
+                              .map((badge) => <SortableBadge badge={badge} />)}
+                        </ul>
                       </div>
+                    );
+                  })}
 
-                      <ul className={'SortableBadges'}>
-                        {category.badges() &&
-                          category
-                            .badges()
-                            .sort((a, b) => a.order() - b.order())
-                            .map((badge) => <SortableBadge badge={badge} />)}
-                      </ul>
-                    </div>
-                  );
-                })}
+                {/* Uncategorized badges */}
+                <div className={'FlarumBadgeCategory'}>
+                  <div className={'CategoryHeader'}>
+                    <span className={'CategoryName'}>
+                      <b>{app.translator.trans('v17development-flarum-badges.admin.uncategorized')}</b>
+                    </span>
+                  </div>
 
-              {/* Uncategorized badges */}
-              <div className={'FlarumBadgeCategory'}>
-                <div className={'CategoryHeader'}>
-                  <span className={'CategoryName'}>
-                    <b>{app.translator.trans('v17development-flarum-badges.admin.uncategorized')}</b>
-                  </span>
+                  <ul className={'SortableBadges'}>
+                    {uncategorizedBadges
+                      .sort((a, b) => a.order() - b.order())
+                      .map((badge) => (
+                        <SortableBadge badge={badge} />
+                      ))}
+                  </ul>
                 </div>
-
-                <ul className={'SortableBadges'}>
-                  {uncategorizedBadges
-                    .sort((a, b) => a.order() - b.order())
-                    .map((badge) => (
-                      <SortableBadge badge={badge} />
-                    ))}
-                </ul>
               </div>
-            </div>
+            )}
+          </div>
+
+          {this.loading && <LoadingIndicator size={'big'} />}
+
+          {!this.loading && uncategorizedBadges.length === 0 && categories.length === 0 && (
+            <p>{app.translator.trans('v17development-flarum-badges.admin.nothing_here_yet')}</p>
           )}
+          {this.buildSettingComponent({
+            type: 'switch',
+            setting: 'v17development-user-badges.show_badges_on_user_card',
+            label: app.translator.trans('v17development-flarum-badges.admin.show_badges_on_user_card'),
+          })}
+          {this.buildSettingComponent({
+            type: 'number',
+            setting: 'v17development-user-badges.number_of_badges_on_user_card',
+            label: app.translator.trans('v17development-flarum-badges.admin.number_of_badges_on_user_card'),
+            help: app.translator.trans('v17development-flarum-badges.admin.number_of_badges_on_user_card_help'),
+          })}
+          <div className="Form-group">{this.submitButton()}</div>
         </div>
-
-        {this.loading && <LoadingIndicator size={'big'} />}
-
-        {!this.loading && uncategorizedBadges.length === 0 && categories.length === 0 && (
-          <p>{app.translator.trans('v17development-flarum-badges.admin.nothing_here_yet')}</p>
-        )}
-        {this.buildSettingComponent({
-          type: 'switch',
-          setting: 'v17development-user-badges.show_badges_on_user_card',
-          label: app.translator.trans('v17development-flarum-badges.admin.show_badges_on_user_card'),
-        })}
-        {this.buildSettingComponent({
-          type: 'number',
-          setting: 'v17development-user-badges.number_of_badges_on_user_card',
-          label: app.translator.trans('v17development-flarum-badges.admin.number_of_badges_on_user_card'),
-          help: app.translator.trans('v17development-flarum-badges.admin.number_of_badges_on_user_card_help'),
-        })}
-        <div className="Form-group">{this.submitButton()}</div>
       </div>
     );
   }

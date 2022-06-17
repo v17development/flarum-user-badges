@@ -98,6 +98,7 @@ v17development-flarum-badges:
       badge_details: Badge details
       earned_count: "{count, plural, one {<b># user</b> has earned this badge} other {<b># users</b> have earned this badge}}"
       earned_by_count: "{count, plural, one {Earned by <b># user</b>} other {Earned by <b># users</b>}}"
+      others_link: "+ {count} More"
 
     moderation:
       remove_badge: Remove badge from user

@@ -8,6 +8,8 @@ v17development-flarum-badges:
     edit_category: Edit category
     nothing_here_yet: You did not create any badges or categories yet.
     show_badges_on_user_card: Show badges on user card
+    number_of_badges_on_user_card: Number of badges
+    number_of_badges_on_user_card_help: Number of badges to show on user card
 
     permissions:
       badge_detail_users: Can see users on badge details page

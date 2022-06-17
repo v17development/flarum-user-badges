@@ -80,7 +80,9 @@ $extend = [
     new Extend\Locales(__DIR__ . '/locale'),
 
     (new Extend\Settings)
-        ->serializeToForum('showBadgesOnUserCard', 'v17development-user-badges.show_badges_on_user_card', 'boolval'),
+        ->serializeToForum('showBadgesOnUserCard', 'v17development-user-badges.show_badges_on_user_card', 'boolval')
+        ->serializeToForum('numberOfBadgesOnUserCard', 'v17development-user-badges.number_of_badges_on_user_card', 'intval')
+        ->default('v17development-user-badges.number_of_badges_on_user_card', 5),
 ];
 
 /**

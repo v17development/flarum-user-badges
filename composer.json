@@ -23,7 +23,7 @@
     },
     "require": {
         "ext-json": "*",
-        "flarum/core": "^1.0.0"
+        "flarum/core": "^1.3.1"
     },
     "suggest": {
         "askvortsov/flarum-auto-moderator": "Allows you to automatically hand out badges to users"
@@ -38,8 +38,25 @@
                 "color": "#225650"
             },
             "optional-dependencies": [
-              "askvortsov/flarum-auto-moderator"
+                "askvortsov/flarum-auto-moderator"
             ]
+        },
+        "flarum-cli": {
+            "modules": {
+                "admin": true,
+                "forum": true,
+                "js": true,
+                "jsCommon": true,
+                "css": true,
+                "gitConf": true,
+                "githubActions": true,
+                "prettier": true,
+                "typescript": false,
+                "bundlewatch": false,
+                "backendTesting": false,
+                "editorConfig": true,
+                "styleci": true
+            }
         }
     }
 }

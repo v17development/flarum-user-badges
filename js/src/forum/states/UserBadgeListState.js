@@ -1,4 +1,4 @@
-import PaginatedListState from "flarum/common/states/PaginatedListState";
+import PaginatedListState from 'flarum/common/states/PaginatedListState';
 
 export default class UserBadgeListState extends PaginatedListState {
   constructor(params, page = 1) {
@@ -6,6 +6,6 @@ export default class UserBadgeListState extends PaginatedListState {
   }
 
   get type() {
-    return "user_badges";
+    return 'user_badges';
   }
 }

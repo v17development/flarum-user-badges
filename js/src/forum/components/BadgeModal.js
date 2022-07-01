@@ -1,9 +1,9 @@
-import Modal from "flarum/components/Modal";
-import Button from "flarum/components/Button";
-import fullTime from "flarum/helpers/fullTime";
-import ItemList from "flarum/utils/ItemList";
-import LinkButton from "flarum/components/LinkButton";
-import GiveBadgeModal from "./GiveBadgeModal";
+import Modal from 'flarum/components/Modal';
+import Button from 'flarum/components/Button';
+import fullTime from 'flarum/helpers/fullTime';
+import ItemList from 'flarum/utils/ItemList';
+import LinkButton from 'flarum/components/LinkButton';
+import GiveBadgeModal from './GiveBadgeModal';
 
 export default class BadgeModal extends Modal {
   oninit(vnode) {
@@ -13,13 +13,11 @@ export default class BadgeModal extends Modal {
   }
 
   className() {
-    return "Modal--small";
+    return 'Modal--small';
   }
 
   title() {
-    return app.translator.trans(
-      "v17development-flarum-badges.forum.badge_information"
-    );
+    return app.translator.trans('v17development-flarum-badges.forum.badge_information');
   }
 
   content() {
@@ -28,39 +26,29 @@ export default class BadgeModal extends Modal {
         <div className="Modal-body">{this.data().toArray()}</div>
         <div className="Modal-footer">
           <LinkButton
-            href={app.route("badges.item", {
+            href={app.route('badges.item', {
               id: this.attrs.badge.id(),
             })}
-            className={"Button"}
+            className={'Button'}
             style={{
-              margin: "0 10px",
+              margin: '0 10px',
             }}
           >
-            {app.translator.trans(
-              "v17development-flarum-badges.forum.badge.badge_details"
-            )}
+            {app.translator.trans('v17development-flarum-badges.forum.badge.badge_details')}
           </LinkButton>
 
-          {this.attrs.userBadgeData && app.forum.attribute("canGiveBadge") && (
+          {this.attrs.userBadgeData && app.forum.attribute('canGiveBadge') && (
             <Button
-              className={"Button Button--primary"}
+              className={'Button Button--primary'}
               onclick={() => {
-                if (
-                  confirm(
-                    app.translator.trans(
-                      "v17development-flarum-badges.forum.moderation.remove_badge_confirm"
-                    )
-                  )
-                ) {
+                if (confirm(app.translator.trans('v17development-flarum-badges.forum.moderation.remove_badge_confirm'))) {
                   this.loading = true;
                   this.attrs.userBadgeData.delete().then(() => this.hide());
                 }
               }}
               loading={this.loading}
             >
-              {app.translator.trans(
-                "v17development-flarum-badges.forum.moderation.remove_badge"
-              )}
+              {app.translator.trans('v17development-flarum-badges.forum.moderation.remove_badge')}
             </Button>
           )}
         </div>
@@ -73,15 +61,10 @@ export default class BadgeModal extends Modal {
 
     // Badge name
     items.add(
-      "name",
-      <div className={"BadgeModalListItem"}>
+      'name',
+      <div className={'BadgeModalListItem'}>
         <p>
-          <b>
-            {app.translator.trans(
-              "v17development-flarum-badges.forum.badge.name"
-            )}
-            :
-          </b>
+          <b>{app.translator.trans('v17development-flarum-badges.forum.badge.name')}:</b>
         </p>
         <p>{this.attrs.badge.name()}</p>
       </div>
@@ -89,53 +72,35 @@ export default class BadgeModal extends Modal {
 
     // Badge description
     items.add(
-      "description",
-      <div className={"BadgeModalListItem"}>
+      'description',
+      <div className={'BadgeModalListItem'}>
         <p>
-          <b>
-            {app.translator.trans(
-              "v17development-flarum-badges.forum.badge.description"
-            )}
-            :
-          </b>
+          <b>{app.translator.trans('v17development-flarum-badges.forum.badge.description')}:</b>
         </p>
         <p>{this.attrs.badge.description()}</p>
       </div>
     );
 
     // Badge earning reason
-    if (
-      this.attrs.userBadgeData &&
-      (this.attrs.userBadgeData.description() ||
-        app.forum.attribute("canGiveBadge"))
-    ) {
+    if (this.attrs.userBadgeData && (this.attrs.userBadgeData.description() || app.forum.attribute('canGiveBadge'))) {
       items.add(
-        "earning_reason",
-        <div className={"BadgeModalListItem"}>
+        'earning_reason',
+        <div className={'BadgeModalListItem'}>
           <p>
-            <b>
-              {app.translator.trans(
-                "v17development-flarum-badges.forum.badge.earning_reason"
-              )}
-              :
-            </b>
+            <b>{app.translator.trans('v17development-flarum-badges.forum.badge.earning_reason')}:</b>
           </p>
 
           <p>
             {this.attrs.userBadgeData.description() ? (
               this.attrs.userBadgeData.description()
             ) : (
-              <i>
-                {app.translator.trans(
-                  "v17development-flarum-badges.forum.badge.no_earning_reason"
-                )}
-              </i>
+              <i>{app.translator.trans('v17development-flarum-badges.forum.badge.no_earning_reason')}</i>
             )}
           </p>
           <p>
-            {app.forum.attribute("canGiveBadge") && (
+            {app.forum.attribute('canGiveBadge') && (
               <a
-                href={"#"}
+                href={'#'}
                 onclick={(e) => {
                   e.preventDefault();
                   app.modal.show(GiveBadgeModal, {
@@ -143,9 +108,7 @@ export default class BadgeModal extends Modal {
                   });
                 }}
               >
-                {app.translator.trans(
-                  "v17development-flarum-badges.forum.badge.update_earning_reason"
-                )}
+                {app.translator.trans('v17development-flarum-badges.forum.badge.update_earning_reason')}
               </a>
             )}
           </p>
@@ -156,15 +119,10 @@ export default class BadgeModal extends Modal {
     // Badge earned on
     if (this.attrs.userBadgeData) {
       items.add(
-        "earned_date",
-        <div className={"BadgeModalListItem"}>
+        'earned_date',
+        <div className={'BadgeModalListItem'}>
           <p>
-            <b>
-              {app.translator.trans(
-                "v17development-flarum-badges.forum.badge.earned_on"
-              )}
-              :
-            </b>
+            <b>{app.translator.trans('v17development-flarum-badges.forum.badge.earned_on')}:</b>
           </p>
           <p>{fullTime(this.attrs.userBadgeData.assignedAt())}</p>
         </div>
@@ -174,24 +132,16 @@ export default class BadgeModal extends Modal {
     // Badge category
     if (this.attrs.userBadgeData) {
       items.add(
-        "category",
-        <div className={"BadgeModalListItem"}>
+        'category',
+        <div className={'BadgeModalListItem'}>
           <p>
-            <b>
-              {app.translator.trans(
-                "v17development-flarum-badges.forum.badge.category"
-              )}
-              :
-            </b>
+            <b>{app.translator.trans('v17development-flarum-badges.forum.badge.category')}:</b>
           </p>
           <p>
             {this.attrs.badge.category() && this.attrs.badge.category().name()}
 
             {/* Uncategorized */}
-            {!this.attrs.badge.category() &&
-              app.translator.trans(
-                "v17development-flarum-badges.forum.uncategorized"
-              )}
+            {!this.attrs.badge.category() && app.translator.trans('v17development-flarum-badges.forum.uncategorized')}
             {/* <Link
               href={app.route("badges.category", {
                 category: this.attrs.badge.category().id(),
@@ -209,15 +159,12 @@ export default class BadgeModal extends Modal {
     // Badge category
     if (this.attrs.badge && this.attrs.badge.earnedAmount()) {
       items.add(
-        "earned_amount",
-        <div className={"BadgeModalListItem"}>
+        'earned_amount',
+        <div className={'BadgeModalListItem'}>
           <p>
-            {app.translator.trans(
-              "v17development-flarum-badges.forum.badge.earned_count",
-              {
-                count: this.attrs.badge.earnedAmount(),
-              }
-            )}
+            {app.translator.trans('v17development-flarum-badges.forum.badge.earned_count', {
+              count: this.attrs.badge.earnedAmount(),
+            })}
           </p>
         </div>
       );

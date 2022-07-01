@@ -14,7 +14,7 @@ export default function loadAllBadges(onLoadedCallback) {
     loading = true;
 
     // Load badges
-    app.store.find("badges").then(() => {
+    app.store.find('badges').then(() => {
       hasLoaded = true;
       loading = false;
 

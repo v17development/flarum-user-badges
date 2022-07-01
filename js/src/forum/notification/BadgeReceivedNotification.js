@@ -1,20 +1,18 @@
-import Notification from "flarum/forum/components/Notification";
+import Notification from 'flarum/forum/components/Notification';
 
 export default class BadgeReceivedNotification extends Notification {
   icon() {
-    return "";
+    return '';
   }
 
   href() {
-    return app.route("user.badges", {
+    return app.route('user.badges', {
       username: app.session.user.username(),
     });
   }
 
   content() {
-    return app.translator.trans(
-      "v17development-flarum-badges.forum.notification.title"
-    );
+    return app.translator.trans('v17development-flarum-badges.forum.notification.title');
   }
 
   excerpt() {

@@ -1,8 +1,8 @@
-import Modal from "flarum/components/Modal";
-import ItemList from "flarum/utils/ItemList";
-import Button from "flarum/components/Button";
-import Switch from "flarum/components/Switch";
-import Stream from "flarum/utils/Stream";
+import Modal from 'flarum/components/Modal';
+import ItemList from 'flarum/utils/ItemList';
+import Button from 'flarum/components/Button';
+import Switch from 'flarum/components/Switch';
+import Stream from 'flarum/utils/Stream';
 
 export default class ConfirmModal extends Modal {
   oninit(vnode) {
@@ -12,13 +12,11 @@ export default class ConfirmModal extends Modal {
   }
 
   className() {
-    return "Modal--small FlarumBadgesConfirmModal";
+    return 'Modal--small FlarumBadgesConfirmModal';
   }
 
   title() {
-    return app.translator.trans(
-      `v17development-flarum-badges.admin.confirm_dialog.title`
-    );
+    return app.translator.trans(`v17development-flarum-badges.admin.confirm_dialog.title`);
   }
 
   content() {
@@ -30,23 +28,19 @@ export default class ConfirmModal extends Modal {
       <div className="Modal-footer FlarumBadgesConfirmButtons">
         {Button.component(
           {
-            className: "Button",
+            className: 'Button',
             disabled: this.loading,
             onclick: () => this.hide(),
           },
-          app.translator.trans(
-            "v17development-flarum-badges.admin.confirm_dialog.no"
-          )
+          app.translator.trans('v17development-flarum-badges.admin.confirm_dialog.no')
         )}
         {Button.component(
           {
-            className: "Button Button--primary",
+            className: 'Button Button--primary',
             loading: this.loading,
             onclick: () => this.confirm(),
           },
-          app.translator.trans(
-            "v17development-flarum-badges.admin.confirm_dialog.yes"
-          )
+          app.translator.trans('v17development-flarum-badges.admin.confirm_dialog.yes')
         )}
       </div>,
     ];

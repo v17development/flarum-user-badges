@@ -1,9 +1,9 @@
-import Modal from "flarum/components/Modal";
-import Button from "flarum/components/Button";
-import ItemList from "flarum/utils/ItemList";
-import Select from "flarum/components/Select";
-import Stream from "flarum/utils/Stream";
-import BadgeModal from "./BadgeModal";
+import Modal from 'flarum/components/Modal';
+import Button from 'flarum/components/Button';
+import ItemList from 'flarum/utils/ItemList';
+import Select from 'flarum/components/Select';
+import Stream from 'flarum/utils/Stream';
+import BadgeModal from './BadgeModal';
 
 export default class GiveBadgeModal extends Modal {
   oninit(vnode) {
@@ -19,9 +19,7 @@ export default class GiveBadgeModal extends Modal {
     this.userHasBadge = false;
 
     // Badge model
-    this.badge = this.attrs.badge
-      ? this.attrs.badge
-      : app.store.createRecord("userBadges");
+    this.badge = this.attrs.badge ? this.attrs.badge : app.store.createRecord('userBadges');
 
     // Earning reason
     this.description = Stream(this.badge.description());
@@ -38,8 +36,8 @@ export default class GiveBadgeModal extends Modal {
       this.loading = true;
 
       app.store
-        .find("badges", {
-          include: "category",
+        .find('badges', {
+          include: 'category',
         })
         .then((badges) => {
           badges.forEach((badge) => {
@@ -71,15 +69,11 @@ export default class GiveBadgeModal extends Modal {
   }
 
   className() {
-    return "Modal--small BadgeModal";
+    return 'Modal--small BadgeModal';
   }
 
   title() {
-    return app.translator.trans(
-      `v17development-flarum-badges.forum.${
-        this.badge.exists ? "update" : "give"
-      }_badge`
-    );
+    return app.translator.trans(`v17development-flarum-badges.forum.${this.badge.exists ? 'update' : 'give'}_badge`);
   }
 
   content() {
@@ -90,13 +84,8 @@ export default class GiveBadgeModal extends Modal {
         </div>
 
         <div className="Modal-footer">
-          <Button
-            className={"Button Button--primary"}
-            type={"submit"}
-            loading={this.loading}
-            disabled={this.userHasBadge}
-          >
-            {app.translator.trans("core.forum.composer_edit.submit_button")}
+          <Button className={'Button Button--primary'} type={'submit'} loading={this.loading} disabled={this.userHasBadge}>
+            {app.translator.trans('core.forum.composer_edit.submit_button')}
           </Button>
         </div>
       </div>
@@ -108,34 +97,26 @@ export default class GiveBadgeModal extends Modal {
 
     // Badge selector
     items.add(
-      "badge",
+      'badge',
       <div className="BadgeModalListItem">
         <p>
-          <b>
-            {app.translator.trans(
-              "v17development-flarum-badges.forum.badge.badge"
-            )}
-          </b>
+          <b>{app.translator.trans('v17development-flarum-badges.forum.badge.badge')}</b>
         </p>
 
-        <div className={"Select"}>
+        <div className={'Select'}>
           <select
-            value={this.selectedBadge ? this.selectedBadge.id() : "empty"}
+            value={this.selectedBadge ? this.selectedBadge.id() : 'empty'}
             disabled={!!this.attrs.badge}
             onchange={(e) => {
-              if (e.target.value === "empty") return;
-              this.selectedBadge = app.store.getById("badges", e.target.value);
+              if (e.target.value === 'empty') return;
+              this.selectedBadge = app.store.getById('badges', e.target.value);
 
               // Check if the user already has this badge
               this.checkUserHasBadge(this.selectedBadge);
             }}
             className="Select-input FormControl"
           >
-            <option value={"empty"}>
-              {app.translator.trans(
-                "v17development-flarum-badges.forum.select_badge"
-              )}
-            </option>
+            <option value={'empty'}>{app.translator.trans('v17development-flarum-badges.forum.select_badge')}</option>
 
             {/* When no badge is selected, show all available badges */}
             {!this.attrs.badge &&
@@ -148,11 +129,7 @@ export default class GiveBadgeModal extends Modal {
               ))}
 
             {!this.attrs.badge && this.uncategorizedBadges.length >= 1 && (
-              <optgroup
-                label={app.translator.trans(
-                  "v17development-flarum-badges.forum.uncategorized"
-                )}
-              >
+              <optgroup label={app.translator.trans('v17development-flarum-badges.forum.uncategorized')}>
                 {this.uncategorizedBadges.map((badge) => (
                   <option value={badge.id()}>{badge.name()}</option>
                 ))}
@@ -160,65 +137,38 @@ export default class GiveBadgeModal extends Modal {
             )}
 
             {/* When a badge is already assigned */}
-            {!!this.attrs.badge && (
-              <option value={this.selectedBadge.id()}>
-                {this.selectedBadge.name()}
-              </option>
-            )}
+            {!!this.attrs.badge && <option value={this.selectedBadge.id()}>{this.selectedBadge.name()}</option>}
           </select>
           <i class="icon fas fa-caret-down Select-caret"></i>
         </div>
 
-        {this.userHasBadge && (
-          <p className={"UserHasBadge"}>
-            {app.translator.trans(
-              "v17development-flarum-badges.forum.user_has_badge"
-            )}
-          </p>
-        )}
+        {this.userHasBadge && <p className={'UserHasBadge'}>{app.translator.trans('v17development-flarum-badges.forum.user_has_badge')}</p>}
       </div>,
       30
     );
 
     // Badge description
     items.add(
-      "badge_description",
-      <div className={"BadgeModalListItem"}>
+      'badge_description',
+      <div className={'BadgeModalListItem'}>
         <p>
-          <b>
-            {app.translator.trans(
-              "v17development-flarum-badges.forum.badge.description"
-            )}
-            :
-          </b>
+          <b>{app.translator.trans('v17development-flarum-badges.forum.badge.description')}:</b>
         </p>
-        <p>
-          {this.selectedBadge
-            ? this.selectedBadge.description()
-            : app.translator.trans(
-                "v17development-flarum-badges.forum.select_badge"
-              )}
-        </p>
+        <p>{this.selectedBadge ? this.selectedBadge.description() : app.translator.trans('v17development-flarum-badges.forum.select_badge')}</p>
       </div>,
       30
     );
 
     // Badge earning reason
     items.add(
-      "description",
+      'description',
       <div className="BadgeModalListItem">
         <p>
-          <b>
-            {app.translator.trans(
-              "v17development-flarum-badges.forum.badge.earning_reason"
-            )}
-          </b>
+          <b>{app.translator.trans('v17development-flarum-badges.forum.badge.earning_reason')}</b>
         </p>
         <textarea
           className="FormControl"
-          placeholder={app.translator.trans(
-            "v17development-flarum-badges.forum.badge.earning_reason"
-          )}
+          placeholder={app.translator.trans('v17development-flarum-badges.forum.badge.earning_reason')}
           bidi={this.description}
         />
       </div>,

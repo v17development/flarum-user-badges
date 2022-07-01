@@ -1,9 +1,9 @@
-import Component from "flarum/common/Component";
-import Button from "flarum/components/Button";
-import Link from "flarum/components/Link";
-import LoadingIndicator from "flarum/components/LoadingIndicator";
-import avatar from "flarum/helpers/avatar";
-import humanTime from "flarum/helpers/humanTime";
+import Component from 'flarum/common/Component';
+import Button from 'flarum/components/Button';
+import Link from 'flarum/components/Link';
+import LoadingIndicator from 'flarum/components/LoadingIndicator';
+import avatar from 'flarum/helpers/avatar';
+import humanTime from 'flarum/helpers/humanTime';
 
 export default class BadgeUserList extends Component {
   oninit(vnode) {
@@ -14,7 +14,7 @@ export default class BadgeUserList extends Component {
       filter: {
         badge: this.attrs.badgeId,
       },
-      sort: "-assignedAt",
+      sort: '-assignedAt',
     });
   }
 
@@ -25,16 +25,16 @@ export default class BadgeUserList extends Component {
 
     if (state.isInitialLoading() || state.isLoadingNext()) {
       loading = LoadingIndicator.component({
-        size: "large",
+        size: 'large',
       });
     } else if (state.hasNext()) {
       loading = Button.component(
         {
-          className: "Button",
-          icon: "fas fa-chevron-down",
+          className: 'Button',
+          icon: 'fas fa-chevron-down',
           onclick: state.loadNext.bind(state),
         },
-        app.translator.trans("core.forum.discussion_list.load_more_button")
+        app.translator.trans('core.forum.discussion_list.load_more_button')
       );
     }
 
@@ -45,40 +45,31 @@ export default class BadgeUserList extends Component {
 
     // No items
     if (state.isEmpty()) {
-      return (
-        <div className={"BadgeUserList-empty"}>
-          {app.translator.trans(
-            "v17development-flarum-badges.forum.no_received"
-          )}
-        </div>
-      );
+      return <div className={'BadgeUserList-empty'}>{app.translator.trans('v17development-flarum-badges.forum.no_received')}</div>;
     }
 
     return (
       <div>
-        <ul className={"BadgeUserList"}>
+        <ul className={'BadgeUserList'}>
           {state.getPages().map((pg) => {
             return pg.items.map((userBadge) => {
               return (
                 <li>
                   <Link
-                    href={app.route("user.badges", {
+                    href={app.route('user.badges', {
                       username: userBadge.user().username(),
                     })}
-                    className={"BadgeUserList-user"}
+                    className={'BadgeUserList-user'}
                   >
                     {avatar(userBadge.user())}
 
-                    <div className={"BadgeUserList-userinfo"}>
+                    <div className={'BadgeUserList-userinfo'}>
                       <h4>{userBadge.user().displayName()}</h4>
 
                       <p>
-                        {app.translator.trans(
-                          "v17development-flarum-badges.forum.badge.received_on",
-                          {
-                            date: humanTime(userBadge.assignedAt()),
-                          }
-                        )}
+                        {app.translator.trans('v17development-flarum-badges.forum.badge.received_on', {
+                          date: humanTime(userBadge.assignedAt()),
+                        })}
                       </p>
                     </div>
                   </Link>

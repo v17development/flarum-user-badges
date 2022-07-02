@@ -21,6 +21,7 @@ class UserBadgeSerializer extends AbstractSerializer
             'description'   => $userBadge->description,
             'isPrimary'     => $userBadge->is_primary,
             'assignedAt'     => $this->formatDate($userBadge->assigned_at),
+            'inUserCard'     => $userBadge->in_user_card === 1,
         ];
     }
 

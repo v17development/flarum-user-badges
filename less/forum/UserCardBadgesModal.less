@@ -1,0 +1,41 @@
+.UserCardBadgesModal {
+  .Checkbox.disabled {
+    opacity: 0.4;
+  }
+
+  .UserCardBadgesModalCategory {
+    margin-bottom: 20px;
+
+    &-name {
+      font-size: 14px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    &-badge {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      border-radius: 4px;
+      margin-bottom: 5px;
+
+      &:hover {
+        background: lighten(@control-bg, 10%);
+      }
+
+      &-preview {
+        flex-grow: 1;
+
+        .UserBadge {
+          margin: 0;
+        }
+      }
+
+      &-switch {
+        flex-shrink: 0;
+        flex-grow: 0;
+        text-align: right;
+      }
+    }
+  }
+}

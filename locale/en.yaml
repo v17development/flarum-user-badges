@@ -15,6 +15,8 @@ v17development-flarum-badges:
       badge_detail_users: Can see users on badge details page
       give_badge: Give badge to user
       take_badge: Take badge from user
+      edit_own_card_badges: Edit own user card badges
+      edit_card_badges: Edit user card badges
 
     confirm_dialog:
       title: Confirm
@@ -83,6 +85,7 @@ v17development-flarum-badges:
     user_no_badges: This user does not have any badges yet.
     no_received: No user have earned this badge.
     uncategorized: => v17development-flarum-badges.admin.uncategorized
+    save_changes: Save changes
 
     badge:
       badge: Badge
@@ -99,6 +102,13 @@ v17development-flarum-badges:
       earned_count: "{count, plural, one {<b># user</b> has earned this badge} other {<b># users</b> have earned this badge}}"
       earned_by_count: "{count, plural, one {Earned by <b># user</b>} other {Earned by <b># users</b>}}"
       others_link: "+ {count} More"
+
+    badges_in_card:
+      title: Badges in user card
+      manage_badges: "Manage badges"
+      description: You can change the visible badges in your user card with one of your other badges. If you don't select any, they'll be selected automatically.
+      select_limit: "You can select {limit, plural, one {<b>one badge</b>} other {<b># badges</b>}} to be visible in your user card."
+      hit_limit: "There's only place for <b> {limit, plural, one {<b>one badge</b>} other {<b># badges</b>}}</b> in your card. Unselect a badge to make room for this badge."
 
     moderation:
       remove_badge: Remove badge from user

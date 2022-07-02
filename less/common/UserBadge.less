@@ -22,7 +22,10 @@
   i {
     width: 15px;
     text-align: center;
-    margin-right: 5px;
+
+    &:not(.BadgeIconOnly) {
+      margin-right: 5px;
+    }
   }
 
   &.UserBadge--variant-blocked {

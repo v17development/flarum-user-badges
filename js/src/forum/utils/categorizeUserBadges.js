@@ -30,11 +30,14 @@ export default function categorizeUserBadges(user) {
     .sort((a, b) => categories[a].category.order() - categories[b].category.order())
     .map((category) => categories[category]);
 
-  sortedCategories.push({
-    name: app.translator.trans('v17development-flarum-badges.forum.uncategorized'),
-    category: null,
-    badges: uncategorized,
-  });
+  // Add uncategorized category to list
+  if (uncategorized.length >= 1) {
+    sortedCategories.push({
+      name: app.translator.trans('v17development-flarum-badges.forum.uncategorized'),
+      category: null,
+      badges: uncategorized,
+    });
+  }
 
   return sortedCategories;
 }

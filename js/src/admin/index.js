@@ -24,6 +24,24 @@ app.initializers.add('v17development-user-badges', () => {
     )
     .registerPermission(
       {
+        icon: 'fas fa-id-card',
+        label: app.translator.trans('v17development-flarum-badges.admin.permissions.edit_own_card_badges'),
+        permission: 'badges.editOwnUserCardBadges',
+      },
+      'start',
+      90
+    )
+    .registerPermission(
+      {
+        icon: 'fas fa-address-card',
+        label: app.translator.trans('v17development-flarum-badges.admin.permissions.edit_card_badges'),
+        permission: 'badges.editUserCardBadges',
+      },
+      'moderate',
+      90
+    )
+    .registerPermission(
+      {
         icon: 'fas fa-user-tag',
         label: app.translator.trans('v17development-flarum-badges.admin.permissions.give_badge'),
         permission: 'badges.giveBadge',

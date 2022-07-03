@@ -17,6 +17,7 @@ import UserBadgeListState from './states/UserBadgeListState';
 import BadgeReceivedNotification from './notification/BadgeReceivedNotification';
 import NotificationGrid from 'flarum/forum/components/NotificationGrid';
 import addBadgeListUserCard from './addBadgeListUserCard';
+import DiscussionListState from 'flarum/forum/states/DiscussionListState';
 
 app.initializers.add('v17development-flarum-badges', (app) => {
   app.store.models.badges = Badge;
@@ -106,5 +107,14 @@ app.initializers.add('v17development-flarum-badges', (app) => {
       );
     }
   });
+
   addBadgeListUserCard();
+
+  extend(DiscussionListState.prototype, 'requestParams', function (params) {
+    if (typeof params.include === 'string') {
+      params.include = [params.include];
+    } else {
+      params.include?.push('user.userBadges', 'user.userBadges.badge');
+    }
+  });
 });

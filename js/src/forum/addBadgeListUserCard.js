@@ -9,10 +9,16 @@ import Tooltip from 'flarum/common/components/Tooltip';
 
 export default function addBadgeListUserCard() {
   extend(UserCard.prototype, 'infoItems', function (items) {
+    // Get user
     const user = this.attrs.user;
-    const userBadges = user.userBadges();
 
-    if (userBadges.length < 1 || !app.forum.attribute('showBadgesOnUserCard')) return;
+    // Don't show badges
+    if (!app.forum.attribute('showBadgesOnUserCard') || !user.userBadges) return;
+
+    const userBadges = user.userBadges() ?? [];
+
+    // No badges to show
+    if (userBadges.length < 1 || !userBadges) return;
 
     const limit = app.forum.attribute('numberOfBadgesOnUserCard');
 
@@ -55,7 +61,7 @@ export default function addBadgeListUserCard() {
     }
 
     // Manage badges
-    if (user === app.session.user) {
+    if ((user === app.session.user && app.forum.attribute('editOwnUserCardBadges')) || app.forum.attribute('editUserCardBadges')) {
       badges.push(
         <Tooltip text={app.translator.trans('v17development-flarum-badges.forum.badges_in_card.manage_badges')}>
           <a

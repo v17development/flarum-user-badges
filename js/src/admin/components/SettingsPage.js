@@ -166,6 +166,11 @@ export default class SettingsPage extends ExtensionPage {
             label: app.translator.trans('v17development-flarum-badges.admin.show_badges_on_user_card'),
           })}
           {this.buildSettingComponent({
+            type: 'switch',
+            setting: 'v17development-user-badges.show_badges_in_discussion',
+            label: app.translator.trans('v17development-flarum-badges.admin.show_badges_in_discussion'),
+          })}
+          {this.buildSettingComponent({
             type: 'number',
             setting: 'v17development-user-badges.number_of_badges_on_user_card',
             label: app.translator.trans('v17development-flarum-badges.admin.number_of_badges_on_user_card'),

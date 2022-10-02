@@ -103,6 +103,7 @@ $extend = [
 
     (new Extend\Settings)
         ->serializeToForum('showBadgesOnUserCard', 'v17development-user-badges.show_badges_on_user_card', 'boolval')
+        ->serializeToForum('showBadgesInDiscussion', 'v17development-user-badges.show_badges_in_discussion', 'boolval')
         ->serializeToForum('numberOfBadgesOnUserCard', 'v17development-user-badges.number_of_badges_on_user_card', 'intval')
         ->default('v17development-user-badges.number_of_badges_on_user_card', 5),
 ];

@@ -1,3 +1,4 @@
+import UserBadge from '../common/components/UserBadge';
 import Badge from '../common/models/Badge';
 import BadgeCategory from '../common/models/BadgeCategory';
 import BadgeActionDriverSettings from './components/BadgeActionDriverSettings';
@@ -6,6 +7,7 @@ import SettingsPage from './components/SettingsPage';
 app.initializers.add('v17development-user-badges', () => {
   app.store.models.badges = Badge;
   app.store.models.badgeCategories = BadgeCategory;
+  app.store.models.userBadges = UserBadge;
 
   // Register extension settings page
   app.extensionData.for('v17development-user-badges').registerPage(SettingsPage);

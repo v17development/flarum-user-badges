@@ -34,6 +34,7 @@ export default class SortableBadge extends Component {
             <Button
               className={'Button'}
               disabled={this.loading}
+              aria-label={'Edit'}
               onclick={() =>
                 app.modal.show(EditBadgeModal, {
                   badge,
@@ -45,6 +46,7 @@ export default class SortableBadge extends Component {
             <Button
               className={'Button'}
               disabled={this.loading}
+              aria-label={'Delete'}
               onclick={() =>
                 app.modal.show(ConfirmModal, {
                   text: app.translator.trans('v17development-flarum-badges.admin.confirm_messages.delete_badge'),

@@ -75,7 +75,7 @@ app.initializers.add('v17development-flarum-badges', (app) => {
       LinkButton.component(
         {
           href: app.route('user.badges', {
-            username: this.user.username(),
+            username: this.user.slug(),
           }),
           name: 'badges',
           icon: 'fas fa-user-tag',

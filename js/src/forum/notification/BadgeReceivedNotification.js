@@ -20,9 +20,9 @@ export default class BadgeReceivedNotification extends Notification {
 
     return (
       <div>
-        <i className={`icon ${subject.badge().icon()}`} />
+        <i className={`icon ${subject.data.attributes.icon}`} />
 
-        {subject.badge().name()}
+        {subject.data.attributes.name}
       </div>
     );
   }
